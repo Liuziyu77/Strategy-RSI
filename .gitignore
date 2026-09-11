@@ -1,0 +1,13 @@
+.env
+.env.*
+!.env.example
+.runtime/
+node_modules/
+dist/
+data/
+playwright-report/
+test-results/
+*.log
+
+# Local verification artifacts; curated README media lives in docs/assets/.
+artifacts/

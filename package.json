@@ -1,0 +1,47 @@
+{
+  "name": "strategy-rsi",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Multi-agent strategy arena with reflection, persistent memory and experience consolidation",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "dev": "tsx server/index.ts",
+    "build": "vite build",
+    "start": "NODE_ENV=production tsx server/index.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:arena": "vitest run tests/arena",
+    "test:rules": "vitest run tests/arena/engine.test.ts",
+    "test:e2e": "playwright test",
+    "smoke": "tsx scripts/smoke.ts",
+    "smoke:api": "tsx scripts/smoke-api.ts",
+    "format": "prettier --write src server web scripts tests docs README.md *.json *.ts index.html",
+    "format:check": "prettier --check src server web scripts tests docs README.md *.json *.ts index.html",
+    "docs:media": "tsx scripts/capture-readme.ts"
+  },
+  "dependencies": {
+    "@hono/node-server": "1.19.9",
+    "dotenv": "17.2.3",
+    "hono": "4.12.18",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "tsx": "4.21.0",
+    "yaml": "2.8.2",
+    "zod": "4.3.6"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.58.2",
+    "@types/node": "22.19.15",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "4.7.0",
+    "prettier": "3.8.1",
+    "typescript": "5.9.3",
+    "vite": "6.4.1",
+    "vitest": "3.2.4"
+  },
+  "license": "Apache-2.0"
+}

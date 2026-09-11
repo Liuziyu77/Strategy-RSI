@@ -1,0 +1,28 @@
+{
+  "capturedAt": "2026-09-11T08:04:02.168Z",
+  "source": "Actual application UI and rules engine; local heuristic-backed mock provider, scripted chat and example reflections. No live model benchmark.",
+  "games": [
+    {
+      "number": 1,
+      "winner": "内奸",
+      "round": 3
+    },
+    {
+      "number": 2,
+      "winner": "主忠",
+      "round": 22
+    },
+    {
+      "number": 3,
+      "winner": "反贼",
+      "round": 2
+    }
+  ],
+  "consolidations": 1,
+  "browserErrors": [],
+  "viewport": [
+    1600,
+    1060
+  ],
+  "zoom": 0.82
+}

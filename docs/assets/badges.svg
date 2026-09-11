@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="620" height="30" viewBox="0 0 620 30" role="img" aria-label="Node.js 22.13+, TypeScript, 2–8 agents, Apache 2.0">
+  <g font-family="Segoe UI,Arial,sans-serif" font-size="12" text-anchor="middle">
+    <rect width="155" height="28" rx="5" fill="#152a22"/><text x="45" y="18" fill="#a6d2bc">Node.js</text><text x="118" y="18" fill="#eee8d6">22.13+</text>
+    <rect x="165" width="140" height="28" rx="5" fill="#244d3a"/><text x="235" y="18" fill="#eee8d6">TypeScript</text>
+    <rect x="315" width="140" height="28" rx="5" fill="#152a22"/><text x="385" y="18" fill="#d6b676">2–8 Agents</text>
+    <rect x="465" width="155" height="28" rx="5" fill="#152a22"/><text x="542" y="18" fill="#d6b676">Apache 2.0</text>
+  </g>
+</svg>

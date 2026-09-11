@@ -6,6 +6,9 @@
 <p align="center"><strong>A Multi-Agent Arena for Recursive Self-Improvement</strong></p>
 <p align="center">多智能体博弈与递归自我改进（RSI）平台<br />从对局中积累经验，用经验改进决策</p>
 <p align="center">
+  <strong>简体中文</strong> · <a href="README.en.md">English</a>
+</p>
+<p align="center">
   <img src="docs/assets/badges.svg" alt="Node.js 22.13+ · TypeScript · 2–8 Agents · Apache 2.0" width="620" />
 </p>
 <p align="center">

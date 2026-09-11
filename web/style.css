@@ -801,6 +801,8 @@ i.on,
   align-self: center;
 }
 .card-face {
+  --card-name-size: 16px;
+  --card-name-space: 64px;
   position: relative;
   display: inline-flex;
   width: 59px;
@@ -826,11 +828,19 @@ i.on,
   color: #a14539;
 }
 .card-face strong {
-  font: 600 16px var(--serif);
-  writing-mode: vertical-rl;
-  letter-spacing: 2px;
-  white-space: nowrap;
-  max-height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--serif);
+  font-size: min(var(--card-name-size), calc(var(--card-name-space) / var(--card-name-length)));
+  font-weight: 600;
+  line-height: 1.1;
+  /* Stack upright glyphs explicitly: fallback fonts can have broken vertical metrics. */
+  writing-mode: horizontal-tb;
+  letter-spacing: 0;
+}
+.card-face strong > span {
+  display: block;
 }
 .card-face .corner {
   position: absolute;
@@ -854,19 +864,20 @@ i.on,
   font-size: 5px;
   font-style: normal;
   opacity: 0.4;
-  writing-mode: vertical-rl;
+  width: 1em;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+  writing-mode: horizontal-tb;
 }
 .card-face.small {
+  --card-name-size: 11px;
+  --card-name-space: 34px;
   width: 30px;
   height: 44px;
   border-radius: 2px;
 }
 .card-face.small strong {
-  font-size: 10px;
-  letter-spacing: 0;
   transform: translateX(3px);
-  max-height: 100%;
-  text-orientation: upright;
 }
 .card-face.small .corner {
   font-size: 7px;

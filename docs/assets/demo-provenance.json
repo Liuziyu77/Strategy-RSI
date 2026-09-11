@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-09-11T08:04:02.168Z",
+  "capturedAt": "2026-09-11T08:52:38.537Z",
   "source": "Actual application UI and rules engine; local heuristic-backed mock provider, scripted chat and example reflections. No live model benchmark.",
   "games": [
     {
@@ -21,8 +21,21 @@
   "consolidations": 1,
   "browserErrors": [],
   "viewport": [
-    1600,
-    1060
+    1920,
+    1280
   ],
-  "zoom": 0.82
+  "zoom": 1,
+  "capture": "Lossless PNG screencast frames, original timestamps",
+  "mp4": {
+    "width": 1920,
+    "height": 1280,
+    "fps": 30,
+    "crf": 16
+  },
+  "gif": {
+    "width": 1440,
+    "height": 960,
+    "fps": 12,
+    "colors": 256
+  }
 }

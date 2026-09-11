@@ -263,15 +263,13 @@ body {
   transform: rotate(calc((var(--card-index) - 0.3) * 5deg));
 }
 .played-card .card-face {
+  --card-name-size: 29px;
+  --card-name-space: 104px;
   width: 94px;
   height: 135px;
   box-shadow:
     0 10px 24px #0008,
     0 0 30px #edcf9133;
-}
-.played-card .card-face strong {
-  font-size: 29px;
-  letter-spacing: 5px;
 }
 .played-card .card-face .corner {
   font-size: 15px;
@@ -2100,11 +2098,10 @@ body {
     font-size: 12px;
   }
   .played-card .card-face {
+    --card-name-size: 24px;
+    --card-name-space: 72px;
     width: 68px;
     height: 99px;
-  }
-  .played-card .card-face strong {
-    font-size: 24px;
   }
   .flying-card-group {
     width: 76px;

@@ -138,12 +138,17 @@ export function Face({ card, small = false }: { card: Card; small?: boolean }) {
     <span
       className={`card-face ${small ? 'small' : ''} ${card.suit === '♥' || card.suit === '♦' ? 'red' : ''}`}
       title={`${card.suit}${card.rank} ${card.name}`}
+      style={{ '--card-name-length': [...card.name].length } as React.CSSProperties}
     >
       <span className="corner">
         {['', 'A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'][card.rank]}
         <b>{card.suit}</b>
       </span>
-      <strong>{card.name}</strong>
+      <strong>
+        {[...card.name].map((character, index) => (
+          <span key={index}>{character}</span>
+        ))}
+      </strong>
       <i>{card.type === 'equipment' ? '装备' : card.type === 'trick' ? '锦囊' : '基本'}</i>
     </span>
   );

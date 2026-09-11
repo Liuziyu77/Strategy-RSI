@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { resolve, join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { setTimeout as delay } from 'node:timers/promises';
-import { execFileSync } from 'node:child_process';
+import { startRecording, encodeRecording } from './media-recording';
 import { chromium, type Page } from '@playwright/test';
 import { getRequestListener } from '@hono/node-server';
 import { serveStatic } from '@hono/node-server/serve-static';
@@ -31,48 +31,6 @@ const close = async (server: Server) => {
   await new Promise<void>((done) => server.close(() => done()));
 };
 const viewport = { width: 1920, height: 1280 };
-// Capture lossless PNG frames before H.264 encoding. Playwright's recordVideo first
-// compresses to VP8, which loses small Chinese glyphs before a later MP4 conversion.
-const capture = async (page: Page, name: string) => {
-  const folder = join(scratch, name);
-  mkdirSync(folder);
-  const session = await page.context().newCDPSession(page);
-  const frames: { path: string; time: number }[] = [];
-  session.on('Page.screencastFrame', (frame) => {
-    const path = join(folder, `${String(frames.length).padStart(6, '0')}.png`);
-    writeFileSync(path, Buffer.from(frame.data, 'base64'));
-    frames.push({ path, time: frame.metadata.timestamp ?? Date.now() / 1000 });
-    void session.send('Page.screencastFrameAck', { sessionId: frame.sessionId });
-  });
-  await session.send('Page.startScreencast', {
-    format: 'png',
-    maxWidth: viewport.width,
-    maxHeight: viewport.height,
-    everyNthFrame: 2,
-  });
-  return async () => {
-    await session.send('Page.stopScreencast');
-    await session.detach();
-    if (frames.length < 2) throw new Error('Too few frames captured.');
-    const list = join(folder, 'frames.ffconcat');
-    writeFileSync(
-      list,
-      'ffconcat version 1.0\n' +
-        frames
-          .map((frame, i) => {
-            const duration = Math.max(
-              0.001,
-              (frames[i + 1]?.time ?? frame.time + 0.5) - frame.time,
-            );
-            return `file '${frame.path}'\nduration ${duration.toFixed(6)}`;
-          })
-          .join('\n') +
-        `\nfile '${frames.at(-1)!.path}'\n`,
-    );
-    console.log(`${name}: ${frames.length} lossless frames captured.`);
-    return list;
-  };
-};
 const prepare = async (page: Page) => {
   // The capture is independent of remote font availability. Explicitly stacked
   // card glyphs also render correctly with the system's Chinese fallback font.
@@ -202,7 +160,7 @@ try {
   await prepare(page);
   await page.getByRole('heading', { name: match.config.name, exact: true }).waitFor();
   await page.getByRole('button', { name: '牌局聊天', exact: true }).click();
-  const stopBattleCapture = await capture(page, 'battle');
+  const stopBattleCapture = await startRecording(page, scratch, 'battle', viewport);
   await delay(600);
   arena.resume(match.id);
   console.log('Recording live five-player game and chat…');
@@ -232,7 +190,7 @@ try {
   await memoryPage.getByRole('button', { name: '玩家库', exact: true }).click();
   await memoryPage.locator('.roster-item').filter({ hasText: '观澜' }).click();
   await memoryPage.getByRole('tab', { name: '参战历史' }).click();
-  const stopMemoryCapture = await capture(memoryPage, 'memory');
+  const stopMemoryCapture = await startRecording(memoryPage, scratch, 'memory', viewport);
   await delay(1700);
   await memoryPage.screenshot({ path: join(out, 'player-library.png') });
   await memoryPage.getByRole('tab', { name: '个人经验' }).click();
@@ -251,52 +209,8 @@ try {
   const memoryVideo = await stopMemoryCapture();
   await memoryContext.close();
   if (errors.length) throw new Error(errors.join('\n'));
-  const encode = (input: string, name: string, duration: number, previewDuration: number) => {
-    const source = ['-f', 'concat', '-safe', '0', '-i', input];
-    execFileSync('ffmpeg', [
-      '-y',
-      '-hide_banner',
-      '-loglevel',
-      'error',
-      ...source,
-      '-t',
-      String(duration),
-      '-vf',
-      'fps=30',
-      '-c:v',
-      'libx264',
-      '-crf',
-      '16',
-      '-preset',
-      'slow',
-      '-threads',
-      '4',
-      '-pix_fmt',
-      'yuv420p',
-      '-movflags',
-      '+faststart',
-      '-an',
-      join(out, `${name}.mp4`),
-    ]);
-    execFileSync('ffmpeg', [
-      '-y',
-      '-hide_banner',
-      '-loglevel',
-      'error',
-      ...source,
-      '-t',
-      String(previewDuration),
-      '-vf',
-      'fps=12,scale=1440:-2:flags=lanczos,split[a][b];[a]palettegen=max_colors=256:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=4:diff_mode=rectangle',
-      '-filter_complex_threads',
-      '1',
-      '-loop',
-      '0',
-      join(out, `${name}.gif`),
-    ]);
-  };
-  encode(battleVideo, 'arena-demo', 28, 22);
-  encode(memoryVideo, 'experience-demo', 18, 18);
+  encodeRecording(battleVideo, out, 'arena-demo', 28, 22);
+  encodeRecording(memoryVideo, out, 'experience-demo', 18, 18);
   writeFileSync(
     join(out, 'demo-provenance.json'),
     JSON.stringify(

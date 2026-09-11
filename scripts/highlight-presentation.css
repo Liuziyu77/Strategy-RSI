@@ -1,0 +1,174 @@
+/* Recording-only framing: enlarge the real game and chat components for README clips. */
+body {
+  overflow: hidden;
+}
+#archive-heading {
+  height: 176px;
+  padding: 26px 44px;
+  background: linear-gradient(110deg, #172c23, #101b17);
+  border-bottom: 1px solid #b99c5b55;
+  position: relative;
+}
+.archive-label {
+  font: 12px sans-serif;
+  letter-spacing: 4px;
+  color: #dabc7c;
+}
+#archive-heading h1 {
+  margin: 10px 0 6px;
+  font-size: 36px;
+  font-weight: 500;
+  color: #f4ead6;
+}
+#archive-heading p {
+  margin: 0;
+  color: #a4b7a9;
+  font-size: 18px;
+}
+#archive-progress {
+  position: absolute;
+  right: 44px;
+  top: 74px;
+  border: 1px solid #8aac8055;
+  padding: 12px 18px;
+  border-radius: 6px;
+  color: #c2d9bd;
+  font-size: 18px;
+}
+.topbar,
+.sidebar,
+.arena-heading,
+.replay-bar,
+.decision-strip,
+.history-footer,
+.live-tag {
+  display: none;
+}
+.workspace {
+  grid-template-columns: minmax(0, 1fr) 490px;
+  min-height: 0;
+  height: 1104px;
+}
+.arena-main {
+  padding: 24px 30px;
+}
+.arena-toolbar {
+  height: 46px;
+  font-size: 15px;
+}
+.battlefield {
+  height: 965px;
+  padding: 50px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.player-panel {
+  max-width: 350px;
+  width: 31%;
+  padding: 16px 18px 0;
+}
+.player-top,
+.role,
+.player-footer,
+.equipment-line span {
+  font-size: 13px;
+}
+.player-info h3 {
+  font-size: 17px;
+  white-space: normal;
+}
+.player-info small {
+  font-size: 11px;
+}
+.hand-strip {
+  height: 76px;
+}
+.card-face.small {
+  width: 46px;
+  height: 65px;
+  --card-name-size: 17px;
+  --card-name-space: 48px;
+}
+.card-face.small .corner {
+  font-size: 10px;
+}
+.played-card .card-face {
+  width: 126px;
+  height: 180px;
+  --card-name-size: 42px;
+  --card-name-space: 142px;
+}
+.play-caption {
+  font-size: 17px;
+  max-width: 720px;
+}
+.history-panel {
+  padding: 28px;
+  height: 1104px;
+  max-height: none;
+}
+.history-title h2 {
+  font-size: 27px;
+}
+.history-title .mini-pill {
+  font-size: 13px;
+}
+.log-tabs button {
+  font-size: 17px;
+}
+.event-row p {
+  font-size: 18px;
+  line-height: 1.8;
+}
+.event-row small {
+  font-size: 12px;
+}
+.highlight-chat .arena-main {
+  display: none;
+}
+.highlight-chat .workspace {
+  display: block;
+}
+.highlight-chat .history-panel {
+  max-width: 1540px;
+  margin: auto;
+  padding: 24px 48px;
+  border-left: 0;
+  background: transparent;
+}
+.highlight-chat .history-title,
+.highlight-chat .log-tabs,
+.highlight-chat .chat-pagination,
+.highlight-chat .chat-room-intro {
+  display: none;
+}
+.highlight-chat .chat-feed {
+  max-height: none;
+  padding: 12px 10px 18px;
+}
+.highlight-chat .chat-message {
+  margin-bottom: 32px;
+}
+.highlight-chat .chat-speaker strong {
+  font-size: 25px;
+}
+.highlight-chat .chat-avatar {
+  flex-basis: 40px;
+  height: 40px;
+  font-size: 25px;
+}
+.highlight-chat .chat-speaker small,
+.highlight-chat .chat-meta,
+.highlight-chat .chat-room-note {
+  font-size: 17px;
+}
+.highlight-chat .chat-bubble {
+  font-size: 31px;
+  line-height: 1.8;
+  padding: 18px 24px;
+  margin: 12px 0 9px 48px;
+}
+.highlight-chat .chat-meta {
+  margin-left: 48px;
+}

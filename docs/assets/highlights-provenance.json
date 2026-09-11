@@ -1,0 +1,50 @@
+{
+  "capturedAt": "2026-09-11T09:17:17.983Z",
+  "source": "sanguosha/data/api-validation/arena.sqlite",
+  "archiveSha256": "81eea5c75c48bcfce2d3edd2e915b75fd0d33eece577d75628d1c4513a89e8b1",
+  "presentation": "Original archived observations, events and public chat. Read-only replay, waits compressed. No model calls.",
+  "viewport": {
+    "width": 1920,
+    "height": 1280
+  },
+  "mp4": {
+    "fps": 30,
+    "crf": 16
+  },
+  "gif": {
+    "width": 1440,
+    "fps": 12
+  },
+  "clips": [
+    {
+      "id": "battle-highlight",
+      "gameId": "e0fbc943-68f7-41fc-9e8c-dc399da7903d",
+      "matchId": "fc0336c2-1271-4dda-a9ba-ccf139225c49",
+      "gameNumber": 1,
+      "originalStart": "2026-09-11T07:27:30.030Z",
+      "originalEnd": "2026-09-11T07:29:46.492Z",
+      "eventRange": [
+        213,
+        255
+      ],
+      "browserErrors": [],
+      "seenAnimations": 8,
+      "verbatimChatVerified": true
+    },
+    {
+      "id": "chat-highlight",
+      "gameId": "e0fbc943-68f7-41fc-9e8c-dc399da7903d",
+      "matchId": "fc0336c2-1271-4dda-a9ba-ccf139225c49",
+      "gameNumber": 1,
+      "originalStart": "2026-09-11T07:21:05.359Z",
+      "originalEnd": "2026-09-11T07:25:16.227Z",
+      "eventRange": [
+        86,
+        159
+      ],
+      "browserErrors": [],
+      "seenAnimations": 0,
+      "verbatimChatVerified": true
+    }
+  ]
+}

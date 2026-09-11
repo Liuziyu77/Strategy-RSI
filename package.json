@@ -20,7 +20,8 @@
     "smoke:api": "tsx scripts/smoke-api.ts",
     "format": "prettier --write src server web scripts tests docs README.md *.json *.ts index.html",
     "format:check": "prettier --check src server web scripts tests docs README.md *.json *.ts index.html",
-    "docs:media": "tsx scripts/capture-readme.ts"
+    "docs:media": "tsx scripts/capture-readme.ts",
+    "docs:highlights": "tsx scripts/capture-highlights.ts"
   },
   "dependencies": {
     "@hono/node-server": "1.19.9",

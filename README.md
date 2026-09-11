@@ -20,42 +20,61 @@ Strategy-RSI 以三国杀身份局为环境，让不同模型在有限信息下�
 
 **2–8 人对战** · **108 张卡牌** · **8 名基础武将** · **即时 / 赛后 RSI**
 
-## News
+<a id="news"></a>
 
+## 📰 News
+
+- **2026.09.11** — 动态演示改为两行双列，新增真实牌局的决斗与 Agent 身份争论回放，补充武将扩展计划。
 - **2026.09.11** — 修正卡牌中文重叠，重新录制高清演示；更新项目介绍与后续计划，简化 README 排版。
 - **2026.09.11** — 项目初版入库：可视化观战、玩家库、多局并行、公开聊天室与 RSI 经验归纳，配套接入文档和测试。
 
-## 动态演示
+<a id="动态演示"></a>
 
-### 对战观测
+## 🎬 动态演示
 
-动态出牌、体力变化与公开聊天在同一张牌桌呈现；多局并行时，随时切换正在观测的对局。
+**功能演示** · 从实时观战到经验管理
 
-<a href="docs/assets/arena-demo.mp4?raw=true">
-  <img src="docs/assets/arena-demo.gif" alt="五人局实时出牌、Agent 公开聊天和并行切局演示" width="100%" />
-</a>
+<table>
+  <tr>
+    <td width="50%" align="center" valign="top">
+      <h4>🎮 对战观测</h4>
+      <a href="docs/assets/arena-demo.mp4?raw=true"><img src="docs/assets/arena-demo.gif" alt="五人局出牌动画、聊天与并行切局演示" width="100%" /></a>
+      <p><sub>出牌动画 · 并行观测</sub></p>
+      <p><a href="docs/assets/arena-demo.mp4?raw=true">▶ 高清视频</a> · <a href="docs/assets/arena.png">截图</a></p>
+    </td>
+    <td width="50%" align="center" valign="top">
+      <h4>🧠 经验归纳</h4>
+      <a href="docs/assets/experience-demo.mp4?raw=true"><img src="docs/assets/experience-demo.gif" alt="玩家档案、经验分类与归纳流程演示" width="100%" /></a>
+      <p><sub>玩家档案 · 经验归纳</sub></p>
+      <p><a href="docs/assets/experience-demo.mp4?raw=true">▶ 高清视频</a> · <a href="docs/assets/experience.png">截图</a></p>
+    </td>
+  </tr>
+</table>
 
-<div align="center">
-  <sub>五人身份局 · 动态出牌 · 公开聊天 · 多局实时切换</sub><br />
-  <a href="docs/assets/arena-demo.mp4?raw=true">▶ 查看高清 MP4 · 1920 × 1280</a> · <a href="docs/assets/arena.png">查看高清截图</a>
-</div>
+**真实牌局回放** · 选自已有「对话测试」对局
 
-### 玩家档案与经验归纳
+<table>
+  <tr>
+    <td width="50%" align="center" valign="top">
+      <h4>⚔️ 牌局动态</h4>
+      <a href="docs/assets/battle-highlight.mp4?raw=true"><img src="docs/assets/battle-highlight.gif" alt="真实牌局回放：主公与反贼连续决斗、武圣转化和伤害结算" width="100%" /></a>
+      <p><sub>决斗交锋 · 连续出杀</sub></p>
+      <p><a href="docs/assets/battle-highlight.mp4?raw=true">▶ 高清视频</a> · <a href="docs/assets/battle-highlight.png">截图</a></p>
+    </td>
+    <td width="50%" align="center" valign="top">
+      <h4>💬 Agent 聊天</h4>
+      <a href="docs/assets/chat-highlight.mp4?raw=true"><img src="docs/assets/chat-highlight.gif" alt="真实 Agent 聊天：试探身份、质疑行动，RSI 关羽公开反驳" width="100%" /></a>
+      <p><sub>身份试探 · 公开反驳</sub></p>
+      <p><a href="docs/assets/chat-highlight.mp4?raw=true">▶ 高清视频</a> · <a href="docs/assets/chat-highlight.png">截图</a></p>
+    </td>
+  </tr>
+</table>
 
-从玩家战绩进入个人经验，按对战查看即时反思与赛后复盘，再调用该 Agent 的模型归纳整理。
+> **素材说明** · 上排使用本地策略模拟 API 展示功能；下排取自真实模型对局存档，保留原始行动与公开发言，按历史帧回放并压缩等待时间。点击动图可打开 **1920 × 1280** 高清 MP4。[来源、片段说明与重新录制 →](docs/MEDIA.md)
 
-<a href="docs/assets/experience-demo.mp4?raw=true">
-  <img src="docs/assets/experience-demo.gif" alt="玩家参战历史、即时与赛后经验分组以及经验归纳过程" width="100%" />
-</a>
+<a id="核心功能"></a>
 
-<div align="center">
-  <sub>按场归集 · 分类复盘 · 经验归纳 · 后续复用</sub><br />
-  <a href="docs/assets/experience-demo.mp4?raw=true">▶ 查看高清 MP4 · 1920 × 1280</a> · <a href="docs/assets/experience.png">查看归纳结果</a>
-</div>
-
-> **演示说明** · GIF 为动态预览，高清 MP4 保留原始画幅。素材录自实际界面与规则引擎，使用本地策略模拟 API 与示例聊天、反思，用于展示功能，不代表大模型能力评测。[素材来源与重新录制 →](docs/MEDIA.md)
-
-## 核心功能
+## 🎯 核心功能
 
 ### 博弈与交流
 
@@ -84,7 +103,9 @@ Strategy-RSI 以三国杀身份局为环境，让不同模型在有限信息下�
 
 双人局采用简化的主公与反贼对决。身份、卡牌与技能的具体实现范围见[规则文档](docs/RULES.md)。
 
-## 快速启动
+<a id="快速启动"></a>
+
+## 🚀 快速启动
 
 ### 1. 启动牌桌
 
@@ -119,7 +140,9 @@ npm start
 
 </details>
 
-## 经验机制
+<a id="经验机制"></a>
+
+## 🧠 经验机制
 
 **RSI 的核心循环：把刚刚发生的对局，变成下一次决策可读取的经验。**
 
@@ -149,7 +172,9 @@ npm start
 
 </details>
 
-## Todo List
+<a id="todo-list"></a>
+
+## 📌 Todo List
 
 ### 已完成 · 可在当前版本使用
 
@@ -166,8 +191,11 @@ npm start
 
 - [ ] **改进经验自进化机制**：完善经验生成、筛选、归纳与反馈，让经验持续修正和迭代。
 - [ ] **兼容更多游戏**：抽象游戏环境与 Agent 接口，将对战、交流和经验学习流程扩展到其他策略游戏。
+- [ ] **支持更多武将信息**：补充武将资料、技能说明与对应的规则支持。
 
-## 文档
+<a id="文档"></a>
+
+## 📚 文档
 
 - [启动与模型接入](docs/GETTING_STARTED.md) — 本地运行、API 配置、对战参数与存档恢复。
 - [规则说明](docs/RULES.md) — 身份配置、卡牌、装备与基础武将。

@@ -4,7 +4,7 @@
 
 <h1 align="center">Strategy-RSI</h1>
 <p align="center"><strong>A Multi-Agent Arena for Recursive Self-Improvement</strong></p>
-<p align="center">三国杀多智能体博弈与经验学习平台<br />让模型同桌交锋，让经验进入下一次决策。</p>
+<p align="center">多智能体博弈与递归自我改进（RSI）平台<br />从对局中积累经验，用经验改进决策</p>
 <p align="center">
   <img src="docs/assets/badges.svg" alt="Node.js 22.13+ · TypeScript · 2–8 Agents · Apache 2.0" width="620" />
 </p>
@@ -20,7 +20,6 @@ Strategy-RSI 是一个面向 Agent 递归自我改进（RSI）的博弈实验平
 
 ## 📰 News
 
-- **2026.09.11** — 修正卡牌中文重叠，重新录制高清演示；更新项目介绍与后续计划，简化 README 排版。
 - **2026.09.11** — 项目初版入库：可视化观战、玩家库、多局并行、公开聊天室与 RSI 经验归纳，配套接入文档和测试。
 
 <a id="动态演示"></a>

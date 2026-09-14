@@ -107,45 +107,45 @@ Two-player games use a simplified Lord-versus-Rebel setup. See the [rules guide]
 
 **4 models · 528 scheduled games · 489 completed normally · 39 failed**
 
-Measure play without experience before testing RSI. All agents use Guan Yu and empty memory, with **RSI off and public chat on**. Duels mirror roles and seats; four-player games cover every seat permutation. Win rates below use normally completed games and do not measure an RSI improvement. [Setup, methods, and data →](docs/EXPERIMENTS.en.md)
+Measure play without experience before testing RSI. All agents use Guan Yu and empty memory, with **RSI off and public chat on**. Duels mirror roles and seats; four-player games cover every seat permutation. Win rates below use normally completed games and do not measure an RSI improvement. [Setup, methods, and data →](exp/sanguosha/README.en.md)
 
 ### Win rate
 
-[![Duel and four-player identity win rates with 95% seed-block confidence intervals](docs/assets/experiments/win-rate.svg)](docs/assets/experiments/win-rate.svg)
+[![Duel and four-player identity win rates with 95% seed-block confidence intervals](exp/sanguosha/assets/win-rate.svg)](exp/sanguosha/assets/win-rate.svg)
 
 DeepSeek leads four-player identity games at **61.7%**. Its differences from all three opponents remain supported after correcting for multiple comparisons; the other three cannot be reliably ranked against one another.
 
 ### Head-to-head
 
-[![Duel matrix showing each row model's win rate and wins against each column opponent](docs/assets/experiments/head-to-head.svg)](docs/assets/experiments/head-to-head.svg)
+[![Duel matrix showing each row model's win rate and wins against each column opponent](exp/sanguosha/assets/head-to-head.svg)](exp/sanguosha/assets/head-to-head.svg)
 
 DeepSeek finishes **20 : 19** against GLM and **28 : 12** against Kimi. The overall leader's results still depend on the opponent; individual matchups add context to aggregate win rates.
 
 ### Role win rate
 
-[![Win rates and sample sizes for each model as Lord, Loyalist, Rebel, and Renegade](docs/assets/experiments/role-win-rate.svg)](docs/assets/experiments/role-win-rate.svg)
+[![Win rates and sample sizes for each model as Lord, Loyalist, Rebel, and Renegade](exp/sanguosha/assets/role-win-rate.svg)](exp/sanguosha/assets/role-win-rate.svg)
 
 DeepSeek has the highest point estimate in all four roles. Weighting roles equally leaves its win rate at **61.6%**, so differences in the observed role mix do not explain its overall lead.
 
 ### Game duration
 
-[![Individual game durations with medians, interquartile ranges, and P5–P95 whiskers](docs/assets/experiments/game-duration.svg)](docs/assets/experiments/game-duration.svg)
+[![Individual game durations with medians, interquartile ranges, and P5–P95 whiskers](exp/sanguosha/assets/game-duration.svg)](exp/sanguosha/assets/game-duration.svg)
 
 Median duration is **12.1 minutes** for duels and **36.2 minutes** for four-player games. Times include request queues and retries, with documented account-recovery pauses removed; they describe this concurrent run.
 
 ### Token use
 
-[![Cumulative API-reported input and output tokens for each model](docs/assets/experiments/token-use.svg)](docs/assets/experiments/token-use.svg)
+[![Cumulative API-reported input and output tokens for each model](exp/sanguosha/assets/token-use.svg)](exp/sanguosha/assets/token-use.svg)
 
 The formal experiment reports **428.5M tokens**, with input accounting for **94.1%**. Context compression is a useful next optimization to test. Totals include reported retry usage; different provider accounting prevents a direct cost ranking.
 
 ### Chat frequency
 
-[![Share of model decisions containing public speech, split by duel and four-player games](docs/assets/experiments/chat-frequency.svg)](docs/assets/experiments/chat-frequency.svg)
+[![Share of model decisions containing public speech, split by duel and four-player games](exp/sanguosha/assets/chat-frequency.svg)](exp/sanguosha/assets/chat-frequency.svg)
 
 In four-player games, GLM speaks in **96.6%** of model decisions versus DeepSeek's **82.3%**. More frequent speech does not coincide with more wins here; isolating its effect requires a chat-on/off comparison with the same models and seeds.
 
-<sub>Click figures to enlarge. Also available: <a href="docs/assets/experiments">high-resolution PNGs</a>, <a href="docs/experiments/results.json">public summary data</a>, and the <a href="docs/experiments/render_figures.py">plotting script</a>. Findings apply to the tested API model labels, Guan Yu, rules, prompts, and sampled seeds.</sub>
+<sub>Click figures to enlarge. Also available: <a href="exp/sanguosha/assets">high-resolution PNGs</a>, <a href="exp/sanguosha/results.json">public summary data</a>, <a href="exp/sanguosha/games-history.json">game histories and chat</a>, and the <a href="exp/sanguosha/render_figures.py">plotting script</a>. Findings apply to the tested API model labels, Guan Yu, rules, prompts, and sampled seeds.</sub>
 
 <a id="quick-start"></a>
 
@@ -247,7 +247,7 @@ Chinese is the primary version of this README. The baseline experiment notes are
 - [Rules](docs/RULES.md) — roles, cards, equipment, and basic generals.
 - [Architecture](docs/ARCHITECTURE.md) — state machine, game scheduling, chat, and experience storage.
 - [HTTP API](docs/API.md) — player library, match controls, external agents, exports, and consolidation endpoints.
-- [Baseline experiments (English)](docs/EXPERIMENTS.en.md) — setup, statistical methods, interpretation, and figure reproduction.
+- [Baseline experiments (English)](exp/sanguosha/README.en.md) — setup, statistical methods, interpretation, and figure reproduction.
 - [Media](docs/MEDIA.md) — logo, GIFs, HD videos, and recording instructions.
 
 <details>

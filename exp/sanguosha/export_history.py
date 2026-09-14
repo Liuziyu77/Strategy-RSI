@@ -1,4 +1,4 @@
-"""Export formal game histories and public chat into one ordinary JSON file.
+"""Export formal histories and public chat into two JSON files, one per format.
 
 Run from the Strategy-RSI repository root:
     python exp/sanguosha/export_history.py --source /path/to/sanguosha/exp
@@ -19,7 +19,7 @@ def sha256(data):
     return hashlib.sha256(data).hexdigest()
 
 
-def export(source, output):
+def export(source, output, suite):
     summary_bytes = (source / "data/summary.json").read_bytes()
     summary = json.loads(summary_bytes)
     plan_bytes = (source / "plan.json").read_bytes()
@@ -32,10 +32,19 @@ def export(source, output):
     assert jobs.keys() == expected.keys()
     archived = {p.name.removesuffix(".json.gz") for p in (source / "games").glob("*.json.gz")}
     assert archived == expected.keys(), "Final archive IDs differ from the declared experiment."
+    suites = ("duel", "identity")
+    assert suite in suites
+    assert {g["suite"] for g in expected.values()} == set(suites)
+    selected = {key: game for key, game in expected.items() if game["suite"] == suite}
 
     header = {
         "schemaVersion": "strategy-rsi.game-history.v1",
         "exportedAt": datetime.now(timezone.utc).isoformat(),
+        "partition": {
+            "field": "suite", "value": suite,
+            "part": suites.index(suite) + 1, "parts": len(suites),
+            "campaignGames": summary["planned"],
+        },
         "experiment": {
             "name": "Four-model Guan Yu baseline",
             "resultsGeneratedAt": summary["generatedAt"],
@@ -49,7 +58,8 @@ def export(source, output):
             "originalReplayVerification": summary["verification"],
         },
         "scope": {
-            "games": "All final formal games, including errors; excludes pilots and intermediate checkpoints.",
+            "games": f"Final formal {suite} games, including errors; excludes pilots and intermediate checkpoints.",
+            "counts": "Counts and eventTypeCounts cover this file; originalReplayVerification covers the full campaign.",
             "actions": "Executed decisions exactly as archived, including reasons, chosen cards and optional speech.",
             "events": "All engine events in original sequence order, including public chat and private card events.",
             "chat": "Public chat events projected into speaker, model, role, time, round, turn, phase and message fields.",
@@ -68,7 +78,7 @@ def export(source, output):
         with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", dir=output.parent, prefix=output.name + ".", suffix=".tmp", delete=False) as out:
             temporary = Path(out.name)
             out.write(json.dumps(header, ensure_ascii=False, indent=2)[:-2] + ',\n  "games": [\n')
-            for index, game_id in enumerate(sorted(expected)):
+            for index, game_id in enumerate(sorted(selected)):
                 archived_bytes = (source / "games" / f"{game_id}.json.gz").read_bytes()
                 raw = json.loads(gzip.decompress(archived_bytes))
                 job, reference = raw["job"], expected[game_id]
@@ -131,10 +141,12 @@ def export(source, output):
                 by_suite.setdefault(job["suite"], Counter()).update({"games": 1, raw["status"]: 1, **counts})
                 events_by_type.update(e["type"] for e in raw["events"])
                 if (index + 1) % 100 == 0:
-                    print(f"Exported {index + 1}/{len(expected)} games", flush=True)
-            assert totals["finished"] == summary["finished"] and totals["error"] == summary["errors"]
-            assert totals["actions"] == summary["verification"]["checkedActions"]
-            assert totals["apiRequests"] == summary["verification"]["indexedCalls"]
+                    print(f"Exported {suite}: {index + 1}/{len(selected)} games", flush=True)
+            assert totals["games"] == len(selected)
+            assert totals["finished"] == sum(g["status"] == "finished" for g in selected.values())
+            assert totals["error"] == sum(g["status"] == "error" for g in selected.values())
+            assert totals["actions"] == sum(g["decisions"] for g in selected.values())
+            assert totals["apiRequests"] == sum(g["calls"] for g in selected.values())
             out.write('\n  ],\n  "counts": ' + json.dumps(totals, indent=2))
             out.write(',\n  "countsBySuite": ' + json.dumps(by_suite, indent=2))
             out.write(',\n  "eventTypeCounts": ' + json.dumps(events_by_type, indent=2) + '\n}\n')
@@ -148,6 +160,7 @@ def export(source, output):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source", type=Path, required=True, help="Original experiment directory with plan.json, data/summary.json, and games/*.json.gz")
-    parser.add_argument("--output", type=Path, default=Path(__file__).resolve().parent / "games-history.json")
+    parser.add_argument("--output-dir", type=Path, default=Path(__file__).resolve().parent, help="Directory for games-history-duel.json and games-history-identity.json")
     args = parser.parse_args()
-    export(args.source.resolve(), args.output.resolve())
+    for suite in ("duel", "identity"):
+        export(args.source.resolve(), args.output_dir.resolve() / f"games-history-{suite}.json", suite)

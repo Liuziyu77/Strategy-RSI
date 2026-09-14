@@ -145,7 +145,7 @@ DeepSeek 在四种身份下的胜率点估计均最高，按身份等权计算�
 
 四人局中，GLM 有 **96.6%** 的模型决策伴随发言，DeepSeek 为 **82.3%**。更活跃的交流未对应更高胜率；聊天是否有效，还需同模型、同种子的开关对照。
 
-<sub>图表可点击放大，另提供 <a href="exp/sanguosha/assets">高清 PNG</a>、<a href="exp/sanguosha/results.json">公开统计数据</a>、<a href="exp/sanguosha/games-history.json">对局与聊天记录</a>及<a href="exp/sanguosha/render_figures.py">绘图脚本</a>。结果限定于本次模型标签、关羽、规则、提示词与采样种子。</sub>
+<sub>图表可点击放大，另提供 <a href="exp/sanguosha/assets">高清 PNG</a>、<a href="exp/sanguosha/results.json">公开统计数据</a>、<a href="exp/sanguosha/games-history-duel.json">双人局记录</a>、<a href="exp/sanguosha/games-history-identity.json">四人局记录</a>及<a href="exp/sanguosha/render_figures.py">绘图脚本</a>。结果限定于本次模型标签、关羽、规则、提示词与采样种子。</sub>
 
 <a id="快速启动"></a>
 

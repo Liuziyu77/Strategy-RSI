@@ -1,6 +1,6 @@
 # Four-model baseline experiment
 
-[Back to README](../../README.en.md#experiments) · [简体中文](README.md) · [Data](results.json) · [Histories & chat](games-history.json) · [Figures](assets)
+[Back to README](../../README.en.md#experiments) · [简体中文](README.md) · [Data](results.json) · [Histories & chat](#game-histories-and-chat) · [Figures](assets)
 
 This study measures play without experience before testing RSI. The fixed schedule contains **528 games: 489 completed normally and 39 failed**, with no draws. Final results were compiled on September 14, 2026.
 
@@ -55,9 +55,14 @@ These adjusted intervals have approximately 99.17% individual coverage. The READ
 
 ## Game histories and chat
 
-[Download games-history.json](games-history.json) · **528 games · 66,041 actions · 245,305 events · 24,352 public messages**, approximately 66 MB.
+**528 games · 66,041 actions · 245,305 events · 24,352 public messages**, split into two files by format:
 
-This is one ordinary JSON object containing every formal game: 489 normally completed and 39 terminated with errors. Each game includes models, player roles, outcome, timing, rounds, actions, events, chat, and its state at termination. Pilot games and intermediate checkpoints are excluded.
+| File                                                          | Games                      |    Size |
+| :------------------------------------------------------------ | :------------------------- | ------: |
+| [Duel histories and chat](games-history-duel.json)            | 240: 233 normal, 7 failed  | 18.5 MB |
+| [Four-player histories and chat](games-history-identity.json) | 288: 256 normal, 32 failed | 47.8 MB |
+
+Each file is an independently readable JSON object. Together they contain every formal game: 489 normally completed and 39 terminated with errors. `partition` identifies the format and part number; `counts`, `countsBySuite`, and `eventTypeCounts` cover only the current file, while the original replay verification covers the full campaign. Each game includes models, player roles, outcome, timing, rounds, actions, events, chat, and its state at termination. Pilot games and intermediate checkpoints are excluded.
 
 | Field                            | Contents                                                                                                                                                 |
 | :------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -77,11 +82,14 @@ Actions and events are preserved as archived; message text comes from speech act
 import json
 from pathlib import Path
 
-data = json.loads(Path("exp/sanguosha/games-history.json").read_text(encoding="utf-8"))
-game = data["games"][0]
-print(game["id"], game["status"], game["winner"])
-for message in game["chat"]:
-    print(message["round"], message["model"], message["message"])
+folder = Path("exp/sanguosha")
+for filename in ["games-history-duel.json", "games-history-identity.json"]:
+    with (folder / filename).open(encoding="utf-8") as stream:
+        data = json.load(stream)
+    game = data["games"][0]
+    print(game["id"], game["status"], game["winner"])
+    for message in game["chat"]:
+        print(message["round"], message["model"], message["message"])
 ```
 
 To export again from the original archives, run from the repository root. Only the Python standard library is required; no model API calls are made.
@@ -90,7 +98,7 @@ To export again from the original archives, run from the repository root. Only t
 python exp/sanguosha/export_history.py --source /path/to/sanguosha/exp
 ```
 
-The source must contain the original `plan.json`, `data/summary.json`, and `games/*.json.gz`. The default output is `exp/sanguosha/games-history.json`; use `--output` to choose another path.
+The source must contain the original `plan.json`, `data/summary.json`, and `games/*.json.gz`. By default, `games-history-duel.json` and `games-history-identity.json` are written to `exp/sanguosha/`; use `--output-dir` to choose another directory.
 
 ## Data and reproduction
 

@@ -1,6 +1,6 @@
 # 四模型基线实验
 
-[返回 README](../../README.md#基线实验) · [English](README.en.md) · [数据](results.json) · [对局与聊天](games-history.json) · [图表](assets)
+[返回 README](../../README.md#基线实验) · [English](README.en.md) · [数据](results.json) · [对局与聊天](#历史对局与聊天) · [图表](assets)
 
 本次实验先测量空经验 Agent 的表现，为后续 RSI 对照提供起点。固定排程共 **528 局**，其中 **489 局正常结束、39 局异常**，没有平局。结果于 2026 年 9 月 14 日完成汇总。
 
@@ -55,9 +55,14 @@
 
 ## 历史对局与聊天
 
-[下载 games-history.json](games-history.json) · **528 局 · 66,041 条行动 · 245,305 条事件 · 24,352 条公开发言**，约 66 MB。
+**528 局 · 66,041 条行动 · 245,305 条事件 · 24,352 条公开发言**，按赛制拆为两份：
 
-这是一个完整的 JSON 对象，包含全部正式实验对局：489 局正常结束、39 局异常终止。每局独立保存模型、玩家身份、胜负、时间、轮次、行动、事件、聊天和终止时状态。先导实验与中间检查点不重复导出。
+| 文件                                                | 对局数                        |    大小 |
+| :-------------------------------------------------- | :---------------------------- | ------: |
+| [双人局历史与聊天](games-history-duel.json)         | 240 局：233 局正常、7 局异常  | 18.5 MB |
+| [四人身份局历史与聊天](games-history-identity.json) | 288 局：256 局正常、32 局异常 | 47.8 MB |
+
+每份文件都是可独立读取的 JSON 对象，合计包含全部正式实验对局：489 局正常结束、39 局异常终止。`partition` 标明赛制与分片编号；`counts`、`countsBySuite` 和 `eventTypeCounts` 只统计当前文件，原始回放核验信息对应整批实验。每局独立保存模型、玩家身份、胜负、时间、轮次、行动、事件、聊天和终止时状态。先导实验与中间检查点不重复导出。
 
 | 字段                             | 内容                                                                                                  |
 | :------------------------------- | :---------------------------------------------------------------------------------------------------- |
@@ -77,11 +82,14 @@
 import json
 from pathlib import Path
 
-data = json.loads(Path("exp/sanguosha/games-history.json").read_text(encoding="utf-8"))
-game = data["games"][0]
-print(game["id"], game["status"], game["winner"])
-for message in game["chat"]:
-    print(message["round"], message["model"], message["message"])
+folder = Path("exp/sanguosha")
+for filename in ["games-history-duel.json", "games-history-identity.json"]:
+    with (folder / filename).open(encoding="utf-8") as stream:
+        data = json.load(stream)
+    game = data["games"][0]
+    print(game["id"], game["status"], game["winner"])
+    for message in game["chat"]:
+        print(message["round"], message["model"], message["message"])
 ```
 
 如需从原始存档重新导出，在仓库根目录运行（仅用 Python 标准库，不调用模型 API）：
@@ -90,7 +98,7 @@ for message in game["chat"]:
 python exp/sanguosha/export_history.py --source /path/to/sanguosha/exp
 ```
 
-`--source` 目录需包含原始 `plan.json`、`data/summary.json` 和 `games/*.json.gz`。默认输出为 `exp/sanguosha/games-history.json`，也可用 `--output` 指定位置。
+`--source` 目录需包含原始 `plan.json`、`data/summary.json` 和 `games/*.json.gz`。默认在 `exp/sanguosha/` 生成 `games-history-duel.json` 和 `games-history-identity.json`，可用 `--output-dir` 指定其他目录。
 
 ## 数据与重绘
 

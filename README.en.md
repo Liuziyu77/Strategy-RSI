@@ -145,7 +145,7 @@ The formal experiment reports **428.5M tokens**, with input accounting for **94.
 
 In four-player games, GLM speaks in **96.6%** of model decisions versus DeepSeek's **82.3%**. More frequent speech does not coincide with more wins here; isolating its effect requires a chat-on/off comparison with the same models and seeds.
 
-<sub>Click figures to enlarge. Also available: <a href="exp/sanguosha/assets">high-resolution PNGs</a>, <a href="exp/sanguosha/results.json">public summary data</a>, <a href="exp/sanguosha/games-history.json">game histories and chat</a>, and the <a href="exp/sanguosha/render_figures.py">plotting script</a>. Findings apply to the tested API model labels, Guan Yu, rules, prompts, and sampled seeds.</sub>
+<sub>Click figures to enlarge. Also available: <a href="exp/sanguosha/assets">high-resolution PNGs</a>, <a href="exp/sanguosha/results.json">public summary data</a>, <a href="exp/sanguosha/games-history-duel.json">duel histories and chat</a>, <a href="exp/sanguosha/games-history-identity.json">four-player histories and chat</a>, and the <a href="exp/sanguosha/render_figures.py">plotting script</a>. Findings apply to the tested API model labels, Guan Yu, rules, prompts, and sampled seeds.</sub>
 
 <a id="quick-start"></a>
 

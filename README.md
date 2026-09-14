@@ -12,7 +12,7 @@
   <img src="docs/assets/badges.svg" alt="Node.js 22.13+ · TypeScript · 2–8 Agents · Apache 2.0" width="620" />
 </p>
 <p align="center">
-  <a href="#news">News</a> · <a href="#动态演示">动态演示</a> · <a href="#核心功能">核心功能</a> · <a href="#快速启动">快速启动</a> · <a href="#经验机制">经验机制</a> · <a href="#todo-list">Todo List</a> · <a href="#文档">文档</a>
+  <a href="#news">News</a> · <a href="#动态演示">动态演示</a> · <a href="#核心功能">核心功能</a> · <a href="#基线实验">基线实验</a> · <a href="#快速启动">快速启动</a> · <a href="#经验机制">经验机制</a> · <a href="#todo-list">Todo List</a> · <a href="#文档">文档</a>
 </p>
 
 ---
@@ -23,6 +23,7 @@ Strategy-RSI 是一个面向 Agent 递归自我改进（RSI）的博弈实验平
 
 ## 📰 News
 
+- **2026.09.14** — 完成四模型基线实验，新增胜率、两两交锋、身份表现、时长、Token 与交流图表，公开统计数据和绘图脚本。
 - **2026.09.11** — 项目初版入库：可视化观战、玩家库、多局并行、公开聊天室与 RSI 经验归纳，配套接入文档和测试。
 
 <a id="动态演示"></a>
@@ -99,6 +100,52 @@ Strategy-RSI 是一个面向 Agent 递归自我改进（RSI）的博弈实验平
 </details>
 
 双人局采用简化的主公与反贼对决。身份、卡牌与技能的具体实现范围见[规则文档](docs/RULES.md)。
+
+<a id="基线实验"></a>
+
+## 📊 基线实验
+
+**4 个模型 · 528 局固定排程 · 489 局正常结束 · 39 局异常**
+
+先测量模型在没有经验时的表现，为后续 RSI 对照提供基线。全部 Agent 使用关羽、空经验，**关闭 RSI、开启公开聊天**；双人局交换身份与座位，四人局遍历座位排列。以下胜率仅统计正常结束的对局，不代表 RSI 带来的提升。[实验设置、统计口径与数据 →](docs/EXPERIMENTS.md)
+
+### 胜率 · Win rate
+
+[![双人局与四人身份局胜率，附 95% 种子分组置信区间](docs/assets/experiments/win-rate.svg)](docs/assets/experiments/win-rate.svg)
+
+DeepSeek 在四人身份局中以 **61.7%** 领先，与其余三者的差异在多重比较校正后仍有统计支持。其余三者的差异不足以确定排序。
+
+### 两两交锋 · Head-to-head
+
+[![双人局两两对战矩阵，每格显示行模型对列模型的胜率与胜场数](docs/assets/experiments/head-to-head.svg)](docs/assets/experiments/head-to-head.svg)
+
+DeepSeek 对 GLM 为 **20 : 19**，对 Kimi 为 **28 : 12**。总体领先的模型，面对不同对手仍有明显差别，总胜率需要结合具体配对解读。
+
+### 身份表现 · Role win rate
+
+[![四个模型作为主公、忠臣、反贼和内奸时的胜率与样本量](docs/assets/experiments/role-win-rate.svg)](docs/assets/experiments/role-win-rate.svg)
+
+DeepSeek 在四种身份下的胜率点估计均最高，按身份等权计算仍为 **61.6%**。身份占比的差异不足以解释它的整体优势。
+
+### 对局时长 · Game duration
+
+[![双人和四人对局时长分布，展示每局散点、中位数、四分位区间和 P5–P95](docs/assets/experiments/game-duration.svg)](docs/assets/experiments/game-duration.svg)
+
+双人局中位时长 **12.1 分钟**，四人局 **36.2 分钟**。这里包含请求排队和重试，已扣除明确记录的账户恢复等待，反映本次并发运行下的耗时。
+
+### Token 用量 · Token use
+
+[![四个模型的 API 输入与输出 Token 累计用量](docs/assets/experiments/token-use.svg)](docs/assets/experiments/token-use.svg)
+
+正式实验共报告 **4.285 亿 Token**，其中输入占 **94.1%**，后续可优先验证上下文压缩的收益。用量来自 API 返回，包含重试；各家计数口径不同，不能直接当作费用排名。
+
+### 公开交流 · Chat frequency
+
+[![模型决策中含公开发言的比例，分别统计双人局与四人身份局](docs/assets/experiments/chat-frequency.svg)](docs/assets/experiments/chat-frequency.svg)
+
+四人局中，GLM 有 **96.6%** 的模型决策伴随发言，DeepSeek 为 **82.3%**。更活跃的交流未对应更高胜率；聊天是否有效，还需同模型、同种子的开关对照。
+
+<sub>图表可点击放大，另提供 <a href="docs/assets/experiments">高清 PNG</a>、<a href="docs/experiments/results.json">公开统计数据</a>与<a href="docs/experiments/render_figures.py">绘图脚本</a>。结果限定于本次模型标签、关羽、规则、提示词与采样种子。</sub>
 
 <a id="快速启动"></a>
 
@@ -198,6 +245,7 @@ npm start
 - [规则说明](docs/RULES.md) — 身份配置、卡牌、装备与基础武将。
 - [架构说明](docs/ARCHITECTURE.md) — 状态机、多局调度、聊天与经验存储。
 - [HTTP API](docs/API.md) — 玩家库、对战控制、外部 Agent、导出与归纳接口。
+- [基线实验](docs/EXPERIMENTS.md) — 实验设置、统计口径、结果解读与图表复现。
 - [展示素材](docs/MEDIA.md) — Logo、动图、高清视频与录制方法。
 
 <details>

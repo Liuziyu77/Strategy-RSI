@@ -1,3 +1,5 @@
+import type { ArenaState, GameType } from '../src/games/core';
+import { isWinner } from '../src/games/core';
 import { DatabaseSync } from 'node:sqlite';
 import { mkdirSync } from 'node:fs';
 import { join } from 'node:path';
@@ -6,7 +8,6 @@ import { randomUUID } from 'node:crypto';
 import type {
   AgentConfig,
   GameEvent,
-  GameState,
   MatchConfig,
   Memory,
   PlayerProfile,
@@ -24,8 +25,8 @@ const pack = (v: unknown) => gzipSync(JSON.stringify(v));
 const unpack = <T>(v: Uint8Array): T => JSON.parse(gunzipSync(v).toString());
 const statisticsColumns = `count(*) AS games, count(DISTINCT g.match_id) AS matches,
   coalesce(sum(g.status='finished'),0) AS finished,
-  coalesce(sum(g.status='finished' AND g.winner='平局'),0) AS draws,
-  coalesce(sum(g.status='finished' AND ((g.winner='主忠' AND gp.role IN ('主公','忠臣')) OR g.winner=gp.role)),0) AS wins`;
+  coalesce(sum(g.status='finished' AND g.winner IN ('平局','draw')),0) AS draws,
+  coalesce(sum(g.status='finished' AND coalesce((SELECT won FROM game_outcomes o WHERE o.game_id=g.id AND o.agent_id=gp.player_id),((g.winner='主忠' AND gp.role IN ('主公','忠臣')) OR g.winner=gp.role))),0) AS wins`;
 function gameStats(row: Record<string, unknown>): GameStats {
   const finished = Number(row.finished),
     wins = Number(row.wins),
@@ -64,6 +65,8 @@ export class Store {
       CREATE TABLE IF NOT EXISTS game_players(game_id TEXT NOT NULL REFERENCES games(id),player_id TEXT NOT NULL,seat INTEGER NOT NULL,name TEXT NOT NULL,hero TEXT NOT NULL,role TEXT NOT NULL,PRIMARY KEY(game_id,player_id));
       CREATE INDEX IF NOT EXISTS game_player_history ON game_players(player_id,game_id);
       CREATE TABLE IF NOT EXISTS game_runs(game_id TEXT PRIMARY KEY REFERENCES games(id) ON DELETE CASCADE,status TEXT NOT NULL,error TEXT);
+      CREATE TABLE IF NOT EXISTS game_outcomes(game_id TEXT NOT NULL REFERENCES games(id),agent_id TEXT NOT NULL,won INTEGER NOT NULL,PRIMARY KEY(game_id,agent_id));
+      CREATE TABLE IF NOT EXISTS memory_scopes(memory_id TEXT PRIMARY KEY REFERENCES memories(id) ON DELETE CASCADE,game_type TEXT NOT NULL);
       CREATE TABLE IF NOT EXISTS memory_metadata(memory_id TEXT PRIMARY KEY REFERENCES memories(id) ON DELETE CASCADE,match_id TEXT,consolidation_id TEXT);
       CREATE TABLE IF NOT EXISTS consolidations(id TEXT PRIMARY KEY,agent_id TEXT NOT NULL,match_id TEXT NOT NULL,status TEXT NOT NULL,record BLOB NOT NULL,created_at TEXT NOT NULL,updated_at TEXT NOT NULL);
       CREATE INDEX IF NOT EXISTS consolidation_agent ON consolidations(agent_id,created_at);
@@ -103,16 +106,17 @@ export class Store {
   setStatus(id: string, status: string, error: string | null = null) {
     this.db.prepare('UPDATE matches SET status=?,error=? WHERE id=?').run(status, error, id);
   }
-  createGame(id: string, matchId: string, number: number, state: GameState) {
+  createGame(id: string, matchId: string, number: number, state: ArenaState) {
     this.db
       .prepare('INSERT INTO games VALUES(?,?,?,?,?,?,?)')
       .run(id, matchId, number, 'playing', null, pack(state), new Date().toISOString());
     this.db.prepare('INSERT INTO game_runs VALUES(?,?,NULL)').run(id, 'paused');
     this.indexPlayers(state);
   }
-  private indexPlayers(state: GameState) {
+  private indexPlayers(state: ArenaState) {
     const insert = this.db.prepare('INSERT OR IGNORE INTO game_players VALUES(?,?,?,?,?,?)');
-    for (const p of state.players) insert.run(state.id, p.agentId, p.seat, p.name, p.hero, p.role);
+    for (const p of state.players)
+      insert.run(state.id, p.agentId, p.seat, p.name, p.hero ?? '', p.role);
   }
   private migratePlayers() {
     this.transaction(() => {
@@ -134,7 +138,7 @@ export class Store {
       for (const row of this.db
         .prepare('SELECT checkpoint FROM games WHERE id NOT IN (SELECT game_id FROM game_players)')
         .all())
-        this.indexPlayers(unpack<GameState>(row.checkpoint as Uint8Array));
+        this.indexPlayers(unpack<ArenaState>(row.checkpoint as Uint8Array));
     });
   }
   ensurePlayer(agent: AgentConfig) {
@@ -184,7 +188,7 @@ export class Store {
       )
       .all(id)
       .map((row) => {
-        const state = unpack<GameState>(row.checkpoint as Uint8Array);
+        const state = unpack<ArenaState>(row.checkpoint as Uint8Array);
         const first: GameEvent | null = row.first_event
           ? JSON.parse(String(row.first_event))
           : null;
@@ -214,11 +218,8 @@ export class Store {
           turn: state.turn,
           decisionCount: Number(row.decision_count),
           playerCount: state.players.length,
-          won:
-            row.status === 'finished' &&
-            (row.winner === '主忠'
-              ? ['主公', '忠臣'].includes(String(row.role))
-              : row.winner === row.role),
+          won: isWinner(state, state.players.find((p) => p.agentId === id)!),
+          gameType: state.gameType ?? 'sanguosha',
         };
       });
   }
@@ -269,7 +270,12 @@ export class Store {
         };
       });
   }
-  checkpoint(state: GameState) {
+  checkpoint(state: ArenaState) {
+    if (state.outcome) {
+      const save = this.db.prepare('INSERT OR REPLACE INTO game_outcomes VALUES(?,?,?)');
+      for (const player of state.players)
+        save.run(state.id, player.agentId, state.outcome.winners.includes(player.agentId) ? 1 : 0);
+    }
     this.db
       .prepare('UPDATE games SET status=?,winner=?,checkpoint=? WHERE id=?')
       .run(state.status, state.winner, pack(state), state.id);
@@ -290,7 +296,7 @@ export class Store {
           runError: r.run_error ?? null,
           winner: r.winner,
           createdAt: r.created_at,
-          state: unpack<GameState>(r.checkpoint),
+          state: unpack<ArenaState>(r.checkpoint),
         }
       : null;
   }
@@ -315,7 +321,7 @@ export class Store {
       .prepare('UPDATE game_runs SET status=?,error=? WHERE game_id=?')
       .run(status, error, gameId);
   }
-  event(gameId: string, event: GameEvent, state: GameState) {
+  event(gameId: string, event: GameEvent, state: ArenaState) {
     this.db
       .prepare('INSERT INTO events VALUES(?,?,?,?)')
       .run(gameId, event.seq, JSON.stringify(event), pack(state));
@@ -334,7 +340,7 @@ export class Store {
   }
   chat(gameId: string, before = 1000000000, limit = 100) {
     const where =
-      "game_id=? AND seq<=? AND json_extract(event,'$.type')='chat' AND json_extract(event,'$.privateTo') IS NULL";
+      "game_id=? AND seq<=? AND json_extract(event,'$.type')='chat' AND json_extract(event,'$.privateTo') IS NULL AND json_extract(event,'$.visibleTo') IS NULL";
     const messages = this.db
       .prepare(
         `SELECT event FROM (SELECT seq,event FROM events WHERE ${where} ORDER BY seq DESC LIMIT ?) ORDER BY seq`,
@@ -354,11 +360,11 @@ export class Store {
       .all(gameId, before, limit)
       .map((r) => JSON.parse(String(r.event)));
   }
-  frame(gameId: string, seq: number): GameState | null {
+  frame(gameId: string, seq: number): ArenaState | null {
     const row = this.db
       .prepare('SELECT state FROM events WHERE game_id=? AND seq=?')
       .get(gameId, seq);
-    return row ? unpack<GameState>(row.state as Uint8Array) : null;
+    return row ? unpack<ArenaState>(row.state as Uint8Array) : null;
   }
   decision(gameId: string, seat: number, revision: number, record: unknown) {
     const id = randomUUID();
@@ -389,8 +395,8 @@ export class Store {
       }));
   }
   memory(agentId?: string): Memory[] {
-    const query = `SELECT m.*,coalesce(mm.match_id,g.match_id) AS match_id,ma.config AS match_config,g.number AS game_number,mm.consolidation_id,c.record AS consolidation_record
-      FROM memories m LEFT JOIN games g ON g.id=m.game_id LEFT JOIN memory_metadata mm ON mm.memory_id=m.id
+    const query = `SELECT m.*,ms.game_type AS memory_game_type,coalesce(mm.match_id,g.match_id) AS match_id,ma.config AS match_config,g.number AS game_number,mm.consolidation_id,c.record AS consolidation_record
+      FROM memories m LEFT JOIN memory_scopes ms ON ms.memory_id=m.id LEFT JOIN games g ON g.id=m.game_id LEFT JOIN memory_metadata mm ON mm.memory_id=m.id
       LEFT JOIN matches ma ON ma.id=coalesce(mm.match_id,g.match_id) LEFT JOIN consolidations c ON c.id=mm.consolidation_id`;
     const rs = agentId
       ? this.db.prepare(`${query} WHERE m.agent_id=? ORDER BY m.created_at,m.rowid`).all(agentId)
@@ -399,6 +405,9 @@ export class Store {
       id: String(r.id),
       agentId: String(r.agent_id),
       text: String(r.text),
+      gameType: (r.memory_game_type ??
+        (r.match_config ? JSON.parse(String(r.match_config)).gameType : null) ??
+        'sanguosha') as GameType,
       mode: String(r.mode),
       gameId: r.game_id as string | null,
       createdAt: String(r.created_at),
@@ -419,8 +428,8 @@ export class Store {
         : !covered.has(m.id);
     return agentId ? memories : memories.reverse();
   }
-  activeMemory(agentId: string) {
-    const active = this.memory(agentId).filter((m) => m.active);
+  activeMemory(agentId: string, gameType: GameType = 'sanguosha') {
+    const active = this.memory(agentId).filter((m) => m.active && m.gameType === gameType);
     return [
       ...active.filter((m) => !m.consolidationId),
       ...active.filter((m) => m.consolidationId),
@@ -438,7 +447,7 @@ export class Store {
     text: string,
     mode = 'manual',
     gameId: string | null = null,
-    metadata?: { matchId: string; consolidationId: string },
+    metadata?: { matchId?: string; consolidationId?: string; gameType?: GameType },
   ): Memory {
     this.ensurePlayer({
       id: agentId,
@@ -460,11 +469,19 @@ export class Store {
     this.db
       .prepare('INSERT INTO memories VALUES(?,?,?,?,?,?)')
       .run(m.id, m.agentId, m.text, m.mode, m.gameId, m.createdAt);
-    if (metadata)
+    if (metadata?.gameType)
+      this.db.prepare('INSERT INTO memory_scopes VALUES(?,?)').run(m.id, metadata.gameType);
+    if (metadata?.matchId && metadata.consolidationId)
       this.db
         .prepare('INSERT INTO memory_metadata VALUES(?,?,?)')
         .run(m.id, metadata.matchId, metadata.consolidationId);
-    return m;
+    return {
+      ...m,
+      gameType:
+        metadata?.gameType ??
+        (gameId ? this.match(this.game(gameId)?.matchId)?.config.gameType : undefined) ??
+        'sanguosha',
+    };
   }
   saveConsolidation(job: Consolidation, calls: unknown[] = []) {
     this.db

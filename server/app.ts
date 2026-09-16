@@ -1,9 +1,10 @@
+import { GAME_CATALOG } from '../src/games/catalog';
+import { gamePlugin } from '../src/games/registry';
 import { Hono } from 'hono';
 import { streamSSE } from 'hono/streaming';
 import { bodyLimit } from 'hono/body-limit';
 import { timingSafeEqual } from 'node:crypto';
 import { z } from 'zod';
-import { Engine } from '../src/engine';
 import { HEROES, CARD_RULES, EQUIPMENT } from '../src/cards';
 import { publicProviders, safeError } from './config';
 import { Arena } from './arena';
@@ -19,6 +20,7 @@ const int = (value: string | undefined, fallback: number, min = 0, max = 1000000
 const MemorySchema = z.object({
   agentId: z.string().regex(/^[a-zA-Z0-9_-]{1,64}$/),
   text: z.string().trim().min(1).max(4000),
+  gameType: z.enum(['sanguosha', 'werewolf', 'chess', 'xiangqi']).default('sanguosha'),
 });
 export function createApp(arena: Arena) {
   const app = new Hono();
@@ -61,12 +63,20 @@ export function createApp(arena: Arena) {
   app.get('/api/config', (c) =>
     c.json({
       providers: publicProviders(arena.config),
+      games: Object.values(GAME_CATALOG),
       heroes: HEROES,
       cards: CARD_RULES,
       equipment: EQUIPMENT,
       adminRequired: !!arena.config.adminToken,
     }),
   );
+  app.get('/api/game-types', (c) => c.json(Object.values(GAME_CATALOG)));
+  app.get('/api/game-types/:id/rules', (c) => {
+    const id = z.enum(['sanguosha', 'werewolf', 'chess', 'xiangqi']).parse(c.req.param('id'));
+    const locale = z.enum(['zh', 'en']).parse(c.req.query('locale') ?? 'zh');
+    if (!GAME_CATALOG[id].locales.includes(locale)) throw new Error('Unsupported game language');
+    return c.json({ ...GAME_CATALOG[id], locale, rules: gamePlugin(id).rules(locale) });
+  });
   app.get('/api/matches', (c) =>
     c.json(arena.store.matches().map((m) => ({ ...m, games: arena.store.games(m.id) }))),
   );
@@ -96,8 +106,8 @@ export function createApp(arena: Arena) {
   app.post('/api/players/:id/memories', async (c) => {
     const id = c.req.param('id');
     if (!arena.store.player(id)) return c.json({ error: '玩家不存在' }, 404);
-    const { text } = MemorySchema.omit({ agentId: true }).parse(await c.req.json());
-    const memory = arena.store.addMemory(id, text);
+    const { text, gameType } = MemorySchema.omit({ agentId: true }).parse(await c.req.json());
+    const memory = arena.store.addMemory(id, text, 'manual', null, { gameType });
     arena.signal('players');
     return c.json(memory, 201);
   });
@@ -115,7 +125,9 @@ export function createApp(arena: Arena) {
       .max(500)
       .parse(Array.isArray(body) ? body : body.memories);
     arena.store.transaction(() =>
-      rows.forEach((row) => arena.store.addMemory(id, row.text, 'import')),
+      rows.forEach((row) =>
+        arena.store.addMemory(id, row.text, 'import', null, { gameType: row.gameType }),
+      ),
     );
     arena.signal('players');
     return c.json({ imported: rows.length }, 201);
@@ -148,6 +160,7 @@ export function createApp(arena: Arena) {
       arena.snapshot(
         c.req.param('id'),
         c.req.query('seq') === undefined ? undefined : int(c.req.query('seq'), 1, 1),
+        int(c.req.query('viewer'), -1, -1, 11),
       ),
     ),
   );
@@ -221,7 +234,10 @@ export function createApp(arena: Arena) {
   app.get('/api/memories', (c) => c.json(arena.store.memory(c.req.query('agentId'))));
   app.post('/api/memories', async (c) => {
     const m = MemorySchema.parse(await c.req.json());
-    return c.json(arena.store.addMemory(m.agentId, m.text), 201);
+    return c.json(
+      arena.store.addMemory(m.agentId, m.text, 'manual', null, { gameType: m.gameType }),
+      201,
+    );
   });
   app.delete('/api/memories/:id', (c) =>
     c.json({ deleted: arena.store.deleteMemory(c.req.param('id')) }),
@@ -234,7 +250,9 @@ export function createApp(arena: Arena) {
       .max(500)
       .parse(Array.isArray(data) ? data : data.memories);
     const memories = arena.store.transaction(() =>
-      rows.map((m) => arena.store.addMemory(m.agentId, m.text, 'import')),
+      rows.map((m) =>
+        arena.store.addMemory(m.agentId, m.text, 'import', null, { gameType: m.gameType }),
+      ),
     );
     return c.json({ imported: memories.length }, 201);
   });

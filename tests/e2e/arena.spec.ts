@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './fixtures';
 import { mkdirSync } from 'node:fs';
 import { createServer } from 'node:http';
 import { heuristic } from '../../server/agents';
@@ -6,7 +6,7 @@ import { heuristic } from '../../server/agents';
 test('桌面观战：创建、暂停、单步、逐帧回放与存档下载', async ({ page, request }) => {
   const errors: string[] = [];
   page.on('pageerror', (e) => errors.push(e.message));
-  await page.goto('/');
+  await page.goto('/#/arena/sanguosha');
   await expect(page.getByRole('button', { name: '运行本地演示' })).toBeVisible();
   await page.getByRole('button', { name: '运行本地演示' }).click();
   await expect(page.getByRole('heading', { name: '群雄初试 · 本地演示' })).toBeVisible();
@@ -42,7 +42,7 @@ test('桌面观战：创建、暂停、单步、逐帧回放与存档下载', as
 test('玩家库：创建编辑专属API、绑定经验、选人开局与个人历史', async ({ page, request }) => {
   const errors: string[] = [];
   page.on('pageerror', (e) => errors.push(e.message));
-  await page.goto('/');
+  await page.goto('/#/arena/sanguosha');
   await page.getByRole('button', { name: '玩家库', exact: true }).click();
   await expect(page.getByRole('button', { name: '经验档案', exact: true })).toHaveCount(0);
   await page.getByRole('button', { name: '创建玩家', exact: true }).click();
@@ -133,7 +133,7 @@ test('玩家库：创建编辑专属API、绑定经验、选人开局与个人�
 });
 test('配置八人、多模型选项与手机布局', async ({ page, request }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto('/');
+  await page.goto('/#/arena/sanguosha');
   for (let i = 0; i < 8; i++)
     await request.post('/api/players', {
       data: {
@@ -172,7 +172,7 @@ test('创建时随机预分配并交换身份，多局结果按对战展示胜�
     });
     expect(r.ok()).toBe(true);
   }
-  await page.goto('/');
+  await page.goto('/#/arena/sanguosha');
   await page.getByRole('button', { name: '新建对战', exact: true }).click();
   await page.getByLabel('玩家人数', { exact: true }).selectOption('4');
   await expect(page.getByLabel('身份分配', { exact: true })).toHaveValue('random');
@@ -275,7 +275,7 @@ test('真实出牌事件播放动画，重复刷新不重播，回放与切局�
       (m: any) => m.id === created.id,
     ),
     game = match.games[0];
-  await page.goto('/');
+  await page.goto('/#/arena/sanguosha');
   await expect(page.getByRole('heading', { name: '出牌动画测试', exact: true })).toBeVisible();
   await expect(page.locator('.player-panel')).toHaveCount(2);
   await expect(page.getByLabel('回放时间轴')).toHaveValue(String(game.revision));
@@ -420,7 +420,7 @@ test('并行实时切局、整场暂停与单局单步、按场收集RSI和调�
       });
       expect(r.ok()).toBe(true);
     }
-    await page.goto('/');
+    await page.goto('/#/arena/sanguosha');
     await page.getByRole('button', { name: '新建对战', exact: true }).click();
     await expect(page.getByLabel('并行局数', { exact: true })).toHaveValue('1');
     await page.getByLabel('玩家人数', { exact: true }).selectOption('2');

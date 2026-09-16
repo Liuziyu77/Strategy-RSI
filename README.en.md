@@ -9,7 +9,7 @@
   <a href="README.md">简体中文</a> · <strong>English</strong>
 </p>
 <p align="center">
-  <img src="docs/assets/badges.svg" alt="Node.js 22.13+ · TypeScript · 2–8 Agents · Apache 2.0" width="620" />
+  <img src="docs/assets/badges.svg" alt="Node.js 22.13+ · TypeScript · 2–12 Agents · Apache 2.0" width="620" />
 </p>
 <p align="center">
   <a href="#news">News</a> · <a href="#demos">Demos</a> · <a href="#features">Features</a> · <a href="#experiments">Experiments</a> · <a href="#quick-start">Quick Start</a> · <a href="#experience-loop">Experience Loop</a> · <a href="#todo-list">Todo List</a> · <a href="#documentation">Docs</a>
@@ -17,7 +17,24 @@
 
 ---
 
-Strategy-RSI is a game-based experimental platform for agent recursive self-improvement (RSI). Agents use immediate reflection, post-game review, and experience consolidation to inform later decisions. Built around Sanguosha, a strategy card game with hidden roles, the platform supports matches between different models, concurrent games, agent conversations, and visual replays.
+Strategy-RSI is a game-based experimental platform for agent recursive self-improvement (RSI). Agents use immediate reflection, post-game review, and experience consolidation to inform later decisions. Across Sanguosha, Werewolf, Chess and Xiangqi, the platform supports matches between different models, concurrent games, agent conversations, and visual replays.
+
+## Multi-game support
+
+Strategy-RSI now supports Sanguosha, Werewolf, Chess and Xiangqi. Every game shares Agent communication, immediate/post-game RSI, memory consolidation, concurrency, recovery and replay. Experience is isolated by player and game type.
+
+| Game      | Players | Languages         |
+| --------- | ------- | ----------------- |
+| Sanguosha | 2–8     | Chinese           |
+| Werewolf  | 6–12    | Chinese / English |
+| Chess     | 2       | Chinese / English |
+| Xiangqi   | 2       | Chinese           |
+
+Start in the dedicated **游戏大厅** (Game Lobby), browse or search the game collection, then enter a workspace. Use **游戏大厅** in the header to return and choose another game. Choose the language for a new match, then run a local demo or open **New match** to select profiles with model and RSI settings. Each game remembers its match, round, replay frame and perspective across switches and reloads; browser back/forward is supported. See the [arena UI guide](docs/ARENA_UI.md). Werewolf supports private wolf-team night communication; board games support optional public speech with each move.
+
+[Game/rules catalog](docs/games/README.md) · [Architecture](docs/MULTIGAME_ARCHITECTURE.md) · [Adding a game](docs/EXTENDING_GAMES.md) · [API](docs/API.md)
+
+Werewolf uses an explicit fixed-role experimental ruleset. Xiangqi implements legal moves, checkmate/stalemate and perpetual-check adjudication, but not full tournament chase adjudication. Chess supports castling, en passant, promotions and repetition/move-count draws. Consult each rules page for exact boundaries. The demonstrations and published baseline results below remain specific to Sanguosha.
 
 <a id="news"></a>
 
@@ -162,7 +179,7 @@ npm ci
 npm run dev
 ```
 
-Open the [local arena](http://localhost:3930) and click **运行本地演示 (Run local demo)** to watch policy agents play. No API key is required.
+Open the [game lobby](http://localhost:3930), choose a game, then click **运行本地演示 (Run local demo)** to watch policy agents play. No API key is required.
 
 ### 2. Add your agents
 
@@ -199,7 +216,7 @@ Data is stored in `data/arena.sqlite` by default. After a restart, unfinished ma
 | **Both modes**       | Enable both action reflection and post-game review.                              |
 | **New RSI disabled** | Stop generating new reflections while continuing to use existing experience.     |
 
-**Collection and storage** · Experience is organized by player → match → source game and reflection type. Experience written by the same agent in concurrent games is available to its later decisions. Each player's private experience remains separate; public chat context contains only messages from the current game.
+**Collection and storage** · Experience is organized by player → match → source game and reflection type. Experience written by the same agent in concurrent games is available to its later decisions within the same game type. Chinese and English matches of that game share memory. Each player's private experience remains separate; public chat context contains only messages from the current game.
 
 **Consolidation and reuse** · The player's configured model deduplicates, rewrites, and summarizes experience. Consolidation supports batching, retries for temporary failures, and reuse of completed batches. Later decisions prioritize the latest valid consolidation and add new experience it does not yet cover. Original entries and older versions are retained.
 
@@ -208,7 +225,7 @@ Data is stored in `data/arena.sqlite` by default. After a restart, unfinished ma
 <details>
 <summary><b>Experiment notes: comparing Baseline and RSI</b></summary>
 
-Each model receives its visible state, legal actions, history, chat, and personal experience. The rules engine validates and executes its choice. Card play and optional speech share one decision request; discards are selected together, and the only legal action is executed automatically. Logs record retries and local fallbacks when model calls fail or actions are invalid.
+Each model receives its visible state, legal actions, history, chat, and personal experience. The rules engine validates and executes its choice. Card play and optional speech share one decision request; discards are selected together, and the only legal action is normally executed automatically, except Werewolf discussion turns that require an Agent response. Logs record retries and local fallbacks when model calls fail or actions are invalid.
 
 For controlled comparisons, configure random seeds, roles, seats, RSI modes, and independent player profiles. Check role distributions, sample sizes, opponents, and API fallback rates when comparing results. Seeds control the engine's randomness; model responses and the order in which concurrent games contribute experience can still vary.
 
@@ -222,7 +239,7 @@ To test an agent with fixed, previously learned experience, disable new RSI. For
 
 ### Completed · Available now
 
-- [x] **Core gameplay**: a 2–8 player rules engine, Standard and EX cards, basic generals, and role configuration.
+- [x] **Sanguosha gameplay**: a 2–8 player rules engine, Standard and EX cards, basic generals, and role configuration.
 - [x] **Player library**: separate model APIs and RSI settings, personal experience, match history, per-match and overall win rates, durations, and round counts.
 - [x] **Visual spectating**: card and health animations, live switching between games, and frame-by-frame replays.
 - [x] **Concurrent games**: configurable concurrency, independently saved progress, and experience collected under the corresponding agent.
@@ -231,24 +248,28 @@ To test an agent with fixed, previously learned experience, disable new RSI. For
 - [x] **Execution and tracing**: batched discard decisions, API call logs, SQLite persistence and recovery, and JSON / JSONL exports.
 - [x] **Presentation and documentation**: logo, GIF / MP4 demos, integration and architecture guides, and rules, server, and browser tests.
 
+- [x] **Multi-game support**: shared game interfaces with Werewolf, Chess and Xiangqi plugins; an extension guide for future environments.
+
 ### Planned
 
 - [ ] **Improve experience self-evolution**: refine experience generation, selection, consolidation, and feedback so that experience can be revised over time.
-- [ ] **Support more games**: generalize the game environment and agent interfaces to bring matches, communication, and experience learning to other strategy games.
 - [ ] **Support more generals**: add general profiles, skill descriptions, and the corresponding rules.
 
 <a id="documentation"></a>
 
 ## 📚 Documentation
 
-Chinese is the primary version of this README. The baseline experiment notes are available in English; the other detailed guides below are in Chinese.
+Chinese is the primary version of this README. The game catalog, Werewolf and Chess rules, multi-game architecture, extension guide, and baseline experiment notes include English documentation. Setup and shared administration guides are primarily Chinese.
 
 - [Setup and model integration](docs/GETTING_STARTED.md) — local setup, API configuration, match settings, and recovery from saved data.
-- [Rules](docs/RULES.md) — roles, cards, equipment, and basic generals.
+- [Game catalog and rules](docs/games/README.md) — player counts, languages, rules, and experimental boundaries.
+- [Sanguosha rules](docs/RULES.md) — roles, cards, equipment, and basic generals.
+- [Extending the architecture](docs/EXTENDING_GAMES.md) — plugin contracts, registration, persistence, and required tests.
 - [Architecture](docs/ARCHITECTURE.md) — state machine, game scheduling, chat, and experience storage.
 - [HTTP API](docs/API.md) — player library, match controls, external agents, exports, and consolidation endpoints.
 - [Baseline experiments (English)](exp/sanguosha/README.en.md) — setup, statistical methods, interpretation, and figure reproduction.
 - [Media](docs/MEDIA.md) — logo, GIFs, HD videos, and recording instructions.
+- [Quality review (Chinese)](docs/QUALITY_REVIEW.md) — fixes, validation, and remaining maintenance work.
 
 <details>
 <summary><b>Development and validation</b></summary>

@@ -1,3 +1,4 @@
+import { GAME_CATALOG } from '../src/games/catalog';
 import { readFileSync, existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { parse as dotenvParse } from 'dotenv';
@@ -85,12 +86,17 @@ export const AgentSchema = z.object({
   provider: z.string().default('default'),
   model: z.string().max(150).default(''),
   rsi: z.enum(['off', 'immediate', 'round', 'both']).default('off'),
-  hero: z.string().refine((x) => HEROES.some((h) => h.name === x), '武将不在基础武将包中'),
+  hero: z
+    .string()
+    .refine((x) => HEROES.some((h) => h.name === x), '武将不在基础武将包中')
+    .default('张飞'),
 });
 export const MatchSchema = z
   .object({
     name: z.string().trim().min(1).max(80).default('群雄逐鹿'),
-    agents: z.array(AgentSchema).min(2).max(8),
+    gameType: z.enum(['sanguosha', 'werewolf', 'chess', 'xiangqi']).default('sanguosha'),
+    locale: z.enum(['zh', 'en']).default('zh'),
+    agents: z.array(AgentSchema).min(2).max(12),
     games: z.number().int().min(1).max(100).default(1),
     concurrency: z.number().int().min(1).max(100).default(1),
     seed: z.number().int().min(0).max(2147483647).default(42),
@@ -106,6 +112,22 @@ export const MatchSchema = z
     roleAssignments: z.record(z.string(), z.enum(['主公', '忠臣', '反贼', '内奸'])).optional(),
   })
   .superRefine((m, ctx) => {
+    const game = GAME_CATALOG[m.gameType];
+    if (m.agents.length < game.minPlayers || m.agents.length > game.maxPlayers)
+      ctx.addIssue({
+        code: 'custom',
+        message: `${game.name[m.locale]} requires ${game.minPlayers}–${game.maxPlayers} players`,
+        path: ['agents'],
+      });
+    if (!game.locales.includes(m.locale))
+      ctx.addIssue({ code: 'custom', message: 'Unsupported game language', path: ['locale'] });
+    if (m.gameType !== 'sanguosha' && (m.roleAssignments || m.roleMode === 'fixed'))
+      ctx.addIssue({
+        code: 'custom',
+        message: 'Role assignments apply only to Sanguosha',
+        path: ['roleAssignments'],
+      });
+
     if (m.concurrency > m.games)
       ctx.addIssue({ code: 'custom', message: '并行数量不能超过总局数', path: ['concurrency'] });
     if (new Set(m.agents.map((a) => a.id)).size !== m.agents.length)

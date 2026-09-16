@@ -1,0 +1,622 @@
+/* Complete page themes. Legacy Sanguosha and the player library are intentionally scoped out. */
+.theme-lobby {
+  --theme-page: #f4f6fc;
+  --theme-surface: #ffffff;
+  --theme-panel: #f9faff;
+  --theme-control: #edf0fa;
+  --theme-ink: #202941;
+  --theme-muted: #5b6882;
+  --theme-line: #dce2ef;
+  --theme-hover: #e8edfc;
+  --theme-accent: #4055d8;
+  --theme-on-accent: #ffffff;
+  --theme-shadow: 0 12px 40px #28387b0c;
+  --theme-heading: Inter, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  color-scheme: light;
+}
+.game-theme-chess {
+  --theme-page: #eeeef0;
+  --theme-surface: #ffffff;
+  --theme-panel: #f9f9fa;
+  --theme-control: #f0f1f3;
+  --theme-ink: #242a32;
+  --theme-muted: #626977;
+  --theme-line: #d6d9df;
+  --theme-hover: #e8ebf0;
+  --theme-accent: #34465b;
+  --theme-on-accent: #ffffff;
+  --theme-shadow: 0 10px 32px #242a3210;
+  --theme-heading: Inter, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --stage-background: #e5e6e9;
+  color-scheme: light;
+}
+.game-theme-werewolf {
+  --theme-page: #0d101c;
+  --theme-surface: #191e31;
+  --theme-panel: #131828;
+  --theme-control: #222940;
+  --theme-ink: #e7e8f1;
+  --theme-muted: #acb2cd;
+  --theme-line: #333b58;
+  --theme-hover: #2b3450;
+  --theme-accent: #c5b9f2;
+  --theme-on-accent: #19132e;
+  --theme-shadow: 0 18px 55px #0004;
+  --theme-heading: Georgia, var(--serif);
+  --stage-background: radial-gradient(ellipse at 50% 0%, #353752 0%, #171e32 45%, #101626 100%);
+  color-scheme: dark;
+}
+.game-theme-xiangqi {
+  --theme-page: #f4eee2;
+  --theme-surface: #fffaf0;
+  --theme-panel: #f5eddd;
+  --theme-control: #eee3cf;
+  --theme-ink: #44372b;
+  --theme-muted: #796650;
+  --theme-line: #d7c7ad;
+  --theme-hover: #eaddc4;
+  --theme-accent: #a13d30;
+  --theme-on-accent: #fffaf0;
+  --theme-shadow: 0 8px 26px #69462012;
+  --theme-heading: var(--serif);
+  --stage-background:
+    repeating-linear-gradient(0deg, #ab854506 0 1px, transparent 1px 4px), #eee1c8;
+  color-scheme: light;
+}
+.app-shell.is-themed {
+  --gold: var(--theme-accent);
+  --muted: var(--theme-muted);
+  --border: var(--theme-line);
+  color: var(--theme-ink);
+  background: var(--theme-page);
+  min-height: 100vh;
+}
+.is-themed .topbar {
+  background: var(--theme-surface);
+  border-color: var(--theme-line);
+  box-shadow: none;
+  backdrop-filter: none;
+}
+.is-themed .brand {
+  font-family: var(--theme-heading);
+  font-size: 20px;
+  letter-spacing: 0.045em;
+  color: var(--theme-ink);
+}
+.is-themed .brand-en {
+  color: var(--theme-muted);
+  letter-spacing: 0.19em;
+}
+.is-themed .brand em {
+  color: var(--theme-muted);
+  border-color: var(--theme-line);
+}
+.is-themed .brand-seal {
+  background: var(--theme-accent);
+  color: var(--theme-on-accent);
+  border: 0;
+  outline: 0;
+  transform: none;
+  box-shadow: none;
+  border-radius: 10px;
+  font: 600 23px var(--theme-heading);
+}
+.is-themed .topbar nav button {
+  color: var(--theme-muted);
+}
+.is-themed .topbar nav button:hover,
+.is-themed .topbar nav button.active {
+  color: var(--theme-accent);
+}
+.is-themed .topbar nav button.active:after {
+  background: var(--theme-accent);
+}
+.is-themed .connection {
+  color: var(--theme-muted);
+}
+.is-themed .connection i.on {
+  background: var(--theme-accent);
+  box-shadow: none;
+}
+.is-themed .current-game-name {
+  color: var(--theme-accent);
+  border-color: var(--theme-line);
+  font-family: var(--theme-heading);
+}
+.is-themed :is(input:not([type='range']):not([type='checkbox']), select, textarea) {
+  background: var(--theme-surface);
+  color: var(--theme-ink);
+  border-color: var(--theme-line);
+}
+.is-themed :is(input, textarea)::placeholder {
+  color: var(--theme-muted);
+  opacity: 1;
+}
+.is-themed :is(input[type='checkbox'], input[type='range']) {
+  accent-color: var(--theme-accent);
+}
+.is-themed .primary {
+  background: var(--theme-accent);
+  color: var(--theme-on-accent);
+  border-color: var(--theme-accent);
+  box-shadow: none;
+}
+.is-themed .primary:hover:not(:disabled) {
+  filter: brightness(1.1);
+}
+.is-themed .secondary {
+  background: var(--theme-control);
+  color: var(--theme-ink);
+  border-color: var(--theme-line);
+}
+.is-themed .secondary:hover:not(:disabled) {
+  background: var(--theme-hover);
+}
+.is-themed :is(button, a, input, select, textarea):focus-visible {
+  outline-color: var(--theme-accent);
+}
+.is-themed .multi-title h1,
+.is-themed .room-empty h2,
+.is-themed .multi-create h2 {
+  font-family: var(--theme-heading);
+}
+.is-themed .multi-title {
+  border-bottom: 1px solid var(--theme-line);
+  padding-bottom: 22px;
+}
+.is-themed .multi-title h1 {
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+.is-themed .multi-title h1 span {
+  font-family: inherit;
+  font-size: 13px;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+.is-themed .multi-title .eyebrow {
+  font-size: 9px;
+  letter-spacing: 2px;
+}
+.is-themed .multi-layout {
+  background: var(--theme-surface);
+  box-shadow: var(--theme-shadow);
+}
+.is-themed .multi-stage {
+  background: var(--stage-background);
+}
+.is-themed :is(.multi-status, .room-playback, .multi-chat article, .board-players > div) {
+  border-color: var(--theme-line);
+}
+.is-themed .board-players > div {
+  background: var(--theme-surface);
+}
+.is-themed .board-players > div.acting {
+  border-color: var(--theme-accent);
+  box-shadow: inset 3px 0 var(--theme-accent);
+}
+.is-themed .board-caption button,
+.is-themed .speaker-avatar {
+  background: var(--theme-control);
+  color: var(--theme-ink);
+}
+.is-themed .multi-status.is-result {
+  background: var(--theme-control);
+  font-weight: 600;
+}
+.is-themed .shelf-match.selected,
+.is-themed .game-rounds button.selected {
+  background: var(--theme-control);
+  border-color: var(--theme-accent);
+}
+.is-themed .inspector-tabs button[aria-selected='true'] {
+  background: var(--theme-surface);
+}
+.is-themed .room-empty {
+  background: var(--stage-background);
+  box-shadow: var(--theme-shadow);
+}
+.is-themed .live-return,
+.is-themed .live-return.active {
+  color: var(--theme-accent);
+}
+.is-themed .room-toolbar .live-tag i {
+  background: currentColor;
+  box-shadow: none;
+}
+.is-themed .room-toolbar .live-tag {
+  color: var(--theme-accent);
+}
+.is-themed .room-toolbar .live-tag.replay {
+  color: var(--theme-muted);
+}
+.is-themed .game-create-dialog {
+  box-shadow: 0 24px 90px #0005;
+}
+.is-themed .game-create-dialog::backdrop {
+  background: #10142199;
+  backdrop-filter: blur(7px);
+}
+.is-themed .danger {
+  color: #a32e35;
+}
+.is-themed .alert {
+  background: #ffe8e5;
+  color: #892f29;
+  border: 1px solid #dcaaa1;
+}
+.is-themed .loading-orbit {
+  border-color: var(--theme-line);
+  border-top-color: var(--theme-accent);
+}
+/* International chess: a precise, monochrome study room. */
+.game-theme-chess .brand-seal {
+  border-radius: 3px;
+}
+.game-theme-chess .multi-title h1 {
+  font-weight: 700;
+  letter-spacing: -0.8px;
+}
+.game-theme-chess .multi-title .eyebrow {
+  font-family: monospace;
+}
+.game-theme-chess .multi-title {
+  border-bottom: 2px solid #242a32;
+}
+.game-theme-chess .multi-layout {
+  border-radius: 3px;
+}
+.game-theme-chess
+  :is(.shelf-match, .game-rounds button, .board-players > div, .game-create-dialog) {
+  border-radius: 3px;
+}
+.game-theme-chess .shelf-heading {
+  font-family: monospace;
+  letter-spacing: 1px;
+}
+.game-theme-chess .game-rounds button.selected {
+  background: #34465b;
+  color: #fff;
+}
+.game-theme-chess .game-rounds button.selected small {
+  color: #e4e8ed;
+}
+.game-theme-chess .chess-board {
+  border: 7px solid #454b55;
+  box-shadow: 0 14px 25px #1e24212b;
+  border-radius: 2px;
+}
+.game-theme-chess .chess-board .light-square {
+  background: #f4f0e8;
+}
+.game-theme-chess .chess-board .dark-square {
+  background: #929ca9;
+}
+.game-theme-chess .chess-board .move-from {
+  background: #c8b875;
+}
+.game-theme-chess .chess-board .move-to {
+  background: #e3cd85;
+}
+.game-theme-chess .chess-board .in-check {
+  background: #da9191;
+}
+.game-theme-chess .chess-piece.white {
+  color: #44464b;
+  fill: #fffdf6;
+}
+.game-theme-chess .chess-piece.black {
+  color: #171b23;
+  fill: #303845;
+}
+.game-theme-chess .chess-piece.black path + path {
+  stroke: #b5bfcd;
+}
+.game-theme-chess .square-coordinate {
+  color: #303642;
+}
+.game-theme-chess .dark-square .square-coordinate {
+  color: #172b46;
+}
+.game-theme-chess .board-players .side-1 {
+  color: #1d2534;
+}
+.game-theme-chess .last-move {
+  border-top: 1px solid #c6cbd2;
+  padding-top: 12px;
+  font-family: monospace;
+}
+.game-theme-chess .inspector-heading h3 {
+  font-weight: 600;
+}
+.game-theme-chess .room-empty {
+  background:
+    repeating-conic-gradient(#d7dbe055 0% 25%, transparent 0% 50%) 0 0/60px 60px,
+    #eef0f3;
+}
+/* Werewolf: a nocturnal scene, silver lettering and the red of a hidden threat. */
+.app-shell.game-theme-werewolf {
+  background: radial-gradient(ellipse at 75% 0%, #2c29484d, transparent 55%), #0d101c;
+}
+.game-theme-werewolf .topbar {
+  background: #111524;
+  border-bottom-color: #39334d;
+}
+.game-theme-werewolf .brand-seal {
+  background: #24243c;
+  border: 1px solid #8c83aa;
+  color: #ded8f6;
+  border-radius: 50%;
+}
+.game-theme-werewolf .multi-title {
+  position: relative;
+  border-bottom-color: #474057;
+}
+.game-theme-werewolf .multi-title:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 110px;
+  height: 1px;
+  background: #b45e75;
+}
+.game-theme-werewolf .multi-title h1 {
+  letter-spacing: 3px;
+  font-weight: 400;
+  color: #ebe6fa;
+}
+.game-theme-werewolf .match-heading h2 {
+  font-family: var(--serif);
+  letter-spacing: 1px;
+}
+.game-theme-werewolf .multi-layout {
+  border-color: #404662;
+  border-radius: 18px;
+}
+.game-theme-werewolf .multi-stage {
+  position: relative;
+  background:
+    radial-gradient(circle at 8% 12%, #ddd8fd55 0 1px, transparent 2px),
+    radial-gradient(circle at 92% 21%, #ddd8fd66 0 1px, transparent 2px),
+    radial-gradient(circle at 78% 8%, #ddd8fd66 0 1px, transparent 2px), var(--stage-background);
+}
+.game-theme-werewolf .multi-stage:before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(transparent 70%, #080e1e50);
+  border-radius: inherit;
+}
+.game-theme-werewolf .wolf-table,
+.game-theme-werewolf .room-playback {
+  position: relative;
+}
+.game-theme-werewolf .wolf-phase {
+  padding-top: 6px;
+}
+.game-theme-werewolf .phase-orb {
+  width: 82px;
+  height: 82px;
+  background: radial-gradient(circle, #ccbcff1a, #ccbcff00 70%);
+  border: 1px solid #998bbf88;
+  box-shadow:
+    0 0 0 8px #a995dc06,
+    0 0 65px #a995dc1a;
+}
+.game-theme-werewolf .phase-orb .game-symbol {
+  width: 48px;
+  height: 48px;
+}
+.game-theme-werewolf .wolf-phase h2 {
+  font-family: Georgia, var(--serif);
+  letter-spacing: 4px;
+}
+.game-theme-werewolf .wolf-phase-track {
+  padding: 12px 0;
+  border-block: 1px solid #6b608333;
+  color: #b3b2c9;
+}
+.game-theme-werewolf .wolf-seats article {
+  background: linear-gradient(150deg, #2b314b, #171f33);
+  border-color: #47506b;
+  border-radius: 32px 32px 8px 8px;
+  padding-top: 15px;
+}
+.game-theme-werewolf .wolf-seats article.acting {
+  border-color: #c5b9f2;
+  box-shadow:
+    0 0 20px #a995dc1a,
+    inset 0 2px #c5b9f2;
+}
+.game-theme-werewolf .wolf-seats .eliminated {
+  opacity: 0.65;
+  background: #111726;
+  border-color: #30354b;
+}
+.game-theme-werewolf .wolf-seats p {
+  color: #bbc4d5;
+}
+.game-theme-werewolf .wolf-seats strong {
+  color: #d1c1e8;
+}
+.game-theme-werewolf .role-emblem {
+  border-color: #8581a45c;
+  background: #0f172b88;
+  color: #d4cbea;
+}
+.game-theme-werewolf .role-wolf {
+  color: #e5a6b4;
+  border-color: #b65a7066;
+  background: #70203920;
+}
+.game-theme-werewolf .wolf-seat-top {
+  color: #bac0d7;
+}
+.game-theme-werewolf .room-inspector {
+  background: #131828;
+}
+.game-theme-werewolf .game-rounds button.selected {
+  box-shadow: inset 0 2px #bcaadc;
+}
+.game-theme-werewolf .team-conversation {
+  border: 1px solid #784252;
+  padding: 12px;
+  border-radius: 6px;
+  color: #e3a8ba;
+}
+.game-theme-werewolf .danger {
+  color: #f0a4ad;
+}
+/* Xiangqi: warm paper, cinnabar seals, ruled margins and carved wooden pieces. */
+.app-shell.game-theme-xiangqi {
+  background: repeating-linear-gradient(0deg, #97743504 0 1px, transparent 1px 4px), #f4eee2;
+}
+.game-theme-xiangqi .topbar {
+  background: #f9f4e9;
+  border-bottom: 3px double #c9b898;
+}
+.game-theme-xiangqi .brand {
+  font-family: var(--serif);
+  letter-spacing: 0.12em;
+}
+.game-theme-xiangqi .brand-seal {
+  border-radius: 2px;
+  outline: 1px solid #a13d3050;
+  outline-offset: 3px;
+  transform: rotate(-3deg);
+  font-family: var(--serif);
+}
+.game-theme-xiangqi .multi-title {
+  border-bottom: 3px double #c9b898;
+  padding-left: 18px;
+  position: relative;
+}
+.game-theme-xiangqi .multi-title:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 4px;
+  width: 4px;
+  height: 70px;
+  background: #a13d30;
+}
+.game-theme-xiangqi .multi-title h1 {
+  font-size: 34px;
+  letter-spacing: 5px;
+  font-weight: 500;
+}
+.game-theme-xiangqi .multi-title .eyebrow {
+  color: #8c7760;
+  letter-spacing: 2px;
+}
+.game-theme-xiangqi .shelf-heading {
+  font-family: var(--serif);
+  font-size: 13px;
+  letter-spacing: 3px;
+}
+.game-theme-xiangqi .match-heading h2 {
+  font-family: var(--serif);
+  font-size: 20px;
+}
+.game-theme-xiangqi :is(.shelf-match, .game-rounds button, .multi-layout, .game-create-dialog) {
+  border-radius: 2px;
+}
+.game-theme-xiangqi .shelf-match.selected {
+  border-style: double;
+  border-width: 3px;
+  padding: 12px 10px;
+}
+.game-theme-xiangqi .game-rounds button.selected {
+  background: #a13d30;
+  color: #fff7e9;
+}
+.game-theme-xiangqi .game-rounds button.selected small {
+  color: #f7e4ca;
+}
+.game-theme-xiangqi .multi-layout {
+  border: 1px solid #bba484;
+  outline: 3px solid #bba48424;
+  outline-offset: 3px;
+}
+.game-theme-xiangqi .board-players > div {
+  background: #f8eedb;
+  border-color: #cdbb99;
+}
+.game-theme-xiangqi .board-players .side-0 {
+  color: #a13d30;
+}
+.game-theme-xiangqi .board-players .side-1 {
+  color: #38342f;
+}
+.game-theme-xiangqi .xiangqi-board {
+  border-color: #9d7549;
+  background: repeating-linear-gradient(5deg, #0000 0 4px, #8b5c2910 5px 6px), #ecd2a9;
+  box-shadow: 0 10px 18px #78552525;
+}
+.game-theme-xiangqi .inspector-heading h3,
+.game-theme-xiangqi .multi-memory h2 {
+  font-family: var(--serif);
+  letter-spacing: 2px;
+}
+.game-theme-xiangqi .room-playback {
+  border-top: 3px double #c9b898;
+}
+.game-theme-xiangqi .room-empty {
+  border: 3px double #c9b898;
+}
+.game-theme-xiangqi .empty-game-mark {
+  padding: 8px 18px;
+  border: 2px solid #a13d30;
+  outline: 1px solid #a13d3044;
+  outline-offset: 4px;
+  font-size: 64px;
+}
+body:has(.theme-lobby) {
+  background: #f4f6fc;
+}
+body:has(.game-theme-chess) {
+  background: #eeeef0;
+}
+body:has(.game-theme-werewolf) {
+  background: #0d101c;
+}
+body:has(.game-theme-xiangqi) {
+  background: #f4eee2;
+}
+@media (max-width: 700px) {
+  .is-themed .brand {
+    font-size: 16px;
+  }
+  .is-themed .brand-seal {
+    font-size: 21px;
+    border-radius: 5px;
+  }
+  .is-themed .multi-title {
+    padding-bottom: 18px;
+  }
+  .is-themed .multi-title h1 {
+    font-size: 27px;
+  }
+  .game-theme-xiangqi .multi-title h1 {
+    font-size: 28px;
+  }
+  .game-theme-xiangqi .multi-title:before {
+    height: 60px;
+  }
+  .game-theme-werewolf .wolf-seats article {
+    border-radius: 22px 22px 6px 6px;
+  }
+  .game-theme-werewolf .phase-orb {
+    width: 70px;
+    height: 70px;
+  }
+  .game-theme-chess .chess-board {
+    border-width: 5px;
+  }
+  .game-theme-werewolf .multi-layout {
+    border-radius: 12px;
+  }
+}

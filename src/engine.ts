@@ -1,3 +1,4 @@
+import type { ArenaState } from './games/core';
 import { createDeck, EQUIPMENT, HEROES, red } from './cards';
 import { ROLES, validRoles } from './roles';
 import { normalizeSpeech } from './chat';
@@ -33,7 +34,7 @@ export function combinations<T>(items: T[], n: number): T[][] {
 export class Engine {
   state: GameState;
   events: GameEvent[] = [];
-  onEvent?: (event: GameEvent, state: GameState) => void;
+  onEvent?: (event: GameEvent, state: ArenaState) => void;
   constructor(
     id: string,
     agents: AgentConfig[],
@@ -1086,6 +1087,7 @@ export class Engine {
       phase: this.s.phase,
       status: this.s.status,
       winner: this.s.winner,
+      reason: this.s.reason,
       viewer,
       players: this.s.players.map((p) => ({
         ...p,

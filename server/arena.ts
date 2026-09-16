@@ -1,7 +1,9 @@
 import { EventEmitter } from 'node:events';
 import { randomBytes, randomUUID, timingSafeEqual } from 'node:crypto';
-import { Engine } from '../src/engine';
-import type { AgentConfig, MatchConfig, GameState, Decision } from '../src/types';
+import type { GameEngine } from '../src/games/core';
+import { gamePlugin, restoreEngine } from '../src/games/registry';
+import { GAME_CATALOG } from '../src/games/catalog';
+import type { AgentConfig, MatchConfig, Decision } from '../src/types';
 import {
   agentInput,
   callModel,
@@ -19,7 +21,7 @@ import { Consolidator } from './consolidation';
 import { normalizeSpeech } from '../src/chat';
 
 export class Arena extends EventEmitter {
-  engines = new Map<string, Engine>();
+  engines = new Map<string, GameEngine>();
   workers = new Map<string, Promise<void>>();
   controllers = new Map<string, AbortController>();
   thinking = new Map<string, { seat: number; kind: string; startedAt: string }>();
@@ -44,7 +46,7 @@ export class Arena extends EventEmitter {
   }
   create(input: unknown) {
     if (input && typeof input === 'object' && 'playerIds' in input) {
-      const ids = z.array(z.string()).min(2).max(8).parse(input.playerIds);
+      const ids = z.array(z.string()).min(2).max(12).parse(input.playerIds);
       input = {
         ...input,
         agents: ids.map((id) => {
@@ -54,7 +56,8 @@ export class Arena extends EventEmitter {
         }),
       };
     }
-    const config = MatchSchema.parse(input);
+    const parsed = MatchSchema.parse(input);
+    const config = { ...parsed, rulesVersion: GAME_CATALOG[parsed.gameType].rulesVersion };
     for (const a of config.agents) {
       if (a.kind === 'llm' || a.rsi !== 'off') {
         const provider = this.provider(a.provider);
@@ -63,14 +66,18 @@ export class Arena extends EventEmitter {
       }
     }
     const id = randomUUID();
-    this.store.createMatch(id, config);
+    const engine = this.buildGame(config, 1);
     const agentTokens: Record<string, string> = {};
-    for (const a of config.agents.filter((a) => a.kind === 'external')) {
-      const token = randomBytes(24).toString('hex');
-      this.store.setToken(id, a.id, token);
-      agentTokens[a.id] = token;
-    }
-    this.newGame(id, config, 1);
+    this.store.transaction(() => {
+      this.store.createMatch(id, config);
+      for (const a of config.agents.filter((a) => a.kind === 'external')) {
+        const token = randomBytes(24).toString('hex');
+        this.store.setToken(id, a.id, token);
+        agentTokens[a.id] = token;
+      }
+      this.initializeGame(engine, id, 1);
+    });
+    this.attach(engine, id);
     if (config.autoStart) this.resume(id);
     this.signal(id);
     return { ...this.store.match(id), agentTokens };
@@ -79,6 +86,13 @@ export class Arena extends EventEmitter {
     return this.config.providers.find((p) => p.id === id) ?? this.store.playerProvider(id);
   }
   newGame(matchId: string, config: MatchConfig, number: number) {
+    const engine = this.buildGame(config, number);
+    this.store.transaction(() => this.initializeGame(engine, matchId, number));
+    this.attach(engine, matchId);
+    this.signal(matchId);
+    return engine;
+  }
+  private buildGame(config: MatchConfig, number: number) {
     const agents = [...config.agents];
     if (config.rotateSeats) {
       const offset = (number - 1) % agents.length;
@@ -88,14 +102,22 @@ export class Arena extends EventEmitter {
       config.roleAssignments && (config.roleMode === 'fixed' || number === 1)
         ? agents.map((a) => config.roleAssignments![a.id])
         : undefined;
-    const engine = new Engine(randomUUID(), agents, config.seed + number - 1, undefined, roles);
+    return gamePlugin(config.gameType ?? 'sanguosha').create(
+      randomUUID(),
+      agents,
+      config.seed + number - 1,
+      config.locale ?? 'zh',
+      roles,
+    );
+  }
+  /** Called inside the caller's transaction; publish/cache only after commit. */
+  private initializeGame(engine: GameEngine, matchId: string, number: number) {
     this.store.createGame(engine.s.id, matchId, number, engine.s);
-    this.attach(engine, matchId);
+    engine.onEvent = (event, state) => this.store.event(state.id, event, state);
     engine.start();
     this.store.checkpoint(engine.s);
-    return engine;
   }
-  attach(engine: Engine, matchId: string) {
+  attach(engine: GameEngine, matchId: string) {
     engine.onEvent = (event, state) => {
       this.store.event(state.id, event, state);
       this.signal(matchId);
@@ -107,7 +129,7 @@ export class Arena extends EventEmitter {
     if (!engine) {
       const g = this.store.game(gameId);
       if (!g) throw new Error('对局不存在');
-      engine = new Engine(gameId, [], 1, g.state);
+      engine = restoreEngine(g.state);
       engine.events = this.store.allEvents(gameId);
       this.attach(engine, g.matchId);
     }
@@ -123,21 +145,23 @@ export class Arena extends EventEmitter {
     const engine =
       seq === undefined
         ? this.engine(gameId)
-        : new Engine(
-            gameId,
-            [],
-            1,
+        : restoreEngine(
             this.store.frame(gameId, seq) ??
               (() => {
                 throw new Error('回放帧不存在');
               })(),
           );
+    if (viewer !== -1 && !engine.p(viewer)) throw new Error('座位不存在');
     const { state, ...meta } = game;
+    const view = engine.view(viewer);
     return {
       ...meta,
-      view: engine.view(viewer),
+      view,
       decisionCount: this.store.decisionCount(gameId, seq),
-      thinking: seq === undefined ? (this.thinking.get(gameId) ?? null) : null,
+      thinking:
+        seq === undefined && (viewer === -1 || view.active >= 0)
+          ? (this.thinking.get(gameId) ?? null)
+          : null,
     };
   }
   context(gameId: string, seat: number) {
@@ -148,7 +172,7 @@ export class Arena extends EventEmitter {
     return agentInput(
       engine.view(seat),
       engine.visibleHistory(seat),
-      this.store.activeMemory(engine.p(seat).agentId),
+      this.store.activeMemory(engine.p(seat).agentId, match.config.gameType ?? 'sanguosha'),
       match.config,
     );
   }
@@ -252,7 +276,7 @@ export class Arena extends EventEmitter {
     }
     return false;
   }
-  async finishGame(matchId: string, engine: Engine, signal: AbortSignal) {
+  async finishGame(matchId: string, engine: GameEngine, signal: AbortSignal) {
     this.store.setGameStatus(engine.s.id, 'reflecting');
     this.signal(matchId);
     await this.roundReflection(matchId, engine, signal);
@@ -355,7 +379,7 @@ export class Arena extends EventEmitter {
   }
   async makeDecision(
     matchId: string,
-    engine: Engine,
+    engine: GameEngine,
     signal: AbortSignal,
     external?: Decision & { revision: number },
   ) {
@@ -364,8 +388,18 @@ export class Arena extends EventEmitter {
     if (engine.s.status === 'finished') return false;
     const count = this.store.decisionCount(engine.s.id);
     if (count >= config.maxDecisions) {
-      engine.finish('平局', '达到配置的决策上限');
-      this.store.checkpoint(engine.s);
+      try {
+        this.store.transaction(() => {
+          engine.finish(
+            engine.s.locale === 'en' ? 'draw' : '平局',
+            engine.s.locale === 'en' ? 'Decision limit reached' : '达到配置的决策上限',
+          );
+          this.store.checkpoint(engine.s);
+        });
+      } catch (error) {
+        this.engines.delete(engine.s.id);
+        throw error;
+      }
       return true;
     }
     const seat = engine.actor,
@@ -376,7 +410,9 @@ export class Arena extends EventEmitter {
     if (!actions.length) throw new Error(`无合法行动：${engine.pending?.type}`);
     const selection = actions[0].selectCards;
     const forced =
-      actions.length === 1 && (!selection || selection.count === selection.from.length);
+      !engine.requiresDecision &&
+      actions.length === 1 &&
+      (!selection || selection.count === selection.from.length);
     if (agent.kind === 'external' && !external && !forced) {
       this.store.setGameStatus(engine.s.id, 'waiting');
       this.signal(matchId);
@@ -413,7 +449,9 @@ export class Arena extends EventEmitter {
             messages.push({
               role: 'user',
               content:
-                '上次响应无效。请仅选择本次 legalActions 中存在的 actionId；有 selectCards 时还须提供恰好 count 张不同可选手牌的 cardIds，返回正确 JSON。',
+                config.locale === 'en'
+                  ? 'Invalid response. Choose an exact legalActions actionId and return valid JSON.'
+                  : '上次响应无效。请仅选择本次 legalActions 中存在的 actionId；有 selectCards 时还须提供恰好 count 张不同可选手牌的 cardIds，返回正确 JSON。',
             });
           try {
             const output = await callModel(
@@ -492,7 +530,7 @@ export class Arena extends EventEmitter {
     this.signal(matchId);
     return true;
   }
-  async recoverImmediate(matchId: string, engine: Engine, signal: AbortSignal) {
+  async recoverImmediate(matchId: string, engine: GameEngine, signal: AbortSignal) {
     const last = this.store.decisions(engine.s.id, 1)[0];
     if (!last) return;
     const agent: AgentConfig = this.store
@@ -510,7 +548,7 @@ export class Arena extends EventEmitter {
   }
   async reflect(
     matchId: string,
-    engine: Engine,
+    engine: GameEngine,
     agent: AgentConfig,
     seat: number,
     mode: 'immediate' | 'round',
@@ -565,7 +603,7 @@ export class Arena extends EventEmitter {
       this.signal(matchId);
     }
   }
-  async roundReflection(matchId: string, engine: Engine, signal: AbortSignal) {
+  async roundReflection(matchId: string, engine: GameEngine, signal: AbortSignal) {
     const config: MatchConfig = this.store.match(matchId).config;
     for (const p of engine.s.players) {
       const agent = config.agents.find((a) => a.id === p.agentId)!;

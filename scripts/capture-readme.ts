@@ -35,7 +35,7 @@ const prepare = async (page: Page) => {
   // The capture is independent of remote font availability. Explicitly stacked
   // card glyphs also render correctly with the system's Chinese fallback font.
   await page.route(/https:\/\/fonts\.(googleapis|gstatic)\.com\//, (route) => route.abort());
-  await page.goto(url);
+  await page.goto(`${url}/#/arena/sanguosha`);
   await page.evaluate(() => document.fonts.ready);
 };
 const lessons = [

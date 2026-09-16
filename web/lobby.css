@@ -1,0 +1,583 @@
+/* The lobby is a bright catalog; each game card previews its own visual world. */
+.game-lobby {
+  max-width: 1280px;
+  margin: auto;
+  padding: 54px 40px 32px;
+}
+.lobby-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 48px;
+  padding: 12px 0 48px;
+  border-bottom: 1px solid #dae1ef;
+}
+.lobby-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #4055d8;
+}
+.lobby-eyebrow > span {
+  height: 6px;
+  width: 6px;
+  border-radius: 50%;
+  background: #5365e4;
+}
+.lobby-hero h1 {
+  font-family: Inter, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: 44px;
+  line-height: 1.5;
+  letter-spacing: -1px;
+  font-weight: 700;
+  margin: 22px 0 20px;
+  color: #202941;
+}
+.lobby-hero h1 em {
+  font-style: normal;
+  color: #4055d8;
+}
+.lobby-hero p {
+  font-size: 13px;
+  line-height: 2;
+  color: #5b6882;
+  margin-bottom: 0;
+}
+.lobby-manifest {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 26px;
+  min-width: 280px;
+}
+.lobby-worlds {
+  display: grid;
+  grid-template-columns: repeat(2, 82px);
+  gap: 12px;
+  position: relative;
+  transform: rotate(-8deg);
+}
+.lobby-worlds:before {
+  content: '';
+  position: absolute;
+  inset: -22px;
+  border: 1px dashed #bdc8e5;
+  border-radius: 50%;
+  z-index: 0;
+}
+.world-symbol {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 82px;
+  height: 82px;
+  border-radius: 20px;
+  box-shadow: 0 8px 18px #293c6c18;
+  font-family: var(--serif);
+  font-size: 46px;
+}
+.world-symbol .game-symbol {
+  width: 49px;
+  height: 51px;
+}
+.world-sanguosha {
+  background: #1b392c;
+  color: #d9ba79;
+}
+.world-werewolf {
+  background: #1b2037;
+  color: #c5b9f2;
+}
+.world-chess {
+  background: #fff;
+  color: #34465b;
+  border: 1px solid #d5dbe5;
+}
+.world-xiangqi {
+  background: #f0e1c4;
+  color: #a13d30;
+}
+.lobby-manifest > p {
+  font-size: 8px;
+  color: #617095;
+  letter-spacing: 2px;
+  margin: 30px 0 18px;
+}
+.lobby-manifest > div:last-child {
+  display: flex;
+  gap: 25px;
+}
+.lobby-manifest > div:last-child > span {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 10px;
+  color: #61708b;
+}
+.lobby-manifest b {
+  font-size: 22px;
+  font-weight: 600;
+  color: #293858;
+}
+.lobby-tools {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: center;
+  margin: 29px 0 23px;
+}
+.lobby-tools h2 {
+  font:
+    600 21px Inter,
+    'PingFang SC',
+    'Microsoft YaHei',
+    sans-serif;
+  letter-spacing: 0;
+  margin-bottom: 8px;
+  color: #202941;
+}
+.lobby-tools h2 span {
+  font-family: monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: #637193;
+  margin-left: 13px;
+}
+.lobby-tools p {
+  font-size: 12px;
+  color: #63718b;
+  margin: 0;
+}
+.lobby-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border: 1px solid #d7dfee;
+  border-radius: 10px;
+  padding: 0 14px;
+  color: #63718b;
+  width: 280px;
+  flex-shrink: 0;
+  box-shadow: 0 3px 10px #344b7810;
+}
+.lobby-search input {
+  border: 0;
+  background: none;
+  width: 100%;
+  padding: 13px 0;
+  font-size: 12px;
+  color: #202941;
+}
+.lobby-search input:focus-visible {
+  outline-offset: 1px;
+}
+.lobby-search:focus-within {
+  border-color: #5365e4;
+  box-shadow: 0 0 0 3px #5365e410;
+}
+.lobby-search button {
+  padding: 5px;
+  display: flex;
+}
+.lobby-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 450px), 1fr));
+  gap: 22px;
+}
+.lobby-card {
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  text-align: left;
+  min-width: 0;
+  border: 1px solid var(--card-line);
+  border-radius: 14px;
+  padding: 0;
+  background: var(--card-bg);
+  color: var(--card-ink);
+  box-shadow: 0 6px 18px #35426c0b;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  --card-bg: #fff;
+  --card-ink: #242a32;
+  --card-muted: #626977;
+  --card-line: #d6d9df;
+  --card-art: #e5e6e9;
+}
+.lobby-card-sanguosha {
+  --card-bg: #193125;
+  --card-ink: #f2ebd7;
+  --card-muted: #b2c4b2;
+  --card-line: #476149;
+  --card-art: #213e2d;
+}
+.lobby-card-werewolf {
+  --card-bg: #191e33;
+  --card-ink: #e8e3f6;
+  --card-muted: #b3b5d0;
+  --card-line: #3c4162;
+  --card-art: #242b49;
+}
+.lobby-card-xiangqi {
+  --card-bg: #fbf5e8;
+  --card-ink: #523e2a;
+  --card-muted: #796650;
+  --card-line: #d8c5a6;
+  --card-art: #f0dfbf;
+  border-radius: 4px;
+}
+.lobby-card-chess {
+  border-radius: 4px;
+}
+.lobby-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px #2837631c;
+}
+.lobby-card:focus-visible {
+  outline: 3px solid #4055d8;
+  outline-offset: 4px;
+}
+.lobby-card-art {
+  width: 31%;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--card-art);
+  color: var(--game-accent);
+  border-right: 1px solid var(--card-line);
+}
+.lobby-card-art > span {
+  display: grid;
+  place-items: center;
+  width: 78px;
+  height: 90px;
+  font-size: 65px;
+  font-family: var(--serif);
+}
+.lobby-card-art .game-symbol {
+  width: 72px;
+  height: 78px;
+}
+.lobby-card-art > small {
+  font-size: 8px;
+  letter-spacing: 3px;
+  margin-top: 17px;
+  color: var(--card-muted);
+}
+.lobby-art-grid {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.18;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 27px, var(--game-accent) 28px 29px),
+    repeating-linear-gradient(90deg, transparent 0 27px, var(--game-accent) 28px 29px);
+  mask-image: linear-gradient(145deg, #000, transparent 75%);
+}
+.lobby-card-werewolf .lobby-art-grid {
+  background: radial-gradient(
+    circle at center,
+    transparent 38%,
+    var(--game-accent) 38.5%,
+    transparent 39.5%,
+    transparent 54%,
+    var(--game-accent) 54.5%,
+    transparent 55.5%
+  );
+  mask-image: none;
+  opacity: 0.2;
+}
+.lobby-card-sanguosha .lobby-art-grid {
+  transform: rotate(45deg) scale(1.5);
+  opacity: 0.15;
+}
+.lobby-card-chess .lobby-art-grid {
+  opacity: 0.5;
+  background: repeating-conic-gradient(#bbc2cd 0% 25%, transparent 0% 50%) 0 0/54px 54px;
+  mask-image: linear-gradient(180deg, #000, transparent 80%);
+}
+.lobby-card-xiangqi .lobby-card-art > span {
+  font-size: 48px;
+  border-radius: 50%;
+  width: 76px;
+  height: 76px;
+  border: 3px double #a13d3077;
+  background: #faedcf;
+  box-shadow: 0 3px 0 #bb9463;
+}
+.lobby-card-chess .lobby-card-art > span {
+  background: #ffffff99;
+  border-radius: 8px;
+}
+.lobby-card-copy {
+  padding: 25px 24px 19px;
+  min-width: 0;
+  flex: 1;
+}
+.lobby-card-category {
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--game-accent);
+}
+.lobby-card h3 {
+  font-family: var(--serif);
+  font-size: 26px;
+  letter-spacing: 3px;
+  margin: 13px 0 9px;
+  color: var(--card-ink);
+}
+.lobby-card-chess h3 {
+  font-family: Inter, 'PingFang SC', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+.lobby-card-werewolf h3 {
+  letter-spacing: 4px;
+}
+.lobby-card-copy > p {
+  font-size: 12px;
+  color: var(--card-muted);
+  line-height: 1.8;
+  margin-bottom: 18px;
+}
+.lobby-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: var(--card-muted);
+  font-size: 10px;
+}
+.lobby-card-meta > span {
+  padding: 4px 8px;
+  border: 1px solid var(--card-line);
+  border-radius: 4px;
+}
+.lobby-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 15px;
+  border-top: 1px solid var(--card-line);
+}
+.lobby-card-footer > span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  color: var(--card-muted);
+}
+.lobby-card-footer i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.lobby-card-footer strong {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--game-accent);
+  white-space: nowrap;
+}
+.lobby-no-results {
+  padding: 60px 20px;
+  text-align: center;
+  border: 1px dashed #c2cbe1;
+  border-radius: 14px;
+  color: #5b6882;
+  background: #fff;
+}
+.lobby-no-results h3 {
+  font-size: 18px;
+  margin: 18px 0 12px;
+}
+.lobby-no-results p {
+  font-size: 12px;
+}
+.lobby-no-results button {
+  font-size: 12px;
+  margin-top: 10px;
+}
+.lobby-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  border-top: 1px solid #dce2ef;
+  margin-top: 34px;
+  padding-top: 20px;
+  font-size: 11px;
+  color: #61718b;
+}
+.lobby-footer > span {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.lobby-footer p {
+  margin: 0;
+  line-height: 1.8;
+}
+@media (max-width: 1050px) {
+  .game-lobby {
+    padding: 34px 28px;
+  }
+  .lobby-card-copy {
+    padding: 22px 18px 18px;
+  }
+  .lobby-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr));
+    gap: 16px;
+  }
+  .lobby-card-art {
+    width: 27%;
+  }
+  .lobby-card-footer {
+    gap: 8px;
+  }
+  .lobby-card-footer > span {
+    font-size: 9px;
+  }
+  .lobby-card h3 {
+    font-size: 23px;
+  }
+  .lobby-hero h1 {
+    font-size: 35px;
+  }
+  .lobby-manifest {
+    min-width: 225px;
+    padding: 0 10px;
+  }
+  .lobby-worlds {
+    grid-template-columns: repeat(2, 68px);
+  }
+  .world-symbol {
+    width: 68px;
+    height: 68px;
+    font-size: 40px;
+  }
+}
+@media (max-width: 700px) {
+  .game-lobby {
+    padding: 28px 18px;
+  }
+  .lobby-hero {
+    padding: 0 0 26px;
+    gap: 10px;
+  }
+  .lobby-eyebrow {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+  .lobby-hero h1 {
+    font-size: 29px;
+    letter-spacing: -0.5px;
+    margin: 18px 0 12px;
+  }
+  .lobby-hero p {
+    font-size: 12px;
+  }
+  .lobby-manifest {
+    display: none;
+  }
+  .lobby-tools {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+    margin: 24px 0 18px;
+  }
+  .lobby-tools h2 {
+    font-size: 20px;
+  }
+  .lobby-search {
+    width: 100%;
+  }
+  .lobby-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .lobby-card-art {
+    width: 27%;
+  }
+  .lobby-card-art > span {
+    font-size: 47px;
+    width: 60px;
+    height: 68px;
+  }
+  .lobby-card-art .game-symbol {
+    width: 51px;
+    height: 60px;
+  }
+  .lobby-card-xiangqi .lobby-card-art > span {
+    font-size: 35px;
+    width: 56px;
+    height: 56px;
+  }
+  .lobby-card-art > small {
+    font-size: 7px;
+    letter-spacing: 1px;
+  }
+  .lobby-card-copy {
+    padding: 20px 16px 15px;
+  }
+  .lobby-card h3 {
+    font-size: 22px;
+    margin-top: 10px;
+  }
+  .lobby-card-category {
+    font-size: 9px;
+    letter-spacing: 0.3px;
+  }
+  .lobby-card-copy > p {
+    font-size: 11px;
+    margin-bottom: 12px;
+  }
+  .lobby-card-meta {
+    font-size: 10px;
+    gap: 5px;
+  }
+  .lobby-card-meta > span {
+    padding: 3px 6px;
+  }
+  .lobby-card-footer {
+    margin-top: 17px;
+    padding-top: 12px;
+    gap: 5px;
+  }
+  .lobby-card-footer strong {
+    font-size: 10px;
+    gap: 4px;
+  }
+  .lobby-card-footer svg {
+    width: 14px;
+  }
+  .lobby-card-footer > span {
+    font-size: 9px;
+  }
+  .lobby-footer {
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 24px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lobby-card {
+    transition: none;
+  }
+  .lobby-card:hover {
+    transform: none;
+  }
+}

@@ -117,7 +117,7 @@ try {
     const errors: string[] = [];
     page.on('pageerror', (error) => errors.push(error.message));
     await page.route(/https:\/\/fonts\.(googleapis|gstatic)\.com\//, (route) => route.abort());
-    await page.goto(url);
+    await page.goto(`${url}/#/arena/sanguosha`);
     await page.locator('.player-panel').first().waitFor();
     if (clip.tab === 'chat')
       await page.getByRole('button', { name: '牌局聊天', exact: true }).click();

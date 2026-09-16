@@ -1,3 +1,4 @@
+import type { GameType, Locale } from './games/core';
 export type Role = '主公' | '忠臣' | '反贼' | '内奸';
 export type Suit = '♠' | '♥' | '♣' | '♦';
 export type Slot = 'weapon' | 'armor' | 'offense' | 'defense';
@@ -112,6 +113,7 @@ export interface GameEvent {
   data?: Record<string, unknown>;
   privateTo?: number;
   publicText?: string;
+  visibleTo?: number[];
 }
 export interface Observation {
   gameId: string;
@@ -122,6 +124,7 @@ export interface Observation {
   phase: string;
   status: string;
   winner: string | null;
+  reason?: string | null;
   viewer: number;
   players: Array<
     Omit<Player, 'hand' | 'role'> & { role: Role | '未知'; handCount: number; hand?: Card[] }
@@ -202,6 +205,9 @@ export interface PlayerGameHistory {
   won: boolean;
 }
 export interface MatchConfig {
+  gameType?: GameType;
+  locale?: Locale;
+  rulesVersion?: string;
   name: string;
   agents: AgentConfig[];
   games: number;
@@ -219,6 +225,7 @@ export interface MatchConfig {
   roleAssignments?: Record<string, Role>;
 }
 export interface Memory {
+  gameType?: GameType;
   id: string;
   agentId: string;
   text: string;

@@ -111,7 +111,7 @@ if (process.argv.includes('--probe-only')) {
           decisions: count,
           status: store.match(match.id).status,
           round: state.round,
-          hp: state.players.map((p) => p.hp),
+          players: state.players.map((p) => ({ seat: p.seat, alive: p.alive })),
           fallbackCount: store.decisions(game.id).filter((d) => d.fallback).length,
           memories: store.memory().length,
         };

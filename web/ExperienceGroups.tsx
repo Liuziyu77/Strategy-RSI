@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Consolidation, Memory, PlayerGameHistory } from '../src/types';
 import { Icon } from './ui';
+import { GAME_CATALOG } from '../src/games/catalog';
 
 const modes = {
   consolidated: '归纳结果',
@@ -138,6 +139,8 @@ export function ExperienceGroups({
                                   : mode === 'consolidated'
                                     ? '多局经验归纳'
                                     : '个人经验'}
+                                {' · '}
+                                {GAME_CATALOG[m.gameType ?? 'sanguosha'].name.zh}
                               </span>
                               <small>
                                 {m.active === false

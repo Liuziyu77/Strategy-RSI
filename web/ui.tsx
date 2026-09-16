@@ -51,6 +51,7 @@ export function Icon({ name, size = 18 }: { name: string; size?: number }) {
         <path d="M7 3h10v7a5 5 0 0 1-10 0ZM7 5H3v3a5 5 0 0 0 5 5m9-8h4v3a5 5 0 0 1-5 5m-4 2v6m-4 0h8" />
       </>
     ),
+    chat: <path d="M4 4h16v12H9l-5 4ZM8 8h8M8 12h5" />,
     play: <path d="m8 5 11 7-11 7Z" />,
     pause: (
       <>

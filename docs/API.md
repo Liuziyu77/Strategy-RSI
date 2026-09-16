@@ -2,6 +2,32 @@
 
 默认根地址 `http://localhost:3930`。所有 JSON 接口使用 UTF-8。错误返回 `{ "error": "可读错误信息" }`。开启管理令牌后，所有非 Agent 写接口使用 `Authorization: Bearer <ARENA_ADMIN_TOKEN>`。
 
+## 多游戏协议
+
+- `GET /api/game-types`：游戏 ID、人数、支持语言与规则版本；`GET /api/game-types/:id/rules?locale=en` 获取对应规则。
+- 创建比赛增加 `gameType`（`sanguosha` / `werewolf` / `chess` / `xiangqi`）和 `locale`（`zh` / `en`）。省略时默认三国杀和中文。三国杀 2–8 人，狼人杀 6–12 人，两种棋各 2 人；中国象棋和三国杀只接受中文。
+- 新游戏不需要 `hero`，该字段缺省仅为兼容旧玩家档案。`roleAssignments` / `roleMode: fixed` 仅用于三国杀；棋类按座位分配颜色，狼人杀按种子分配角色。
+- `GET /api/games/:id?viewer=0&seq=42` 为实验者提供某座位历史观察，省略 viewer 默认全知。真实 Agent 必须使用带令牌的 `/api/agent/...`，其上下文包含按游戏过滤的经验及可见历史。
+- 新游戏 observation 共享 `gameType, locale, revision, round, turn, active, phase, players, pending, legalActions`，游戏展示数据在 `board` / `details`；不再假设所有游戏都有手牌、体力、牌堆或装备。
+- `speechChannel` 为 `public` / `team` / `none`。狼人夜间密谈存为带 `visibleTo` 的 chat 事件，仅队内 Agent 上下文可读；公开 `/chat` 不返回私聊。管理导出和全知事件流可能包含私有信息。
+- 新游戏终局 state 的 `outcome` 包含 `winners: Agent ID[]` 与 `draw: boolean`，统计不根据武将或三国杀身份推断新游戏胜负。
+- 手动经验、JSON 导入条目增加可选 `gameType`，未标记的旧数据默认三国杀；导出保留此字段。比赛生成及归纳经验自动继承来源游戏。`GET /api/memories` 用于管理可返回多游戏经验，Agent 输入仅取当前游戏。
+
+```json
+{
+  "name": "Chess RSI experiment",
+  "gameType": "chess",
+  "locale": "en",
+  "playerIds": ["player-a", "player-b"],
+  "games": 4,
+  "concurrency": 2,
+  "seed": 42,
+  "chatEnabled": true
+}
+```
+
+New matches accept `gameType` and `locale`. Query `/api/game-types` for supported combinations. Agents use the same seat-token action endpoint across games. Choose an exact `legalActions[].id`, preserve `revision`, and optionally include `speech`; only card-selection templates require `cardIds`. Manual/imported memories may carry `gameType`. Existing records without a discriminator retain Sanguosha behavior. [English game rules and protocol scope](games/README.md).
+
 ## 新建比赛
 
 `POST /api/matches`
@@ -18,13 +44,13 @@
 }
 ```
 
-服务端读取玩家当前资料作为本次比赛快照，固定各自的名字、武将、控制方式、API 与 RSI。ID 不能重复，数量必须为 2–8；每位玩家会自动获得本次参战记录。后续编辑玩家不改写这份快照。
+服务端读取玩家当前资料作为本次比赛快照，固定各自的名字、武将、控制方式、API 与 RSI。ID 不能重复，数量必须符合所选游戏；每位玩家会自动获得本次参战记录。后续编辑玩家不改写这份快照。
 
 `concurrency` 是并行对局数量，默认 1，必须为 1–100 的整数且不超过 `games`。空闲名额按局号顺序开新局；一个名额包括该局的游戏、即时反思和赛后复盘，等待外部 Agent 的局仍占名额。不同局独立推进，同一局顺序决策。
 
 聊天字段：`chatEnabled` 默认为 `true`，设为 `false` 则禁止本场发布发言；`contextChatMessages` 默认为 80，可设置 1–200，决定输入模型的最近对话条数上限，同时受约 16000 字符的序列化消息预算约束。旧对战缺省字段按默认值处理。
 
-身份相关字段：
+三国杀专用身份字段（其他游戏不接受固定身份配置）：
 
 - `roleMode: "random"`（默认）：全部身份按种子随机分配，主公不再固定于首座。可提供 `roleAssignments` 作为首局预览结果，后续各局重新随机。
 - `roleMode: "fixed"`：必须提供 `roleAssignments`，按玩家 ID 固定整场全部牌局的身份，座位轮换不改变玩家身份。
@@ -68,9 +94,9 @@
 }
 ```
 
-将 `model` 换成 `/api/config` 中的已配置模型。每个 Agent 都必须有唯一、稳定的 `id`（字母、数字、下划线、横杠，最多 64 字符）。`agents` 数组长度就是玩家数量，必须 2–8。
+将 `model` 换成 `/api/config` 中的已配置模型。每个 Agent 都必须有唯一、稳定的 `id`（字母、数字、下划线、横杠，最多 64 字符）。`agents` 数组长度就是玩家数量，须符合游戏人数范围。
 
-返回比赛 `id`、`config`、状态和外部座位的 `agentTokens`。将座位设为 `external` 时，服务器不会替它调用决策模型；客户端保存令牌后自行拉取状态、提交动作。将座位设为 `heuristic` 时无需 API。
+返回比赛 `id`、`config`、状态和外部座位的 `agentTokens`。将座位设为 `external` 时，服务器不会替它调用决策模型；客户端保存令牌后自行拉取状态、提交动作。`heuristic` 的行动无需 API，但 `heuristic` / `external` 若开启 RSI，反思仍需要已配置的模型 API。
 
 ## 观战、控制与回放
 
@@ -128,9 +154,11 @@ Authorization: Bearer <创建时返回的该座位令牌>
 }
 ```
 
-`players` 中仅自己的 `hand` 包含牌面；其他玩家只有 `handCount`。非本人隐藏身份为 `未知`。不提供牌堆次序、随机种子或其他玩家的模型输入。未轮到自己时 `legalActions` 为空。可以将该 JSON 直接作为模型决策的用户上下文。
+`observation` 根据游戏提供不同的结构化数据：三国杀中仅自己的 `hand` 包含牌面，其他玩家只有 `handCount`，未知身份为 `未知`；狼人杀隐藏角色为 `unknown`，狼人可见队友，个人查验和药品信息由 `details` 按座位过滤；国际象棋提供 8×8 `board`、`details.fen` 和 SAN 历史；中国象棋提供 10×9 `board`、棋子坐标及将军信息。模型输入为文本 JSON，不发送棋盘截图。
 
-`chat` 是当前局公开对话，包含 `seq`、`time`、`seat`、`agentId`、`name`、`text`、`round`、`turn`、`phase`。`history` 不重复包含聊天事件，`historyInfo` 只计牌局事件；`chatInfo` 独立说明聊天是否开放、完整记录数、输入条数、省略数及单条字数上限。决策与 RSI 使用相同的聊天上下文，其他局的对话不进入此处。
+不提供牌堆次序、随机种子或其他玩家的模型输入。未轮到自己时 `legalActions` 为空。可以将该 JSON 直接作为模型决策的用户上下文。
+
+`chat` 是当前局对该座位可见的对话，包含 `seq`、`time`、`seat`、`agentId`、`name`、`text`、`round`、`turn`、`phase`。狼人上下文还包含队内密谈，其他玩家不接收这些消息；观战 `/api/games/:id/chat` 只返回公开对话。`history` 不重复包含聊天事件，`historyInfo` 只计可见游戏事件；`chatInfo` 独立说明聊天是否开放、可见记录数、输入条数、省略数及单条字数上限。决策与 RSI 使用相同的聊天上下文，其他局的对话不进入此处。
 
 动作 JSON 可附带 `"speech":"我先试探一下，大家看他的反应。"`。空字符串或省略表示沉默，每次最多 200 个 Unicode 字符，超长截断，非字符串忽略；异常的可选发言不会让合法动作失败。发言不替代 `actionId`，必须轮到该 Agent 并通过动作与版本校验。署名和座位由服务器确定；聊天关闭时发言忽略。消息在执行动作之前公开，和动作、检查点在同一事务保存。`reason` 仍为策略说明，不自动公开到聊天室。
 
@@ -155,7 +183,7 @@ Authorization: Bearer <创建时返回的该座位令牌>
 { "revision": 20, "actionId": "r20-a0", "reason": "保留闪与桃，结束出牌" }
 ```
 
-服务器按最新合法动作列表验证，不接受任意卡牌 ID 或未授权座位。过期后需重新取状态。外部 Agent 的强制动作（唯一合法操作）会自动完成，其余行动保持等待。示例客户端：[scripts/external-agent.ts](../scripts/external-agent.ts)。
+服务器按最新合法动作列表验证，不接受任意卡牌 ID 或未授权座位。过期后需重新取状态。外部 Agent 的强制动作（唯一合法操作）通常自动完成；狼人杀讨论窗口的 `speak` 即使唯一也需 Agent 提交，其余非强制行动保持等待。示例客户端：[scripts/external-agent.ts](../scripts/external-agent.ts)。
 
 ## 记忆
 

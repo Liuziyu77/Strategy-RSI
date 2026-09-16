@@ -1,0 +1,74 @@
+/* Shared visual language; game surfaces keep their own identity. */
+.app-shell {
+  background: radial-gradient(ellipse at 10% 0%, #25342b55, transparent 50%), #111713;
+  min-height: 100vh;
+}
+.topbar {
+  background: #141c17e8;
+  border-bottom: 1px solid #ffffff0c;
+  padding-inline: 32px;
+  backdrop-filter: blur(16px);
+}
+.brand .seal {
+  box-shadow: 0 0 24px #d9ba7910;
+}
+.game-theme-sanguosha .workspace {
+  margin-top: 0;
+  border-top: 1px solid #ffffff0c;
+}
+.game-theme-sanguosha .arena-main {
+  background: radial-gradient(ellipse at 50% 20%, #30463833, transparent 70%);
+}
+.game-theme-sanguosha .battlefield {
+  border: 1px solid #5e715633;
+  box-shadow:
+    inset 0 0 70px #0a140b55,
+    0 16px 35px #0002;
+  background-color: #16231b;
+}
+.game-theme-sanguosha .sidebar {
+  background: #171f19;
+  border-right-color: #ffffff0c;
+}
+.game-theme-sanguosha .history-panel {
+  background: #171f1a;
+  border-left-color: #ffffff0c;
+}
+.game-theme-sanguosha .arena-heading h1 {
+  font-family: var(--serif);
+  letter-spacing: 2px;
+}
+.game-theme-sanguosha .match-item.selected {
+  box-shadow: inset 2px 0 #d9ba79;
+  background: #d9ba790c;
+}
+
+.current-game-name {
+  font-family: var(--serif);
+  font-size: 13px;
+  color: var(--gold);
+  padding-right: 14px;
+  border-right: 1px solid #ffffff15;
+  white-space: nowrap;
+}
+.game-symbol {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+@media (max-width: 1200px) {
+  .topbar {
+    padding-inline: 24px;
+  }
+  .current-game-name {
+    display: none;
+  }
+}
+@media (max-width: 700px) {
+  .topbar {
+    padding-inline: 16px;
+  }
+  .topbar nav {
+    gap: 20px;
+  }
+}

@@ -30,7 +30,7 @@ if (!production) {
   });
 }
 server.listen(config.port, config.host, () =>
-  console.log(`三国杀 Agent Arena · http://${config.host}:${config.port}`),
+  console.log(`Strategy-RSI · http://${config.host}:${config.port}`),
 );
 let closing = false;
 async function close() {

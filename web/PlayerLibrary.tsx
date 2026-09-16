@@ -9,6 +9,8 @@ import type {
 } from '../src/types';
 import { api, post, Icon, modes, colors, heroNames, statuses } from './ui';
 import { ExperienceGroups } from './ExperienceGroups';
+import { GAME_CATALOG } from '../src/games/catalog';
+import type { GameType } from '../src/games/core';
 
 type Detail = PlayerRecord & {
   memories: Memory[];
@@ -61,6 +63,7 @@ export function PlayerLibrary({
     [notice, setNotice] = useState(''),
     [text, setText] = useState('');
   const fileRef = useRef<HTMLInputElement>(null);
+  const [memoryGame, setMemoryGame] = useState<GameType>('sanguosha');
   useEffect(() => {
     if (!selectedId && players.length) setSelectedId(players[0].id);
   }, [players, selectedId]);
@@ -395,7 +398,7 @@ export function PlayerLibrary({
                             void run(async () => {
                               const raw = await file.text();
                               const body = file.name.toLowerCase().endsWith('.txt')
-                                ? [{ text: raw }]
+                                ? [{ text: raw, gameType: memoryGame }]
                                 : JSON.parse(raw);
                               const result = await post(`/players/${owner}/memories/import`, body);
                               setNotice(`已向此玩家导入 ${result.imported} 条经验`);
@@ -403,19 +406,35 @@ export function PlayerLibrary({
                         }}
                       />
                       <p className="section-explainer">
-                        这位玩家的后续决策会读取个人经验。导入的 JSON / TXT 也会归入当前玩家。
+                        经验只用于同一玩家的同类游戏。手动经验与 TXT 按下方所选游戏保存；JSON
+                        保留每条 gameType，未标记的旧数据默认三国杀。导出包含全部游戏的经验。
                       </p>
                       <form
                         className="profile-memory-compose"
                         onSubmit={(e) => {
                           e.preventDefault();
                           void run(async () => {
-                            await post(`/players/${profile.id}/memories`, { text });
+                            await post(`/players/${profile.id}/memories`, {
+                              text,
+                              gameType: memoryGame,
+                            });
                             setText('');
                             setNotice('经验已保存');
                           });
                         }}
                       >
+                        <label htmlFor="player-memory-game">经验所属游戏</label>
+                        <select
+                          id="player-memory-game"
+                          value={memoryGame}
+                          onChange={(e) => setMemoryGame(e.target.value as GameType)}
+                        >
+                          {Object.values(GAME_CATALOG).map((game) => (
+                            <option key={game.id} value={game.id}>
+                              {game.name.zh}
+                            </option>
+                          ))}
+                        </select>
                         <label htmlFor="player-memory">添加经验</label>
                         <textarea
                           id="player-memory"

@@ -1,3 +1,8 @@
+import { GameLobby } from './GameLobby';
+import { GAME_CATALOG } from '../src/games/catalog';
+import { navigateGame, navigatePage, useLocationState, useWorkspaceView } from './navigation';
+import type { GameType } from '../src/games/core';
+import { MultiGameArena } from './MultiGameArena';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import type { AgentConfig, GameEvent, Memory, Observation, PlayerRecord } from '../src/types';
@@ -9,6 +14,8 @@ import { ChatRoom } from './ChatRoom';
 import './style.css';
 import './upgrade.css';
 import './chat.css';
+import './arena-design.css';
+import './themes.css';
 const runNames: Record<string, string> = {
   paused: '已暂停',
   running: '进行中',
@@ -20,12 +27,25 @@ const runNames: Record<string, string> = {
 };
 
 function App() {
-  const [page, setPage] = useState('arena'),
-    [config, setConfig] = useState<any>(null),
-    [matches, setMatches] = useState<any[]>([]),
-    [matchId, setMatchId] = useState('');
-  const [gameId, setGameId] = useState(''),
-    [follow, setFollow] = useState(true),
+  const route = useLocationState();
+  const page = route.page,
+    activeGame = route.gameType;
+  const setPage = navigatePage;
+  const [viewState, updateView] = useWorkspaceView('sanguosha');
+  const { matchId, gameId, seq } = viewState;
+  const setMatchId = (value: React.SetStateAction<string>) =>
+    updateView((v) => ({ matchId: typeof value === 'function' ? value(v.matchId) : value }));
+  const setGameId = (value: React.SetStateAction<string>) =>
+    updateView((v) => {
+      const next = typeof value === 'function' ? value(v.gameId) : value;
+      return { gameId: next, ...(next !== v.gameId ? { seq: null } : {}) };
+    });
+  const setSeq = (value: number | null) => updateView({ seq: value });
+  const [createRequest, setCreateRequest] = useState(0);
+  const [runningCounts, setRunningCounts] = useState<Partial<Record<GameType, number>>>({});
+  const [config, setConfig] = useState<any>(null),
+    [matches, setMatches] = useState<any[]>([]);
+  const [follow, setFollow] = useState(!viewState.gameId),
     [snapshot, setSnapshot] = useState<any>(null),
     [events, setEvents] = useState<GameEvent[]>([]),
     [decisions, setDecisions] = useState<any[]>([]);
@@ -34,26 +54,48 @@ function App() {
     [error, setError] = useState(''),
     [notice, setNotice] = useState(''),
     [busy, setBusy] = useState(false);
-  const [seq, setSeq] = useState<number | null>(null),
-    [omniscient, setOmniscient] = useState(true),
-    [logTab, setLogTab] = useState('events'),
+  const omniscient = viewState.viewer === -1;
+  const setOmniscient = (value: boolean) => updateView({ viewer: value ? -1 : 0 });
+  const [logTab, setLogTab] = useState('events'),
     [connected, setConnected] = useState(false);
   const [players, setPlayers] = useState<PlayerRecord[]>([]),
     [profileId, setProfileId] = useState('');
-  const refreshLock = useRef(false),
-    viewRequest = useRef(0);
+  const createEpoch = useRef(0);
+  const refreshLock = useRef(false);
   const selected = matches.find((m) => m.id === matchId),
     games = selected?.games ?? [],
     game = games.find((g: any) => g.id === gameId);
   const refresh = useCallback(async () => {
     if (refreshLock.current) return;
     refreshLock.current = true;
+    const epoch = createEpoch.current;
     try {
       const [m, mm, pp] = await Promise.all([api('/matches'), api('/memories'), api('/players')]);
+      if (epoch !== createEpoch.current) return;
       setPlayers(pp);
-      setMatches(m);
-      setMemories(mm);
-      setMatchId((current) => current || m[0]?.id || '');
+      const counts: Partial<Record<GameType, number>> = {};
+      for (const match of m)
+        if (['running', 'waiting'].includes(match.status)) {
+          const type: GameType = match.config.gameType ?? 'sanguosha';
+          counts[type] = (counts[type] ?? 0) + 1;
+        }
+      setRunningCounts(counts);
+      setMatches(
+        m.filter((match: any) => !match.config.gameType || match.config.gameType === 'sanguosha'),
+      );
+      setMemories(mm.filter((m: Memory) => (m.gameType ?? 'sanguosha') === 'sanguosha'));
+      setMatchId(
+        (current) =>
+          (m.some(
+            (row: any) =>
+              row.id === current && (!row.config.gameType || row.config.gameType === 'sanguosha'),
+          )
+            ? current
+            : '') ||
+          m.find((match: any) => !match.config.gameType || match.config.gameType === 'sanguosha')
+            ?.id ||
+          '',
+      );
     } catch (e) {
       setError((e as Error).message);
     } finally {
@@ -76,42 +118,51 @@ function App() {
     };
   }, [refresh]);
   useEffect(() => {
-    if (!selected) {
-      setGameId('');
-      return;
-    }
+    const stopFollowing = () => setFollow(false);
+    window.addEventListener('popstate', stopFollowing);
+    return () => window.removeEventListener('popstate', stopFollowing);
+  }, []);
+  useEffect(() => {
+    if (!selected) return;
     setGameId((current) =>
       !games.some((g: any) => g.id === current)
         ? (games.find((g: any) => g.status !== 'finished')?.id ?? games.at(-1)?.id ?? '')
-        : follow && (selected.config.concurrency ?? 1) === 1
+        : follow && seq === null && (selected.config.concurrency ?? 1) === 1
           ? (games.at(-1)?.id ?? '')
           : current,
     );
   }, [matchId, selected?.games?.length, follow]);
   useEffect(() => {
-    setSeq(null);
+    if (game && seq !== null && seq > game.revision)
+      updateView({ seq: Math.max(1, game.revision) });
+  }, [game?.id, game?.revision, seq, updateView]);
+  useEffect(() => {
     setEvents([]);
     setDecisions([]);
     setSnapshot(null);
   }, [gameId]);
   useEffect(() => {
-    if (!gameId) return;
-    let cancelled = false;
+    if (!game || page !== 'arena' || (seq !== null && seq > game.revision)) return;
+    let cancelled = false,
+      loading = false;
     const load = async () => {
-      const n = ++viewRequest.current;
+      if (loading) return;
+      loading = true;
       try {
         const [s, e, d] = await Promise.all([
           api(`/games/${gameId}${seq === null ? '' : `?seq=${seq}`}`),
           api(`/games/${gameId}/events?tail=300${seq === null ? '' : `&before=${seq}`}`),
           api(`/games/${gameId}/decisions?limit=100${seq === null ? '' : `&before=${seq}`}`),
         ]);
-        if (!cancelled && n === viewRequest.current) {
-          setSnapshot(s);
+        if (!cancelled) {
+          setSnapshot({ ...s, requestedSeq: seq });
           setEvents(e);
           setDecisions(d);
         }
       } catch (e) {
         if (!cancelled) setError((e as Error).message);
+      } finally {
+        loading = false;
       }
     };
     void load();
@@ -120,7 +171,7 @@ function App() {
       cancelled = true;
       clearInterval(timer);
     };
-  }, [gameId, seq]);
+  }, [gameId, seq, page, !!game]);
   useEffect(() => {
     if (!notice) return;
     const timer = setTimeout(() => setNotice(''), 5000);
@@ -140,7 +191,8 @@ function App() {
   };
   const create = async (body: unknown) => {
     const m = await post('/matches', body);
-    setMatchId(m.id);
+    createEpoch.current++;
+    updateView({ matchId: m.id, gameId: '', seq: null, viewer: -1 });
     setFollow(true);
     setPage('arena');
     setModal(false);
@@ -167,58 +219,89 @@ function App() {
         seed: 42,
       }),
     );
-  const v: Observation | undefined = snapshot?.view?.gameId === gameId ? snapshot.view : undefined,
-    thinking = v ? snapshot?.thinking : null,
-    lastDecision = decisions.filter((d) => seq === null || d.revision < seq).at(-1);
-  const visibleEvents = events
+  const v: Observation | undefined =
+      game &&
+      snapshot?.view?.gameId === gameId &&
+      snapshot.requestedSeq === seq &&
+      (seq === null || snapshot.view.revision === seq)
+        ? snapshot.view
+        : undefined,
+    thinking = v ? snapshot?.thinking : null;
+  const frameEvents = v ? events.filter((e) => e.seq <= v.revision) : [],
+    frameDecisions = v ? decisions.filter((d) => d.revision < v.revision) : [],
+    lastDecision = frameDecisions.at(-1);
+  const visibleEvents = frameEvents
     .filter(
       (e) => (seq === null || e.seq <= seq) && !['action', 'resolved', 'ready'].includes(e.type),
     )
     .slice(-120)
     .reverse();
   const changeMatch = (id: string) => {
-    setMatchId(id);
+    updateView({ matchId: id, gameId: '', seq: null, viewer: -1 }, true);
     setFollow(true);
-    setSeq(null);
   };
   return (
-    <div className="app-shell">
+    <div
+      className={`app-shell ${page === 'lobby' ? 'theme-lobby is-themed' : ['arena', 'games'].includes(page) ? `game-theme-${activeGame}${activeGame === 'sanguosha' ? '' : ' is-themed'}` : 'theme-library'}`}
+      data-theme={
+        page === 'lobby' ? 'lobby' : ['arena', 'games'].includes(page) ? activeGame : 'library'
+      }
+    >
       <header className="topbar">
         <a
           className="brand"
-          href="#"
+          href="#/lobby"
           onClick={(e) => {
             e.preventDefault();
-            setPage('arena');
+            setCreateRequest(0);
+            setPage('lobby');
           }}
         >
-          <span className="seal">杀</span>
+          <span className="seal brand-seal">策</span>
           <span>
-            三国杀<span className="brand-en">AGENT ARENA</span>
+            Strategy-RSI<span className="brand-en">AGENT ARENA</span>
           </span>
           <em>实验室</em>
         </a>
         <nav>
           {[
-            ['arena', 'arena', '对战观测'],
+            ['lobby', 'arena', '游戏大厅'],
             ['players', 'users', '玩家库'],
             ['rules', 'gear', '规则与接入'],
           ].map(([key, icon, label]) => (
-            <button key={key} className={page === key ? 'active' : ''} onClick={() => setPage(key)}>
+            <button
+              key={key}
+              className={page === key ? 'active' : ''}
+              onClick={() => (setCreateRequest(0), setPage(key))}
+            >
               <Icon name={icon} />
               {label}
             </button>
           ))}
         </nav>
         <div className="top-actions">
+          {['arena', 'games'].includes(page) && (
+            <span className="current-game-name">{GAME_CATALOG[activeGame].name.zh}</span>
+          )}
           <span className="connection">
             <i className={connected ? 'on' : ''} />
             {connected ? '实时连接' : '正在重连'}
           </span>
-          <button className="primary compact" onClick={() => setModal(true)}>
-            <Icon name="plus" />
-            新建对战
-          </button>
+          {page !== 'lobby' && (
+            <button
+              className="primary compact"
+              onClick={() => {
+                if (activeGame === 'sanguosha') setModal(true);
+                else {
+                  navigateGame(activeGame);
+                  setCreateRequest((n) => n + 1);
+                }
+              }}
+            >
+              <Icon name="plus" />
+              新建对战
+            </button>
+          )}
         </div>
       </header>
       {error && (
@@ -235,7 +318,27 @@ function App() {
           {notice}
         </div>
       )}
-      {page === 'arena' ? (
+      {page === 'lobby' ? (
+        <GameLobby
+          counts={runningCounts}
+          onSelect={(type) => {
+            setCreateRequest(0);
+            navigateGame(type);
+          }}
+        />
+      ) : page === 'games' ? (
+        <MultiGameArena
+          key={activeGame}
+          gameType={activeGame}
+          createRequest={createRequest}
+          onCreateHandled={() => setCreateRequest(0)}
+          players={players}
+          onManage={() => {
+            setCreateRequest(0);
+            setPage('players');
+          }}
+        />
+      ) : page === 'arena' ? (
         <div className="workspace">
           <aside className="sidebar">
             <div className="section-label">
@@ -381,8 +484,7 @@ function App() {
                       value={gameId}
                       onChange={(e) => {
                         setFollow(false);
-                        setSeq(null);
-                        setGameId(e.target.value);
+                        updateView({ gameId: e.target.value, seq: null }, true);
                       }}
                     >
                       {games.map((g: any) => (
@@ -415,8 +517,7 @@ function App() {
                           className={`parallel-game ${gameId === g.id ? 'selected' : ''}`}
                           onClick={() => {
                             setFollow(false);
-                            setSeq(null);
-                            setGameId(g.id);
+                            updateView({ gameId: g.id, seq: null }, true);
                           }}
                         >
                           <strong>
@@ -469,7 +570,12 @@ function App() {
                   </div>
                 </div>
                 <div className={`battlefield count-${v?.players.length ?? 4}`}>
-                  <BattleEffects gameId={gameId} events={events} replay={seq !== null} view={v} />
+                  <BattleEffects
+                    gameId={gameId}
+                    events={frameEvents}
+                    replay={seq !== null}
+                    view={v}
+                  />
                   <div className="table-watermark">逐 鹿</div>
                   <div className="player-row upper">
                     {v?.players.slice(0, Math.ceil(v.players.length / 2)).map((p) => (
@@ -502,7 +608,7 @@ function App() {
                         <>
                           <span className="eyebrow">GAME COMPLETE</span>
                           <h2>{v.winner === '平局' ? '本局平局' : `${v.winner}获胜`}</h2>
-                          <p>{snapshot?.state?.reason ?? '牌局已归档，可拖动时间轴回看'}</p>
+                          <p>{v.reason ?? '牌局已归档，可拖动时间轴回看'}</p>
                         </>
                       ) : thinking ? (
                         <>
@@ -643,7 +749,9 @@ function App() {
                     <div className="section-label">
                       LATEST DECISION{' '}
                       <span>
-                        {lastDecision ? `#${snapshot?.decisionCount ?? decisions.length}` : '—'}
+                        {lastDecision
+                          ? `#${snapshot?.decisionCount ?? frameDecisions.length}`
+                          : '—'}
                       </span>
                     </div>
                     <p>
@@ -674,7 +782,7 @@ function App() {
               <div className="history-title">
                 <h2>对局实录</h2>
                 <span className="mini-pill">
-                  {snapshot?.decisionCount ?? decisions.length} 决策
+                  {v ? (snapshot?.decisionCount ?? frameDecisions.length) : 0} 决策
                 </span>
               </div>
               <div className="log-tabs">
@@ -737,7 +845,7 @@ function App() {
                           </div>
                         </div>
                       ))
-                    : [...decisions]
+                    : [...frameDecisions]
                         .filter((d) => seq === null || d.revision < seq)
                         .reverse()
                         .slice(0, 100)
@@ -776,11 +884,19 @@ function App() {
           initialId={profileId}
           onRefresh={refresh}
           onWatch={(match, game) => {
-            setFollow(false);
-            setMatchId(match);
-            setGameId(game);
-            setSeq(null);
-            setPage('arena');
+            void perform(async () => {
+              const all = await api('/matches');
+              const target = all.find((m: any) => m.id === match);
+              if (!target) throw new Error('对战不存在');
+              setFollow(false);
+              setCreateRequest(0);
+              navigateGame(target.config.gameType ?? 'sanguosha', {
+                matchId: match,
+                gameId: game,
+                seq: null,
+                viewer: -1,
+              });
+            });
           }}
         />
       ) : (

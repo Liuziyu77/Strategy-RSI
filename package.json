@@ -14,17 +14,19 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:arena": "vitest run tests/arena",
-    "test:rules": "vitest run tests/arena/engine.test.ts",
+    "test:rules": "vitest run tests/arena/engine.test.ts tests/games/rules.test.ts",
     "test:e2e": "playwright test",
     "smoke": "tsx scripts/smoke.ts",
     "smoke:api": "tsx scripts/smoke-api.ts",
-    "format": "prettier --write src server web scripts tests docs README.md *.json *.ts index.html",
-    "format:check": "prettier --check src server web scripts tests docs README.md *.json *.ts index.html",
+    "format": "prettier --write src server web scripts tests docs README.md README.en.md *.json *.ts index.html",
+    "format:check": "prettier --check src server web scripts tests docs README.md README.en.md *.json *.ts index.html",
     "docs:media": "tsx scripts/capture-readme.ts",
-    "docs:highlights": "tsx scripts/capture-highlights.ts"
+    "docs:highlights": "tsx scripts/capture-highlights.ts",
+    "test:games": "vitest run tests/games"
   },
   "dependencies": {
     "@hono/node-server": "1.19.9",
+    "chess.js": "1.4.0",
     "dotenv": "17.2.3",
     "hono": "4.12.18",
     "react": "19.2.6",

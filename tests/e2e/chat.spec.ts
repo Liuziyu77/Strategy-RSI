@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './fixtures';
 import { createServer } from 'node:http';
 import { mkdirSync } from 'node:fs';
 import { heuristic } from '../../server/agents';
@@ -16,22 +16,20 @@ test('Agent 聊天：实时更新、并行切局、逐帧回放及移动端展�
     let raw = '';
     for await (const chunk of req) raw += chunk;
     const input = JSON.parse(JSON.parse(raw).messages[1].content);
-    res
-      .writeHead(200, { 'Content-Type': 'application/json' })
-      .end(
-        JSON.stringify({
-          choices: [
-            {
-              message: {
-                content: JSON.stringify({
-                  ...heuristic(input),
-                  speech: `${input.observation.gameId.slice(0, 6)} · ${phrases[input.chat.length % phrases.length]}`,
-                }),
-              },
+    res.writeHead(200, { 'Content-Type': 'application/json' }).end(
+      JSON.stringify({
+        choices: [
+          {
+            message: {
+              content: JSON.stringify({
+                ...heuristic(input),
+                speech: `${input.observation.gameId.slice(0, 6)} · ${phrases[input.chat.length % phrases.length]}`,
+              }),
             },
-          ],
-        }),
-      );
+          },
+        ],
+      }),
+    );
   });
   await new Promise<void>((resolve) => server.listen(0, '127.0.0.1', resolve));
   try {
@@ -67,7 +65,7 @@ test('Agent 聊天：实时更新、并行切局、逐帧回放及移动端展�
     const match = await response.json();
     let matches = await (await request.get('/api/matches')).json();
     const firstId = matches.find((m: any) => m.id === match.id).games[0].id;
-    await page.goto('/');
+    await page.goto('/#/arena/sanguosha');
     await expect(page.getByRole('heading', { name: match.config.name, exact: true })).toBeVisible();
     await page.getByRole('button', { name: '牌局聊天', exact: true }).click();
     await expect(page.getByText('静候第一句交锋。Agent 会在需要时随行动发言。')).toBeVisible();

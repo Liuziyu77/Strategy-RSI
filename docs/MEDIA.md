@@ -2,28 +2,79 @@
 
 [文档导航](README.md) · [页面主题](VISUAL_DESIGN.md)
 
-README 同时展示当前四游戏界面与三国杀历史演示。品牌 Logo 保留深绿、暖金与玉色的策略印记；大厅与各游戏已有独立主题，不再用三国杀牌桌配色代表全部页面。配色与代码组织见[视觉设计说明](VISUAL_DESIGN.md)。
+项目首页直接展示当前大厅和四款游戏；三国杀历史动图与视频集中在本页。品牌 Logo 保留深绿、暖金与玉色的策略印记；大厅与各游戏已有独立主题，不再用三国杀牌桌配色代表全部页面。配色与代码组织见[视觉设计说明](VISUAL_DESIGN.md)。
 
 ## 当前多游戏预览
 
-2026-09-16 从当前应用截取大厅、狼人杀、国际象棋和中国象棋页面，截图使用独立临时 SQLite 和本地策略测试玩家，RSI 关闭。画面中的“主题检查”“主题玩家”和经验输入草稿是测试数据，不是模型生成经验或真实评测记录。截图来源、代码版本和文件校验值见 [ui-preview-provenance.json](assets/ui-preview-provenance.json)。
+当前截图由实际应用和规则引擎生成，使用独立临时 SQLite、本地策略 Agent 和固定种子，RSI 关闭。场地截图展示推进后的对局及实录，不包含测试输入草稿。它们用于说明界面与玩法，不代表真实模型能力或 RSI 实验结果。截图日期、代码版本、脚本校验值和各图片来源见 [ui-preview-provenance.json](assets/ui-preview-provenance.json)。
 
-| 预览                                            | 页面                         |
-| ----------------------------------------------- | ---------------------------- |
-| [game-lobby.png](assets/game-lobby.png)         | 独立游戏大厅与四游戏卡片     |
-| [werewolf-arena.png](assets/werewolf-arena.png) | 狼人杀夜间角色席位与经验面板 |
-| [chess-arena.png](assets/chess-arena.png)       | 国际象棋棋盘与经验面板       |
-| [xiangqi-arena.png](assets/xiangqi-arena.png)   | 中国象棋棋盘与经验面板       |
+| 页面     | 中文截图                                          | English                                               |
+| -------- | ------------------------------------------------- | ----------------------------------------------------- |
+| 游戏大厅 | [game-lobby.png](assets/game-lobby.png)           | 共享大厅目前为中文                                    |
+| 三国杀   | [sanguosha-arena.png](assets/sanguosha-arena.png) | 中文游戏                                              |
+| 狼人杀   | [werewolf-arena.png](assets/werewolf-arena.png)   | [werewolf-arena.en.png](assets/werewolf-arena.en.png) |
+| 国际象棋 | [chess-arena.png](assets/chess-arena.png)         | [chess-arena.en.png](assets/chess-arena.en.png)       |
+| 中国象棋 | [xiangqi-arena.png](assets/xiangqi-arena.png)     | 中文游戏                                              |
 
-重新截取使用以下现有浏览器用例，无需真实模型；输出在 `artifacts/`。核对截图后再复制对应 PNG 到本目录，并更新来源记录。
+重新截取全部七张图片：
 
 ```bash
-CHROMIUM_PATH=/path/to/chrome E2E_PORT=43931 ./run.sh test:e2e \
-  tests/e2e/navigation.spec.ts tests/e2e/themes.spec.ts \
-  --grep 'home is a searchable|readable controls'
+npm run build
+npx playwright install chromium
+npm run docs:previews
+# 已安装浏览器时：
+CHROMIUM_PATH=/path/to/chrome npm run docs:previews
 ```
 
-`game-lobby-desktop.png` 对应 `game-lobby.png`；`theme-<game>-desktop.png` 对应 `<game>-arena.png`。当前截图完整页面宽度为 1440 px；它们不由下面的三国杀动图录制脚本生成。
+[`scripts/capture-game-previews.ts`](../scripts/capture-game-previews.ts) 不读取 `.env`，不配置模型服务，浏览器仅访问临时本地服务。脚本通过规则引擎推进对局，等待场地和字体加载，检查浏览器错误，直接保存完整页面截图及来源记录；结束后关闭服务并移除临时数据库。视口宽度为 1600 px，不修改页面样式，也不拼接棋盘或聊天。运行前需要重新构建前端；脚本会覆盖本节图片。
+
+界面交互、对比度和移动端验证仍由 `tests/e2e/navigation.spec.ts`、`tests/e2e/themes.spec.ts` 等浏览器用例负责，测试产物保存在 `artifacts/`。
+
+<a id="sanguosha-demos"></a>
+
+## 三国杀历史演示 / Sanguosha recordings
+
+以下素材来自三国杀阶段的功能录制与真实存档，保留原始范围。当前四游戏界面以上方截图为准。
+
+**本地功能演示 / Local feature demos** · 从实时观战到经验管理
+
+<table>
+  <tr>
+    <td width="50%" align="center" valign="top">
+      <h4>🎮 对战观测 / Live spectating</h4>
+      <a href="assets/arena-demo.mp4?raw=true"><img src="assets/arena-demo.gif" alt="五人局出牌动画、聊天与并行切局演示" width="100%" /></a>
+      <p><sub>出牌动画 · 并行观测</sub></p>
+      <p><a href="assets/arena-demo.mp4?raw=true">▶ 高清视频</a> · <a href="assets/arena.png">截图</a></p>
+    </td>
+    <td width="50%" align="center" valign="top">
+      <h4>🧠 经验归纳 / Experience</h4>
+      <a href="assets/experience-demo.mp4?raw=true"><img src="assets/experience-demo.gif" alt="玩家档案、经验分类与归纳流程演示" width="100%" /></a>
+      <p><sub>玩家档案 · 经验归纳</sub></p>
+      <p><a href="assets/experience-demo.mp4?raw=true">▶ 高清视频</a> · <a href="assets/experience.png">截图</a></p>
+    </td>
+  </tr>
+</table>
+
+**真实牌局回放 / Recorded model games** · 选自已有「对话测试」对局
+
+<table>
+  <tr>
+    <td width="50%" align="center" valign="top">
+      <h4>⚔️ 牌局动态 / Battle replay</h4>
+      <a href="assets/battle-highlight.mp4?raw=true"><img src="assets/battle-highlight.gif" alt="真实牌局回放：主公与反贼连续决斗、武圣转化和伤害结算" width="100%" /></a>
+      <p><sub>决斗交锋 · 连续出杀</sub></p>
+      <p><a href="assets/battle-highlight.mp4?raw=true">▶ 高清视频</a> · <a href="assets/battle-highlight.png">截图</a></p>
+    </td>
+    <td width="50%" align="center" valign="top">
+      <h4>💬 Agent 聊天 / Agent chat</h4>
+      <a href="assets/chat-highlight.mp4?raw=true"><img src="assets/chat-highlight.gif" alt="真实 Agent 聊天：试探身份、质疑行动，RSI 关羽公开反驳" width="100%" /></a>
+      <p><sub>身份试探 · 公开反驳</sub></p>
+      <p><a href="assets/chat-highlight.mp4?raw=true">▶ 高清视频</a> · <a href="assets/chat-highlight.png">截图</a></p>
+    </td>
+  </tr>
+</table>
+
+> **素材说明** · 上排使用本地策略模拟 API 展示功能；下排取自真实模型对局存档，保留原始行动与公开发言，按历史帧回放并压缩等待时间。点击动图可打开 **1920 × 1280** 高清 MP4。[来源、片段说明与重新录制 →](#演示的来源)
 
 ## 三国杀历史素材与品牌文件
 
@@ -47,7 +98,7 @@ CHROMIUM_PATH=/path/to/chrome E2E_PORT=43931 ./run.sh test:e2e \
 
 Logo 的可编辑源文件为 [logo.svg](assets/logo.svg)。它延续应用的深绿、暖金和玉色：两张交叠卡牌代表策略环境，中心折线 S 对应 Strategy，回转箭头代表反思与经验反馈，三个节点代表多 Agent 交互。透明 PNG 由浏览器从矢量源文件导出。
 
-README“三国杀历史演示”部分的第一行是**本地功能演示**：`arena-demo` 和 `experience-demo` 来自实际前端和规则引擎。脚本创建独立临时数据库和本地 HTTP 模拟服务，通过正常模型协议驱动 Agent。决策采用本地策略，聊天与反思使用脚本示例，牌局由规则引擎实际推进、结算并保存历史。
+本页“三国杀历史演示”部分的第一行是**本地功能演示**：`arena-demo` 和 `experience-demo` 来自实际前端和规则引擎。脚本创建独立临时数据库和本地 HTTP 模拟服务，通过正常模型协议驱动 Agent。决策采用本地策略，聊天与反思使用脚本示例，牌局由规则引擎实际推进、结算并保存历史。
 
 该历史演示部分的第二行是**真实模型牌局的历史回放**，来源为 `sanguosha/data/api-validation/arena.sqlite` 中的「对话测试」第 1 局。录制当时数据库由游戏服务使用，因此通过该服务的只读 HTTP 接口提取已保存的历史帧，没有暂停或修改原始牌局。
 
@@ -65,7 +116,7 @@ README“三国杀历史演示”部分的第一行是**本地功能演示**：`
 ## 画质与文字
 
 - **高清 MP4**：1920 × 1280，30 fps，100% 浏览器缩放，以无损 PNG 帧直接编码为 H.264（CRF 16），避免中间低码率录像与多次缩放损失文字细节。
-- **动态 GIF**：1440 × 960，12 fps，256 色，从同一组无损画面生成，适合 README 自动播放；点击视频链接可查看完整高清演示。
+- **动态 GIF**：1440 × 960，12 fps，256 色，从同一组无损画面生成，可在本页自动播放；点击视频链接可查看完整高清演示。
 - **卡牌中文**：按字排列并随牌名长度适配字号，避免备用中文字体的竖排字距异常造成重叠；长牌名保持在牌面内。
 - **字体准备**：等待字体加载完成后录制。脚本使用系统中文字体，不依赖远程字体服务；Linux 环境请安装 Noto CJK 或文泉驿等中文字体。
 
@@ -99,4 +150,4 @@ CHROMIUM_PATH=/path/to/chrome npm run docs:highlights
 
 `docs:highlights` 读取 `recorded-highlights.json`，启动只读本地展示服务，输出 `battle-highlight` / `chat-highlight` 的 GIF、MP4、截图及 `highlights-provenance.json`。录制时核对页面聊天与存档原文、检查出牌动画及浏览器错误。两个脚本共用无损录制与编码工具，临时帧在完成后清理。重新录制会覆盖对应素材。
 
-GitHub 首页直接嵌入 GIF；MP4 通过带 `?raw=true` 的相对链接提供，便于打开原始视频与下载播放。流程图为仓库原生 SVG，可直接编辑文字、布局与色彩。
+本页直接嵌入 GIF；MP4 通过带 `?raw=true` 的相对链接提供，便于打开原始视频与下载播放。流程图为仓库原生 SVG，可直接编辑文字、布局与色彩。

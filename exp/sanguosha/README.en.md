@@ -1,6 +1,6 @@
-# Four-model baseline experiment
+# Sanguosha four-model baseline experiment
 
-[Back to README](../../README.en.md#experiments) · [简体中文](README.md) · [Data](results.json) · [Histories & chat](#game-histories-and-chat) · [Figures](assets)
+[Project README](../../README.en.md#experiments) · [Experiment index](../README.md) · [简体中文](README.md) · [Data](results.json) · [Histories & chat](#game-histories-and-chat) · [Figures](assets)
 
 This study measures play without experience before testing RSI. The fixed schedule contains **528 games: 489 completed normally and 39 failed**, with no draws. Final results were compiled on September 14, 2026.
 
@@ -18,6 +18,46 @@ This study measures play without experience before testing RSI. The fixed schedu
 | Termination and fallback | Draw at 1,800 engine decisions; exhausted decision retries terminate the game as an error; no heuristic substitution; the sole legal action executes automatically |
 
 The study uses the project's rules and decision prompts. All four models share one equivalence-preserving protocol adapter: redundant `cardIds` are removed only if they exactly repeat cards already bound to a legal action that requires no further card selection. Actions, targets, and actual selections remain the model's choice. These results describe performance after adaptation, not raw protocol compliance. Connectivity probes, capacity tests, pilot games, and service-recovery checks are excluded from the formal 528 games.
+
+## Results and figures
+
+### Win rate
+
+[![Duel and four-player identity win rates with 95% seed-block confidence intervals](assets/win-rate.svg)](assets/win-rate.svg)
+
+DeepSeek leads four-player identity games at **61.7%**. Its differences from all three opponents remain supported after correcting for multiple comparisons; the other three cannot be reliably ranked against one another.
+
+### Head-to-head
+
+[![Duel matrix showing each row model's win rate and wins against each column opponent](assets/head-to-head.svg)](assets/head-to-head.svg)
+
+DeepSeek finishes **20 : 19** against GLM and **28 : 12** against Kimi. The overall leader's results still depend on the opponent; individual matchups add context to aggregate win rates.
+
+### Role win rate
+
+[![Win rates and sample sizes for each model as Lord, Loyalist, Rebel, and Renegade](assets/role-win-rate.svg)](assets/role-win-rate.svg)
+
+DeepSeek has the highest point estimate in all four roles. Weighting roles equally leaves its win rate at **61.6%**, so differences in the observed role mix do not explain its overall lead.
+
+### Game duration
+
+[![Individual game durations with medians, interquartile ranges, and P5–P95 whiskers](assets/game-duration.svg)](assets/game-duration.svg)
+
+Median duration is **12.1 minutes** for duels and **36.2 minutes** for four-player games. Times include request queues and retries, with documented account-recovery pauses removed; they describe this concurrent run.
+
+### Token use
+
+[![Cumulative API-reported input and output tokens for each model](assets/token-use.svg)](assets/token-use.svg)
+
+The formal experiment reports **428.5M tokens**, with input accounting for **94.1%**. Context compression is a useful next optimization to test. Totals include reported retry usage; different provider accounting prevents a direct cost ranking.
+
+### Chat frequency
+
+[![Share of model decisions containing public speech, split by duel and four-player games](assets/chat-frequency.svg)](assets/chat-frequency.svg)
+
+In four-player games, GLM speaks in **96.6%** of model decisions versus DeepSeek's **82.3%**. More frequent speech does not coincide with more wins here; isolating its effect requires a chat-on/off comparison with the same models and seeds.
+
+<sub>Click figures to enlarge. Also available: <a href="assets">high-resolution PNGs</a>, <a href="results.json">public summary data</a>, <a href="games-history-duel.json">duel histories and chat</a>, <a href="games-history-identity.json">four-player histories and chat</a>, and the <a href="render_figures.py">plotting script</a>. Findings apply to the tested API model labels, Guan Yu, rules, prompts, and sampled seeds.</sub>
 
 ## Metric definitions
 
@@ -45,7 +85,7 @@ Model order and colors remain consistent; heatmaps use a fixed 0–100% scale. S
 | GLM − Qwen             |                           −1.6 |                         −11.5 to +7.0 |
 | Kimi − Qwen            |                           +3.1 |                         −7.3 to +12.5 |
 
-These adjusted intervals have approximately 99.17% individual coverage. The README win-rate figure instead shows descriptive 95% intervals for individual models; overlapping error bars do not replace a paired comparison. In duels, DeepSeek finishes only 20 : 19 against GLM, with a paired win-rate interval of 38.5%–64.1%, insufficient to establish a stronger model in that matchup.
+These adjusted intervals have approximately 99.17% individual coverage. The win-rate figure above instead shows descriptive 95% intervals for individual models; overlapping error bars do not replace a paired comparison. In duels, DeepSeek finishes only 20 : 19 against GLM, with a paired win-rate interval of 38.5%–64.1%, insufficient to establish a stronger model in that matchup.
 
 **Failures remain relevant.** Non-random failure patterns can bias comparisons among completed games. Even assigning all 32 missing four-player outcomes as DeepSeek losses and wins for the comparator leaves DeepSeek ahead of GLM, Kimi, and Qwen by at least 18.1, 13.9, and 16.7 percentage points on the original denominator of 288. These are conservative missing-outcome bounds, not confidence intervals, and they do not remove other uncertainty.
 

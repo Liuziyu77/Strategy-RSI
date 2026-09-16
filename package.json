@@ -20,6 +20,7 @@
     "smoke:api": "tsx scripts/smoke-api.ts",
     "format": "prettier --write src server web scripts tests docs README.md README.en.md *.json *.ts index.html",
     "format:check": "prettier --check src server web scripts tests docs README.md README.en.md *.json *.ts index.html",
+    "docs:previews": "tsx scripts/capture-game-previews.ts",
     "docs:media": "tsx scripts/capture-readme.ts",
     "docs:highlights": "tsx scripts/capture-highlights.ts",
     "test:games": "vitest run tests/games"

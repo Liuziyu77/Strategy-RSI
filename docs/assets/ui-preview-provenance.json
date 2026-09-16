@@ -1,34 +1,80 @@
 {
   "capturedOn": "2026-09-16",
-  "sourceCommit": "8993221bafb8544ba0ea4727d53ac71c3d69af69",
-  "sourceTests": [
-    "tests/e2e/navigation.spec.ts: home is a searchable game lobby",
-    "tests/e2e/themes.spec.ts: readable controls, matching dialog and clean return to lobby"
-  ],
-  "data": "Independent temporary SQLite with heuristic fixtures and RSI off; screenshot drafts are UI examples, not learned memories.",
+  "sourceCommit": "5ce0c54f6c6240d0b06203c5079d228ec2a4d351",
+  "captureScript": "scripts/capture-game-previews.ts",
+  "captureScriptSha256": "6d623208858a29954c5d3fafb32050490a1da8dc7acfac57854ee4b8132c4a43",
+  "data": "Independent temporary SQLite; deterministic local policy agents with RSI off. Positions and events are produced by the game engines, not real model experiments.",
   "realModelCalls": false,
-  "viewportWidth": 1440,
+  "viewport": {
+    "width": 1600,
+    "height": 1100
+  },
   "fullPage": true,
   "files": [
     {
       "file": "game-lobby.png",
-      "sourceArtifact": "artifacts/game-lobby-desktop.png",
-      "sha256": "4aebfd13cb69596f6cda329297cc621bf87e23782168349a71af336ef3ea9e62"
+      "page": "lobby",
+      "sha256": "34cdf7f94343bdca1c5b7648528d12c41f15a81eabe5333fc73eff567ca9fc71"
+    },
+    {
+      "file": "sanguosha-arena.png",
+      "gameType": "sanguosha",
+      "locale": "zh",
+      "seed": 42,
+      "players": 5,
+      "phase": "出牌",
+      "revision": 51,
+      "sha256": "562e2a145861652a4a95ad344edac90f8c4de8b9af322bc40fb82ca9a9360086"
     },
     {
       "file": "werewolf-arena.png",
-      "sourceArtifact": "artifacts/theme-werewolf-desktop.png",
-      "sha256": "c4db33d6208c86fec3230cf31aa0d40074475bd22ab057e6d0b7a5ee9682d5aa"
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 42,
+      "players": 9,
+      "phase": "discussion",
+      "revision": 19,
+      "sha256": "a1a27331dfcc9438127b679053d6b48004b413277fd77e69c12eea7822952b2c"
     },
     {
       "file": "chess-arena.png",
-      "sourceArtifact": "artifacts/theme-chess-desktop.png",
-      "sha256": "30575625d69ad2597b1c11c97074ee4cbcf7b0fdaf350b44f4a24d673e385fc3"
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "players": 2,
+      "phase": "move",
+      "revision": 26,
+      "sha256": "8fe0fd1efd3704d2f78927cf5369723b49da0f06140b6fcef4dc04b02fdc354d"
     },
     {
       "file": "xiangqi-arena.png",
-      "sourceArtifact": "artifacts/theme-xiangqi-desktop.png",
-      "sha256": "a765926ae5f79f9bd3f14d5832c82801429e35276f5b85525083b814038526cb"
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "players": 2,
+      "phase": "走棋",
+      "revision": 26,
+      "sha256": "f7d72832793cf721ccda18dc3f7a4796d7d9d84159feea9d7397484ad0e0d514"
+    },
+    {
+      "file": "werewolf-arena.en.png",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 42,
+      "players": 9,
+      "phase": "discussion",
+      "revision": 19,
+      "sha256": "cb2cba14991ae3a703ce9de34d1da42d14672da3a8c76890c66ac24cfb0f4f1e"
+    },
+    {
+      "file": "chess-arena.en.png",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "players": 2,
+      "phase": "move",
+      "revision": 26,
+      "sha256": "bfe20f8d62591054312dcea954c5ee18a195ddfd4be23f19be171a203b795d25"
     }
   ]
 }

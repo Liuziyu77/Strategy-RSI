@@ -6,18 +6,18 @@ Strategy-RSI 的文档以四游戏版本为当前功能基准。游戏规则独�
 
 ## 按任务阅读 / Start here
 
-| 你要做什么 / Task                             | 文档 / Guide                                                                  | 内容 / Scope                                |
-| --------------------------------------------- | ----------------------------------------------------------------------------- | ------------------------------------------- |
-| 启动项目、配置模型 / Run and configure models | [启动指南](GETTING_STARTED.md)                                                | Node、API 配置、本地演示、比赛与经验        |
-| 选择游戏、查看规则 / Choose a game            | [游戏目录](games/README.md)                                                   | 人数、语言、规则版本、实验边界              |
-| 切换、观战、回放 / Navigate and observe       | [界面指南](ARENA_UI.md)                                                       | 大厅、场地、视角、回放、经验面板            |
-| 接入外部 Agent / Integrate an Agent           | [HTTP API](API.md)                                                            | 座位令牌、观察 JSON、合法动作、交流与经验   |
-| 理解架构 / Understand the architecture        | [多游戏架构](MULTIGAME_ARCHITECTURE.md) → [运行机制](ARCHITECTURE.md)         | 插件职责、调度、事务、恢复、RSI             |
-| 添加游戏 / Add a game                         | [扩展指南](EXTENDING_GAMES.md)                                                | 注册、规则引擎、页面、版本与测试            |
-| 升级已有存档 / Upgrade an installation        | [迁移说明](MIGRATION.md)                                                      | 备份、兼容、经验归属和回退                  |
-| 维护界面和素材 / Maintain UI and media        | [视觉设计](VISUAL_DESIGN.md) · [素材说明](MEDIA.md)                           | 主题、截图来源和录制方法                    |
-| 查看验证与限制 / Review validation            | [质量检查记录](QUALITY_REVIEW.md)                                             | 2026-09-16 的修复、测试结果与未覆盖范围     |
-| 阅读已发表的实验 / Read published experiments | [中文](../exp/sanguosha/README.md) · [English](../exp/sanguosha/README.en.md) | 原三国杀基线，不能推广为其他游戏或 RSI 收益 |
+| 你要做什么 / Task                                | 文档 / Guide                                                          | 内容 / Scope                                 |
+| ------------------------------------------------ | --------------------------------------------------------------------- | -------------------------------------------- |
+| 启动项目、配置模型 / Run and configure models    | [启动指南](GETTING_STARTED.md)                                        | Node、API 配置、本地演示、比赛与经验         |
+| 选择游戏、查看规则 / Choose a game               | [游戏目录](games/README.md)                                           | 人数、语言、规则版本、实验边界               |
+| 切换、观战、回放 / Navigate and observe          | [界面指南](ARENA_UI.md)                                               | 大厅、场地、视角、回放、经验面板             |
+| 接入外部 Agent / Integrate an Agent              | [HTTP API](API.md)                                                    | 座位令牌、观察 JSON、合法动作、交流与经验    |
+| 理解架构 / Understand the architecture           | [多游戏架构](MULTIGAME_ARCHITECTURE.md) → [运行机制](ARCHITECTURE.md) | 插件职责、调度、事务、恢复、RSI              |
+| 添加游戏 / Add a game                            | [扩展指南](EXTENDING_GAMES.md)                                        | 注册、规则引擎、页面、版本与测试             |
+| 升级已有存档 / Upgrade an installation           | [迁移说明](MIGRATION.md)                                              | 备份、兼容、经验归属和回退                   |
+| 维护界面和素材 / Maintain UI and media           | [视觉设计](VISUAL_DESIGN.md) · [素材说明](MEDIA.md)                   | 主题、截图来源和录制方法                     |
+| 查看验证与限制 / Review validation               | [质量检查记录](QUALITY_REVIEW.md)                                     | 2026-09-16 的修复、测试结果与未覆盖范围      |
+| 设计对照、阅读实验 / Design and read experiments | [实验目录](../exp/README.md)                                          | 四游戏报告状态、RSI 对照设计与三国杀历史基线 |
 
 ## 游戏规则 / Game rules
 
@@ -40,6 +40,6 @@ Strategy-RSI 的文档以四游戏版本为当前功能基准。游戏规则独�
 
 ## 更新约定 / Maintenance
 
-新增游戏时同步更新游戏目录、对应规则、中英文项目首页、API 和扩展指南；界面或路由变化同步更新界面与视觉设计说明。协议默认值以 `server/config.ts` 为准，游戏元信息以 `src/games/catalog.ts` 为准，具体规则以引擎和规则回归测试为准。
+新增游戏时同步更新游戏目录、对应规则、中英文项目首页、API 和扩展指南；界面或路由变化同步更新界面与视觉设计说明。首页为每款游戏保留可直接查看的介绍与截图，详细实验放入 `exp/` 并登记到[实验目录](../exp/README.md)，历史视频集中于[素材页](MEDIA.md#sanguosha-demos)。协议默认值以 `server/config.ts` 为准，游戏元信息以 `src/games/catalog.ts` 为准，具体规则以引擎和规则回归测试为准。
 
 修改文档后检查相对链接、标题锚点、示例 JSON 和 `npm run format:check`。截图使用真实应用与独立测试数据，记录来源；历史实验、素材来源和质量检查报告保持日期与范围，不将过去的验证数字写成持续有效的承诺。

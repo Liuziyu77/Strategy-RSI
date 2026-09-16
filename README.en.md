@@ -159,6 +159,71 @@ exp/          Experiment reports, data and figures organized by game
 
 All four environments are integrated. **The currently published model study is the Sanguosha four-model baseline**: 528 scheduled games, 489 completed normally and 39 failed, with RSI disabled. It measures performance without experience; baseline or controlled RSI reports have not yet been published for the other three games.
 
+<details>
+<summary><strong>Explore the Sanguosha results: four models, six figures and key findings</strong></summary>
+
+### Experiment overview
+
+Results were compiled on **September 14, 2026**. DeepSeek, GLM, Kimi and Qwen all use Guan Yu and empty memory, with **RSI off and public chat on**. Duels mirror roles and seats; four-player identity games cover every seat permutation. **233 / 240** duels and **256 / 288** four-player games completed normally. Full API model labels, settings and statistical methods are in the [experiment report](exp/sanguosha/README.en.md).
+
+| Model    | Four-player wins / normal participations | Four-player win rate |
+| -------- | ---------------------------------------: | -------------------: |
+| DeepSeek |                                158 / 256 |            **61.7%** |
+| GLM      |                                 74 / 256 |                28.9% |
+| Kimi     |                                 86 / 256 |                33.6% |
+| Qwen     |                                 78 / 256 |                30.5% |
+
+Win rates include only normally completed games. Identity games use team outcomes, so multiple players can win together. DeepSeek's four-player differences from all three opponents remain supported after correcting for multiple comparisons; the other three cannot be reliably ranked against one another.
+
+### Results and figures
+
+All six figures use the same dimensions. Click a figure to view the original.
+
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <h4>Win rate</h4>
+      <a href="exp/sanguosha/assets/win-rate.svg"><img src="exp/sanguosha/assets/win-rate.svg" alt="Duel and four-player identity win rates for all four models, with 95% seed-block confidence intervals" width="100%" /></a>
+      <p>Duels and four-player identity games are measured separately. Error bars show 95% seed-block confidence intervals.</p>
+    </td>
+    <td width="50%" valign="top">
+      <h4>Head-to-head</h4>
+      <a href="exp/sanguosha/assets/head-to-head.svg"><img src="exp/sanguosha/assets/head-to-head.svg" alt="Pairwise duel matrix showing win rates and win counts" width="100%" /></a>
+      <p>DeepSeek finishes <strong>20 : 19</strong> against GLM and <strong>28 : 12</strong> against Kimi; performance varies with the opponent.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h4>Role win rate</h4>
+      <a href="exp/sanguosha/assets/role-win-rate.svg"><img src="exp/sanguosha/assets/role-win-rate.svg" alt="Each model's win rates and sample sizes as Lord, Loyalist, Rebel and Renegade" width="100%" /></a>
+      <p>DeepSeek has the highest point estimate in all four roles. Equal role weighting leaves its win rate at <strong>61.6%</strong>.</p>
+    </td>
+    <td width="50%" valign="top">
+      <h4>Game duration</h4>
+      <a href="exp/sanguosha/assets/game-duration.svg"><img src="exp/sanguosha/assets/game-duration.svg" alt="Duel and four-player duration distributions, medians and percentile intervals" width="100%" /></a>
+      <p>Median duration is <strong>12.1 minutes</strong> for duels and <strong>36.2 minutes</strong> for four-player games, including queues and retries but excluding documented account-recovery waits.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h4>Token use</h4>
+      <a href="exp/sanguosha/assets/token-use.svg"><img src="exp/sanguosha/assets/token-use.svg" alt="API-reported input and output token totals for each model in the formal experiment" width="100%" /></a>
+      <p>The experiment reports <strong>428.5M tokens</strong>, with input accounting for <strong>94.1%</strong>. Totals include reported retry usage; providers use different accounting methods.</p>
+    </td>
+    <td width="50%" valign="top">
+      <h4>Chat frequency</h4>
+      <a href="exp/sanguosha/assets/chat-frequency.svg"><img src="exp/sanguosha/assets/chat-frequency.svg" alt="Share of model decisions containing public speech, separately for duels and four-player games" width="100%" /></a>
+      <p>In four-player games, GLM speaks in <strong>96.6%</strong> of decisions versus DeepSeek's <strong>82.3%</strong>. More frequent speech does not coincide with more wins here.</p>
+    </td>
+  </tr>
+</table>
+
+This study measures performance without experience and **has not tested RSI benefits or the causal effect of chat**. Findings apply to the tested model labels, generals, rules, prompts and sampled seeds. See the [full analysis](exp/sanguosha/README.en.md#interpreting-the-findings) for failure handling, statistical intervals and limits.
+
+[Summary data](exp/sanguosha/results.json) · [Duel actions and chat](exp/sanguosha/games-history-duel.json) · [Four-player actions and chat](exp/sanguosha/games-history-identity.json) · [Figure reproduction](exp/sanguosha/README.en.md#data-and-reproduction)
+
+</details>
+
 [Experiment index and design notes](exp/README.md) · [Full Sanguosha report and six figures](exp/sanguosha/README.en.md) · [Data and reproduction](exp/sanguosha/README.en.md#data-and-reproduction) · [Archived demos and videos](docs/MEDIA.md#sanguosha-demos)
 
 <a id="documentation"></a>

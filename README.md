@@ -159,6 +159,71 @@ exp/          按游戏组织的实验报告、数据与图表
 
 四款游戏均已接入平台。**当前公开的模型实验报告为三国杀四模型基线**：528 局固定排程，489 局正常结束、39 局异常，RSI 关闭。该报告用于记录无经验条件下的表现；其他三款游戏尚未发布基线或 RSI 对照报告。
 
+<details>
+<summary><strong>展开三国杀实验结果：四模型对比、六组图表与关键结论</strong></summary>
+
+### 实验概览
+
+实验于 **2026 年 9 月 14 日**完成汇总。DeepSeek、GLM、Kimi 与 Qwen 均使用关羽、空经验，**关闭 RSI、开启公开聊天**；双人局交换身份与座位，四人身份局遍历座位排列。双人局正常结束 **233 / 240** 局，四人局正常结束 **256 / 288** 局。完整模型 API 标签、配置与统计方法见[实验报告](exp/sanguosha/README.md)。
+
+| 模型     | 四人局胜场 / 正常参战局 | 四人局胜率 |
+| -------- | ----------------------: | ---------: |
+| DeepSeek |               158 / 256 |  **61.7%** |
+| GLM      |                74 / 256 |      28.9% |
+| Kimi     |                86 / 256 |      33.6% |
+| Qwen     |                78 / 256 |      30.5% |
+
+胜率仅统计正常结束的对局；身份局按阵营获胜，多位玩家可同时计胜。DeepSeek 与其余三者的四人局差异在多重比较校正后仍有统计支持，其余三者之间尚不足以确定排序。
+
+### 结果图表
+
+六张图按相同尺寸排列，点击可查看原图。
+
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <h4>胜率 · Win rate</h4>
+      <a href="exp/sanguosha/assets/win-rate.svg"><img src="exp/sanguosha/assets/win-rate.svg" alt="四个模型的双人局与四人身份局胜率及 95% 种子分组置信区间" width="100%" /></a>
+      <p>双人对决与四人身份局分别统计；误差线为种子分组的 95% 置信区间。</p>
+    </td>
+    <td width="50%" valign="top">
+      <h4>两两交锋 · Head-to-head</h4>
+      <a href="exp/sanguosha/assets/head-to-head.svg"><img src="exp/sanguosha/assets/head-to-head.svg" alt="双人局模型两两交锋的胜率与胜场数矩阵" width="100%" /></a>
+      <p>DeepSeek 对 GLM 为 <strong>20 : 19</strong>，对 Kimi 为 <strong>28 : 12</strong>；模型表现随对手而变化。</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h4>身份表现 · Role win rate</h4>
+      <a href="exp/sanguosha/assets/role-win-rate.svg"><img src="exp/sanguosha/assets/role-win-rate.svg" alt="四个模型在主公、忠臣、反贼与内奸身份下的胜率和样本量" width="100%" /></a>
+      <p>DeepSeek 在四种身份下的胜率点估计均最高；按身份等权计算仍为 <strong>61.6%</strong>。</p>
+    </td>
+    <td width="50%" valign="top">
+      <h4>对局时长 · Game duration</h4>
+      <a href="exp/sanguosha/assets/game-duration.svg"><img src="exp/sanguosha/assets/game-duration.svg" alt="双人局与四人局的时长分布、中位数和分位区间" width="100%" /></a>
+      <p>双人局中位时长 <strong>12.1 分钟</strong>，四人局 <strong>36.2 分钟</strong>；包含排队与重试，扣除明确记录的账户恢复等待。</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h4>Token 用量 · Token use</h4>
+      <a href="exp/sanguosha/assets/token-use.svg"><img src="exp/sanguosha/assets/token-use.svg" alt="各模型在正式实验中由 API 报告的输入与输出 Token 用量" width="100%" /></a>
+      <p>正式实验共报告 <strong>4.285 亿 Token</strong>，输入占 <strong>94.1%</strong>。包含有用量记录的重试，各家计数口径不同。</p>
+    </td>
+    <td width="50%" valign="top">
+      <h4>公开交流 · Chat frequency</h4>
+      <a href="exp/sanguosha/assets/chat-frequency.svg"><img src="exp/sanguosha/assets/chat-frequency.svg" alt="双人局与四人局中，各模型决策附带公开发言的比例" width="100%" /></a>
+      <p>四人局中 GLM 的发言比例为 <strong>96.6%</strong>，DeepSeek 为 <strong>82.3%</strong>；更多发言未对应更高胜率。</p>
+    </td>
+  </tr>
+</table>
+
+这组实验衡量无经验条件下的表现，**尚未检验 RSI 收益或聊天的因果效果**。结论限定于本次模型标签、武将、规则、提示词与采样种子；异常局处理、统计区间及结果边界见[完整分析](exp/sanguosha/README.md#怎样解读结果)。
+
+[统计数据](exp/sanguosha/results.json) · [双人局行动与聊天](exp/sanguosha/games-history-duel.json) · [四人局行动与聊天](exp/sanguosha/games-history-identity.json) · [图表复现](exp/sanguosha/README.md#数据与重绘)
+
+</details>
+
 [全部实验与设计说明](exp/README.md) · [三国杀完整报告与六组图表](exp/sanguosha/README.md) · [数据与复现](exp/sanguosha/README.md#数据与重绘) · [历史演示与视频](docs/MEDIA.md#sanguosha-demos)
 
 <a id="文档"></a>

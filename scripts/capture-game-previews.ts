@@ -33,7 +33,9 @@ const app = createApp(arena);
 app.get('/*', serveStatic({ root: './dist' }));
 app.get('/*', serveStatic({ path: './dist/index.html' }));
 const server = createServer(getRequestListener(app.fetch));
-const viewport = { width: 1600, height: 1100 };
+const lobbyViewport = { width: 1600, height: 1100 };
+// Equal intrinsic dimensions keep README cards aligned without CSS or image stretching.
+const gameViewport = { width: 2000, height: 1500 };
 const errors: string[] = [];
 const files: Record<string, unknown>[] = [];
 let browser: Awaited<ReturnType<typeof chromium.launch>> | undefined;
@@ -56,6 +58,8 @@ try {
     { gameType: 'chess', locale: 'en', name: 'Chess · Local demo', players: 2 },
   ];
   for (const variant of [null, ...variants]) {
+    const viewport = variant ? gameViewport : lobbyViewport;
+    const fullPage = variant === null;
     const context = await browser.newContext({ viewport, reducedMotion: 'reduce' });
     try {
       const page = await context.newPage();
@@ -121,10 +125,25 @@ try {
         await expect(page.locator('.lobby-card')).toHaveCount(4);
       }
       await page.evaluate(() => document.fonts.ready);
-      await page.screenshot({ path: join(out, file), fullPage: true, animations: 'disabled' });
+      if (variant) {
+        const bounds = await page.evaluate(() => ({
+          width: document.documentElement.scrollWidth,
+          height: document.documentElement.scrollHeight,
+        }));
+        // Allow one pixel for the page border / fractional layout rounding.
+        expect(bounds.width, `${file}: page must fit without clipping`).toBeLessThanOrEqual(
+          viewport.width + 1,
+        );
+        expect(bounds.height, `${file}: page must fit without clipping`).toBeLessThanOrEqual(
+          viewport.height + 1,
+        );
+      }
+      await page.screenshot({ path: join(out, file), fullPage, animations: 'disabled' });
       files.push({
         file,
         ...record,
+        viewport,
+        fullPage,
         sha256: createHash('sha256')
           .update(readFileSync(join(out, file)))
           .digest('hex'),
@@ -147,8 +166,8 @@ try {
           .digest('hex'),
         data: 'Independent temporary SQLite; deterministic local policy agents with RSI off. Positions and events are produced by the game engines, not real model experiments.',
         realModelCalls: false,
-        viewport,
-        fullPage: true,
+        lobbyViewport,
+        gameViewport,
         files,
       },
       null,

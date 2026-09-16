@@ -26,7 +26,9 @@ npm run docs:previews
 CHROMIUM_PATH=/path/to/chrome npm run docs:previews
 ```
 
-[`scripts/capture-game-previews.ts`](../scripts/capture-game-previews.ts) 不读取 `.env`，不配置模型服务，浏览器仅访问临时本地服务。脚本通过规则引擎推进对局，等待场地和字体加载，检查浏览器错误，直接保存完整页面截图及来源记录；结束后关闭服务并移除临时数据库。视口宽度为 1600 px，不修改页面样式，也不拼接棋盘或聊天。运行前需要重新构建前端；脚本会覆盖本节图片。
+[`scripts/capture-game-previews.ts`](../scripts/capture-game-previews.ts) 不读取 `.env`，不配置模型服务，浏览器仅访问临时本地服务。脚本通过规则引擎推进对局，等待场地和字体加载，检查浏览器错误，直接保存截图及来源记录；结束后关闭服务并移除临时数据库。运行前需要重新构建前端；脚本会覆盖本节图片。
+
+四款游戏及其中英文场地截图统一采用 **2000 × 1500 px（4:3）** 固定视口，不按各页面内容高度扩展，从而使 README 中的图片等宽等高。脚本检查完整页面均能放入视口，避免截断棋盘、角色席位或回放控件；不修改页面样式、不拉伸图片，也不拼接棋盘或聊天。大厅继续以 1600 px 宽度截取完整页面。每张截图的视口与截取方式分别记录在来源文件中。
 
 界面交互、对比度和移动端验证仍由 `tests/e2e/navigation.spec.ts`、`tests/e2e/themes.spec.ts` 等浏览器用例负责，测试产物保存在 `artifacts/`。
 

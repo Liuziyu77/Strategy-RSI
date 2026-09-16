@@ -1,19 +1,27 @@
 {
   "capturedOn": "2026-09-16",
-  "sourceCommit": "5ce0c54f6c6240d0b06203c5079d228ec2a4d351",
+  "sourceCommit": "259a294aefbd377672491fe3efbd920e43b903b5",
   "captureScript": "scripts/capture-game-previews.ts",
-  "captureScriptSha256": "6d623208858a29954c5d3fafb32050490a1da8dc7acfac57854ee4b8132c4a43",
+  "captureScriptSha256": "acd7c26aac582f7f1ac59aaf58342e20ae6f50c9de5e7942b09c84843e573382",
   "data": "Independent temporary SQLite; deterministic local policy agents with RSI off. Positions and events are produced by the game engines, not real model experiments.",
   "realModelCalls": false,
-  "viewport": {
+  "lobbyViewport": {
     "width": 1600,
     "height": 1100
   },
-  "fullPage": true,
+  "gameViewport": {
+    "width": 2000,
+    "height": 1500
+  },
   "files": [
     {
       "file": "game-lobby.png",
       "page": "lobby",
+      "viewport": {
+        "width": 1600,
+        "height": 1100
+      },
+      "fullPage": true,
       "sha256": "34cdf7f94343bdca1c5b7648528d12c41f15a81eabe5333fc73eff567ca9fc71"
     },
     {
@@ -24,7 +32,12 @@
       "players": 5,
       "phase": "出牌",
       "revision": 51,
-      "sha256": "562e2a145861652a4a95ad344edac90f8c4de8b9af322bc40fb82ca9a9360086"
+      "viewport": {
+        "width": 2000,
+        "height": 1500
+      },
+      "fullPage": false,
+      "sha256": "fc5f91d59d85b31ada137688cbc22fc75eb99e2d2b42a218977647e6a80d9c52"
     },
     {
       "file": "werewolf-arena.png",
@@ -34,7 +47,12 @@
       "players": 9,
       "phase": "discussion",
       "revision": 19,
-      "sha256": "a1a27331dfcc9438127b679053d6b48004b413277fd77e69c12eea7822952b2c"
+      "viewport": {
+        "width": 2000,
+        "height": 1500
+      },
+      "fullPage": false,
+      "sha256": "48f1cfd449e51b82b148fa541aa24b884453534b972c88f5a3a398cb0183f43f"
     },
     {
       "file": "chess-arena.png",
@@ -44,7 +62,12 @@
       "players": 2,
       "phase": "move",
       "revision": 26,
-      "sha256": "8fe0fd1efd3704d2f78927cf5369723b49da0f06140b6fcef4dc04b02fdc354d"
+      "viewport": {
+        "width": 2000,
+        "height": 1500
+      },
+      "fullPage": false,
+      "sha256": "f73d3711fdf452a99af3dd55f5c49431ea23884deb168584e49492712a275cf9"
     },
     {
       "file": "xiangqi-arena.png",
@@ -54,7 +77,12 @@
       "players": 2,
       "phase": "走棋",
       "revision": 26,
-      "sha256": "f7d72832793cf721ccda18dc3f7a4796d7d9d84159feea9d7397484ad0e0d514"
+      "viewport": {
+        "width": 2000,
+        "height": 1500
+      },
+      "fullPage": false,
+      "sha256": "2afd74a2bd480c74cb6835b398f143f8e3d6dbfbf3fce7b4ad17d371e53a1b6c"
     },
     {
       "file": "werewolf-arena.en.png",
@@ -64,7 +92,12 @@
       "players": 9,
       "phase": "discussion",
       "revision": 19,
-      "sha256": "cb2cba14991ae3a703ce9de34d1da42d14672da3a8c76890c66ac24cfb0f4f1e"
+      "viewport": {
+        "width": 2000,
+        "height": 1500
+      },
+      "fullPage": false,
+      "sha256": "74bed604bd52ac4b521859ed2b241ccee17903fd1c476aba4b1cf292f516d743"
     },
     {
       "file": "chess-arena.en.png",
@@ -74,7 +107,12 @@
       "players": 2,
       "phase": "move",
       "revision": 26,
-      "sha256": "bfe20f8d62591054312dcea954c5ee18a195ddfd4be23f19be171a203b795d25"
+      "viewport": {
+        "width": 2000,
+        "height": 1500
+      },
+      "fullPage": false,
+      "sha256": "58c5bb32fc9a5c1f292c1c0a9244036143be3a7e38cf60b4fee6b70e15edae2c"
     }
   ]
 }

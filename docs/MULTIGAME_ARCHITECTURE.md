@@ -1,5 +1,7 @@
 # 多游戏架构 / Multi-game architecture
 
+[文档导航 / Documentation](README.md) · [运行机制](ARCHITECTURE.md) · [Adding a game](EXTENDING_GAMES.md)
+
 当前实现：四种游戏共用运行层。设计目标是复用调度、交流、RSI 与持久化，同时让规则与视角留在各游戏插件内。
 
 ## 分层

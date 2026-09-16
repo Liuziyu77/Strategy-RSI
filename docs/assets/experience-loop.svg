@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="370" viewBox="0 0 1280 370" role="img" aria-labelledby="title desc">
   <title id="title">Strategy-RSI experience loop</title>
-  <desc id="desc">Visible state, public chat and personal memory feed a model decision, checked by the engine. Immediate and post-game reflection add to personal memory; consolidation is optional.</desc>
+  <desc id="desc">Visible state, permitted chat and memory scoped by Agent ID and game type feed a model decision, checked by the engine. Immediate and post-game reflection update the same memory scope; consolidation is optional.</desc>
   <defs>
     <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#10251d"/><stop offset="1" stop-color="#18362b"/></linearGradient>
     <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 6 3 0 6" fill="none" stroke="#d6b676" stroke-width="1.5"/></marker>
@@ -17,10 +17,11 @@
       <rect x="860" y="108" width="375" height="112" rx="10"/>
     </g>
     <g fill="#eee8d6" font-size="21" font-weight="600"><text x="64" y="144">Visible context</text><text x="350" y="144">Model decision</text><text x="615" y="144">Rules engine</text><text x="880" y="144">Reflection</text></g>
-    <g fill="#aac7b6" font-size="14"><text x="64" y="177">State · history · public chat</text><text x="64" y="199">Legal actions · own memory</text><text x="350" y="177">Choose an action</text><text x="350" y="199">Optional public speech</text><text x="615" y="177">Validate &amp; execute</text><text x="615" y="199">Persist events &amp; replay</text><text x="880" y="177">Immediate: after an action</text><text x="880" y="199">Round: after a completed game</text></g>
+    <g fill="#aac7b6" font-size="14"><text x="64" y="177">State · history · visible chat</text><text x="64" y="199">Legal actions · own memory</text><text x="350" y="177">Choose an action</text><text x="350" y="199">Optional speech</text><text x="615" y="177">Validate &amp; execute</text><text x="615" y="199">Persist events &amp; replay</text><text x="880" y="177">Immediate: after an action</text><text x="880" y="199">Round: after a completed game</text></g>
     <g stroke="#d6b676" stroke-width="2" fill="none" marker-end="url(#arrow)"><path d="M279 164H320"/><path d="M545 164H585"/><path d="M810 164H850"/><path d="M1047 220V252H310V297H289"/><path d="M161 269V231"/></g>
     <rect x="44" y="269" width="235" height="57" rx="10" fill="#334331" stroke="#d6b676"/>
-    <text x="64" y="304" font-size="18" font-weight="600" fill="#ead399">Personal memory</text>
+    <text x="64" y="292" font-size="17" font-weight="600" fill="#ead399">Personal memory</text>
+    <text x="64" y="314" font-size="13" fill="#abc2b2">Agent ID × game type</text>
     <text x="398" y="281" font-size="14" fill="#d6b676">Collect by match &amp; type</text>
     <text x="398" y="314" font-size="13" fill="#abc2b2">Optional consolidation: deduplicate, rewrite and summarize</text>
     <text x="948" y="344" font-size="11" fill="#91ac9e">TEXT MEMORY · FIXED MODEL WEIGHTS</text>

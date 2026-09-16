@@ -1,6 +1,6 @@
 # Adding a game / 新游戏接入指南
 
-Read [the architecture](MULTIGAME_ARCHITECTURE.md) and [game catalog](games/README.md) first.
+[Documentation index](README.md). Read [the architecture](MULTIGAME_ARCHITECTURE.md) and [game catalog](games/README.md) first.
 
 ## Engine contract
 
@@ -23,7 +23,7 @@ An engine must provide:
 1. Add the game ID to the `GameType` union, metadata in `catalog.ts`, and a factory/restore adapter in `registry.ts`.
 2. Extend configuration and memory-scope validation enums in `server/config.ts` and `server/app.ts` (search for the existing game IDs). Declare valid player counts, languages and a rules version; unsupported values must fail before creating a match.
 3. Add a renderer in `web/GameBoards.tsx`, presentation metadata in `web/game-presentation.ts` and a symbol in `web/GameSymbols.tsx`. Define the new game’s page tokens and visual treatment in `web/themes.css`; see [visual design](VISUAL_DESIGN.md). Configure creation in `web/MultiGameArena.tsx`, or supply a dedicated renderer module. The lobby in `web/GameLobby.tsx` lists catalog entries automatically; no header button is needed. Reuse `web/navigation.ts` to preserve per-game observation state. Do not put rules, model requests or hidden-state reconstruction in React.
-4. Add localized rules under `docs/games/`, update the catalog, API guide and both READMEs.
+4. Add localized rules under `docs/games/`, update the documentation index, game catalog, API guide and both project READMEs. Update the UI guide and preview sources if navigation or rendering changes.
 
 No new scheduler, SQLite database, reflection loop or model adapter is needed. The shared lifecycle includes concurrent matches, game workers, external-token actions, cancellation, transaction rollback, replay and consolidation.
 
@@ -31,7 +31,7 @@ No new scheduler, SQLite database, reflection loop or model adapter is needed. T
 
 Existing records with no `gameType` retain Sanguosha semantics. Existing game checkpoints remain untouched. Generic game outcomes and explicit manual-memory scopes use additional tables, avoiding destructive rewrites. Game-generated memory derives its scope from the source match; consolidation also inherits the source match’s language.
 
-If you change a plugin’s serialized state, increment its version and implement a migration in the restore adapter. Do not silently restore an unknown version using current rules. `rulesVersion` in match configuration documents the experimental ruleset separately from the state serialization version.
+All current state formats use version 1, and `restoreEngine` in `src/games/registry.ts` rejects other versions before calling the plugin. If you change a plugin’s serialized state, update that shared version gate along with the plugin restore adapter and explicit migrations; changing only the plugin constructor is insufficient. Preserve restoration of old archives and reject unsupported versions. `rulesVersion` in match configuration documents the experimental ruleset separately from the state serialization version; it does not automatically select a historical engine implementation.
 
 ## Required tests
 
@@ -41,6 +41,7 @@ Test legal/illegal moves, stale revisions without speech, game-specific terminal
 ./run.sh typecheck
 ./run.sh test
 ./run.sh build
+./run.sh format:check
 CHROMIUM_PATH=/path/to/chrome ./run.sh test:e2e
 ```
 

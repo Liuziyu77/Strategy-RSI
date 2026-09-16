@@ -1,5 +1,7 @@
 # 游戏目录 / Game catalog
 
+[文档导航 / Documentation](../README.md) · [启动 / Setup](../GETTING_STARTED.md) · [API](../API.md)
+
 | ID          | 游戏 / Game       | 人数 / Players | 语言 / Languages | 规则 / Rules                                    |
 | ----------- | ----------------- | -------------- | ---------------- | ----------------------------------------------- |
 | `sanguosha` | 三国杀            | 2–8            | 中文             | [规则](../RULES.md)                             |
@@ -21,7 +23,7 @@ Browse or search the dedicated **游戏大厅** (Game Lobby) to enter a game. Re
 
 经验按 `Agent ID × gameType` 隔离，中文和英文同一游戏共享经验。原有未标记的手动经验、旧对战及旧导入默认三国杀。新手动经验和导入使用 `gameType` 指定游戏；比赛反思与归纳从来源比赛继承类型。关闭新增 RSI 仍读取已有同游戏经验。独立基线应使用空经验玩家。
 
-Memory is scoped by `Agent ID × gameType`; Chinese and English variants of the same game share memory. Untagged legacy data defaults to Sanguosha. Specify `gameType` for manual/imported memories; reflections and consolidation inherit it from the source match. Disabling RSI stops new reflections but still consumes existing same-game experience. Use fresh profiles for an empty-memory baseline.
+Memory is scoped by `Agent ID × gameType`; Chinese and English variants of the same game share memory. Untagged legacy data defaults to Sanguosha. Specify `gameType` for manual/imported memories; reflections and consolidation inherit it from the source match. The player library provides a game selector for manual notes and TXT imports; JSON retains its explicit scope. Disabling RSI stops new reflections but still consumes existing same-game experience. Use fresh profiles for an empty-memory baseline.
 
 ## 实验边界 / Experimental boundaries
 

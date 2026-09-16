@@ -1,0 +1,34 @@
+{
+  "capturedOn": "2026-09-16",
+  "sourceCommit": "8993221bafb8544ba0ea4727d53ac71c3d69af69",
+  "sourceTests": [
+    "tests/e2e/navigation.spec.ts: home is a searchable game lobby",
+    "tests/e2e/themes.spec.ts: readable controls, matching dialog and clean return to lobby"
+  ],
+  "data": "Independent temporary SQLite with heuristic fixtures and RSI off; screenshot drafts are UI examples, not learned memories.",
+  "realModelCalls": false,
+  "viewportWidth": 1440,
+  "fullPage": true,
+  "files": [
+    {
+      "file": "game-lobby.png",
+      "sourceArtifact": "artifacts/game-lobby-desktop.png",
+      "sha256": "4aebfd13cb69596f6cda329297cc621bf87e23782168349a71af336ef3ea9e62"
+    },
+    {
+      "file": "werewolf-arena.png",
+      "sourceArtifact": "artifacts/theme-werewolf-desktop.png",
+      "sha256": "c4db33d6208c86fec3230cf31aa0d40074475bd22ab057e6d0b7a5ee9682d5aa"
+    },
+    {
+      "file": "chess-arena.png",
+      "sourceArtifact": "artifacts/theme-chess-desktop.png",
+      "sha256": "30575625d69ad2597b1c11c97074ee4cbcf7b0fdaf350b44f4a24d673e385fc3"
+    },
+    {
+      "file": "xiangqi-arena.png",
+      "sourceArtifact": "artifacts/theme-xiangqi-desktop.png",
+      "sha256": "a765926ae5f79f9bd3f14d5832c82801429e35276f5b85525083b814038526cb"
+    }
+  ]
+}

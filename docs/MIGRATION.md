@@ -1,5 +1,7 @@
 # 从三国杀版本升级到多游戏版本
 
+[文档导航](README.md) · [启动指南](GETTING_STARTED.md)
+
 ## 数据兼容
 
 停服后备份 `DATA_DIR`（默认 `data/`），再升级代码和依赖。服务仍使用单个 SQLite 文件和同一数据目录的单进程独占访问；不要让两个服务同时打开同一存档。
@@ -12,13 +14,14 @@
 
 旧创建比赛请求继续有效。新增游戏需传 `gameType`，狼人杀/国际象棋可传 `locale: "en"`。不要再假定所有观察都有 `hand`、`hp`、`deck` 等字段；读取通用字段，并根据游戏类型解析 `board` / `details`。详见 [API](API.md) 和 [引擎契约](EXTENDING_GAMES.md)。
 
-经验按 Agent ID 与游戏类型隔离。旧手动经验和未标记 JSON/TXT 导入默认三国杀。新实验的手动经验需明确 `gameType`；导出再导入会保留该范围。同一游戏的中英文版本共享经验。若基线需要空经验，应创建新玩家档案。
+经验按 Agent ID 与游戏类型隔离。旧手动经验及未标记 `gameType` 的 API/JSON 导入默认三国杀。当前玩家库的手动输入和 TXT 导入使用“经验所属游戏”选择器；游戏场地经验面板自动绑定当前游戏。JSON 中已有的 `gameType` 不受界面选择覆盖，导出再导入保留该范围。同一游戏的中英文版本共享经验。若基线需要空经验，应创建新玩家档案。
 
 全知观战、事件流及导出继续供实验者使用；狼人杀存档包含私有角色和夜间事件。模型或外部 Agent 只能使用其座位观察与过滤历史。
 
 ## 安装与验证
 
 ```bash
+# 使用 PATH 中的 Node.js >=22.13 安装依赖
 npm ci
 ./run.sh typecheck
 ./run.sh test
@@ -26,7 +29,7 @@ npm ci
 ./run.sh dev
 ```
 
-`./run.sh` 会优先使用项目 `.runtime` 中的 Node，否则要求 PATH 中 Node ≥22.13。没有配置本地运行时的标准环境也可直接使用 `npm run dev`。
+`./run.sh` 会优先使用项目 `.runtime` 中的 Node，否则要求 PATH 中 Node ≥22.13。若只有项目内 Node 可用，先将 `.runtime/node_modules/node/bin` 加入 PATH 再执行 `npm ci`。没有配置本地运行时的标准环境也可直接使用 `npm run dev`。
 
 新增国际象棋依赖 `chess.js@1.4.0`；没有新增 Python、数据库服务器或在线规则服务依赖。真实模型仍使用现有兼容 API 配置。常规测试使用临时数据库与模拟模型。
 
@@ -37,3 +40,5 @@ npm ci
 ## English migration summary
 
 Back up the data directory while the service is stopped. The migration adds two tables without rewriting old Sanguosha checkpoints. Untagged data defaults to Sanguosha/Chinese; unfinished matches resume paused. New API consumers must dispatch observations by game type instead of assuming cards or HP. Manual/imported memory carries `gameType`; both languages of one game share experience. Use the seat-token API for Agents, not privileged observer exports. Rolling back to the old application requires the pre-upgrade data backup because the old code does not understand new engines or scoped memory.
+
+In the player library, manual notes and TXT imports use the selected **经验所属游戏** (Experience game). JSON preserves each entry's `gameType`; untagged legacy JSON defaults to Sanguosha. The game inspector assigns its current game type automatically.

@@ -1,5 +1,7 @@
 # HTTP API
 
+[文档导航](README.md) · [游戏规则](games/README.md) · [启动指南](GETTING_STARTED.md)
+
 默认根地址 `http://localhost:3930`。所有 JSON 接口使用 UTF-8。错误返回 `{ "error": "可读错误信息" }`。开启管理令牌后，所有非 Agent 写接口使用 `Authorization: Bearer <ARENA_ADMIN_TOKEN>`。
 
 ## 多游戏协议
@@ -37,6 +39,8 @@ New matches accept `gameType` and `locale`. Query `/api/game-types` for supporte
 ```json
 {
   "name": "玩家库对战",
+  "gameType": "sanguosha",
+  "locale": "zh",
   "playerIds": ["player-id-a", "player-id-b"],
   "games": 2,
   "concurrency": 2,
@@ -44,7 +48,41 @@ New matches accept `gameType` and `locale`. Query `/api/game-types` for supporte
 }
 ```
 
-服务端读取玩家当前资料作为本次比赛快照，固定各自的名字、武将、控制方式、API 与 RSI。ID 不能重复，数量必须符合所选游戏；每位玩家会自动获得本次参战记录。后续编辑玩家不改写这份快照。
+上例为三国杀。服务端读取玩家当前资料作为本次比赛快照，固定名字、控制方式、模型、RSI 与 Provider 引用（武将只用于三国杀）。专属 API 引用不可变连接版本；共享 `.env` Provider 在服务启动时解析。ID 不能重复，数量必须符合所选游戏；每位玩家会自动获得本次参战记录。后续编辑玩家不改写这份快照。
+
+以下是无需预建玩家或配置模型的英文国际象棋请求；`autoStart: false` 创建后暂停，可通过单步或继续接口推进：
+
+```json
+{
+  "name": "Local chess example",
+  "gameType": "chess",
+  "locale": "en",
+  "agents": [
+    { "id": "chess-demo-a", "name": "White", "kind": "heuristic", "rsi": "off" },
+    { "id": "chess-demo-b", "name": "Black", "kind": "heuristic", "rsi": "off" }
+  ],
+  "autoStart": false,
+  "chatEnabled": true
+}
+```
+
+重复使用相同 Agent ID 会读取该玩家已有的同游戏经验；空经验实验应使用新 ID。狼人杀需要 6–12 位不同玩家，不能只把双人示例的 `gameType` 改为 `werewolf`。
+
+### 常用配置
+
+| 字段                                  | API 默认值         | 范围 / 说明                                     |
+| ------------------------------------- | ------------------ | ----------------------------------------------- |
+| `gameType` / `locale`                 | `sanguosha` / `zh` | 组合须由游戏目录支持                            |
+| `games` / `concurrency`               | `1` / `1`          | 均为 1–100，并行数不超过局数                    |
+| `autoStart` / `rotateSeats`           | `true` / `true`    | 是否自动运行、按局号轮换座位                    |
+| `seed`                                | `42`               | 0–2147483647 的整数，控制引擎随机性             |
+| `paceMs`                              | `600`              | 0–10000 毫秒，每步后的运行间隔                  |
+| `maxDecisions`                        | `1800`             | 20–10000；达到上限按实验性平局结算              |
+| `apiTimeoutMs`                        | `45000`            | 1000–180000 毫秒，用于决策/反思；归纳有独立超时 |
+| `contextEvents`                       | `300`              | 最近 20–5000 条可见非聊天事件                   |
+| `chatEnabled` / `contextChatMessages` | `true` / `80`      | 对话上限 1–200 条，同时受字符预算约束           |
+
+前端演示可显式传入不同参数；上表是省略字段时的服务端默认值，以 `server/config.ts` 为准。`rulesVersion` 由服务端按所选游戏写入，无需客户端指定。
 
 `concurrency` 是并行对局数量，默认 1，必须为 1–100 的整数且不超过 `games`。空闲名额按局号顺序开新局；一个名额包括该局的游戏、即时反思和赛后复盘，等待外部 Agent 的局仍占名额。不同局独立推进，同一局顺序决策。
 
@@ -63,6 +101,8 @@ New matches accept `gameType` and `locale`. Query `/api/game-types` for supporte
 ```json
 {
   "name": "双模型实验",
+  "gameType": "sanguosha",
+  "locale": "zh",
   "agents": [
     {
       "id": "agent-a",
@@ -134,7 +174,7 @@ New matches accept `gameType` and `locale`. Query `/api/game-types` for supporte
 Authorization: Bearer <创建时返回的该座位令牌>
 ```
 
-返回：
+返回上下文结构（下例以三国杀为例，省略大部分观察字段）：
 
 ```json
 {
@@ -158,13 +198,15 @@ Authorization: Bearer <创建时返回的该座位令牌>
 
 不提供牌堆次序、随机种子或其他玩家的模型输入。未轮到自己时 `legalActions` 为空。可以将该 JSON 直接作为模型决策的用户上下文。
 
+国际象棋的 `board` 为从第 8 横线到第 1 横线、每行 a–h 的二维数组，空格为 `null`，棋子包含 `type`、`color`、`square`；另提供 FEN 与 SAN 历史。中国象棋为从黑方底线到红方底线的 10×9 数组，棋子附中文 `label` 与 UCCI `square`，`a0` 为红方左下角。两者都以 `legalActions` 为可提交动作的依据，不由客户端根据图片推导合法性。
+
 `chat` 是当前局对该座位可见的对话，包含 `seq`、`time`、`seat`、`agentId`、`name`、`text`、`round`、`turn`、`phase`。狼人上下文还包含队内密谈，其他玩家不接收这些消息；观战 `/api/games/:id/chat` 只返回公开对话。`history` 不重复包含聊天事件，`historyInfo` 只计可见游戏事件；`chatInfo` 独立说明聊天是否开放、可见记录数、输入条数、省略数及单条字数上限。决策与 RSI 使用相同的聊天上下文，其他局的对话不进入此处。
 
-动作 JSON 可附带 `"speech":"我先试探一下，大家看他的反应。"`。空字符串或省略表示沉默，每次最多 200 个 Unicode 字符，超长截断，非字符串忽略；异常的可选发言不会让合法动作失败。发言不替代 `actionId`，必须轮到该 Agent 并通过动作与版本校验。署名和座位由服务器确定；聊天关闭时发言忽略。消息在执行动作之前公开，和动作、检查点在同一事务保存。`reason` 仍为策略说明，不自动公开到聊天室。
+动作 JSON 可附带 `"speech":"我先试探一下，大家看他的反应。"`。空字符串或省略表示沉默，每次最多 200 个 Unicode 字符，超长截断，非字符串忽略；异常的可选发言不会让合法动作失败。发言不替代 `actionId`，必须轮到该 Agent 并通过动作与版本校验。署名和座位由服务器确定；聊天关闭时发言忽略。消息在执行动作之前按当前频道记录，和动作、检查点在同一事务保存；狼人夜间密谈不会公开，预言家和女巫夜间发言被忽略。`reason` 仍为策略说明，不自动公开到聊天室。
 
 观战聊天接口返回 `{"messages":[...],"total":123}`，其中 `total` 为 `before` 边界内的消息数。默认取最近 100 条，`limit` 范围 1–5000；向前翻页时使用当前第一条的 `seq - 1` 作为 `before`。回放传入目标帧序号，未来消息不会返回。完整 JSON 导出新增 `chat` 数组，同时保留 `events` 中的 `type: "chat"` 事件；JSONL 的聊天行也包含对应的完整游戏状态帧。
 
-弃牌阶段的合法动作是一个选牌模板，避免枚举所有组合。例如需要从四张手牌中弃两张：
+三国杀弃牌阶段的合法动作是一个选牌模板，避免枚举所有组合。例如需要从四张手牌中弃两张：
 
 ```json
 {
@@ -190,24 +232,24 @@ Authorization: Bearer <创建时返回的该座位令牌>
 界面中的经验已归入玩家详情，以下通用接口仍兼容旧脚本。
 
 - `GET /api/memories?agentId=agent-a`：列出该 Agent 经验。
-- `POST /api/memories`：`{"agentId":"agent-a","text":"可复用的经验"}`。
+- `POST /api/memories`：`{"agentId":"agent-a","gameType":"chess","text":"可复用的经验"}`；省略 `gameType` 默认三国杀。
 - `DELETE /api/memories/:id`：删除单条。
 - `GET /api/memories/export?agentId=agent-a`：导出，也可不加过滤。
 - `POST /api/memories/import`：传导出文件，或 `[{"agentId":"agent-a","text":"经验"}]` 数组。每条最多 4000 字符，批量最多 500 条，整批先验证再事务写入。
 
-归档包含来源模式、创建时间、来源局 ID 和稳定 Agent ID。导入创建新条目，保留原文本并标记来源 `import`，不会覆盖已有档案。
+归档包含游戏类型、来源模式、创建时间、来源局 ID 和稳定 Agent ID。导入创建新条目，保留原文本及 `gameType`，标记来源 `import`，不会覆盖已有档案。API 接收 JSON；TXT 由玩家库转换为带所选游戏类型的 JSON 条目后提交。
 
 ## 玩家库
 
-| 方法 / 路径                                  | 含义                                                                    |
-| -------------------------------------------- | ----------------------------------------------------------------------- |
-| `GET /api/players`                           | 玩家资料及参战数、结束数、胜利数、经验数                                |
-| `POST /api/players`                          | 创建玩家，省略 ID 时自动生成                                            |
-| `GET /api/players/:id`                       | 玩家资料、`memories` 与 `history`，历史含 `gameId` / `matchId`          |
-| `PUT /api/players/:id`                       | 提交完整更新后的资料；ID 不可变，已有牌局不变                           |
-| `POST /api/players/:id/memories`             | 保存该玩家的经验，正文 `{"text":"经验"}`                                |
-| `POST /api/players/:id/memories/import`      | 导入数组或 `{ "memories": [...] }`，每项含 `text`；全部绑定路径中的玩家 |
-| `DELETE /api/players/:id/memories/:memoryId` | 删除属于该玩家的单条经验，跨玩家请求拒绝                                |
+| 方法 / 路径                                  | 含义                                                                        |
+| -------------------------------------------- | --------------------------------------------------------------------------- |
+| `GET /api/players`                           | 玩家资料及参战数、结束数、胜利数、经验数                                    |
+| `POST /api/players`                          | 创建玩家，省略 ID 时自动生成                                                |
+| `GET /api/players/:id`                       | 玩家资料、`memories` 与 `history`，历史含 `gameId` / `matchId`              |
+| `PUT /api/players/:id`                       | 提交完整更新后的资料；ID 不可变，已有牌局不变                               |
+| `POST /api/players/:id/memories`             | 保存该玩家的经验，正文 `{"text":"经验","gameType":"chess"}`，类型缺省三国杀 |
+| `POST /api/players/:id/memories/import`      | 导入数组或 `{ "memories": [...] }`，每项含 `text`；全部绑定路径中的玩家     |
+| `DELETE /api/players/:id/memories/:memoryId` | 删除属于该玩家的单条经验，跨玩家请求拒绝                                    |
 
 创建自定义 API 玩家：
 
@@ -235,6 +277,8 @@ Authorization: Bearer <创建时返回的该座位令牌>
 玩家详情新增 `matchHistory`，按 `matchId` 分组，同名对战不会合并。每项包含 `matchId`、`matchName`、`status`、`createdAt`、`plannedGames` 和 `stats`。统计字段为 `games`（实际创建局数）、`finished`、`wins`、`losses`、`draws`、`winRate`（0–1；无已结束局时为 `null`）。详细逐局记录仍通过原来的 `history` 提供。
 
 玩家列表及详情的顶层 `stats` 使用相同统计字段，并包含 `matches`（参与对战数）和 `memories`。顶层 `winRate` 为全部获胜局数除以全部已结束局数，不对各场胜率简单平均。原有历史自动参与聚合，无需迁移或重跑。
+
+顶层统计汇总该玩家参与的所有游戏类型，不是某一种游戏的独立指标。多游戏实验应结合比赛配置中的 `gameType` 分组，再分析相应的 `matchHistory` / `history`，不要把跨游戏汇总胜率当作单游戏表现。
 
 个人经验新增 `matchId`、`matchName`、`gameNumber`、`consolidationId`、`sourceIds`（仅归纳结果）和 `active`。`mode` 分别为 `immediate`、`round`、`consolidated`、`manual`、`import`。`active=false` 的原文或旧版本仍在档案中，模型上下文只读取有效经验。手动和导入经验无来源对战时单独分组。
 

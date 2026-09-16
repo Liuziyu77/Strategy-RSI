@@ -1,5 +1,7 @@
 # 观战界面与游戏切换 / Arena UI
 
+[文档导航 / Documentation](README.md) · [游戏规则 / Game rules](games/README.md)
+
 首页和 `#/lobby` 打开独立的 **游戏大厅**。大厅以可换行的卡片列表展示游戏，支持中英文名称搜索，并显示人数、语言与运行中的比赛数量。游戏内不再常驻游戏卡片栏。切换只改变观察页面，后台比赛继续按照原有运行状态执行。
 
 ## 进入与切换
@@ -27,6 +29,10 @@
 
 暂停和继续作用于整场比赛；单步推进所选对局。“对战管理”内可明确停止比赛。棋盘下方的时间轴用于回放，点击“实时”回到当前状态。
 
+加载新的回放帧时，旧帧不会作为所选帧继续展示；超出存档范围的回放位置会回到有效范围。三国杀结束时显示具体结算原因，包括决策上限导致的平局。切换比赛会清空经验面板中上一场的玩家选择和未保存草稿。
+
+玩家库的“个人经验”页支持选择“经验所属游戏”：手动输入和 TXT 导入按该选择保存，JSON 保留每条游戏类型，旧 JSON 缺省三国杀。经验卡片显示所属游戏；导出包含该玩家所有游戏的记录。
+
 ## English quick guide
 
 The home page and `#/lobby` open the dedicated **游戏大厅** (Game Lobby). Browse the wrapping card grid or search Chinese/English game names. Enter a game, then return using **游戏大厅** in the header or the site logo to choose another. Game cards appear only in the lobby. Desktop has a match archive sidebar; narrow screens show a match picker. Round chips select games within a match. Each game restores its last match, round, replay frame and perspective, including after reload and browser back/forward. Switching the observer does not stop running matches.
@@ -34,6 +40,8 @@ The home page and `#/lobby` open the dedicated **游戏大厅** (Game Lobby). Br
 Open **New match** to configure an experiment; Escape closes the dialog. Choose a language before creating a match. Existing matches keep their language. Xiangqi and Sanguosha use Chinese, while chess and werewolf support Chinese and English. The shared navigation and player library retain Chinese labels, with English game names in the lobby.
 
 Chess and Xiangqi provide board flipping, coordinates, last-move highlighting and check indicators. Werewolf displays the day/night phase, living players and visible roles. The inspector separates **Chat**, **Events** and **Memory**. Chat and events follow the replay frame; Memory manages current persistent experience for this game type. **Pause/Resume** affect the match; **Step** advances the selected round; **Live** returns to the latest state.
+
+Switching matches clears the selected memory owner and unsaved draft. In the player library, choose **经验所属游戏** (Experience game) for manual notes and TXT imports. JSON keeps each entry's game type, with untagged legacy entries defaulting to Sanguosha. Memory cards show their game; exports include all of the player's game types.
 
 ## 前端维护
 

@@ -1,0 +1,9 @@
+# Copy this file and set EXPERIMENT_ENV to the copy's path.
+# Set EXPERIMENT_API_KEY in your environment; do not store a real key here.
+base_url: https://example.invalid/v1
+api_key_env_yh: EXPERIMENT_API_KEY
+models:
+  - bailian/deepseek-v4-flash
+  - glm-5.2
+  - kimi-k3
+  - qwen3.8-max-0902

@@ -460,6 +460,7 @@ export class Arena extends EventEmitter {
               messages,
               config.apiTimeoutMs,
               signal,
+              config.modelOutputLimit ?? 4096,
             );
             this.store.call(engine.s.id, agent.id, 'decision', {
               attempt,
@@ -574,6 +575,7 @@ export class Arena extends EventEmitter {
         messages,
         config.apiTimeoutMs,
         signal,
+        config.modelOutputLimit ?? 4096,
       );
       const reflection = ReflectionSchema.parse(output.content);
       if (signal.aborted) return;

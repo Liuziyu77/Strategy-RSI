@@ -2,7 +2,7 @@
 
 [中文](werewolf.md) · [Game catalog](README.md)
 
-Rules version: `social-deduction-v1`. 6–12 players; Chinese and English. There are `floor(n / 3)` wolves, one seer, one witch, one hunter, and villagers in the remaining seats. The game seed determines secret role assignment. Roles are reshuffled each game.
+Rules version: `social-deduction-v1`. Supports 6–12 players in Chinese or English. There are `floor(n / 3)` wolves, one seer, one witch, one hunter, and villagers in the remaining seats. Roles are reshuffled from the game seed each game; seat rotation does not fix a player's role.
 
 | Players     | Wolves | Seer | Witch | Hunter | Villagers |
 | ----------- | ------ | ---- | ----- | ------ | --------- |
@@ -30,4 +30,4 @@ Players know their own role; wolves know teammates. Death does not reveal roles.
 
 Both immediate and post-game RSI use the player’s own visible context, without automatically revealing the full role assignment at game end. Team chat enters only wolf contexts. Each Agent’s memories remain private and are reusable only within the same game type.
 
-This version has no sheriff, guard, idiot, last words, interrupting or voice chat. It defines a deterministic experimental discussion/voting protocol, not every commercial Werewolf variant.
+This version implements the fixed roles above, with no sheriff, guard, idiot, last words, interruptions or voice chat. Daytime discussion follows seat order, and the engine resolves night votes under fixed rules without a human moderator.

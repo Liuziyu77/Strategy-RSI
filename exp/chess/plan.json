@@ -1,0 +1,3139 @@
+{
+  "campaign": "chess-20260917",
+  "gameType": "chess",
+  "createdAt": "2026-09-17T03:09:35.976Z",
+  "models": [
+    "bailian/deepseek-v4-flash",
+    "glm-5.2",
+    "kimi-k3",
+    "qwen3.8-max-0902"
+  ],
+  "modelLabels": [
+    "DeepSeek",
+    "GLM",
+    "Kimi",
+    "Qwen"
+  ],
+  "baselineGames": 168,
+  "addedGames": 144,
+  "hardGameLimit": 200,
+  "budget": {
+    "baseline": 168,
+    "pilot": 4,
+    "validation4096": 4,
+    "validation8192": 4,
+    "totalGames": 180,
+    "unused": 20
+  },
+  "sourceCommit": "8719510afdc12d39f8ede36f56f56bd71d31b5aa",
+  "sourceHashes": {
+    "scripts/run-game-baselines.ts": "5ee74c1aa9f67d2af1ac902e7ac1011c028910ebe19a0954850521d647c68506",
+    "scripts/experiment-support.ts": "f724ea8259d6f43633349b2266961f1900f504b729bf9f5205901fa0abea92e7",
+    "server/agents.ts": "ca8619c904999a81b72d7160dc70aef237675d04cc5595386f8a5acc80303c9e",
+    "server/config.ts": "011292a664a5dbe5455748246f468cba072b6ed0a3930fd2893d50bc566bb011",
+    "src/types.ts": "1eb51cfcbc0fdb1c8377f81135722de20cbb042febff19fd6c28553ed6b05fe1",
+    "src/chat.ts": "156a15d0680810dfe7a961ec39b2bd7b73f88402542d1e890346acfcb7b73735",
+    "src/games/core.ts": "c0a625d6fe284b16aa607ef38b6ae05708479ec57f167f0e7b0e3e68f81676d4",
+    "src/games/catalog.ts": "e3d67692ae86dddf3703d5273050efa8a3ad925cf6aa6b4e4f9cc41620623c5a",
+    "src/games/registry.ts": "304cd71d38ab12b45f314dc428ce4900cfb0275661361d5d1f25102db217068c",
+    "src/games/base.ts": "6fbe7f955d52843ec89d1d9f850d459dc49a59f8bb244a02a5cd09650a44a5f3",
+    "src/games/chess.ts": "51a8e3f92f824f36de814b5f54f19cffcef881db7eefbc9c9a8d8bf4ff17d622",
+    "src/games/werewolf.ts": "76702c4edcdcacd79c67012954454237f532252659dd5b0e5f26315b6246fa79",
+    "src/games/werewolf-labels.ts": "c542c5f4a687ad287516f31043e36a414a9eba7f888f12731a679ae94c8fb28d",
+    "src/games/xiangqi.ts": "401cbe4a30ffbc722da915a213a63d46d0b632417289e7b64a53979a6dc02ab2"
+  },
+  "rule": "standard-v1",
+  "settings": {
+    "rsi": "off",
+    "memoryEntries": 0,
+    "chatEnabled": true,
+    "contextEvents": 80,
+    "contextChatMessages": 40,
+    "temperature": 0.6,
+    "outputLimit": 8192,
+    "apiTimeoutMs": 180000,
+    "maxAttemptsPerDecision": 2,
+    "maxDecisions": {
+      "chess": 160,
+      "xiangqi": 160,
+      "werewolf": 200
+    },
+    "gameConcurrency": 96,
+    "perModelConcurrency": 24,
+    "heuristicFallback": false,
+    "protocolAdapter": "none"
+  },
+  "cohorts": [
+    {
+      "id": "initial-20260916",
+      "settings": {
+        "rsi": "off",
+        "memoryEntries": 0,
+        "chatEnabled": true,
+        "contextEvents": 80,
+        "contextChatMessages": 40,
+        "temperature": 0.6,
+        "outputLimit": 8192,
+        "apiTimeoutMs": 180000,
+        "maxAttemptsPerDecision": 2,
+        "maxDecisions": {
+          "chess": 160,
+          "xiangqi": 160,
+          "werewolf": 200
+        },
+        "gameConcurrency": 16,
+        "perModelConcurrency": 8,
+        "heuristicFallback": false,
+        "protocolAdapter": "none"
+      },
+      "games": 24
+    },
+    {
+      "id": "extension-20260917",
+      "settings": {
+        "rsi": "off",
+        "memoryEntries": 0,
+        "chatEnabled": true,
+        "contextEvents": 80,
+        "contextChatMessages": 40,
+        "temperature": 0.6,
+        "outputLimit": 8192,
+        "apiTimeoutMs": 180000,
+        "maxAttemptsPerDecision": 2,
+        "maxDecisions": {
+          "chess": 160,
+          "xiangqi": 160,
+          "werewolf": 200
+        },
+        "gameConcurrency": 96,
+        "perModelConcurrency": 24,
+        "heuristicFallback": false,
+        "protocolAdapter": "none"
+      },
+      "games": 144
+    }
+  ],
+  "jobs": [
+    {
+      "id": "chess-en-01-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 0,
+      "rotation": 0,
+      "models": [
+        0,
+        1
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "chess-zh-03-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 0,
+      "rotation": 0,
+      "models": [
+        0,
+        3
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "chess-en-13-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 0,
+      "rotation": 0,
+      "models": [
+        1,
+        3
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "chess-en-12-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 0,
+      "rotation": 0,
+      "models": [
+        1,
+        2
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "chess-zh-01-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 0,
+      "rotation": 0,
+      "models": [
+        0,
+        1
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "chess-en-02-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 0,
+      "rotation": 0,
+      "models": [
+        0,
+        2
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "chess-zh-02-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 0,
+      "rotation": 1,
+      "models": [
+        2,
+        0
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "chess-zh-13-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 0,
+      "rotation": 0,
+      "models": [
+        1,
+        3
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "chess-zh-23-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 0,
+      "rotation": 1,
+      "models": [
+        3,
+        2
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "chess-en-23-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 0,
+      "rotation": 0,
+      "models": [
+        2,
+        3
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "chess-zh-23-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 0,
+      "rotation": 0,
+      "models": [
+        2,
+        3
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "chess-zh-12-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 0,
+      "rotation": 1,
+      "models": [
+        2,
+        1
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "chess-en-13-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 0,
+      "rotation": 1,
+      "models": [
+        3,
+        1
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "chess-en-03-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 0,
+      "rotation": 1,
+      "models": [
+        3,
+        0
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "chess-zh-02-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 0,
+      "rotation": 0,
+      "models": [
+        0,
+        2
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "chess-en-03-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 0,
+      "rotation": 0,
+      "models": [
+        0,
+        3
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "chess-zh-01-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 0,
+      "rotation": 1,
+      "models": [
+        1,
+        0
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "chess-en-01-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 0,
+      "rotation": 1,
+      "models": [
+        1,
+        0
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "chess-en-12-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 0,
+      "rotation": 1,
+      "models": [
+        2,
+        1
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "chess-zh-12-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 0,
+      "rotation": 0,
+      "models": [
+        1,
+        2
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "chess-en-02-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 0,
+      "rotation": 1,
+      "models": [
+        2,
+        0
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "chess-zh-13-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 0,
+      "rotation": 1,
+      "models": [
+        3,
+        1
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "chess-zh-03-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 0,
+      "rotation": 1,
+      "models": [
+        3,
+        0
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "chess-en-23-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 0,
+      "rotation": 1,
+      "models": [
+        3,
+        2
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "chess-zh-23-b3-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 3,
+      "rotation": 0,
+      "models": [
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-23-b1-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 1,
+      "rotation": 1,
+      "models": [
+        3,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-03-b4-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 4,
+      "rotation": 0,
+      "models": [
+        0,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-01-b5-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 5,
+      "rotation": 1,
+      "models": [
+        1,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-03-b1-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 1,
+      "rotation": 0,
+      "models": [
+        0,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-12-b6-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 6,
+      "rotation": 1,
+      "models": [
+        2,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-03-b2-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 2,
+      "rotation": 1,
+      "models": [
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-01-b2-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 2,
+      "rotation": 1,
+      "models": [
+        1,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-01-b1-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 1,
+      "rotation": 1,
+      "models": [
+        1,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-02-b1-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 1,
+      "rotation": 1,
+      "models": [
+        2,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-12-b4-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 4,
+      "rotation": 1,
+      "models": [
+        2,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-01-b6-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 6,
+      "rotation": 0,
+      "models": [
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-23-b5-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 5,
+      "rotation": 0,
+      "models": [
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-02-b4-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 4,
+      "rotation": 1,
+      "models": [
+        2,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-23-b5-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 5,
+      "rotation": 0,
+      "models": [
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-23-b2-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 2,
+      "rotation": 0,
+      "models": [
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-02-b5-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 5,
+      "rotation": 0,
+      "models": [
+        0,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-02-b5-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 5,
+      "rotation": 1,
+      "models": [
+        2,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-02-b1-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 1,
+      "rotation": 1,
+      "models": [
+        2,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-12-b2-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 2,
+      "rotation": 0,
+      "models": [
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-12-b1-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 1,
+      "rotation": 0,
+      "models": [
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-03-b2-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 2,
+      "rotation": 0,
+      "models": [
+        0,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-13-b2-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 2,
+      "rotation": 1,
+      "models": [
+        3,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-01-b2-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 2,
+      "rotation": 1,
+      "models": [
+        1,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-01-b3-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 3,
+      "rotation": 1,
+      "models": [
+        1,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-03-b6-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 6,
+      "rotation": 1,
+      "models": [
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-13-b3-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 3,
+      "rotation": 0,
+      "models": [
+        1,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-02-b1-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 1,
+      "rotation": 0,
+      "models": [
+        0,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-03-b2-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 2,
+      "rotation": 1,
+      "models": [
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-12-b2-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 2,
+      "rotation": 1,
+      "models": [
+        2,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-02-b6-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 6,
+      "rotation": 1,
+      "models": [
+        2,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-12-b1-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 1,
+      "rotation": 1,
+      "models": [
+        2,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-03-b1-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 1,
+      "rotation": 1,
+      "models": [
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-23-b1-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 1,
+      "rotation": 1,
+      "models": [
+        3,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-02-b3-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 3,
+      "rotation": 0,
+      "models": [
+        0,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-13-b2-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 2,
+      "rotation": 0,
+      "models": [
+        1,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-13-b5-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 5,
+      "rotation": 0,
+      "models": [
+        1,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-03-b4-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 4,
+      "rotation": 1,
+      "models": [
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-13-b3-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 3,
+      "rotation": 1,
+      "models": [
+        3,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-03-b4-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 4,
+      "rotation": 1,
+      "models": [
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-13-b1-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 1,
+      "rotation": 0,
+      "models": [
+        1,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-02-b4-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 4,
+      "rotation": 1,
+      "models": [
+        2,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-01-b3-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 3,
+      "rotation": 0,
+      "models": [
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-13-b1-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 1,
+      "rotation": 1,
+      "models": [
+        3,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-12-b2-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 2,
+      "rotation": 1,
+      "models": [
+        2,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-23-b6-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 6,
+      "rotation": 1,
+      "models": [
+        3,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-03-b6-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 6,
+      "rotation": 1,
+      "models": [
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-13-b2-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 2,
+      "rotation": 1,
+      "models": [
+        3,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-02-b6-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 6,
+      "rotation": 0,
+      "models": [
+        0,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-12-b3-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 3,
+      "rotation": 1,
+      "models": [
+        2,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-03-b3-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 3,
+      "rotation": 0,
+      "models": [
+        0,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-23-b1-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 1,
+      "rotation": 0,
+      "models": [
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-23-b4-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 4,
+      "rotation": 0,
+      "models": [
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-01-b4-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 4,
+      "rotation": 0,
+      "models": [
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-12-b1-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 1,
+      "rotation": 1,
+      "models": [
+        2,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-01-b4-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 4,
+      "rotation": 0,
+      "models": [
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-13-b4-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 4,
+      "rotation": 0,
+      "models": [
+        1,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-13-b6-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 6,
+      "rotation": 0,
+      "models": [
+        1,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-12-b6-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 6,
+      "rotation": 1,
+      "models": [
+        2,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-02-b3-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 3,
+      "rotation": 1,
+      "models": [
+        2,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-13-b3-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 3,
+      "rotation": 1,
+      "models": [
+        3,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-03-b5-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 5,
+      "rotation": 1,
+      "models": [
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-13-b5-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 5,
+      "rotation": 1,
+      "models": [
+        3,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-12-b3-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 3,
+      "rotation": 0,
+      "models": [
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-01-b6-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 6,
+      "rotation": 1,
+      "models": [
+        1,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-13-b5-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 5,
+      "rotation": 0,
+      "models": [
+        1,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-23-b3-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 3,
+      "rotation": 1,
+      "models": [
+        3,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-13-b5-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 5,
+      "rotation": 1,
+      "models": [
+        3,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-02-b1-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 1,
+      "rotation": 0,
+      "models": [
+        0,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-12-b5-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 5,
+      "rotation": 0,
+      "models": [
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-03-b3-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 3,
+      "rotation": 1,
+      "models": [
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-13-b1-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 1,
+      "rotation": 1,
+      "models": [
+        3,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-23-b4-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 4,
+      "rotation": 0,
+      "models": [
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-12-b3-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 3,
+      "rotation": 1,
+      "models": [
+        2,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-01-b5-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 5,
+      "rotation": 1,
+      "models": [
+        1,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-13-b4-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 4,
+      "rotation": 1,
+      "models": [
+        3,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-03-b1-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 1,
+      "rotation": 1,
+      "models": [
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-23-b5-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 5,
+      "rotation": 1,
+      "models": [
+        3,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-03-b3-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 3,
+      "rotation": 0,
+      "models": [
+        0,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-03-b5-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 5,
+      "rotation": 0,
+      "models": [
+        0,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-23-b2-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 2,
+      "rotation": 1,
+      "models": [
+        3,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-23-b6-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 6,
+      "rotation": 0,
+      "models": [
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-23-b2-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 2,
+      "rotation": 1,
+      "models": [
+        3,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-02-b4-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 4,
+      "rotation": 0,
+      "models": [
+        0,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-23-b3-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 3,
+      "rotation": 1,
+      "models": [
+        3,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-02-b2-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 2,
+      "rotation": 1,
+      "models": [
+        2,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-12-b3-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 3,
+      "rotation": 0,
+      "models": [
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-12-b5-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 5,
+      "rotation": 0,
+      "models": [
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-02-b2-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 2,
+      "rotation": 0,
+      "models": [
+        0,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-23-b6-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 6,
+      "rotation": 1,
+      "models": [
+        3,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-23-b5-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 5,
+      "rotation": 1,
+      "models": [
+        3,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-01-b1-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 1,
+      "rotation": 0,
+      "models": [
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-02-b6-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 6,
+      "rotation": 0,
+      "models": [
+        0,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-23-b4-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 4,
+      "rotation": 1,
+      "models": [
+        3,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-12-b5-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 5,
+      "rotation": 1,
+      "models": [
+        2,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-01-b2-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 2,
+      "rotation": 0,
+      "models": [
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-01-b4-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 4,
+      "rotation": 1,
+      "models": [
+        1,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-02-b4-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 4,
+      "rotation": 0,
+      "models": [
+        0,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-13-b3-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 3,
+      "rotation": 0,
+      "models": [
+        1,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-12-b6-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 6,
+      "rotation": 0,
+      "models": [
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-13-b6-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 6,
+      "rotation": 1,
+      "models": [
+        3,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-01-b3-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 3,
+      "rotation": 1,
+      "models": [
+        1,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-12-b4-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 4,
+      "rotation": 0,
+      "models": [
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-03-b3-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 3,
+      "rotation": 1,
+      "models": [
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-23-b4-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 4,
+      "rotation": 1,
+      "models": [
+        3,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-01-b1-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 1,
+      "rotation": 1,
+      "models": [
+        1,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-01-b6-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 6,
+      "rotation": 1,
+      "models": [
+        1,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-01-b6-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 6,
+      "rotation": 0,
+      "models": [
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-23-b3-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 3,
+      "rotation": 0,
+      "models": [
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-13-b4-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 4,
+      "rotation": 0,
+      "models": [
+        1,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-12-b4-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 4,
+      "rotation": 1,
+      "models": [
+        2,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-03-b1-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 1,
+      "rotation": 0,
+      "models": [
+        0,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-03-b2-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 2,
+      "rotation": 0,
+      "models": [
+        0,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-03-b5-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 5,
+      "rotation": 1,
+      "models": [
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-03-b5-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 5,
+      "rotation": 0,
+      "models": [
+        0,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-13-b2-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 2,
+      "rotation": 0,
+      "models": [
+        1,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-03-b6-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 6,
+      "rotation": 0,
+      "models": [
+        0,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-01-b5-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 5,
+      "rotation": 0,
+      "models": [
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-13-b1-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 1,
+      "rotation": 0,
+      "models": [
+        1,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-12-b4-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 4,
+      "rotation": 0,
+      "models": [
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-13-b6-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 6,
+      "rotation": 0,
+      "models": [
+        1,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-12-b6-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 6,
+      "rotation": 0,
+      "models": [
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-12-b1-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 1,
+      "rotation": 0,
+      "models": [
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-23-b1-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 1,
+      "rotation": 0,
+      "models": [
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-02-b5-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 5,
+      "rotation": 1,
+      "models": [
+        2,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-13-b6-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 6,
+      "rotation": 1,
+      "models": [
+        3,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-03-b6-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 6,
+      "rotation": 0,
+      "models": [
+        0,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-01-b3-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 3,
+      "rotation": 0,
+      "models": [
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-23-b2-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 2,
+      "rotation": 0,
+      "models": [
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-02-b6-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 6,
+      "rotation": 1,
+      "models": [
+        2,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-01-b2-m0",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 2,
+      "rotation": 0,
+      "models": [
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-02-b3-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 3,
+      "rotation": 1,
+      "models": [
+        2,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-01-b5-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 5,
+      "rotation": 0,
+      "models": [
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-03-b4-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 4,
+      "rotation": 0,
+      "models": [
+        0,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-12-b5-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 5,
+      "rotation": 1,
+      "models": [
+        2,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-02-b5-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 5,
+      "rotation": 0,
+      "models": [
+        0,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-01-b4-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 4,
+      "rotation": 1,
+      "models": [
+        1,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-23-b6-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 6,
+      "rotation": 0,
+      "models": [
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-02-b2-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 2,
+      "rotation": 0,
+      "models": [
+        0,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-02-b2-m1",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 2,
+      "rotation": 1,
+      "models": [
+        2,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-02-b3-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 3,
+      "rotation": 0,
+      "models": [
+        0,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-12-b2-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 2,
+      "rotation": 0,
+      "models": [
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-en-13-b4-m1",
+      "gameType": "chess",
+      "locale": "en",
+      "seed": 42,
+      "block": 4,
+      "rotation": 1,
+      "models": [
+        3,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "chess-zh-01-b1-m0",
+      "gameType": "chess",
+      "locale": "zh",
+      "seed": 42,
+      "block": 1,
+      "rotation": 0,
+      "models": [
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    }
+  ],
+  "auxiliaryGames": {
+    "pilot": [
+      {
+        "id": "chess-en-01-m0",
+        "gameType": "chess",
+        "locale": "en",
+        "status": "error",
+        "decisions": 14,
+        "error": "Model decision failed: bailian/deepseek-v4-flash: 模型输出被 token 上限截断",
+        "attempts": 16,
+        "rejectedAttempts": 2,
+        "sha256": "365aa9e205d2b292b95a5d467c438baf3e8378de8ee47429b40de2ef847081cc"
+      },
+      {
+        "id": "chess-en-12-m0",
+        "gameType": "chess",
+        "locale": "en",
+        "status": "interrupted",
+        "decisions": 20,
+        "error": null,
+        "attempts": 20,
+        "rejectedAttempts": 0,
+        "sha256": "faaee1b0b7a5cbb058545e9b829483d753e7ce17b95f69e469a60b10334250fd"
+      },
+      {
+        "id": "chess-en-13-m0",
+        "gameType": "chess",
+        "locale": "en",
+        "status": "interrupted",
+        "decisions": 18,
+        "error": null,
+        "attempts": 19,
+        "rejectedAttempts": 1,
+        "sha256": "e3d61f6715446d072a85dcffce61601173744291523f044ac06b672ca679ec77"
+      },
+      {
+        "id": "chess-zh-03-m0",
+        "gameType": "chess",
+        "locale": "zh",
+        "status": "error",
+        "decisions": 12,
+        "error": "Model decision failed: bailian/deepseek-v4-flash: 模型输出被 token 上限截断",
+        "attempts": 14,
+        "rejectedAttempts": 2,
+        "sha256": "f0d6163718a48c61723485b0ca4df05fd5cf858234e292e599f5a13456be0cfe"
+      }
+    ],
+    "validation": [
+      {
+        "id": "validation-chess-zh-0",
+        "gameType": "chess",
+        "locale": "zh",
+        "pair": 0,
+        "matchId": "2accc7f4-996b-48a3-b935-d2ece750d742",
+        "gameId": "f8ee6e89-8562-4fa6-8e04-48de30a797cf",
+        "decisions": 20,
+        "fallbacks": 0,
+        "callErrors": [
+          {
+            "kind": "rsi-immediate-error",
+            "error": "[\n  {\n    \"expected\": \"boolean\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"shouldRemember\"\n    ],\n    \"message\": \"Invalid input: expected boolean, received undefined\"\n  }\n]"
+          },
+          {
+            "kind": "rsi-immediate-error",
+            "error": "[\n  {\n    \"expected\": \"boolean\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"shouldRemember\"\n    ],\n    \"message\": \"Invalid input: expected boolean, received undefined\"\n  }\n]"
+          }
+        ],
+        "immediateReflections": 18,
+        "roundReflections": 2,
+        "memoryConsumed": 14,
+        "startMemory": 0,
+        "memoryScope": true,
+        "promptsMatchLocale": true,
+        "publicChat": 19,
+        "teamChat": 0,
+        "hiddenMessagesFiltered": true,
+        "replay": true,
+        "checkpointRestore": true,
+        "consolidations": [
+          {
+            "model": "bailian/deepseek-v4-flash",
+            "status": "completed",
+            "error": null,
+            "sourceCount": 7
+          },
+          {
+            "model": "glm-5.2",
+            "status": "completed",
+            "error": null,
+            "sourceCount": 9
+          }
+        ],
+        "gameStatus": "finished",
+        "winner": "平局",
+        "terminalReason": "达到配置的决策上限",
+        "ok": false,
+        "auditedContexts": 40,
+        "consolidatedMemoryConsumed": 0,
+        "models": [
+          {
+            "model": "bailian/deepseek-v4-flash",
+            "decisions": 10,
+            "immediate": 10,
+            "round": 1,
+            "errors": [],
+            "fallbacks": 0
+          },
+          {
+            "model": "glm-5.2",
+            "decisions": 10,
+            "immediate": 8,
+            "round": 1,
+            "errors": [
+              {
+                "kind": "rsi-immediate-error",
+                "error": "[\n  {\n    \"expected\": \"boolean\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"shouldRemember\"\n    ],\n    \"message\": \"Invalid input: expected boolean, received undefined\"\n  }\n]"
+              },
+              {
+                "kind": "rsi-immediate-error",
+                "error": "[\n  {\n    \"expected\": \"boolean\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"shouldRemember\"\n    ],\n    \"message\": \"Invalid input: expected boolean, received undefined\"\n  }\n]"
+              }
+            ],
+            "fallbacks": 0
+          },
+          {
+            "model": "kimi-k3",
+            "decisions": 0,
+            "immediate": 0,
+            "round": 0,
+            "errors": [],
+            "fallbacks": 0
+          },
+          {
+            "model": "qwen3.8-max-0902",
+            "decisions": 0,
+            "immediate": 0,
+            "round": 0,
+            "errors": [],
+            "fallbacks": 0
+          }
+        ],
+        "errorCallsWithoutStoredInput": 2
+      },
+      {
+        "id": "validation-chess-zh-1",
+        "gameType": "chess",
+        "locale": "zh",
+        "pair": 1,
+        "matchId": "278992d7-b331-48cf-babb-e16747d43369",
+        "gameId": "76503e01-b9d3-4d31-8360-7c523f414a12",
+        "decisions": 20,
+        "fallbacks": 1,
+        "callErrors": [
+          {
+            "kind": "decision-error",
+            "error": "非法行动"
+          },
+          {
+            "kind": "decision-error",
+            "error": "非法行动"
+          }
+        ],
+        "immediateReflections": 20,
+        "roundReflections": 2,
+        "memoryConsumed": 18,
+        "startMemory": 0,
+        "memoryScope": true,
+        "promptsMatchLocale": true,
+        "publicChat": 19,
+        "teamChat": 0,
+        "hiddenMessagesFiltered": true,
+        "replay": true,
+        "checkpointRestore": true,
+        "consolidations": [
+          {
+            "model": "kimi-k3",
+            "status": "completed",
+            "error": null,
+            "sourceCount": 11
+          },
+          {
+            "model": "qwen3.8-max-0902",
+            "status": "completed",
+            "error": null,
+            "sourceCount": 10
+          }
+        ],
+        "gameStatus": "finished",
+        "winner": "平局",
+        "terminalReason": "达到配置的决策上限",
+        "ok": false,
+        "auditedContexts": 43,
+        "consolidatedMemoryConsumed": 0,
+        "models": [
+          {
+            "model": "bailian/deepseek-v4-flash",
+            "decisions": 0,
+            "immediate": 0,
+            "round": 0,
+            "errors": [],
+            "fallbacks": 0
+          },
+          {
+            "model": "glm-5.2",
+            "decisions": 0,
+            "immediate": 0,
+            "round": 0,
+            "errors": [],
+            "fallbacks": 0
+          },
+          {
+            "model": "kimi-k3",
+            "decisions": 10,
+            "immediate": 10,
+            "round": 1,
+            "errors": [],
+            "fallbacks": 0
+          },
+          {
+            "model": "qwen3.8-max-0902",
+            "decisions": 11,
+            "immediate": 10,
+            "round": 1,
+            "errors": [
+              {
+                "kind": "decision-error",
+                "error": "非法行动"
+              },
+              {
+                "kind": "decision-error",
+                "error": "非法行动"
+              }
+            ],
+            "fallbacks": 1
+          }
+        ],
+        "errorCallsWithoutStoredInput": 2
+      },
+      {
+        "id": "validation-chess-en-0",
+        "gameType": "chess",
+        "locale": "en",
+        "pair": 0,
+        "matchId": "a3bbbabd-b116-4331-9f4a-47ecf48fd81c",
+        "gameId": "70df7049-5a6a-40fc-93e7-9d71b148788c",
+        "decisions": 20,
+        "fallbacks": 0,
+        "callErrors": [
+          {
+            "kind": "rsi-immediate-error",
+            "error": "模型输出被 token 上限截断"
+          },
+          {
+            "kind": "rsi-immediate-error",
+            "error": "[\n  {\n    \"expected\": \"boolean\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"shouldRemember\"\n    ],\n    \"message\": \"Invalid input: expected boolean, received undefined\"\n  }\n]"
+          }
+        ],
+        "immediateReflections": 18,
+        "roundReflections": 2,
+        "memoryConsumed": 20,
+        "startMemory": 2,
+        "memoryScope": true,
+        "promptsMatchLocale": true,
+        "publicChat": 19,
+        "teamChat": 0,
+        "hiddenMessagesFiltered": true,
+        "replay": true,
+        "checkpointRestore": true,
+        "consolidations": [
+          {
+            "model": "bailian/deepseek-v4-flash",
+            "status": "completed",
+            "error": null,
+            "sourceCount": 2
+          },
+          {
+            "model": "glm-5.2",
+            "status": "completed",
+            "error": null,
+            "sourceCount": 9
+          }
+        ],
+        "gameStatus": "finished",
+        "winner": "draw",
+        "terminalReason": "Decision limit reached",
+        "ok": false,
+        "auditedContexts": 40,
+        "consolidatedMemoryConsumed": 20,
+        "models": [
+          {
+            "model": "bailian/deepseek-v4-flash",
+            "decisions": 10,
+            "immediate": 10,
+            "round": 1,
+            "errors": [],
+            "fallbacks": 0
+          },
+          {
+            "model": "glm-5.2",
+            "decisions": 10,
+            "immediate": 8,
+            "round": 1,
+            "errors": [
+              {
+                "kind": "rsi-immediate-error",
+                "error": "模型输出被 token 上限截断"
+              },
+              {
+                "kind": "rsi-immediate-error",
+                "error": "[\n  {\n    \"expected\": \"boolean\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"shouldRemember\"\n    ],\n    \"message\": \"Invalid input: expected boolean, received undefined\"\n  }\n]"
+              }
+            ],
+            "fallbacks": 0
+          },
+          {
+            "model": "kimi-k3",
+            "decisions": 0,
+            "immediate": 0,
+            "round": 0,
+            "errors": [],
+            "fallbacks": 0
+          },
+          {
+            "model": "qwen3.8-max-0902",
+            "decisions": 0,
+            "immediate": 0,
+            "round": 0,
+            "errors": [],
+            "fallbacks": 0
+          }
+        ],
+        "errorCallsWithoutStoredInput": 2
+      },
+      {
+        "id": "validation-chess-en-1",
+        "gameType": "chess",
+        "locale": "en",
+        "pair": 1,
+        "matchId": "3f34c750-95dc-40cf-b507-0365d48353ed",
+        "gameId": "ea9704f9-dd88-45ce-be6d-cac15fe61027",
+        "decisions": 20,
+        "fallbacks": 0,
+        "callErrors": [],
+        "immediateReflections": 20,
+        "roundReflections": 2,
+        "memoryConsumed": 20,
+        "startMemory": 2,
+        "memoryScope": true,
+        "promptsMatchLocale": true,
+        "publicChat": 20,
+        "teamChat": 0,
+        "hiddenMessagesFiltered": true,
+        "replay": true,
+        "checkpointRestore": true,
+        "consolidations": [
+          {
+            "model": "kimi-k3",
+            "status": "completed",
+            "error": null,
+            "sourceCount": 6
+          },
+          {
+            "model": "qwen3.8-max-0902",
+            "status": "completed",
+            "error": null,
+            "sourceCount": 9
+          }
+        ],
+        "gameStatus": "finished",
+        "winner": "draw",
+        "terminalReason": "Decision limit reached",
+        "ok": true,
+        "auditedContexts": 42,
+        "consolidatedMemoryConsumed": 20,
+        "models": [
+          {
+            "model": "bailian/deepseek-v4-flash",
+            "decisions": 0,
+            "immediate": 0,
+            "round": 0,
+            "errors": [],
+            "fallbacks": 0
+          },
+          {
+            "model": "glm-5.2",
+            "decisions": 0,
+            "immediate": 0,
+            "round": 0,
+            "errors": [],
+            "fallbacks": 0
+          },
+          {
+            "model": "kimi-k3",
+            "decisions": 10,
+            "immediate": 10,
+            "round": 1,
+            "errors": [],
+            "fallbacks": 0
+          },
+          {
+            "model": "qwen3.8-max-0902",
+            "decisions": 10,
+            "immediate": 10,
+            "round": 1,
+            "errors": [],
+            "fallbacks": 0
+          }
+        ],
+        "errorCallsWithoutStoredInput": 0
+      }
+    ],
+    "originalValidation": [
+      {
+        "id": "validation-chess-zh-1",
+        "gameType": "chess",
+        "locale": "zh",
+        "pair": 1,
+        "matchId": "04c2c393-9715-41fc-821b-df8604fddb5b",
+        "gameId": "74add6be-7917-4c20-b8bd-929aedeb9c34",
+        "decisions": 20,
+        "fallbacks": 0,
+        "callErrors": [],
+        "immediateReflections": 20,
+        "roundReflections": 2,
+        "memoryConsumed": 18,
+        "startMemory": 0,
+        "memoryScope": true,
+        "promptsMatchLocale": true,
+        "publicChat": 20,
+        "teamChat": 0,
+        "hiddenMessagesFiltered": true,
+        "replay": true,
+        "checkpointRestore": true,
+        "consolidations": [
+          {
+            "model": "kimi-k3",
+            "status": "completed",
+            "error": null,
+            "sourceCount": 11
+          },
+          {
+            "model": "qwen3.8-max-0902",
+            "status": "completed",
+            "error": null,
+            "sourceCount": 10
+          }
+        ],
+        "gameStatus": "finished",
+        "winner": "平局",
+        "terminalReason": "达到配置的决策上限",
+        "ok": true,
+        "consolidatedMemoryConsumed": 0,
+        "models": [
+          {
+            "model": "bailian/deepseek-v4-flash",
+            "decisions": 0,
+            "immediate": 0,
+            "round": 0,
+            "errors": [],
+            "fallbacks": 0
+          },
+          {
+            "model": "glm-5.2",
+            "decisions": 0,
+            "immediate": 0,
+            "round": 0,
+            "errors": [],
+            "fallbacks": 0
+          },
+          {
+            "model": "kimi-k3",
+            "decisions": 10,
+            "immediate": 10,
+            "round": 1,
+            "errors": [],
+            "fallbacks": 0
+          },
+          {
+            "model": "qwen3.8-max-0902",
+            "decisions": 10,
+            "immediate": 10,
+            "round": 1,
+            "errors": [],
+            "fallbacks": 0
+          }
+        ],
+        "errorCallsWithoutStoredInput": 0,
+        "auditedContexts": 42
+      },
+      {
+        "id": "validation-chess-zh-0",
+        "gameType": "chess",
+        "locale": "zh",
+        "pair": 0,
+        "matchId": "7aaa4bc4-0d5c-40d8-805a-0aa1c573b6d9",
+        "gameId": "e160de80-65ab-4e49-8030-98985a1e60f7",
+        "decisions": 20,
+        "fallbacks": 0,
+        "callErrors": [
+          {
+            "kind": "decision-error",
+            "error": "模型输出被 token 上限截断"
+          },
+          {
+            "kind": "decision-error",
+            "error": "模型输出被 token 上限截断"
+          }
+        ],
+        "immediateReflections": 20,
+        "roundReflections": 2,
+        "memoryConsumed": 18,
+        "startMemory": 0,
+        "memoryScope": true,
+        "promptsMatchLocale": true,
+        "publicChat": 19,
+        "teamChat": 0,
+        "hiddenMessagesFiltered": true,
+        "replay": true,
+        "checkpointRestore": true,
+        "consolidations": [
+          {
+            "model": "bailian/deepseek-v4-flash",
+            "status": "completed",
+            "error": null,
+            "sourceCount": 9
+          },
+          {
+            "model": "glm-5.2",
+            "status": "completed",
+            "error": null,
+            "sourceCount": 11
+          }
+        ],
+        "gameStatus": "finished",
+        "winner": "平局",
+        "terminalReason": "达到配置的决策上限",
+        "ok": false,
+        "consolidatedMemoryConsumed": 0,
+        "models": [
+          {
+            "model": "bailian/deepseek-v4-flash",
+            "decisions": 10,
+            "immediate": 10,
+            "round": 1,
+            "errors": [
+              {
+                "kind": "decision-error",
+                "error": "模型输出被 token 上限截断"
+              },
+              {
+                "kind": "decision-error",
+                "error": "模型输出被 token 上限截断"
+              }
+            ],
+            "fallbacks": 0
+          },
+          {
+            "model": "glm-5.2",
+            "decisions": 10,
+            "immediate": 10,
+            "round": 1,
+            "errors": [],
+            "fallbacks": 0
+          },
+          {
+            "model": "kimi-k3",
+            "decisions": 0,
+            "immediate": 0,
+            "round": 0,
+            "errors": [],
+            "fallbacks": 0
+          },
+          {
+            "model": "qwen3.8-max-0902",
+            "decisions": 0,
+            "immediate": 0,
+            "round": 0,
+            "errors": [],
+            "fallbacks": 0
+          }
+        ],
+        "errorCallsWithoutStoredInput": 2,
+        "auditedContexts": 42
+      },
+      {
+        "id": "validation-chess-en-1",
+        "gameType": "chess",
+        "locale": "en",
+        "pair": 1,
+        "matchId": "b6c80d75-2854-4e6b-9050-6ccdc5d0ba9e",
+        "gameId": "14b3dea6-d748-468c-b69c-fdd3bb6ac006",
+        "decisions": 20,
+        "fallbacks": 0,
+        "callErrors": [],
+        "immediateReflections": 20,
+        "roundReflections": 2,
+        "memoryConsumed": 20,
+        "startMemory": 2,
+        "memoryScope": true,
+        "promptsMatchLocale": true,
+        "publicChat": 19,
+        "teamChat": 0,
+        "hiddenMessagesFiltered": true,
+        "replay": true,
+        "checkpointRestore": true,
+        "consolidations": [
+          {
+            "model": "kimi-k3",
+            "status": "completed",
+            "error": null,
+            "sourceCount": 7
+          },
+          {
+            "model": "qwen3.8-max-0902",
+            "status": "completed",
+            "error": null,
+            "sourceCount": 9
+          }
+        ],
+        "gameStatus": "finished",
+        "winner": "draw",
+        "terminalReason": "Decision limit reached",
+        "ok": true,
+        "consolidatedMemoryConsumed": 20,
+        "models": [
+          {
+            "model": "bailian/deepseek-v4-flash",
+            "decisions": 0,
+            "immediate": 0,
+            "round": 0,
+            "errors": [],
+            "fallbacks": 0
+          },
+          {
+            "model": "glm-5.2",
+            "decisions": 0,
+            "immediate": 0,
+            "round": 0,
+            "errors": [],
+            "fallbacks": 0
+          },
+          {
+            "model": "kimi-k3",
+            "decisions": 10,
+            "immediate": 10,
+            "round": 1,
+            "errors": [],
+            "fallbacks": 0
+          },
+          {
+            "model": "qwen3.8-max-0902",
+            "decisions": 10,
+            "immediate": 10,
+            "round": 1,
+            "errors": [],
+            "fallbacks": 0
+          }
+        ],
+        "errorCallsWithoutStoredInput": 0,
+        "auditedContexts": 42
+      },
+      {
+        "id": "validation-chess-en-0",
+        "gameType": "chess",
+        "locale": "en",
+        "pair": 0,
+        "matchId": "ff4987af-00ff-4a9a-8d1c-b39bcb1b117f",
+        "gameId": "8915170e-f6c5-4d3f-8641-63ce1290a98a",
+        "decisions": 20,
+        "fallbacks": 3,
+        "callErrors": [
+          {
+            "kind": "rsi-immediate-error",
+            "error": "[\n  {\n    \"expected\": \"boolean\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"shouldRemember\"\n    ],\n    \"message\": \"Invalid input: expected boolean, received undefined\"\n  }\n]"
+          },
+          {
+            "kind": "rsi-immediate-error",
+            "error": "[\n  {\n    \"expected\": \"boolean\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"shouldRemember\"\n    ],\n    \"message\": \"Invalid input: expected boolean, received undefined\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"memory\"\n    ],\n    \"message\": \"Invalid input: expected string, received array\"\n  }\n]"
+          },
+          {
+            "kind": "decision-error",
+            "error": "模型输出被 token 上限截断"
+          },
+          {
+            "kind": "decision-error",
+            "error": "模型输出被 token 上限截断"
+          },
+          {
+            "kind": "decision-error",
+            "error": "模型输出被 token 上限截断"
+          },
+          {
+            "kind": "rsi-immediate-error",
+            "error": "模型输出被 token 上限截断"
+          },
+          {
+            "kind": "decision-error",
+            "error": "模型输出被 token 上限截断"
+          },
+          {
+            "kind": "decision-error",
+            "error": "模型输出被 token 上限截断"
+          },
+          {
+            "kind": "decision-error",
+            "error": "模型输出被 token 上限截断"
+          },
+          {
+            "kind": "decision-error",
+            "error": "模型输出被 token 上限截断"
+          },
+          {
+            "kind": "decision-error",
+            "error": "模型输出被 token 上限截断"
+          }
+        ],
+        "immediateReflections": 17,
+        "roundReflections": 2,
+        "memoryConsumed": 20,
+        "startMemory": 2,
+        "memoryScope": true,
+        "promptsMatchLocale": true,
+        "publicChat": 14,
+        "teamChat": 0,
+        "hiddenMessagesFiltered": true,
+        "replay": true,
+        "checkpointRestore": true,
+        "consolidations": [
+          {
+            "model": "bailian/deepseek-v4-flash",
+            "status": "completed",
+            "error": null,
+            "sourceCount": 5
+          },
+          {
+            "model": "glm-5.2",
+            "status": "completed",
+            "error": null,
+            "sourceCount": 9
+          }
+        ],
+        "gameStatus": "finished",
+        "winner": "draw",
+        "terminalReason": "Decision limit reached",
+        "ok": false,
+        "consolidatedMemoryConsumed": 20,
+        "models": [
+          {
+            "model": "bailian/deepseek-v4-flash",
+            "decisions": 7,
+            "immediate": 9,
+            "round": 1,
+            "errors": [
+              {
+                "kind": "decision-error",
+                "error": "模型输出被 token 上限截断"
+              },
+              {
+                "kind": "decision-error",
+                "error": "模型输出被 token 上限截断"
+              },
+              {
+                "kind": "decision-error",
+                "error": "模型输出被 token 上限截断"
+              },
+              {
+                "kind": "rsi-immediate-error",
+                "error": "模型输出被 token 上限截断"
+              },
+              {
+                "kind": "decision-error",
+                "error": "模型输出被 token 上限截断"
+              },
+              {
+                "kind": "decision-error",
+                "error": "模型输出被 token 上限截断"
+              },
+              {
+                "kind": "decision-error",
+                "error": "模型输出被 token 上限截断"
+              },
+              {
+                "kind": "decision-error",
+                "error": "模型输出被 token 上限截断"
+              },
+              {
+                "kind": "decision-error",
+                "error": "模型输出被 token 上限截断"
+              }
+            ],
+            "fallbacks": 3
+          },
+          {
+            "model": "glm-5.2",
+            "decisions": 10,
+            "immediate": 8,
+            "round": 1,
+            "errors": [
+              {
+                "kind": "rsi-immediate-error",
+                "error": "[\n  {\n    \"expected\": \"boolean\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"shouldRemember\"\n    ],\n    \"message\": \"Invalid input: expected boolean, received undefined\"\n  }\n]"
+              },
+              {
+                "kind": "rsi-immediate-error",
+                "error": "[\n  {\n    \"expected\": \"boolean\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"shouldRemember\"\n    ],\n    \"message\": \"Invalid input: expected boolean, received undefined\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"memory\"\n    ],\n    \"message\": \"Invalid input: expected string, received array\"\n  }\n]"
+              }
+            ],
+            "fallbacks": 0
+          },
+          {
+            "model": "kimi-k3",
+            "decisions": 0,
+            "immediate": 0,
+            "round": 0,
+            "errors": [],
+            "fallbacks": 0
+          },
+          {
+            "model": "qwen3.8-max-0902",
+            "decisions": 0,
+            "immediate": 0,
+            "round": 0,
+            "errors": [],
+            "fallbacks": 0
+          }
+        ],
+        "errorCallsWithoutStoredInput": 11,
+        "auditedContexts": 36
+      }
+    ]
+  },
+  "notes": [
+    "Failed and interrupted attempts count toward the per-game cap.",
+    "Board games repeat the standard initial position; seeds do not randomize openings.",
+    "Decision protocol unchanged; extension uses a shared 96-game / 24-per-model request pool.",
+    "Original roles/languages and new blocks are analyzed with cohort-specific counts."
+  ]
+}

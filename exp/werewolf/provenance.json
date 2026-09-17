@@ -1,0 +1,859 @@
+{
+  "generatedAt": "2026-09-17T05:48:29.119Z",
+  "planSha256": "d8993f6d505525c0c4be8fc531f668594fa972d8ebd10c2eed83a72174fc0134",
+  "sourceSnapshotSha256": "d8e4100c37972aed97f0bde0c231f9ab6454c10cc38526543f091a77313e9244",
+  "exportScriptSha256": "2f02c1752500cbd91846146d6614d3ac9de12a7b0ce12df91c903aacf2c4b970",
+  "amendmentsSha256": "c2728832aca871fe5aac155cfc8a90d7ad4d782588c60a2129e0b3b9d2c37434",
+  "rawFiles": [
+    {
+      "id": "werewolf-en-b1-r1",
+      "cohort": "initial-20260916",
+      "sha256": "812a62e78fa4de0701250753bdb70ef879d9c06246d575701c6b804d2225302c"
+    },
+    {
+      "id": "werewolf-en-b2-r2",
+      "cohort": "initial-20260916",
+      "sha256": "2b2f044a76158599474438342cfa5085491ad45bafa71a2d453de6b82b747f9b"
+    },
+    {
+      "id": "werewolf-zh-b1-r2",
+      "cohort": "initial-20260916",
+      "sha256": "6edd02d7b579e3fe67b39d7e590937ee7893834040d28b4054025fc6a0775185"
+    },
+    {
+      "id": "werewolf-zh-b1-r0",
+      "cohort": "initial-20260916",
+      "sha256": "9e3d3a1d9c933835ad21276466ccecb2e5588e75488434855bae6bd4c77c4ce0"
+    },
+    {
+      "id": "werewolf-zh-b0-r1",
+      "cohort": "initial-20260916",
+      "sha256": "eb7fd7aaf83357a6169d348a011ccfdd0e8785975e76f70a736c7803301b2896"
+    },
+    {
+      "id": "werewolf-en-b0-r2",
+      "cohort": "initial-20260916",
+      "sha256": "43e9b6b18cb01a2c8a45055e265e008e9128162ebfb5a087fd245fd5f23ffdc2"
+    },
+    {
+      "id": "werewolf-en-b0-r1",
+      "cohort": "initial-20260916",
+      "sha256": "71d778829095dcca61bf1c75b538bac13dc9c962029c2803a1868d191f93e36f"
+    },
+    {
+      "id": "werewolf-zh-b2-r2",
+      "cohort": "initial-20260916",
+      "sha256": "68c038982d2bf5c016129ff614e9adffb1ea982bc0c2f01f5b3266e0b550feba"
+    },
+    {
+      "id": "werewolf-zh-b1-r1",
+      "cohort": "initial-20260916",
+      "sha256": "f04fab2863a5a1c05a7526b4e85810560c7baed085210772c4f7f27f15efef32"
+    },
+    {
+      "id": "werewolf-zh-b2-r1",
+      "cohort": "initial-20260916",
+      "sha256": "ee1d3b12c747cebf4b67db80bd92aa516b4f5fdea6b81673d30df023b4260507"
+    },
+    {
+      "id": "werewolf-zh-b2-r0",
+      "cohort": "initial-20260916",
+      "sha256": "a758c7298213aa54b4387998e475a80572373d9d6b5d9b7a31216cbddae57a44"
+    },
+    {
+      "id": "werewolf-en-b2-r3",
+      "cohort": "initial-20260916",
+      "sha256": "5c895ba479f6068b8dfcd7e91a3673b8645fe2a8dabda7beef61b3e8a667870e"
+    },
+    {
+      "id": "werewolf-zh-b0-r0",
+      "cohort": "initial-20260916",
+      "sha256": "dc690916b2f5747521e98e7678cd68a69140aa763452a7fdacb198845e49ac70"
+    },
+    {
+      "id": "werewolf-en-b2-r0",
+      "cohort": "initial-20260916",
+      "sha256": "f3dbbaae74b95bd9256ca2154cbd3f52c1bb5d7c62040e18388bee5a896b1e14"
+    },
+    {
+      "id": "werewolf-zh-b1-r3",
+      "cohort": "initial-20260916",
+      "sha256": "b549359515c3b538e5e2531d172230b69b387d9d92a30eaaa4ad91727d89fd6c"
+    },
+    {
+      "id": "werewolf-en-b1-r2",
+      "cohort": "initial-20260916",
+      "sha256": "754bd0fec776ce0e8e30e06eb656abfcb9c0c3953e01970560f6b7ba11660033"
+    },
+    {
+      "id": "werewolf-en-b0-r0",
+      "cohort": "initial-20260916",
+      "sha256": "0e3e5ec5795844bbc6feff06bd76713e7e5e897eee0b0c728647baa6c7f0999f"
+    },
+    {
+      "id": "werewolf-en-b0-r3",
+      "cohort": "initial-20260916",
+      "sha256": "de51bb986ae7f9e4ec518d4614d9560c9fa8cd5e610dfd905f63c480f5ad8af4"
+    },
+    {
+      "id": "werewolf-zh-b2-r3",
+      "cohort": "initial-20260916",
+      "sha256": "7ded76f8fc4e065321e9e150a15f414f9c03ff00cfbe49699942611c3b181c7f"
+    },
+    {
+      "id": "werewolf-en-b1-r3",
+      "cohort": "initial-20260916",
+      "sha256": "f045d55450bda76eeacee305f212d76e02c3334c582c105db1325e4ba1fe64da"
+    },
+    {
+      "id": "werewolf-en-b2-r1",
+      "cohort": "initial-20260916",
+      "sha256": "11da0db5f87ebf7ed870cbd17bb5bf05f53ed592ada245a15350b72a813d960b"
+    },
+    {
+      "id": "werewolf-zh-b0-r3",
+      "cohort": "initial-20260916",
+      "sha256": "f80af917d63ad3db290ce489bc196c1c40bd03ac1b21de36577accc6fd252f94"
+    },
+    {
+      "id": "werewolf-en-b1-r0",
+      "cohort": "initial-20260916",
+      "sha256": "1a93749064d3c5f666dea08df597d93c07023195a3f91d7e71bdead33c5fcf28"
+    },
+    {
+      "id": "werewolf-zh-b0-r2",
+      "cohort": "initial-20260916",
+      "sha256": "c8eba529daf99fa3d0a889de77bd91278f62d2bf2f105fd46cd386252f6dc5d3"
+    },
+    {
+      "id": "werewolf-zh-b19-r3",
+      "cohort": "extension-20260917",
+      "sha256": "76dcca1cc1d413de6bb7a930f28913bbfb8ecdeca66b8b2019124435a3e34b17"
+    },
+    {
+      "id": "werewolf-en-b9-r2",
+      "cohort": "extension-20260917",
+      "sha256": "558679f590d2972bbc6ddd2e1a8092d53e07c19b813570728d5e10e4ee4425f2"
+    },
+    {
+      "id": "werewolf-en-b3-r2",
+      "cohort": "extension-20260917",
+      "sha256": "7f4e96558f1d697b45cd59ebae5d42b382310cb8b19ab327fe6c318c43590870"
+    },
+    {
+      "id": "werewolf-zh-b11-r1",
+      "cohort": "extension-20260917",
+      "sha256": "4638b7f7324252a1705e54b0625b3ec8a5fa820d9059f8328b7d10e6463039b1"
+    },
+    {
+      "id": "werewolf-zh-b8-r3",
+      "cohort": "extension-20260917",
+      "sha256": "cae4a6473e6dccae9b9873723bfb469bfc97922ace5b5ee980ca118c8e2a30ad"
+    },
+    {
+      "id": "werewolf-en-b17-r2",
+      "cohort": "extension-20260917",
+      "sha256": "e61781ba6ad1153cd40068717e0aa535e73c6f25aadc6692d8ff16082d0a7a90"
+    },
+    {
+      "id": "werewolf-zh-b13-r1",
+      "cohort": "extension-20260917",
+      "sha256": "f087fb17ebf1b514c873100ad8fa071b61496814f00f50026c5296d29368e2ed"
+    },
+    {
+      "id": "werewolf-en-b13-r1",
+      "cohort": "extension-20260917",
+      "sha256": "b45e855499858de71032e5b372e35a232f795ed19cc6f7db6507a3ad3f4f39d8"
+    },
+    {
+      "id": "werewolf-zh-b5-r1",
+      "cohort": "extension-20260917",
+      "sha256": "745855a64978f99f5d14f7533796b63a182b177696545889b2e0a368122a219b"
+    },
+    {
+      "id": "werewolf-zh-b12-r2",
+      "cohort": "extension-20260917",
+      "sha256": "ff7ee3618992165628c4840c0951e5992fcee47e1d5dfcf1ea7ba90ce3a0090d"
+    },
+    {
+      "id": "werewolf-zh-b13-r0",
+      "cohort": "extension-20260917",
+      "sha256": "9e432f1c3a135e4bd2f4e3813bc493a60b597d9f70e039894b1090476c63d103"
+    },
+    {
+      "id": "werewolf-en-b5-r2",
+      "cohort": "extension-20260917",
+      "sha256": "357f6febc944e3eb9d0ffec317951f2df63570674ba41f4d93357473188806ee"
+    },
+    {
+      "id": "werewolf-zh-b10-r3",
+      "cohort": "extension-20260917",
+      "sha256": "e8774bcc00e21dee81ff6db543a9866f53f1ac3b9f83b4734bab844ebcfe8db3"
+    },
+    {
+      "id": "werewolf-zh-b3-r2",
+      "cohort": "extension-20260917",
+      "sha256": "11fbe75eaf60e48fb0393d802c102570cb44c03959305c0d524a12cf401be47e"
+    },
+    {
+      "id": "werewolf-zh-b17-r1",
+      "cohort": "extension-20260917",
+      "sha256": "9de74e6dbe79220c95b1964f20931ba78bd5f988a566e2ceab9cb3a20384662e"
+    },
+    {
+      "id": "werewolf-en-b4-r0",
+      "cohort": "extension-20260917",
+      "sha256": "f5a06888899be666d7f0b2ec6b12e73a38c8d7d18c392854d2ccd85e4d961cae"
+    },
+    {
+      "id": "werewolf-zh-b7-r3",
+      "cohort": "extension-20260917",
+      "sha256": "ca7b00d6593a50dfdc1c3227a2c9e7a705fa4bb5ad67e9b7a2159eb93429a3fe"
+    },
+    {
+      "id": "werewolf-zh-b6-r0",
+      "cohort": "extension-20260917",
+      "sha256": "f16227aae422b0db602e168e4d1f3edf95473eb8f4480b411966d28795e4c185"
+    },
+    {
+      "id": "werewolf-zh-b4-r3",
+      "cohort": "extension-20260917",
+      "sha256": "155297c8daea5c2dc5d94ecbdacbbd81d12213e476fb4acdf6747c7a5c9cdd3e"
+    },
+    {
+      "id": "werewolf-en-b15-r2",
+      "cohort": "extension-20260917",
+      "sha256": "069574f0a61bc02d2f45fa7f2c11a357e9e48b721af3809cc753d6fc3dedca46"
+    },
+    {
+      "id": "werewolf-en-b8-r0",
+      "cohort": "extension-20260917",
+      "sha256": "e2ac6defa49eae66fea5c7b9880bf9d0b19ac118ce55c377f3c7ecc8a2a9d343"
+    },
+    {
+      "id": "werewolf-zh-b4-r0",
+      "cohort": "extension-20260917",
+      "sha256": "201f07ff8fcbce1a49e811b2602cc3bc400c069fc1684a71cc2e436190d56272"
+    },
+    {
+      "id": "werewolf-zh-b15-r0",
+      "cohort": "extension-20260917",
+      "sha256": "3dda57f43c1c9b0b59c2e4d730a98d6bab6b7bcad595fe7746f8097624e5dc34"
+    },
+    {
+      "id": "werewolf-en-b9-r0",
+      "cohort": "extension-20260917",
+      "sha256": "8b999a497d2627a3ea5407f97ebd3ff4780bd64904734cf295e63b456c3b7d6e"
+    },
+    {
+      "id": "werewolf-en-b6-r0",
+      "cohort": "extension-20260917",
+      "sha256": "4e41264fc25ce5aa787f66a4f104b9a0fe3885897c54d4d8326cebe8ea5330a1"
+    },
+    {
+      "id": "werewolf-zh-b19-r0",
+      "cohort": "extension-20260917",
+      "sha256": "0be872b8f53e47dd2cf7a40bb9e1c4553ff230064a304f95f02509dc0fa3bc07"
+    },
+    {
+      "id": "werewolf-en-b13-r0",
+      "cohort": "extension-20260917",
+      "sha256": "f1ff81a8c011c17b861972fd6aabfbc305964e93a5015b12f438b770e5e17693"
+    },
+    {
+      "id": "werewolf-en-b15-r0",
+      "cohort": "extension-20260917",
+      "sha256": "ff4d755c5e68e704e1d7d337419bb50ebe614d818aef85bddeac1a34fba87972"
+    },
+    {
+      "id": "werewolf-zh-b15-r1",
+      "cohort": "extension-20260917",
+      "sha256": "24f942f770f736a737178874b8a099b4590bcf399ea3031ac62364273f9660d8"
+    },
+    {
+      "id": "werewolf-en-b9-r3",
+      "cohort": "extension-20260917",
+      "sha256": "7ac0b292758c6ea55528f81700745525341131f851f0b138a854e81d86e3ef91"
+    },
+    {
+      "id": "werewolf-en-b10-r1",
+      "cohort": "extension-20260917",
+      "sha256": "ee4c12c27e0ce95de1755912a6a3ec405df0a163aabdc044e3a07f961436249a"
+    },
+    {
+      "id": "werewolf-en-b12-r2",
+      "cohort": "extension-20260917",
+      "sha256": "ac9ecd1d4447eb097c1899062b77de4c57993d38e342b433472159a4877b93dc"
+    },
+    {
+      "id": "werewolf-en-b11-r1",
+      "cohort": "extension-20260917",
+      "sha256": "a924f0b5f4e77740803e7a53438e3b72005216d38bea99d8bf86cbd0f0cb205c"
+    },
+    {
+      "id": "werewolf-zh-b13-r3",
+      "cohort": "extension-20260917",
+      "sha256": "73f147431ed2e6bcc0bbd10237600619cc3b3c2095458d14d014b805dd5de17e"
+    },
+    {
+      "id": "werewolf-zh-b20-r3",
+      "cohort": "extension-20260917",
+      "sha256": "6e5aa5b8267e057db2f83c72220f4f750bc8218289c80d8e3ac60bff497fb3dd"
+    },
+    {
+      "id": "werewolf-zh-b6-r1",
+      "cohort": "extension-20260917",
+      "sha256": "c9cece2a68cb416eb1b2b16e80c3e1a0f13ff0b62692235ff87c5c6be31edaf9"
+    },
+    {
+      "id": "werewolf-zh-b12-r1",
+      "cohort": "extension-20260917",
+      "sha256": "fc7dea882a92314eb29a0da45ed992636581f0fb0c5a2e29dc3928c97101a7e0"
+    },
+    {
+      "id": "werewolf-en-b16-r1",
+      "cohort": "extension-20260917",
+      "sha256": "ca59b26cda50d380a5b38f21236b104c3a5e33dde5b00c57645803dc1825fbb3"
+    },
+    {
+      "id": "werewolf-en-b7-r0",
+      "cohort": "extension-20260917",
+      "sha256": "6a4c5adfa9bcf80b98707d21eb9207e72ad08aa3dc76088fccd30f07a3473a91"
+    },
+    {
+      "id": "werewolf-zh-b15-r2",
+      "cohort": "extension-20260917",
+      "sha256": "8e9b178e15302e3a082ca83ccb399ce57b46b683ca7854f09801e5dca420f2d1"
+    },
+    {
+      "id": "werewolf-en-b13-r3",
+      "cohort": "extension-20260917",
+      "sha256": "3b494cf33bcb4ea572b8f99a1088f4730b5bb678abdae64acb40223ccc0668e1"
+    },
+    {
+      "id": "werewolf-zh-b14-r1",
+      "cohort": "extension-20260917",
+      "sha256": "0259113a9e427dc959f6c1e76f1ee397ac4c5ff3eedd6dda0a50ada74e400fdd"
+    },
+    {
+      "id": "werewolf-en-b3-r1",
+      "cohort": "extension-20260917",
+      "sha256": "1f61b273baea9125abf720437d92f59ad06aede3e49ba17b5d0a10ded390dfef"
+    },
+    {
+      "id": "werewolf-en-b6-r1",
+      "cohort": "extension-20260917",
+      "sha256": "3aef83e928069bca6200dd4d62af43b89bb820f5402cf1d74b17f41607af8be0"
+    },
+    {
+      "id": "werewolf-en-b20-r0",
+      "cohort": "extension-20260917",
+      "sha256": "e586ef5aed4261080383d81bfd1a556c385ca27b74d9573146a96f588e37d482"
+    },
+    {
+      "id": "werewolf-en-b20-r3",
+      "cohort": "extension-20260917",
+      "sha256": "c1ec57419d0ff4275cdc32b331cc6f15b31dbedd69c24595c8f00afd5f55b4a4"
+    },
+    {
+      "id": "werewolf-zh-b3-r3",
+      "cohort": "extension-20260917",
+      "sha256": "918ddd0ab7358ebde7ac7227504d0853934a347cd9c332efb6ffd28cabf01cd3"
+    },
+    {
+      "id": "werewolf-zh-b11-r3",
+      "cohort": "extension-20260917",
+      "sha256": "e124667eaec6444d9dafe5cbf93bdf31bb5155cec7b4f851b3e60c79f032c8ba"
+    },
+    {
+      "id": "werewolf-en-b9-r1",
+      "cohort": "extension-20260917",
+      "sha256": "e10b19dc2a80fcb0d7f09c53e25ca9a6eb2966253bed918606efabb7df722fa2"
+    },
+    {
+      "id": "werewolf-en-b4-r1",
+      "cohort": "extension-20260917",
+      "sha256": "d020da04e5a49d94e3a83389507569286c7ef3a74c4841892cc36f1c88335cf0"
+    },
+    {
+      "id": "werewolf-zh-b9-r2",
+      "cohort": "extension-20260917",
+      "sha256": "399260260da88b5e69f69c8b614de246721b72044cd2631c33d6ff18a88328b6"
+    },
+    {
+      "id": "werewolf-zh-b17-r0",
+      "cohort": "extension-20260917",
+      "sha256": "e98125dcdccaa9efd3cd8db47dfaf8e7612e85f32bce9f2f0e46440ece329bcd"
+    },
+    {
+      "id": "werewolf-en-b3-r3",
+      "cohort": "extension-20260917",
+      "sha256": "9f2fe4c86d280eec68c6a2f45e784f730bf8574142397fda9787af2f23233f4d"
+    },
+    {
+      "id": "werewolf-zh-b11-r2",
+      "cohort": "extension-20260917",
+      "sha256": "b203561dff8e41ba625dd1db58abb08691c5fe26bf4a41100e640ad519c23252"
+    },
+    {
+      "id": "werewolf-zh-b8-r2",
+      "cohort": "extension-20260917",
+      "sha256": "4773e258365bcf6cb870f93a958fa2b7e98f3f8bdd8735e8cedc0b7e086c6568"
+    },
+    {
+      "id": "werewolf-zh-b16-r1",
+      "cohort": "extension-20260917",
+      "sha256": "b55e302d14468c31efb1745c5a73c8a65594bd5c688e038512f493e6a7376799"
+    },
+    {
+      "id": "werewolf-zh-b10-r2",
+      "cohort": "extension-20260917",
+      "sha256": "a86004f17128e092941424efa93f5ec4ce53c9a24588e01952e90b246927ac9c"
+    },
+    {
+      "id": "werewolf-en-b18-r3",
+      "cohort": "extension-20260917",
+      "sha256": "35e4974e56f6a63882105cfc5f3eb8c8478d945032a05b6061455cebbb1f6536"
+    },
+    {
+      "id": "werewolf-en-b16-r3",
+      "cohort": "extension-20260917",
+      "sha256": "95142365d267684c6176d78a209a3c81762386d7aac4dde4c2f98d79e86aec99"
+    },
+    {
+      "id": "werewolf-zh-b16-r2",
+      "cohort": "extension-20260917",
+      "sha256": "23f82847c5cce43136b10554d8eb7f10b83d422c92b0291f9bb68abd63ccc528"
+    },
+    {
+      "id": "werewolf-en-b7-r2",
+      "cohort": "extension-20260917",
+      "sha256": "f7766470061a6c5ea5f87748a8da0355e775543054df471e83df125b27919f2b"
+    },
+    {
+      "id": "werewolf-en-b16-r0",
+      "cohort": "extension-20260917",
+      "sha256": "84e0e63199e7ec1daa9da99ac4d0a88c0a0681fb58df774a8397c4fa1b6886b7"
+    },
+    {
+      "id": "werewolf-en-b14-r1",
+      "cohort": "extension-20260917",
+      "sha256": "68576c5697c6f9c0ac9630a7d0b08eb254862f2d51b74bbeead224573e951847"
+    },
+    {
+      "id": "werewolf-en-b19-r3",
+      "cohort": "extension-20260917",
+      "sha256": "6b189f9870ccf948456094aef66e80831b08e8e219c7738796b8e872a41d8e2e"
+    },
+    {
+      "id": "werewolf-en-b16-r2",
+      "cohort": "extension-20260917",
+      "sha256": "e2f3cee89f8252775e33fbc8f04f928b9436301884572cf9f47706a840cd7325"
+    },
+    {
+      "id": "werewolf-zh-b4-r2",
+      "cohort": "extension-20260917",
+      "sha256": "e162d92b16e8592ff58613f7dfd1c9d3786d18561bd39338e1b956b65c71be7a"
+    },
+    {
+      "id": "werewolf-en-b5-r3",
+      "cohort": "extension-20260917",
+      "sha256": "74c92ab727caac69fe6ba93c53d6e5ffb30437799784051d35aa259001dc27a7"
+    },
+    {
+      "id": "werewolf-en-b10-r0",
+      "cohort": "extension-20260917",
+      "sha256": "5ebfc5bc62475642d097d6521f445fcd9984b4f4d607499aa8408402278d9ee0"
+    },
+    {
+      "id": "werewolf-zh-b4-r1",
+      "cohort": "extension-20260917",
+      "sha256": "edb6870fd10fa3f47f2e55b057020b7efa17a6303f6533c65060856f8bfb1db1"
+    },
+    {
+      "id": "werewolf-en-b20-r1",
+      "cohort": "extension-20260917",
+      "sha256": "baea79cdb5c799e4c9eb974e53c7bb3d8a0a108ad18cc805555dfcaa4b75e2e4"
+    },
+    {
+      "id": "werewolf-en-b20-r2",
+      "cohort": "extension-20260917",
+      "sha256": "881653da4218d75b83d205d240bd2cc30577e8304c475a9701732f9296800389"
+    },
+    {
+      "id": "werewolf-en-b19-r1",
+      "cohort": "extension-20260917",
+      "sha256": "5aa82f10ab9a0799321b07f0e0f25c3cce276dac98e2f9bee74c82eb87684462"
+    },
+    {
+      "id": "werewolf-en-b15-r3",
+      "cohort": "extension-20260917",
+      "sha256": "4201b41e9fd2427f1f672a21c8fcf33b0e0f8c189f16b977e4bf54de259b1fe0"
+    },
+    {
+      "id": "werewolf-zh-b12-r3",
+      "cohort": "extension-20260917",
+      "sha256": "c2e43a699a5ad66c0be0b9022bcdb444043776f96ff78a203fb513476d764213"
+    },
+    {
+      "id": "werewolf-en-b18-r0",
+      "cohort": "extension-20260917",
+      "sha256": "e55c3286481e9b653a2d4eede18b0056829336e488a8f14ba12fc5f3d6561e86"
+    },
+    {
+      "id": "werewolf-en-b6-r2",
+      "cohort": "extension-20260917",
+      "sha256": "2698732fc7ffc21d48c3bd9020e8369b18f817006e146e04ecef22d29c42eb17"
+    },
+    {
+      "id": "werewolf-en-b11-r2",
+      "cohort": "extension-20260917",
+      "sha256": "2ba971094a3981efa7a9ec6aeb3c6844573b7408e099e0a188e81a2f24313e8e"
+    },
+    {
+      "id": "werewolf-zh-b14-r2",
+      "cohort": "extension-20260917",
+      "sha256": "4470e408c5c57acdac04e0701d8fc525a06281fd21843741e30992dfcaa83616"
+    },
+    {
+      "id": "werewolf-zh-b20-r0",
+      "cohort": "extension-20260917",
+      "sha256": "b1e76cb5c9b239b95e42a5417392dff4120513acd6a2f68177c74300b43ec5c8"
+    },
+    {
+      "id": "werewolf-zh-b7-r1",
+      "cohort": "extension-20260917",
+      "sha256": "8a71ffae3e85cbba558aa8f2c45f76486f5972d41cf11ea608ef76dffe6588b1"
+    },
+    {
+      "id": "werewolf-zh-b10-r1",
+      "cohort": "extension-20260917",
+      "sha256": "d150dadd7300150f7e620fdd13b6bc5cdf4364964c2e154d2eaa3f86d7557d95"
+    },
+    {
+      "id": "werewolf-en-b14-r2",
+      "cohort": "extension-20260917",
+      "sha256": "851da3a2188b39c258c42f7abfb8e84a1a641770750c63c05967e07c6fdc7634"
+    },
+    {
+      "id": "werewolf-zh-b5-r2",
+      "cohort": "extension-20260917",
+      "sha256": "2b39302fa13ddf030eb5c41544c648fc574069127552d6855dd3b05b5d4117b1"
+    },
+    {
+      "id": "werewolf-zh-b18-r0",
+      "cohort": "extension-20260917",
+      "sha256": "881dffe1fa4b5790b8ea88a97392904c3614eefff45abcfa96d71a7c7fd029ea"
+    },
+    {
+      "id": "werewolf-en-b8-r3",
+      "cohort": "extension-20260917",
+      "sha256": "22795352387d65b3c6f14647298eb011f82ad5a9798450007ce63e4435487e33"
+    },
+    {
+      "id": "werewolf-zh-b9-r1",
+      "cohort": "extension-20260917",
+      "sha256": "d7d8e9b8f54bc8b3127f86cdd7be59e00bb24a96f446f34230792cdbca66f39c"
+    },
+    {
+      "id": "werewolf-en-b7-r3",
+      "cohort": "extension-20260917",
+      "sha256": "ce3d5b719374234f3334090cabdf592c40e151aa3b74f611110222e919ab69b5"
+    },
+    {
+      "id": "werewolf-zh-b8-r0",
+      "cohort": "extension-20260917",
+      "sha256": "9acb6c01c0745259846a5cbf2ff72d09ab9e5c1d33303e33d40ba1828e6f89a7"
+    },
+    {
+      "id": "werewolf-en-b12-r1",
+      "cohort": "extension-20260917",
+      "sha256": "57ba220e2ea3939d363e8339ca978cd7d9e7b9fd337c2c9f2da44f6a42614b14"
+    },
+    {
+      "id": "werewolf-zh-b18-r2",
+      "cohort": "extension-20260917",
+      "sha256": "beba4e6d1b1101192a92e0bd9853936812cc8ad03f4a9f6bc17952b6c3866f83"
+    },
+    {
+      "id": "werewolf-zh-b19-r1",
+      "cohort": "extension-20260917",
+      "sha256": "4f66f286e3b7c2157399d55943aa02ec31bd1de6dc667578b490b5ffb8505fbb"
+    },
+    {
+      "id": "werewolf-zh-b10-r0",
+      "cohort": "extension-20260917",
+      "sha256": "1732dcbd3c0d9ce49a17fcd511b457c60f692830488d7ce0b35497cf8dde86ac"
+    },
+    {
+      "id": "werewolf-en-b17-r3",
+      "cohort": "extension-20260917",
+      "sha256": "a48001df1b5b1055c993d1ba24fda68dc8f341f6449278138154fc01df938423"
+    },
+    {
+      "id": "werewolf-en-b4-r2",
+      "cohort": "extension-20260917",
+      "sha256": "44eb52e92ba1553fda6fa2734d1a32104900b704066bb2f7145aa9f8f81adf2d"
+    },
+    {
+      "id": "werewolf-en-b8-r1",
+      "cohort": "extension-20260917",
+      "sha256": "eedf7c253de955e5eb483b7216b9ed8746fca32a552ec8d7af57039c22bf41e1"
+    },
+    {
+      "id": "werewolf-en-b10-r2",
+      "cohort": "extension-20260917",
+      "sha256": "8b3c0c3cb48a9ee30b7717168f10e7536aa4a438cbceed1752c224f04839bcde"
+    },
+    {
+      "id": "werewolf-en-b12-r0",
+      "cohort": "extension-20260917",
+      "sha256": "c4d48373b42289379326795ed493c69c899ff8acc95212207f903959482f8998"
+    },
+    {
+      "id": "werewolf-zh-b6-r2",
+      "cohort": "extension-20260917",
+      "sha256": "9f99131d098ea82a50a2c8a233ba09dd9b92edc0f6041245850640c3a28ca2c4"
+    },
+    {
+      "id": "werewolf-en-b14-r0",
+      "cohort": "extension-20260917",
+      "sha256": "4470d0788c1ad41d6ea85288f2d03cf7195d852d2b0f35d7b216a14671a8cbfc"
+    },
+    {
+      "id": "werewolf-zh-b6-r3",
+      "cohort": "extension-20260917",
+      "sha256": "233486ab271210beb9a38a55c4d29c320f716c52ae64b66511e4e7f15162348a"
+    },
+    {
+      "id": "werewolf-zh-b8-r1",
+      "cohort": "extension-20260917",
+      "sha256": "c31d12015ba467cb9d35429fd597a4f6ed254eca1f1570a48ab0a048010e96fa"
+    },
+    {
+      "id": "werewolf-en-b6-r3",
+      "cohort": "extension-20260917",
+      "sha256": "ee5482354fa1763b73626067a67ec68e111deaab32bfa31176f47c8c7b81c434"
+    },
+    {
+      "id": "werewolf-en-b7-r1",
+      "cohort": "extension-20260917",
+      "sha256": "94324d6dc2916ad45de98f2d936ac3a86e3328f5aeb4f0bfb3aef3ac96b2da88"
+    },
+    {
+      "id": "werewolf-en-b11-r3",
+      "cohort": "extension-20260917",
+      "sha256": "530ed7ce85d2cf0e157a56cbbf5534ec7a9d5ab61deb620617b27077799b696f"
+    },
+    {
+      "id": "werewolf-en-b12-r3",
+      "cohort": "extension-20260917",
+      "sha256": "60dbf6a44f3ac97e4a9f54da82336e85038cd51cb9ca5ffecfa10f27f1a3e1f9"
+    },
+    {
+      "id": "werewolf-en-b5-r1",
+      "cohort": "extension-20260917",
+      "sha256": "6007bd62b572f7f2b62466d5831ac832fe58f6b7fb67b758c72cce620336ac50"
+    },
+    {
+      "id": "werewolf-en-b3-r0",
+      "cohort": "extension-20260917",
+      "sha256": "483fb97d4b19fb07f3f7388860b1a85abc31f76712e86fb190794cccf1268fb0"
+    },
+    {
+      "id": "werewolf-en-b10-r3",
+      "cohort": "extension-20260917",
+      "sha256": "936ab65807b514bb6a64b649f6179b2d6f1944eca0cdd3f992492d3eac390e38"
+    },
+    {
+      "id": "werewolf-en-b14-r3",
+      "cohort": "extension-20260917",
+      "sha256": "4c975fa40ea671c29785dc0fcac4378b2b684a776bb7dd537931fec777309fbb"
+    },
+    {
+      "id": "werewolf-zh-b3-r0",
+      "cohort": "extension-20260917",
+      "sha256": "22e8f7d576ec745688aebbf6b79f58b7112fcc42c51decc2cbdf99397b274a8d"
+    },
+    {
+      "id": "werewolf-en-b19-r2",
+      "cohort": "extension-20260917",
+      "sha256": "39f32037d248c0364ebc162da45dcf83b4d28ddb445c0526222468ec39218781"
+    },
+    {
+      "id": "werewolf-en-b15-r1",
+      "cohort": "extension-20260917",
+      "sha256": "434623f4bc4f570c4a1507f6d63aaeb38faebb5fd4e3244c17ccfe2825f4a4b5"
+    },
+    {
+      "id": "werewolf-en-b5-r0",
+      "cohort": "extension-20260917",
+      "sha256": "f537d250425354e5bb8ccdf9e58792ce36cdbf7ef6e7e6163325f87400cae589"
+    },
+    {
+      "id": "werewolf-zh-b9-r0",
+      "cohort": "extension-20260917",
+      "sha256": "ed7897229cc6ac76af997da2396bbfa76408ce0661d040c1a77f995b9b528ce1"
+    },
+    {
+      "id": "werewolf-zh-b15-r3",
+      "cohort": "extension-20260917",
+      "sha256": "d32784afc758334dfec8c861ae86b46560b11fb9b4dcb0de5cd3aa36bfdc6a97"
+    },
+    {
+      "id": "werewolf-en-b18-r1",
+      "cohort": "extension-20260917",
+      "sha256": "0c29af6e074b01024bb1f3d7d4e679b45618e54a562dd7be0bb8034f39b54be1"
+    },
+    {
+      "id": "werewolf-zh-b3-r1",
+      "cohort": "extension-20260917",
+      "sha256": "376d6ccc9ff489e5ee740e956cfdb33d449cf01fa3882f24e8bb0ce9fe6a87ef"
+    },
+    {
+      "id": "werewolf-zh-b16-r3",
+      "cohort": "extension-20260917",
+      "sha256": "c27295138b1cba5727c9b46bdda7ff476057795f8f6ab0521442d9219943a943"
+    },
+    {
+      "id": "werewolf-zh-b18-r1",
+      "cohort": "extension-20260917",
+      "sha256": "26f7ac4dc3d55317676300ad321f2b25c161f74e8f5c7ac4199f3ef546a099e1"
+    },
+    {
+      "id": "werewolf-en-b11-r0",
+      "cohort": "extension-20260917",
+      "sha256": "ed4dcc3a61cf1aae0e05df7ba224115b03f73f601232b1ecd6609afd8af2c9e1"
+    },
+    {
+      "id": "werewolf-zh-b5-r0",
+      "cohort": "extension-20260917",
+      "sha256": "50bc9bbca8902338f91815d2137cba481780421d54ef0642d03ad49fd26dc98a"
+    },
+    {
+      "id": "werewolf-en-b17-r1",
+      "cohort": "extension-20260917",
+      "sha256": "1ec9742081929ef455a81bdb70e3051caac42b3217b76c8ac7a14ee1628ebec1"
+    },
+    {
+      "id": "werewolf-zh-b17-r2",
+      "cohort": "extension-20260917",
+      "sha256": "d768f33321f6e2a0f7355d9d4bcf35123f303bba2ef89fcec6c5d93ade899787"
+    },
+    {
+      "id": "werewolf-zh-b12-r0",
+      "cohort": "extension-20260917",
+      "sha256": "4567329261c53ff6d02370fd00190c8c5031cde6f7fb3f79ea42082b566f2fd9"
+    },
+    {
+      "id": "werewolf-zh-b19-r2",
+      "cohort": "extension-20260917",
+      "sha256": "16458158f473f50ba0d1f3089fe096f71cb78ba885a74e57b98d5715e91c6a23"
+    },
+    {
+      "id": "werewolf-zh-b11-r0",
+      "cohort": "extension-20260917",
+      "sha256": "1140b4819d4540368ec383bdd9933dc609c7e96fa6ef408ec03aea56147e61c6"
+    },
+    {
+      "id": "werewolf-zh-b20-r2",
+      "cohort": "extension-20260917",
+      "sha256": "86d707785e5911e0b89e18086173d6644198bffaf900e134eb350bf09430038a"
+    },
+    {
+      "id": "werewolf-zh-b13-r2",
+      "cohort": "extension-20260917",
+      "sha256": "71990e1ae371a0c5ca2ca08b39d775078fee08254d0d04fa34aa88f531c0fe00"
+    },
+    {
+      "id": "werewolf-zh-b14-r3",
+      "cohort": "extension-20260917",
+      "sha256": "ff948d0d7d54c8385652b5e91ef9670150885327e6ac8b1a1cdde555dcd64092"
+    },
+    {
+      "id": "werewolf-zh-b7-r0",
+      "cohort": "extension-20260917",
+      "sha256": "fe62bbf242d08583a9a12b731d108274755299897c309bfbf7ba4c0635cefeb2"
+    },
+    {
+      "id": "werewolf-en-b13-r2",
+      "cohort": "extension-20260917",
+      "sha256": "af2f1b142a22595c758f7a2c0a0edf617ffb2b57b5ec76a7fab7f3e6c4d8d6a3"
+    },
+    {
+      "id": "werewolf-zh-b18-r3",
+      "cohort": "extension-20260917",
+      "sha256": "c370eed450a0fe3dfc1d9ef603c73955de09d413fbaab237a6d24366a234a608"
+    },
+    {
+      "id": "werewolf-zh-b17-r3",
+      "cohort": "extension-20260917",
+      "sha256": "618610a112eee568e73ebd814f1729cf53272c598665aa137809bbe35e35282d"
+    },
+    {
+      "id": "werewolf-zh-b20-r1",
+      "cohort": "extension-20260917",
+      "sha256": "bc55224260316608d446ef7b85e15ca5baeefb715fc30e2b55fa10d37445e288"
+    },
+    {
+      "id": "werewolf-en-b18-r2",
+      "cohort": "extension-20260917",
+      "sha256": "fc420e29a577a6bc096bd42151180e2c4123d3acbb96c63972d1de66e5a3b224"
+    },
+    {
+      "id": "werewolf-en-b4-r3",
+      "cohort": "extension-20260917",
+      "sha256": "d6dfd966ae685ee6c9244ebd1aca277ec6880a77e60b78473f09128cf37d14eb"
+    },
+    {
+      "id": "werewolf-zh-b16-r0",
+      "cohort": "extension-20260917",
+      "sha256": "890d600087d4f88aff796cb80a134838a07ecca261d3c72682c157c77ab78d21"
+    },
+    {
+      "id": "werewolf-en-b19-r0",
+      "cohort": "extension-20260917",
+      "sha256": "5d0d64fdfcd33a10bc57f432dab060cb57d8ae1f2a5bd08fb45a5a4ce8470a74"
+    },
+    {
+      "id": "werewolf-en-b8-r2",
+      "cohort": "extension-20260917",
+      "sha256": "8ebe3500bc3cba018e0cf7eb9b2abff6eb07c425d8634851f22bbc9f2aac8fda"
+    },
+    {
+      "id": "werewolf-en-b17-r0",
+      "cohort": "extension-20260917",
+      "sha256": "c85efb81610b94a6ac616a207b5247e24e78c2705501c85619af7f1c7150704f"
+    },
+    {
+      "id": "werewolf-zh-b7-r2",
+      "cohort": "extension-20260917",
+      "sha256": "971f6dd3a1be0e71a3c965c0084c3091bb06bfd8b11a82d655b8b3431a6a686b"
+    },
+    {
+      "id": "werewolf-zh-b9-r3",
+      "cohort": "extension-20260917",
+      "sha256": "2715b93c9391debda15d05d921f888d019bc7a2195d5054a4ed9b2a6c1ea0491"
+    },
+    {
+      "id": "werewolf-zh-b14-r0",
+      "cohort": "extension-20260917",
+      "sha256": "b45075fc680a85d6291f0c2ee8ad7db44a9aa9c1a3195e614ba4a4e36618ba4e"
+    },
+    {
+      "id": "werewolf-zh-b5-r3",
+      "cohort": "extension-20260917",
+      "sha256": "12a9b73f39b1591865ae82d832a1239642db93e92028bec81f674e3eace69399"
+    }
+  ],
+  "publishedFiles": [
+    {
+      "file": "results.json",
+      "sha256": "2a51a335b51260945fc1fc0a8178ca07b5c7dbf47b17d2b6c7178a08544f87a0"
+    },
+    {
+      "file": "games-history.json.gz",
+      "sha256": "667d9aad79c0ff5b60dd3b38fbc8bced48665dbe501861f2bd8f261422f9d576"
+    }
+  ]
+}

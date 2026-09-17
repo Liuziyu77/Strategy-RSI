@@ -1,0 +1,484 @@
+{
+  "gameType": "werewolf",
+  "complete": true,
+  "inputSha256": "2a51a335b51260945fc1fc0a8178ca07b5c7dbf47b17d2b6c7178a08544f87a0",
+  "scriptSha256": "039aa4abe7225f1b6b4c08eeb867203a5c2575c4e06628c7fb11f08272d2ddd2",
+  "method": {
+    "replicates": 20000,
+    "seed": 20260917,
+    "unit": "role-shuffle seed, including all rotations and languages",
+    "strata": {
+      "roles": 21
+    },
+    "interpretation": "Conditional on completed games; descriptive 95% percentile intervals, not corrected for selective failures or multiple comparisons."
+  },
+  "models": [
+    {
+      "model": "bailian/deepseek-v4-flash",
+      "participations": 312,
+      "distinctGames": 156,
+      "wins": 172,
+      "draws": 0,
+      "losses": 140,
+      "winRate": 0.5512820512820513,
+      "score": 0.5512820512820513,
+      "modelDecisions": 1794,
+      "speakingDecisions": 1531,
+      "speechRate": 0.8534002229654404,
+      "roles": {
+        "witch": {
+          "n": 39,
+          "wins": 26,
+          "draws": 0
+        },
+        "wolf": {
+          "n": 80,
+          "wins": 32,
+          "draws": 0
+        },
+        "hunter": {
+          "n": 40,
+          "wins": 24,
+          "draws": 0
+        },
+        "villager": {
+          "n": 115,
+          "wins": 67,
+          "draws": 0
+        },
+        "seer": {
+          "n": 38,
+          "wins": 23,
+          "draws": 0
+        }
+      },
+      "estimate": 0.5512820512820513,
+      "plannedParticipations": 336,
+      "missingParticipations": 24,
+      "ci95": [
+        0.4840764331210191,
+        0.6153846153846154
+      ],
+      "finiteBootstrapReplicates": 20000,
+      "missingOutcomeBounds": [
+        0.5119047619047619,
+        0.5833333333333334
+      ]
+    },
+    {
+      "model": "glm-5.2",
+      "participations": 312,
+      "distinctGames": 156,
+      "wins": 171,
+      "draws": 0,
+      "losses": 141,
+      "winRate": 0.5480769230769231,
+      "score": 0.5480769230769231,
+      "modelDecisions": 1757,
+      "speakingDecisions": 1597,
+      "speechRate": 0.9089356858281161,
+      "roles": {
+        "wolf": {
+          "n": 81,
+          "wins": 32,
+          "draws": 0
+        },
+        "villager": {
+          "n": 118,
+          "wins": 69,
+          "draws": 0
+        },
+        "seer": {
+          "n": 38,
+          "wins": 26,
+          "draws": 0
+        },
+        "hunter": {
+          "n": 38,
+          "wins": 19,
+          "draws": 0
+        },
+        "witch": {
+          "n": 37,
+          "wins": 25,
+          "draws": 0
+        }
+      },
+      "estimate": 0.5480769230769231,
+      "plannedParticipations": 336,
+      "missingParticipations": 24,
+      "ci95": [
+        0.4906832298136646,
+        0.6052631578947368
+      ],
+      "finiteBootstrapReplicates": 20000,
+      "missingOutcomeBounds": [
+        0.5089285714285714,
+        0.5803571428571429
+      ]
+    },
+    {
+      "model": "kimi-k3",
+      "participations": 312,
+      "distinctGames": 156,
+      "wins": 175,
+      "draws": 0,
+      "losses": 137,
+      "winRate": 0.5608974358974359,
+      "score": 0.5608974358974359,
+      "modelDecisions": 1791,
+      "speakingDecisions": 1607,
+      "speechRate": 0.8972640982691233,
+      "roles": {
+        "hunter": {
+          "n": 40,
+          "wins": 29,
+          "draws": 0
+        },
+        "villager": {
+          "n": 117,
+          "wins": 67,
+          "draws": 0
+        },
+        "wolf": {
+          "n": 75,
+          "wins": 31,
+          "draws": 0
+        },
+        "seer": {
+          "n": 41,
+          "wins": 26,
+          "draws": 0
+        },
+        "witch": {
+          "n": 39,
+          "wins": 22,
+          "draws": 0
+        }
+      },
+      "estimate": 0.5608974358974359,
+      "plannedParticipations": 336,
+      "missingParticipations": 24,
+      "ci95": [
+        0.4837662337662338,
+        0.6401273885350318
+      ],
+      "finiteBootstrapReplicates": 20000,
+      "missingOutcomeBounds": [
+        0.5208333333333334,
+        0.5922619047619048
+      ]
+    },
+    {
+      "model": "qwen3.8-max-0902",
+      "participations": 312,
+      "distinctGames": 156,
+      "wins": 170,
+      "draws": 0,
+      "losses": 142,
+      "winRate": 0.5448717948717948,
+      "score": 0.5448717948717948,
+      "modelDecisions": 1847,
+      "speakingDecisions": 1643,
+      "speechRate": 0.889550622631294,
+      "roles": {
+        "villager": {
+          "n": 118,
+          "wins": 79,
+          "draws": 0
+        },
+        "seer": {
+          "n": 39,
+          "wins": 19,
+          "draws": 0
+        },
+        "witch": {
+          "n": 41,
+          "wins": 21,
+          "draws": 0
+        },
+        "wolf": {
+          "n": 76,
+          "wins": 29,
+          "draws": 0
+        },
+        "hunter": {
+          "n": 38,
+          "wins": 22,
+          "draws": 0
+        }
+      },
+      "estimate": 0.5448717948717948,
+      "plannedParticipations": 336,
+      "missingParticipations": 24,
+      "ci95": [
+        0.5032051282051282,
+        0.5870967741935483
+      ],
+      "finiteBootstrapReplicates": 20000,
+      "missingOutcomeBounds": [
+        0.5059523809523809,
+        0.5773809523809523
+      ]
+    }
+  ],
+  "matrix": {
+    "columns": [
+      "wolf",
+      "seer",
+      "witch",
+      "hunter",
+      "villager"
+    ],
+    "cells": [
+      [
+        {
+          "n": 80,
+          "wins": 32,
+          "draws": 0,
+          "score": 0.4
+        },
+        {
+          "n": 38,
+          "wins": 23,
+          "draws": 0,
+          "score": 0.6052631578947368
+        },
+        {
+          "n": 39,
+          "wins": 26,
+          "draws": 0,
+          "score": 0.6666666666666666
+        },
+        {
+          "n": 40,
+          "wins": 24,
+          "draws": 0,
+          "score": 0.6
+        },
+        {
+          "n": 115,
+          "wins": 67,
+          "draws": 0,
+          "score": 0.5826086956521739
+        }
+      ],
+      [
+        {
+          "n": 81,
+          "wins": 32,
+          "draws": 0,
+          "score": 0.3950617283950617
+        },
+        {
+          "n": 38,
+          "wins": 26,
+          "draws": 0,
+          "score": 0.6842105263157895
+        },
+        {
+          "n": 37,
+          "wins": 25,
+          "draws": 0,
+          "score": 0.6756756756756757
+        },
+        {
+          "n": 38,
+          "wins": 19,
+          "draws": 0,
+          "score": 0.5
+        },
+        {
+          "n": 118,
+          "wins": 69,
+          "draws": 0,
+          "score": 0.5847457627118644
+        }
+      ],
+      [
+        {
+          "n": 75,
+          "wins": 31,
+          "draws": 0,
+          "score": 0.41333333333333333
+        },
+        {
+          "n": 41,
+          "wins": 26,
+          "draws": 0,
+          "score": 0.6341463414634146
+        },
+        {
+          "n": 39,
+          "wins": 22,
+          "draws": 0,
+          "score": 0.5641025641025641
+        },
+        {
+          "n": 40,
+          "wins": 29,
+          "draws": 0,
+          "score": 0.725
+        },
+        {
+          "n": 117,
+          "wins": 67,
+          "draws": 0,
+          "score": 0.5726495726495726
+        }
+      ],
+      [
+        {
+          "n": 76,
+          "wins": 29,
+          "draws": 0,
+          "score": 0.3815789473684211
+        },
+        {
+          "n": 39,
+          "wins": 19,
+          "draws": 0,
+          "score": 0.48717948717948717
+        },
+        {
+          "n": 41,
+          "wins": 21,
+          "draws": 0,
+          "score": 0.5121951219512195
+        },
+        {
+          "n": 38,
+          "wins": 22,
+          "draws": 0,
+          "score": 0.5789473684210527
+        },
+        {
+          "n": 118,
+          "wins": 79,
+          "draws": 0,
+          "score": 0.6694915254237288
+        }
+      ]
+    ]
+  },
+  "byCohort": [
+    {
+      "cohort": "initial-20260916",
+      "models": [
+        {
+          "model": "bailian/deepseek-v4-flash",
+          "n": 42,
+          "wins": 21,
+          "draws": 0,
+          "losses": 21,
+          "score": 0.5,
+          "estimate": 0.5
+        },
+        {
+          "model": "glm-5.2",
+          "n": 42,
+          "wins": 21,
+          "draws": 0,
+          "losses": 21,
+          "score": 0.5,
+          "estimate": 0.5
+        },
+        {
+          "model": "kimi-k3",
+          "n": 42,
+          "wins": 22,
+          "draws": 0,
+          "losses": 20,
+          "score": 0.5238095238095238,
+          "estimate": 0.5238095238095238
+        },
+        {
+          "model": "qwen3.8-max-0902",
+          "n": 42,
+          "wins": 22,
+          "draws": 0,
+          "losses": 20,
+          "score": 0.5238095238095238,
+          "estimate": 0.5238095238095238
+        }
+      ]
+    },
+    {
+      "cohort": "extension-20260917",
+      "models": [
+        {
+          "model": "bailian/deepseek-v4-flash",
+          "n": 270,
+          "wins": 151,
+          "draws": 0,
+          "losses": 119,
+          "score": 0.5592592592592592,
+          "estimate": 0.5592592592592592
+        },
+        {
+          "model": "glm-5.2",
+          "n": 270,
+          "wins": 150,
+          "draws": 0,
+          "losses": 120,
+          "score": 0.5555555555555556,
+          "estimate": 0.5555555555555556
+        },
+        {
+          "model": "kimi-k3",
+          "n": 270,
+          "wins": 153,
+          "draws": 0,
+          "losses": 117,
+          "score": 0.5666666666666667,
+          "estimate": 0.5666666666666667
+        },
+        {
+          "model": "qwen3.8-max-0902",
+          "n": 270,
+          "wins": 148,
+          "draws": 0,
+          "losses": 122,
+          "score": 0.5481481481481482,
+          "estimate": 0.5481481481481482
+        }
+      ]
+    }
+  ],
+  "duration": {
+    "finished": {
+      "games": 156,
+      "decisions": {
+        "p05": 35.5,
+        "q1": 39.0,
+        "median": 44.0,
+        "q3": 51.0,
+        "p95": 62.25
+      },
+      "durationMs": {
+        "p05": 723699.5,
+        "q1": 986613.75,
+        "median": 1315746.5,
+        "q3": 1634490.75,
+        "p95": 2197414.75
+      }
+    },
+    "error": {
+      "games": 12,
+      "decisions": {
+        "p05": 25.65,
+        "q1": 37.75,
+        "median": 41.0,
+        "q3": 44.25,
+        "p95": 50.699999999999996
+      },
+      "durationMs": {
+        "p05": 615492.7,
+        "q1": 1185298.25,
+        "median": 1391497.0,
+        "q3": 1674818.0,
+        "p95": 2041065.2999999998
+      }
+    }
+  }
+}

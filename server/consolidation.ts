@@ -28,11 +28,19 @@ function failureMessage(error: unknown, timeout: number) {
     return `模型本批响应超过 ${timeout / 1000} 秒，归纳请求已超时`;
   return safeError(error);
 }
+// Compatible models may express a section as a list of lessons. Keep only text,
+// preserving order and enforcing the same limits after normalization.
+const summaryText = (max: number) =>
+  z
+    .union([z.string(), z.array(z.string())])
+    .transform((value) => (Array.isArray(value) ? value.join('\n') : value))
+    .pipe(z.string().trim().max(max))
+    .default('');
 const SummarySchema = z
   .object({
-    immediate: z.string().trim().max(3500).default(''),
-    round: z.string().trim().max(3500).default(''),
-    shared: z.string().trim().max(3000).default(''),
+    immediate: summaryText(3500),
+    round: summaryText(3500),
+    shared: summaryText(3000),
   })
   .superRefine((s, ctx) => {
     const length = s.immediate.length + s.round.length + s.shared.length;
@@ -198,7 +206,14 @@ export class Consolidator {
               const started = Date.now();
               let output;
               try {
-                output = await callModel(provider, job.model, messages, timeout, signal);
+                output = await callModel(
+                  provider,
+                  job.model,
+                  messages,
+                  timeout,
+                  signal,
+                  this.store.match(job.matchId).config.modelOutputLimit ?? 4096,
+                );
                 summary = SummarySchema.parse(output.content);
                 calls.push({
                   stage,

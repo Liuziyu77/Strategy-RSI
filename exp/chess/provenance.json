@@ -1,0 +1,859 @@
+{
+  "generatedAt": "2026-09-17T06:40:12.617Z",
+  "planSha256": "8e276355e418f1edc91c9d16e07b0ea8225d679ca77fa0bc1d53a520b783c64b",
+  "sourceSnapshotSha256": "20dc5f0eacb17df9fa90482b8e04f9e566f199d048fa6dfd8d0693378ba4f55b",
+  "exportScriptSha256": "2f02c1752500cbd91846146d6614d3ac9de12a7b0ce12df91c903aacf2c4b970",
+  "amendmentsSha256": "f2d1bbf75f59a69f117f43c0982c76cb84c95ccf666832fa7adc759cfc9b7f43",
+  "rawFiles": [
+    {
+      "id": "chess-en-01-m0",
+      "cohort": "initial-20260916",
+      "sha256": "4ab1cca7763ee7c4707a8776f858518e97694f0b67def2abf2eb7491405ec6d6"
+    },
+    {
+      "id": "chess-zh-03-m0",
+      "cohort": "initial-20260916",
+      "sha256": "ed19a2e3c5b0ae6d34963aeacdcb529de7d9a1138559303681431adaeb768009"
+    },
+    {
+      "id": "chess-en-13-m0",
+      "cohort": "initial-20260916",
+      "sha256": "4ee4577fd54e5326b7b6da02984ee321ba5cda64f3dc6aeccfb9883a26ae8e45"
+    },
+    {
+      "id": "chess-en-12-m0",
+      "cohort": "initial-20260916",
+      "sha256": "1a4190b0308bf2710bc98de657f9cd9958ea559317a79363f57211fc562f5987"
+    },
+    {
+      "id": "chess-zh-01-m0",
+      "cohort": "initial-20260916",
+      "sha256": "c68ebdc042982d7d42f39dcb604015225d3d3b9d6b7f2f80b06d31986573ac5f"
+    },
+    {
+      "id": "chess-en-02-m0",
+      "cohort": "initial-20260916",
+      "sha256": "d4b72185cb3981cd49db3629c50b863e9045916fce77bac364ad4f8fbcd5f7f9"
+    },
+    {
+      "id": "chess-zh-02-m1",
+      "cohort": "initial-20260916",
+      "sha256": "ebdfb15f924d6f24f4840029f65fc181551a7266b670d6d790a76483cef2686c"
+    },
+    {
+      "id": "chess-zh-13-m0",
+      "cohort": "initial-20260916",
+      "sha256": "0a7d14b5fbace9d7700e749b6c1b9c88cd877e5a178bf99d4c95507909012773"
+    },
+    {
+      "id": "chess-zh-23-m1",
+      "cohort": "initial-20260916",
+      "sha256": "5b58e31389cb89545d5c4a7b51c6568853569d2838a8a2ad55df88d6b6d3527b"
+    },
+    {
+      "id": "chess-en-23-m0",
+      "cohort": "initial-20260916",
+      "sha256": "a6fea1528493916b2a826f988d9e54c03ee364265d970bc8af3041aaf275996f"
+    },
+    {
+      "id": "chess-zh-23-m0",
+      "cohort": "initial-20260916",
+      "sha256": "fe5f18eaccc00dfa223d3666578a35498f7188bc0e13549a2f11b9ecfa264093"
+    },
+    {
+      "id": "chess-zh-12-m1",
+      "cohort": "initial-20260916",
+      "sha256": "a43e663243cc136e74ef2feb8655c6a7049aa2197f34173947c417b066cd4072"
+    },
+    {
+      "id": "chess-en-13-m1",
+      "cohort": "initial-20260916",
+      "sha256": "257db32ea0d4f334e7e64845fee2f6eded0ab6256069c67905a32b1d0d10d9c3"
+    },
+    {
+      "id": "chess-en-03-m1",
+      "cohort": "initial-20260916",
+      "sha256": "d25183e186b2666bfd6a7424da87d11c865929526cc98f717cff85b06b56fee9"
+    },
+    {
+      "id": "chess-zh-02-m0",
+      "cohort": "initial-20260916",
+      "sha256": "d0e7aab862e3817d1ddfa7a40f33205fc6215deb8086ab6f122bfc5dc4ddddaa"
+    },
+    {
+      "id": "chess-en-03-m0",
+      "cohort": "initial-20260916",
+      "sha256": "8806f4769be266eaa04638be7ea1ed7b34669f5fd591d4a7c4c39acdf4cec0c6"
+    },
+    {
+      "id": "chess-zh-01-m1",
+      "cohort": "initial-20260916",
+      "sha256": "24b1ba8fcb55c03c9eed3adc15fb3a04ca4b162c8e648d50b5fda60a9e554a26"
+    },
+    {
+      "id": "chess-en-01-m1",
+      "cohort": "initial-20260916",
+      "sha256": "4038a38b0d02bf2e0c95b6daa61e9a2e4ca58b420d3e0ec822a8b9c63d51e47d"
+    },
+    {
+      "id": "chess-en-12-m1",
+      "cohort": "initial-20260916",
+      "sha256": "a179f04393bba914731f888b3abcc8a1c63fadeeb76128a1616eac1be67fa75c"
+    },
+    {
+      "id": "chess-zh-12-m0",
+      "cohort": "initial-20260916",
+      "sha256": "f5bb603a90cfbc8824e1b4f30d5e1d2b71fceaaf5ccdad8b20842977de622fe9"
+    },
+    {
+      "id": "chess-en-02-m1",
+      "cohort": "initial-20260916",
+      "sha256": "492b8caab888249c0239bd12edbaf7de7809cb03267274e75f53c8e752b4db37"
+    },
+    {
+      "id": "chess-zh-13-m1",
+      "cohort": "initial-20260916",
+      "sha256": "f81dab3d4f4c80dd737a880b1b5938e056486ef3c443b6ac88ec2d1d73dacece"
+    },
+    {
+      "id": "chess-zh-03-m1",
+      "cohort": "initial-20260916",
+      "sha256": "d8fb9db69e0b551f92891222be239797144d8bc5e2099e98245840f68ece012a"
+    },
+    {
+      "id": "chess-en-23-m1",
+      "cohort": "initial-20260916",
+      "sha256": "8f586faca45ba31c77536339f53e4e070ee640a34f46ccb682bbd4716410c9b0"
+    },
+    {
+      "id": "chess-zh-23-b3-m0",
+      "cohort": "extension-20260917",
+      "sha256": "ea15521ba0438df07b756f2efe701a64ef538dfaae1db1e53076cde7f147f6d9"
+    },
+    {
+      "id": "chess-en-23-b1-m1",
+      "cohort": "extension-20260917",
+      "sha256": "914e6a18cc0cd81115427d459aacac8c1d3a2b3f34c090373906476777ab8497"
+    },
+    {
+      "id": "chess-en-03-b4-m0",
+      "cohort": "extension-20260917",
+      "sha256": "ab06822166367aa3c7ff803bd8e80faab6f90d6f0766d327ca08996a4c972b60"
+    },
+    {
+      "id": "chess-zh-01-b5-m1",
+      "cohort": "extension-20260917",
+      "sha256": "64950c30c4ea0cb1e1e71e2c91aaf1680101d4f9d629ba0d440ae29da5488db5"
+    },
+    {
+      "id": "chess-en-03-b1-m0",
+      "cohort": "extension-20260917",
+      "sha256": "3bc8e8c40cf9c4fbfc8f6edf6ea39481ce0e28fba7ed19bd370d8fec9069f4e6"
+    },
+    {
+      "id": "chess-zh-12-b6-m1",
+      "cohort": "extension-20260917",
+      "sha256": "936f133e0f391d8ade158c661e35816b32be2615b862761b5430ab325f7fb94d"
+    },
+    {
+      "id": "chess-en-03-b2-m1",
+      "cohort": "extension-20260917",
+      "sha256": "b960492d852c965d458c4eb44e6563b2b7b95c5823a75cb7122e29375ebd2f38"
+    },
+    {
+      "id": "chess-en-01-b2-m1",
+      "cohort": "extension-20260917",
+      "sha256": "2ea8471157abd608040875acdda53115d20de1a714ef63d53c6f92b521781182"
+    },
+    {
+      "id": "chess-en-01-b1-m1",
+      "cohort": "extension-20260917",
+      "sha256": "0042696e68396005d999630685a928add5961d65adc7534b7f3520af60226017"
+    },
+    {
+      "id": "chess-zh-02-b1-m1",
+      "cohort": "extension-20260917",
+      "sha256": "f8aceb43183b55dc3e1fb3e1ac4cac85c1af6d2e19c214f06891707dcfcd84be"
+    },
+    {
+      "id": "chess-zh-12-b4-m1",
+      "cohort": "extension-20260917",
+      "sha256": "cb097e26d21285daafb33dcf1277c75f7f730389ad8a48b11dc5cf76d24b640a"
+    },
+    {
+      "id": "chess-en-01-b6-m0",
+      "cohort": "extension-20260917",
+      "sha256": "2b03512e87b9455cd3b80399e3a3d0280e9fcf19392937ad0ed8c40020ae02a7"
+    },
+    {
+      "id": "chess-zh-23-b5-m0",
+      "cohort": "extension-20260917",
+      "sha256": "399fb0a48f9edd7eb2075dc3401e46be2a927d0250f3260510e6d92e23bab4d8"
+    },
+    {
+      "id": "chess-zh-02-b4-m1",
+      "cohort": "extension-20260917",
+      "sha256": "94f33e73df2ec9690d7567c3f8e33fc519e8ad42046dfdd679015ec386aaaa36"
+    },
+    {
+      "id": "chess-en-23-b5-m0",
+      "cohort": "extension-20260917",
+      "sha256": "fad9237e7eee4d46d6c1a9b900b5407cde980060a05f3ba36f39001b8819ddcf"
+    },
+    {
+      "id": "chess-en-23-b2-m0",
+      "cohort": "extension-20260917",
+      "sha256": "d2d180d65c24a0270cf9fec67c3098ee0f031effd341f8776c4d1b1daa90de74"
+    },
+    {
+      "id": "chess-en-02-b5-m0",
+      "cohort": "extension-20260917",
+      "sha256": "1d2ec6e7662f8ae2ded8ed204756b5d4fbf0f29d3c0088eaed5bfaf3f475142c"
+    },
+    {
+      "id": "chess-zh-02-b5-m1",
+      "cohort": "extension-20260917",
+      "sha256": "41e5ff237f3a12e18018ba41a916185506545c9e87388c304c4b7cb6f6613b04"
+    },
+    {
+      "id": "chess-en-02-b1-m1",
+      "cohort": "extension-20260917",
+      "sha256": "04b0090e7c2428d9cd00b46a51b08aa4b8188aecc05dc02e4f5c6319ce6b60cd"
+    },
+    {
+      "id": "chess-en-12-b2-m0",
+      "cohort": "extension-20260917",
+      "sha256": "5cd50963dd6cdb6d0ec5d900b96999c76c9f9e0631aa588a468862a2c2f55aaf"
+    },
+    {
+      "id": "chess-en-12-b1-m0",
+      "cohort": "extension-20260917",
+      "sha256": "cb6d0e30d42f54d46bed4ba2c92f961c07f14cbbca3c95bbc203769a007bd7b8"
+    },
+    {
+      "id": "chess-en-03-b2-m0",
+      "cohort": "extension-20260917",
+      "sha256": "659bba7924557013c870247a0f17d9cbf18c4ef9f8e9051f83592f56423c562d"
+    },
+    {
+      "id": "chess-zh-13-b2-m1",
+      "cohort": "extension-20260917",
+      "sha256": "55a72109422c723f4d01a5122a281b0f2a541f5dea0b64df000b85dfc3da6c3e"
+    },
+    {
+      "id": "chess-zh-01-b2-m1",
+      "cohort": "extension-20260917",
+      "sha256": "794a333c5c41ad20202c3eeeefa1a57bb2d3c77edc033d9d756adbf2598e2985"
+    },
+    {
+      "id": "chess-en-01-b3-m1",
+      "cohort": "extension-20260917",
+      "sha256": "7088d50dbdbacafbebb3a81baed082172dea2bde026fb85471164b1ec0c47dcd"
+    },
+    {
+      "id": "chess-zh-03-b6-m1",
+      "cohort": "extension-20260917",
+      "sha256": "f6365bdb5ecd040d99a139c2bb1bc9b64e1f5053ca20ec67c4939db1aae20d12"
+    },
+    {
+      "id": "chess-en-13-b3-m0",
+      "cohort": "extension-20260917",
+      "sha256": "bfcb6aade5dcdc6b57d42701537063b54b6038668c7a2bcc5452e89800a1b9e0"
+    },
+    {
+      "id": "chess-en-02-b1-m0",
+      "cohort": "extension-20260917",
+      "sha256": "bfd44cb8abb201b86eda948b9d28ee3381ed6e322897e20bc0ec4242f7b59579"
+    },
+    {
+      "id": "chess-zh-03-b2-m1",
+      "cohort": "extension-20260917",
+      "sha256": "9fe3c2f59e7c87686ae8306c2f35aacce0befc0592026f57a2a08545bd880fe9"
+    },
+    {
+      "id": "chess-en-12-b2-m1",
+      "cohort": "extension-20260917",
+      "sha256": "32dc6ec8ddd85e2c4866ee140ffcdabd84bfcfd22837327cdf0e8fd9d57ee203"
+    },
+    {
+      "id": "chess-zh-02-b6-m1",
+      "cohort": "extension-20260917",
+      "sha256": "ad9274741ddb131434208deb92cde48367605548c97a7a4be8c85cc7449758a1"
+    },
+    {
+      "id": "chess-zh-12-b1-m1",
+      "cohort": "extension-20260917",
+      "sha256": "04f09de74f6cabf5c77691639a9e3e90e2e69a839aa78a03fa659bc046af1e07"
+    },
+    {
+      "id": "chess-zh-03-b1-m1",
+      "cohort": "extension-20260917",
+      "sha256": "cc04f5da262993677b4fdd05738781e434853efb96cd16ecf11a7e8a61d5700e"
+    },
+    {
+      "id": "chess-zh-23-b1-m1",
+      "cohort": "extension-20260917",
+      "sha256": "1ee15cb507f5b836848ddc444a2a2eef05d2f6c188f13b103ee8ef16ffb458d3"
+    },
+    {
+      "id": "chess-en-02-b3-m0",
+      "cohort": "extension-20260917",
+      "sha256": "67b9b18b09b0d091cec4d051bd2df81d1ada8e87e33ba47ecb47e3d73991e6a7"
+    },
+    {
+      "id": "chess-en-13-b2-m0",
+      "cohort": "extension-20260917",
+      "sha256": "5ae80c287ddd55d0b336b0ddaa56e16401d588cb9ed45bb1941e8190c1fc1914"
+    },
+    {
+      "id": "chess-zh-13-b5-m0",
+      "cohort": "extension-20260917",
+      "sha256": "69d3ddbe84043ca476c163412d8ee8bf80bf551d265d8448bed828e4d5fcda90"
+    },
+    {
+      "id": "chess-en-03-b4-m1",
+      "cohort": "extension-20260917",
+      "sha256": "eb0f85e24e9742d1523f602ed8a7ec55682a6a6bab499ac3a1a5787726123e21"
+    },
+    {
+      "id": "chess-zh-13-b3-m1",
+      "cohort": "extension-20260917",
+      "sha256": "c59b7a921af6b71df4a7eea6b0928d73b1c9f0068b99c827bff5f821204dcbbf"
+    },
+    {
+      "id": "chess-zh-03-b4-m1",
+      "cohort": "extension-20260917",
+      "sha256": "ab317b432eebb61b9477c25ea9e1269426ac5bad2a5fcb47a7cc944ebf7c91f6"
+    },
+    {
+      "id": "chess-en-13-b1-m0",
+      "cohort": "extension-20260917",
+      "sha256": "12b3d1a1b69ce5aed89b72555a6b3094c262029fad1c6d3c715d3097643db5dd"
+    },
+    {
+      "id": "chess-en-02-b4-m1",
+      "cohort": "extension-20260917",
+      "sha256": "b4a99ce01a95ea3e290ed2c8232c8a189d9a976268baade50577fbd66058ec59"
+    },
+    {
+      "id": "chess-zh-01-b3-m0",
+      "cohort": "extension-20260917",
+      "sha256": "05d4a87f0ee3f777d30d3a3de824780f98f88f14b1ed6b1c8937c5cb56e0c770"
+    },
+    {
+      "id": "chess-zh-13-b1-m1",
+      "cohort": "extension-20260917",
+      "sha256": "67728398d9f4f621b1eee61f2f77aafef2d6cc60093e8b5ebb070224a5793da9"
+    },
+    {
+      "id": "chess-zh-12-b2-m1",
+      "cohort": "extension-20260917",
+      "sha256": "e35c7772aba65da59c88e7dadc8ee6ab876b081bc0d609e34cba62b21b991bab"
+    },
+    {
+      "id": "chess-zh-23-b6-m1",
+      "cohort": "extension-20260917",
+      "sha256": "d6b2477e3cbc4f4f9eba489af8973d47608470e869bce4ea23c3903f5db408dc"
+    },
+    {
+      "id": "chess-en-03-b6-m1",
+      "cohort": "extension-20260917",
+      "sha256": "b06f2c455982b2c0c021df85d6b3ecda10afe30acdf315c155d93e42815dad4a"
+    },
+    {
+      "id": "chess-en-13-b2-m1",
+      "cohort": "extension-20260917",
+      "sha256": "f6fbc35ed5f548bfc8d4da87f04b9e2284a462e937048f443554f2c5a0836c1f"
+    },
+    {
+      "id": "chess-en-02-b6-m0",
+      "cohort": "extension-20260917",
+      "sha256": "2a462dee3568f40df99f6e49887e63dfb5d25d4d5dc66715f3c8bfd390d0d3a1"
+    },
+    {
+      "id": "chess-zh-12-b3-m1",
+      "cohort": "extension-20260917",
+      "sha256": "81c17abb510046e9331e41c2109f31f7a955a4308d2655fd34af6041c30636ad"
+    },
+    {
+      "id": "chess-en-03-b3-m0",
+      "cohort": "extension-20260917",
+      "sha256": "a38f323b4366121eb16edac6ca3250576302d356c146bce3232e955c30d741ee"
+    },
+    {
+      "id": "chess-en-23-b1-m0",
+      "cohort": "extension-20260917",
+      "sha256": "5dfaf564a1738c312bce220201d50dccd5e7def41551655d8e6d60ae0160050c"
+    },
+    {
+      "id": "chess-en-23-b4-m0",
+      "cohort": "extension-20260917",
+      "sha256": "1132ff0c6fbd2123c6839e91a9fce3be1cd84c26bb6157d7a6e76251182ab0db"
+    },
+    {
+      "id": "chess-zh-01-b4-m0",
+      "cohort": "extension-20260917",
+      "sha256": "02d4392643ef6d819bb9a5ac5fbd5d34748c8625be46b6d9b6640b38efe0ada5"
+    },
+    {
+      "id": "chess-en-12-b1-m1",
+      "cohort": "extension-20260917",
+      "sha256": "5ebcd968ad53f90db652abad95f65ba95b2b687a1ed8f915d371aaf4f2df77f9"
+    },
+    {
+      "id": "chess-en-01-b4-m0",
+      "cohort": "extension-20260917",
+      "sha256": "9be94bd032425dd90c1685f25ad57d24a806754f920ee015c1b24c42f03b082c"
+    },
+    {
+      "id": "chess-zh-13-b4-m0",
+      "cohort": "extension-20260917",
+      "sha256": "d2b3e1c2ea510309ecc594acc5a20c397a9d25c492e71ce80abf7946b513488e"
+    },
+    {
+      "id": "chess-en-13-b6-m0",
+      "cohort": "extension-20260917",
+      "sha256": "33610f23d8c558c113754e84b5154d7e0ca8ba2e1070a7662d77edee28fb170a"
+    },
+    {
+      "id": "chess-en-12-b6-m1",
+      "cohort": "extension-20260917",
+      "sha256": "0f18c608de8a58ddff9497049609e36c0925d8ceef9d981c5f63125d7adb97e3"
+    },
+    {
+      "id": "chess-zh-02-b3-m1",
+      "cohort": "extension-20260917",
+      "sha256": "97834756184797edfeef98926694aa2452ba3456bb7b70e267d883ed9dbaaf8a"
+    },
+    {
+      "id": "chess-en-13-b3-m1",
+      "cohort": "extension-20260917",
+      "sha256": "8a9d624c917585ff3b7b070ba283c4054113e97666bc34fe1063d59de968fd38"
+    },
+    {
+      "id": "chess-zh-03-b5-m1",
+      "cohort": "extension-20260917",
+      "sha256": "4cc6afce48b96a23e76f98d0cc15376c2cb292f2473f9db29095f53607b3694f"
+    },
+    {
+      "id": "chess-zh-13-b5-m1",
+      "cohort": "extension-20260917",
+      "sha256": "d797e1f7018c7fca75bcc41593ea3d6de8e646939bc7133f1576806b294b2770"
+    },
+    {
+      "id": "chess-en-12-b3-m0",
+      "cohort": "extension-20260917",
+      "sha256": "f8ce31706b2346981d4e750b9d8cb0b7ee84ec3eba4743a6f10e1e892090dbdb"
+    },
+    {
+      "id": "chess-zh-01-b6-m1",
+      "cohort": "extension-20260917",
+      "sha256": "bab7cad4667530782678a6a0b2d78c3d0548afd6c383924a28ed278c6ffce157"
+    },
+    {
+      "id": "chess-en-13-b5-m0",
+      "cohort": "extension-20260917",
+      "sha256": "8d5fe285ae2ab4b7fd9614ffd68f600489c0e4a7d2d155041b1fcd867bf08233"
+    },
+    {
+      "id": "chess-en-23-b3-m1",
+      "cohort": "extension-20260917",
+      "sha256": "d7eba57b08b12c2e325686ab1f0b272455baab43f9d8888105a7fb1908d54a41"
+    },
+    {
+      "id": "chess-en-13-b5-m1",
+      "cohort": "extension-20260917",
+      "sha256": "8f789da58af68e1132818a5434f2af3fca1ec7797d205e19babe1363d54d6027"
+    },
+    {
+      "id": "chess-zh-02-b1-m0",
+      "cohort": "extension-20260917",
+      "sha256": "2c5723ee89f95ca8f1175a9c0a616cf6fdc230c484e82e6d417f1183780fb202"
+    },
+    {
+      "id": "chess-en-12-b5-m0",
+      "cohort": "extension-20260917",
+      "sha256": "d97a7e84e6c0d3f6b59b82df91786857816c64baa800c43d63dcf86911968cb4"
+    },
+    {
+      "id": "chess-zh-03-b3-m1",
+      "cohort": "extension-20260917",
+      "sha256": "fc13dd084c0f30e6436f6cbaf63bef1749fa589aa81642197f4a27de9791d215"
+    },
+    {
+      "id": "chess-en-13-b1-m1",
+      "cohort": "extension-20260917",
+      "sha256": "781f86ec045d40b05129474c4efc0a3b8d124999152f81b9b927cfadf38a3aa8"
+    },
+    {
+      "id": "chess-zh-23-b4-m0",
+      "cohort": "extension-20260917",
+      "sha256": "b0703da89d01a3ac57e47342827858cbd68f12acf043b9e6324b753a673c44e8"
+    },
+    {
+      "id": "chess-en-12-b3-m1",
+      "cohort": "extension-20260917",
+      "sha256": "ba8e3360baeb7de0f765aede684de495a617e1e790ebbf7acd76866f174ddf3c"
+    },
+    {
+      "id": "chess-en-01-b5-m1",
+      "cohort": "extension-20260917",
+      "sha256": "3585e1d69f03822ae3a5a626ba19ee8b703ad8c286d0c7b691c15b87687b11cb"
+    },
+    {
+      "id": "chess-zh-13-b4-m1",
+      "cohort": "extension-20260917",
+      "sha256": "875fdbb9f627de9b638ef5f9a38c4acdf9620bcc4600a6694ec4fc436b8f7653"
+    },
+    {
+      "id": "chess-en-03-b1-m1",
+      "cohort": "extension-20260917",
+      "sha256": "283f70995458a4938c8bb31c144d68df34c7c8540f8287980e3dff40fa08bf0d"
+    },
+    {
+      "id": "chess-en-23-b5-m1",
+      "cohort": "extension-20260917",
+      "sha256": "520996514190244ec3b9563794368b69d63aaa863b704cf5718531c13830ef48"
+    },
+    {
+      "id": "chess-zh-03-b3-m0",
+      "cohort": "extension-20260917",
+      "sha256": "8f5f4399333ccb7aafec1349f90e39bc2558569bd5c992d397df6db03aaf84d5"
+    },
+    {
+      "id": "chess-en-03-b5-m0",
+      "cohort": "extension-20260917",
+      "sha256": "f2bbaae661829f5688edd17676bb036f9d1b2561f4547d0b4fd51bb9408738db"
+    },
+    {
+      "id": "chess-en-23-b2-m1",
+      "cohort": "extension-20260917",
+      "sha256": "8a3bd3ddd51ff936ea68fa65b26ce8d5121b317d461c0b514d05ef837f9df3f1"
+    },
+    {
+      "id": "chess-en-23-b6-m0",
+      "cohort": "extension-20260917",
+      "sha256": "252ae48bd2bba1de04e90b2f74e6e0cb8e6e88eee6b622991836faa8844845d7"
+    },
+    {
+      "id": "chess-zh-23-b2-m1",
+      "cohort": "extension-20260917",
+      "sha256": "ad65039fb2228cbc64689cc8c2c69752c14348aa62514349a49c709065deebc2"
+    },
+    {
+      "id": "chess-en-02-b4-m0",
+      "cohort": "extension-20260917",
+      "sha256": "a436c9d2f7cc9ab8ae418bb02869926d8e8e44c9b13d3c10d9ac5edd09d5c80f"
+    },
+    {
+      "id": "chess-zh-23-b3-m1",
+      "cohort": "extension-20260917",
+      "sha256": "67d30bf4640e7e461ce59fd184baa976d52d89497a5b984a532c01cc25b60cac"
+    },
+    {
+      "id": "chess-en-02-b2-m1",
+      "cohort": "extension-20260917",
+      "sha256": "02c50f1ccd1b58640f310d98b20efd33b923a3593ac910c27c53b5235126b687"
+    },
+    {
+      "id": "chess-zh-12-b3-m0",
+      "cohort": "extension-20260917",
+      "sha256": "00cb160cf1b3256895234463d69c044426959a678fc3b6744d1ff9d3c59c2907"
+    },
+    {
+      "id": "chess-zh-12-b5-m0",
+      "cohort": "extension-20260917",
+      "sha256": "d8edc47dc8160e5b30d9318ecdda3d438efe4f1e4cd1a21660aa6908b4b9d259"
+    },
+    {
+      "id": "chess-en-02-b2-m0",
+      "cohort": "extension-20260917",
+      "sha256": "690f6f1760664534647113b6a55f3d960436d575655ff91bfd7d0e0b51007344"
+    },
+    {
+      "id": "chess-en-23-b6-m1",
+      "cohort": "extension-20260917",
+      "sha256": "bb3dee23fe77402bd118f59ddd07d9100f9f65922871e4abf0aa3d92c610174c"
+    },
+    {
+      "id": "chess-zh-23-b5-m1",
+      "cohort": "extension-20260917",
+      "sha256": "2e2b48aff72e3306aeb1752ce7637427c70248374e9249a20e5359382802e06a"
+    },
+    {
+      "id": "chess-en-01-b1-m0",
+      "cohort": "extension-20260917",
+      "sha256": "84c50d6e51e1c038f9fa6e592a27a275231f483adcbd705adaf501e7ddb5d916"
+    },
+    {
+      "id": "chess-zh-02-b6-m0",
+      "cohort": "extension-20260917",
+      "sha256": "76285707f95943c422ab57382f124dec43825b446a3d34ae3508575c92d4473c"
+    },
+    {
+      "id": "chess-en-23-b4-m1",
+      "cohort": "extension-20260917",
+      "sha256": "7780a82d2933aa4b20583dfdbc6078989e5b1eb247ab8c41e6c1e5a2a9436e13"
+    },
+    {
+      "id": "chess-zh-12-b5-m1",
+      "cohort": "extension-20260917",
+      "sha256": "b8ce00c0ec43a7438829b2d23f94b9e9edb4a76dc719ceafc6a26fc8485f54b9"
+    },
+    {
+      "id": "chess-zh-01-b2-m0",
+      "cohort": "extension-20260917",
+      "sha256": "9371d52dbb08a9691f3cc4fb37d33dca67aabf78643b9c6e3dc197efb8f641fd"
+    },
+    {
+      "id": "chess-en-01-b4-m1",
+      "cohort": "extension-20260917",
+      "sha256": "f2d0f75c322c844ed77540bb5231eda1f2a04372dd42d3be7fd9946118bc7099"
+    },
+    {
+      "id": "chess-zh-02-b4-m0",
+      "cohort": "extension-20260917",
+      "sha256": "bef85629be528dfea79d0aeb0147407514624362d7f85eebed6574211d268534"
+    },
+    {
+      "id": "chess-zh-13-b3-m0",
+      "cohort": "extension-20260917",
+      "sha256": "ac334e998ae7724554d2cf911cae9565c7a6880703a1dd6989ab30a370000ac2"
+    },
+    {
+      "id": "chess-zh-12-b6-m0",
+      "cohort": "extension-20260917",
+      "sha256": "af1f130288a18a287088d0db045e538a36c3600aa3679176795fa56e951ed68b"
+    },
+    {
+      "id": "chess-zh-13-b6-m1",
+      "cohort": "extension-20260917",
+      "sha256": "492f6360ec54c1646dc3e387305a23ab953d050ff6f35648c5bcc6e3a616c547"
+    },
+    {
+      "id": "chess-zh-01-b3-m1",
+      "cohort": "extension-20260917",
+      "sha256": "13935b69dfdbd898506ce4b2a98c8d7d60042218f93e32d12e21f0e83bfed138"
+    },
+    {
+      "id": "chess-zh-12-b4-m0",
+      "cohort": "extension-20260917",
+      "sha256": "dceec33b6df28b63cf3ad64e55be9528527effe4f93fb82120899f7efb4df85b"
+    },
+    {
+      "id": "chess-en-03-b3-m1",
+      "cohort": "extension-20260917",
+      "sha256": "1b87b2c0b283b0a4e0093c52ee665db8953a8584bf12d365b54ad67ee65d9d1b"
+    },
+    {
+      "id": "chess-zh-23-b4-m1",
+      "cohort": "extension-20260917",
+      "sha256": "86ea990586aaa450963b522855b467b204e41d5c4deec336bda441c2f621e23b"
+    },
+    {
+      "id": "chess-zh-01-b1-m1",
+      "cohort": "extension-20260917",
+      "sha256": "250a23f9729d85fb2cf145d437a9d34657e622e8c95cd13a486e7896b91e7d9d"
+    },
+    {
+      "id": "chess-en-01-b6-m1",
+      "cohort": "extension-20260917",
+      "sha256": "a0b6a8443c0a6d36b4769abd0179e58d240d771fb475c98961e60dcd87e0cefc"
+    },
+    {
+      "id": "chess-zh-01-b6-m0",
+      "cohort": "extension-20260917",
+      "sha256": "02b20ef4cdc5224eb3b4dd84049364cdb3608b50c7fc3188ac9ee814a14d93cc"
+    },
+    {
+      "id": "chess-en-23-b3-m0",
+      "cohort": "extension-20260917",
+      "sha256": "ddf7ab55998ce41b238d58a8d2218871a12b26c4a3d2b386d77732019f27bb47"
+    },
+    {
+      "id": "chess-en-13-b4-m0",
+      "cohort": "extension-20260917",
+      "sha256": "b52a361bff1e87d389dc970f73ec087f6836717eafd6117c9df8cecc5e8c9df5"
+    },
+    {
+      "id": "chess-en-12-b4-m1",
+      "cohort": "extension-20260917",
+      "sha256": "f5532d293c3c31280b81788ce0542bb7740ced39a5d79eef7df018a9a8ff9460"
+    },
+    {
+      "id": "chess-zh-03-b1-m0",
+      "cohort": "extension-20260917",
+      "sha256": "f1df60e4ee66a5d3866d1df96523edf5f2be9175c1aa979f72fb47183f009b36"
+    },
+    {
+      "id": "chess-zh-03-b2-m0",
+      "cohort": "extension-20260917",
+      "sha256": "36a7a535a6c796bb264855483b54fa808b328942d59af83e4625ddc98078e50b"
+    },
+    {
+      "id": "chess-en-03-b5-m1",
+      "cohort": "extension-20260917",
+      "sha256": "a0e211c5b776c6527a7968715a93ac0971b930dafeae23a853015ad3fe75b148"
+    },
+    {
+      "id": "chess-zh-03-b5-m0",
+      "cohort": "extension-20260917",
+      "sha256": "c16124e995690ff520f9e356e1b4792f4687af7951df2011942288a6fff5be0c"
+    },
+    {
+      "id": "chess-zh-13-b2-m0",
+      "cohort": "extension-20260917",
+      "sha256": "075d8584e4edf6b9e524f5d1106482d46d5b6010fa5b0e5f4b1df982c115c9aa"
+    },
+    {
+      "id": "chess-zh-03-b6-m0",
+      "cohort": "extension-20260917",
+      "sha256": "002e8a1e0cf4596194e34162f75d0c7ad07a764b75960e4ed0db893933305e3a"
+    },
+    {
+      "id": "chess-en-01-b5-m0",
+      "cohort": "extension-20260917",
+      "sha256": "04d04396807fd71f4b8d3470eab3ce92950358bf4abded51c478798ee9476351"
+    },
+    {
+      "id": "chess-zh-13-b1-m0",
+      "cohort": "extension-20260917",
+      "sha256": "b9255b411e2ed9df26c39a38603e3cb6adb03a3b6b9fe9c3484ac219ae8798a4"
+    },
+    {
+      "id": "chess-en-12-b4-m0",
+      "cohort": "extension-20260917",
+      "sha256": "a4fc2cc5ede8a4775597866c5e402cfee3dffa08c7d47734dc94cbb9eaf84338"
+    },
+    {
+      "id": "chess-zh-13-b6-m0",
+      "cohort": "extension-20260917",
+      "sha256": "1a6a3e0886e373a74fd48e1bcafb0da95bc5ba553460ad836a3a567d9aaf6f47"
+    },
+    {
+      "id": "chess-en-12-b6-m0",
+      "cohort": "extension-20260917",
+      "sha256": "eac1e3dd26379c1aaf95eaa90b30609949c886df820d6e0afea6ecdcc2496e29"
+    },
+    {
+      "id": "chess-zh-12-b1-m0",
+      "cohort": "extension-20260917",
+      "sha256": "6525e9a5e6b728599393c13740fcd07a2ce6168d38d49833476f6a9a7af5cb28"
+    },
+    {
+      "id": "chess-zh-23-b1-m0",
+      "cohort": "extension-20260917",
+      "sha256": "df8acd2b5ce20d34c36b94e4a8223508844b99afc9232ef387c24180d6f3d0a9"
+    },
+    {
+      "id": "chess-en-02-b5-m1",
+      "cohort": "extension-20260917",
+      "sha256": "a1620ebcc0bf1a659a00a1b3b04b9bd9105dab2189b48a0a00dc7c4798eb5412"
+    },
+    {
+      "id": "chess-en-13-b6-m1",
+      "cohort": "extension-20260917",
+      "sha256": "5fe4acadd04c026e6cdac6d056c848f7a525fcf74460854b1f16aab18b85e6ed"
+    },
+    {
+      "id": "chess-en-03-b6-m0",
+      "cohort": "extension-20260917",
+      "sha256": "c9054cc5a91d8177f959ea14311b632b8300dbe8c4fb919cddd2d82667f7478a"
+    },
+    {
+      "id": "chess-en-01-b3-m0",
+      "cohort": "extension-20260917",
+      "sha256": "0bd426f2f2d7a08c9847e9c449c0857e7cc9242c175e8592c08da241b2676fe4"
+    },
+    {
+      "id": "chess-zh-23-b2-m0",
+      "cohort": "extension-20260917",
+      "sha256": "d64cfb80b2bd34bfd4e2b80c2d2b81b6b2d4d15b82b264b007432fd712d94f7b"
+    },
+    {
+      "id": "chess-en-02-b6-m1",
+      "cohort": "extension-20260917",
+      "sha256": "31a7cbc6a6ea334e7bcebaf4018ee74f20c2596f32dc37cc8241a46849e24102"
+    },
+    {
+      "id": "chess-en-01-b2-m0",
+      "cohort": "extension-20260917",
+      "sha256": "acd51be4d84ed471ebe5eb83b0c01a4645f7d19437f9b1d6aa888dd1ebd8b46c"
+    },
+    {
+      "id": "chess-en-02-b3-m1",
+      "cohort": "extension-20260917",
+      "sha256": "32374c9a459ab88d21aeb23b739c691f2a37037679345ace18356947be60dc98"
+    },
+    {
+      "id": "chess-zh-01-b5-m0",
+      "cohort": "extension-20260917",
+      "sha256": "1ce75986a007cb77087117ce94203507396755a99745f942793aa85edd907253"
+    },
+    {
+      "id": "chess-zh-03-b4-m0",
+      "cohort": "extension-20260917",
+      "sha256": "a2642b2e078037b063202ba3d9fec4e5d55a6cf63bddc135abeab13220af54aa"
+    },
+    {
+      "id": "chess-en-12-b5-m1",
+      "cohort": "extension-20260917",
+      "sha256": "a8edf3bb9e7be3a2a5c876ed0643c43dde3dc70b5e0e362513d30bfe52eb8c8c"
+    },
+    {
+      "id": "chess-zh-02-b5-m0",
+      "cohort": "extension-20260917",
+      "sha256": "f321cf48a6d6e5b3c1bac070394c096eb4b743ebabcbeaa2e537ad221265d4f7"
+    },
+    {
+      "id": "chess-zh-01-b4-m1",
+      "cohort": "extension-20260917",
+      "sha256": "dbe604b1f97821a2e30ce6e9d3120071cdc1d69b92fd192d759d012b62474da0"
+    },
+    {
+      "id": "chess-zh-23-b6-m0",
+      "cohort": "extension-20260917",
+      "sha256": "5d5e8d47920c42d7140951de18a8b55f2dc4ef919a3c4a98beae02a9a6c51d8d"
+    },
+    {
+      "id": "chess-zh-02-b2-m0",
+      "cohort": "extension-20260917",
+      "sha256": "233c6670bdae48ea837e2f73ce115515bbd50b491242ff3add11b3a8f4e97140"
+    },
+    {
+      "id": "chess-zh-02-b2-m1",
+      "cohort": "extension-20260917",
+      "sha256": "b748481140bd76e87676fa992baf6adeb499f633b52ca4f72163dc7169b79d28"
+    },
+    {
+      "id": "chess-zh-02-b3-m0",
+      "cohort": "extension-20260917",
+      "sha256": "9402175a4436c29993ae08f6c20bc9bdc51a914017d7cbc19412cbf1ed786852"
+    },
+    {
+      "id": "chess-zh-12-b2-m0",
+      "cohort": "extension-20260917",
+      "sha256": "4afedff308356b4910b2f738336af25da8098374c5bcf9f8fd98073e0e4fb18b"
+    },
+    {
+      "id": "chess-en-13-b4-m1",
+      "cohort": "extension-20260917",
+      "sha256": "62faf829fd8d505f75b40ed016743d626657aa8ec729db9c6017eed2c326b447"
+    },
+    {
+      "id": "chess-zh-01-b1-m0",
+      "cohort": "extension-20260917",
+      "sha256": "21f5fe03ee29fc310ed086fcfbb6d93b566150b425f2fc90c3bf79ec80f6f4f0"
+    }
+  ],
+  "publishedFiles": [
+    {
+      "file": "results.json",
+      "sha256": "3f5458dcc92dca01c296e11b61ad2d060a03996ba484769c82d73b0eead4040f"
+    },
+    {
+      "file": "games-history.json.gz",
+      "sha256": "0dca8d6cb016d7cf63a9a0f17f15f6b32e6c4992b41c2e1025c3b9ce9e94cb7e"
+    }
+  ]
+}

@@ -1,0 +1,2736 @@
+{
+  "campaign": "xiangqi-20260917",
+  "gameType": "xiangqi",
+  "createdAt": "2026-09-17T03:09:36.006Z",
+  "models": [
+    "bailian/deepseek-v4-flash",
+    "glm-5.2",
+    "kimi-k3",
+    "qwen3.8-max-0902"
+  ],
+  "modelLabels": [
+    "DeepSeek",
+    "GLM",
+    "Kimi",
+    "Qwen"
+  ],
+  "baselineGames": 168,
+  "addedGames": 144,
+  "hardGameLimit": 200,
+  "budget": {
+    "baseline": 168,
+    "pilot": 3,
+    "validation4096": 2,
+    "validation8192": 2,
+    "totalGames": 175,
+    "unused": 25
+  },
+  "sourceCommit": "8719510afdc12d39f8ede36f56f56bd71d31b5aa",
+  "sourceHashes": {
+    "scripts/run-game-baselines.ts": "5ee74c1aa9f67d2af1ac902e7ac1011c028910ebe19a0954850521d647c68506",
+    "scripts/experiment-support.ts": "f724ea8259d6f43633349b2266961f1900f504b729bf9f5205901fa0abea92e7",
+    "server/agents.ts": "ca8619c904999a81b72d7160dc70aef237675d04cc5595386f8a5acc80303c9e",
+    "server/config.ts": "011292a664a5dbe5455748246f468cba072b6ed0a3930fd2893d50bc566bb011",
+    "src/types.ts": "1eb51cfcbc0fdb1c8377f81135722de20cbb042febff19fd6c28553ed6b05fe1",
+    "src/chat.ts": "156a15d0680810dfe7a961ec39b2bd7b73f88402542d1e890346acfcb7b73735",
+    "src/games/core.ts": "c0a625d6fe284b16aa607ef38b6ae05708479ec57f167f0e7b0e3e68f81676d4",
+    "src/games/catalog.ts": "e3d67692ae86dddf3703d5273050efa8a3ad925cf6aa6b4e4f9cc41620623c5a",
+    "src/games/registry.ts": "304cd71d38ab12b45f314dc428ce4900cfb0275661361d5d1f25102db217068c",
+    "src/games/base.ts": "6fbe7f955d52843ec89d1d9f850d459dc49a59f8bb244a02a5cd09650a44a5f3",
+    "src/games/chess.ts": "51a8e3f92f824f36de814b5f54f19cffcef881db7eefbc9c9a8d8bf4ff17d622",
+    "src/games/werewolf.ts": "76702c4edcdcacd79c67012954454237f532252659dd5b0e5f26315b6246fa79",
+    "src/games/werewolf-labels.ts": "c542c5f4a687ad287516f31043e36a414a9eba7f888f12731a679ae94c8fb28d",
+    "src/games/xiangqi.ts": "401cbe4a30ffbc722da915a213a63d46d0b632417289e7b64a53979a6dc02ab2"
+  },
+  "rule": "arena-v1",
+  "settings": {
+    "rsi": "off",
+    "memoryEntries": 0,
+    "chatEnabled": true,
+    "contextEvents": 80,
+    "contextChatMessages": 40,
+    "temperature": 0.6,
+    "outputLimit": 8192,
+    "apiTimeoutMs": 180000,
+    "maxAttemptsPerDecision": 2,
+    "maxDecisions": {
+      "chess": 160,
+      "xiangqi": 160,
+      "werewolf": 200
+    },
+    "gameConcurrency": 96,
+    "perModelConcurrency": 24,
+    "heuristicFallback": false,
+    "protocolAdapter": "none"
+  },
+  "cohorts": [
+    {
+      "id": "initial-20260916",
+      "settings": {
+        "rsi": "off",
+        "memoryEntries": 0,
+        "chatEnabled": true,
+        "contextEvents": 80,
+        "contextChatMessages": 40,
+        "temperature": 0.6,
+        "outputLimit": 8192,
+        "apiTimeoutMs": 180000,
+        "maxAttemptsPerDecision": 2,
+        "maxDecisions": {
+          "chess": 160,
+          "xiangqi": 160,
+          "werewolf": 200
+        },
+        "gameConcurrency": 16,
+        "perModelConcurrency": 8,
+        "heuristicFallback": false,
+        "protocolAdapter": "none"
+      },
+      "games": 24
+    },
+    {
+      "id": "extension-20260917",
+      "settings": {
+        "rsi": "off",
+        "memoryEntries": 0,
+        "chatEnabled": true,
+        "contextEvents": 80,
+        "contextChatMessages": 40,
+        "temperature": 0.6,
+        "outputLimit": 8192,
+        "apiTimeoutMs": 180000,
+        "maxAttemptsPerDecision": 2,
+        "maxDecisions": {
+          "chess": 160,
+          "xiangqi": 160,
+          "werewolf": 200
+        },
+        "gameConcurrency": 96,
+        "perModelConcurrency": 24,
+        "heuristicFallback": false,
+        "protocolAdapter": "none"
+      },
+      "games": 144
+    }
+  ],
+  "jobs": [
+    {
+      "id": "xiangqi-zh-02-b0-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 0,
+      "rotation": 0,
+      "models": [
+        0,
+        2
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "xiangqi-zh-02-b1-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 1,
+      "rotation": 1,
+      "models": [
+        2,
+        0
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "xiangqi-zh-03-b0-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 0,
+      "rotation": 0,
+      "models": [
+        0,
+        3
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "xiangqi-zh-23-b0-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 0,
+      "rotation": 0,
+      "models": [
+        2,
+        3
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "xiangqi-zh-12-b1-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 1,
+      "rotation": 1,
+      "models": [
+        2,
+        1
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "xiangqi-zh-12-b0-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 0,
+      "rotation": 0,
+      "models": [
+        1,
+        2
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "xiangqi-zh-23-b0-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 0,
+      "rotation": 1,
+      "models": [
+        3,
+        2
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "xiangqi-zh-13-b0-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 0,
+      "rotation": 1,
+      "models": [
+        3,
+        1
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "xiangqi-zh-13-b0-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 0,
+      "rotation": 0,
+      "models": [
+        1,
+        3
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "xiangqi-zh-23-b1-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 1,
+      "rotation": 0,
+      "models": [
+        2,
+        3
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "xiangqi-zh-13-b1-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 1,
+      "rotation": 1,
+      "models": [
+        3,
+        1
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "xiangqi-zh-02-b0-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 0,
+      "rotation": 1,
+      "models": [
+        2,
+        0
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "xiangqi-zh-23-b1-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 1,
+      "rotation": 1,
+      "models": [
+        3,
+        2
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "xiangqi-zh-01-b0-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 0,
+      "rotation": 0,
+      "models": [
+        0,
+        1
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "xiangqi-zh-03-b1-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 1,
+      "rotation": 0,
+      "models": [
+        0,
+        3
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "xiangqi-zh-03-b1-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 1,
+      "rotation": 1,
+      "models": [
+        3,
+        0
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "xiangqi-zh-03-b0-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 0,
+      "rotation": 1,
+      "models": [
+        3,
+        0
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "xiangqi-zh-01-b0-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 0,
+      "rotation": 1,
+      "models": [
+        1,
+        0
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "xiangqi-zh-13-b1-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 1,
+      "rotation": 0,
+      "models": [
+        1,
+        3
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "xiangqi-zh-12-b0-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 0,
+      "rotation": 1,
+      "models": [
+        2,
+        1
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "xiangqi-zh-02-b1-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 1,
+      "rotation": 0,
+      "models": [
+        0,
+        2
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "xiangqi-zh-12-b1-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 1,
+      "rotation": 0,
+      "models": [
+        1,
+        2
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "xiangqi-zh-01-b1-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 1,
+      "rotation": 1,
+      "models": [
+        1,
+        0
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "xiangqi-zh-01-b1-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 1,
+      "rotation": 0,
+      "models": [
+        0,
+        1
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "xiangqi-zh-23-b12-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 12,
+      "rotation": 0,
+      "models": [
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-01-b11-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 11,
+      "rotation": 1,
+      "models": [
+        1,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-02-b6-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 6,
+      "rotation": 1,
+      "models": [
+        2,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-02-b13-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 13,
+      "rotation": 0,
+      "models": [
+        0,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-01-b3-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 3,
+      "rotation": 1,
+      "models": [
+        1,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-01-b5-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 5,
+      "rotation": 1,
+      "models": [
+        1,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-12-b4-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 4,
+      "rotation": 0,
+      "models": [
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-01-b4-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 4,
+      "rotation": 1,
+      "models": [
+        1,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-01-b7-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 7,
+      "rotation": 1,
+      "models": [
+        1,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-03-b5-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 5,
+      "rotation": 0,
+      "models": [
+        0,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-02-b11-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 11,
+      "rotation": 1,
+      "models": [
+        2,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-01-b9-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 9,
+      "rotation": 1,
+      "models": [
+        1,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-01-b13-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 13,
+      "rotation": 1,
+      "models": [
+        1,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-13-b3-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 3,
+      "rotation": 0,
+      "models": [
+        1,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-03-b8-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 8,
+      "rotation": 0,
+      "models": [
+        0,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-02-b7-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 7,
+      "rotation": 1,
+      "models": [
+        2,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-03-b7-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 7,
+      "rotation": 1,
+      "models": [
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-02-b5-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 5,
+      "rotation": 1,
+      "models": [
+        2,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-12-b4-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 4,
+      "rotation": 1,
+      "models": [
+        2,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-13-b2-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 2,
+      "rotation": 1,
+      "models": [
+        3,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-23-b4-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 4,
+      "rotation": 1,
+      "models": [
+        3,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-12-b2-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 2,
+      "rotation": 1,
+      "models": [
+        2,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-01-b8-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 8,
+      "rotation": 1,
+      "models": [
+        1,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-23-b9-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 9,
+      "rotation": 0,
+      "models": [
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-03-b3-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 3,
+      "rotation": 0,
+      "models": [
+        0,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-02-b11-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 11,
+      "rotation": 0,
+      "models": [
+        0,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-23-b10-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 10,
+      "rotation": 0,
+      "models": [
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-01-b7-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 7,
+      "rotation": 0,
+      "models": [
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-03-b6-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 6,
+      "rotation": 1,
+      "models": [
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-03-b11-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 11,
+      "rotation": 1,
+      "models": [
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-13-b9-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 9,
+      "rotation": 0,
+      "models": [
+        1,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-02-b10-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 10,
+      "rotation": 1,
+      "models": [
+        2,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-03-b4-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 4,
+      "rotation": 1,
+      "models": [
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-13-b11-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 11,
+      "rotation": 1,
+      "models": [
+        3,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-03-b5-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 5,
+      "rotation": 1,
+      "models": [
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-01-b9-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 9,
+      "rotation": 0,
+      "models": [
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-03-b13-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 13,
+      "rotation": 1,
+      "models": [
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-13-b12-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 12,
+      "rotation": 1,
+      "models": [
+        3,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-01-b8-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 8,
+      "rotation": 0,
+      "models": [
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-01-b12-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 12,
+      "rotation": 0,
+      "models": [
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-01-b2-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 2,
+      "rotation": 1,
+      "models": [
+        1,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-13-b5-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 5,
+      "rotation": 1,
+      "models": [
+        3,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-02-b12-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 12,
+      "rotation": 1,
+      "models": [
+        2,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-23-b5-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 5,
+      "rotation": 0,
+      "models": [
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-23-b8-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 8,
+      "rotation": 0,
+      "models": [
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-13-b10-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 10,
+      "rotation": 1,
+      "models": [
+        3,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-12-b3-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 3,
+      "rotation": 1,
+      "models": [
+        2,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-03-b9-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 9,
+      "rotation": 1,
+      "models": [
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-23-b11-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 11,
+      "rotation": 0,
+      "models": [
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-23-b12-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 12,
+      "rotation": 1,
+      "models": [
+        3,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-02-b9-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 9,
+      "rotation": 1,
+      "models": [
+        2,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-01-b3-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 3,
+      "rotation": 0,
+      "models": [
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-02-b4-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 4,
+      "rotation": 0,
+      "models": [
+        0,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-13-b5-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 5,
+      "rotation": 0,
+      "models": [
+        1,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-13-b13-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 13,
+      "rotation": 1,
+      "models": [
+        3,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-02-b8-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 8,
+      "rotation": 0,
+      "models": [
+        0,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-12-b11-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 11,
+      "rotation": 1,
+      "models": [
+        2,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-13-b7-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 7,
+      "rotation": 1,
+      "models": [
+        3,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-02-b2-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 2,
+      "rotation": 1,
+      "models": [
+        2,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-01-b2-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 2,
+      "rotation": 0,
+      "models": [
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-12-b13-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 13,
+      "rotation": 1,
+      "models": [
+        2,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-12-b12-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 12,
+      "rotation": 1,
+      "models": [
+        2,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-13-b3-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 3,
+      "rotation": 1,
+      "models": [
+        3,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-12-b6-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 6,
+      "rotation": 0,
+      "models": [
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-23-b7-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 7,
+      "rotation": 0,
+      "models": [
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-01-b10-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 10,
+      "rotation": 1,
+      "models": [
+        1,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-12-b5-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 5,
+      "rotation": 1,
+      "models": [
+        2,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-13-b4-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 4,
+      "rotation": 0,
+      "models": [
+        1,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-01-b10-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 10,
+      "rotation": 0,
+      "models": [
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-23-b3-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 3,
+      "rotation": 1,
+      "models": [
+        3,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-23-b10-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 10,
+      "rotation": 1,
+      "models": [
+        3,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-01-b13-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 13,
+      "rotation": 0,
+      "models": [
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-02-b5-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 5,
+      "rotation": 0,
+      "models": [
+        0,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-02-b12-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 12,
+      "rotation": 0,
+      "models": [
+        0,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-02-b10-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 10,
+      "rotation": 0,
+      "models": [
+        0,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-01-b6-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 6,
+      "rotation": 1,
+      "models": [
+        1,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-13-b11-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 11,
+      "rotation": 0,
+      "models": [
+        1,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-12-b6-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 6,
+      "rotation": 1,
+      "models": [
+        2,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-12-b5-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 5,
+      "rotation": 0,
+      "models": [
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-12-b12-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 12,
+      "rotation": 0,
+      "models": [
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-23-b9-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 9,
+      "rotation": 1,
+      "models": [
+        3,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-12-b9-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 9,
+      "rotation": 1,
+      "models": [
+        2,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-23-b8-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 8,
+      "rotation": 1,
+      "models": [
+        3,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-12-b2-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 2,
+      "rotation": 0,
+      "models": [
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-02-b4-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 4,
+      "rotation": 1,
+      "models": [
+        2,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-23-b2-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 2,
+      "rotation": 1,
+      "models": [
+        3,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-12-b10-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 10,
+      "rotation": 0,
+      "models": [
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-03-b12-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 12,
+      "rotation": 1,
+      "models": [
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-03-b11-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 11,
+      "rotation": 0,
+      "models": [
+        0,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-02-b7-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 7,
+      "rotation": 0,
+      "models": [
+        0,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-13-b6-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 6,
+      "rotation": 1,
+      "models": [
+        3,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-23-b13-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 13,
+      "rotation": 1,
+      "models": [
+        3,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-13-b9-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 9,
+      "rotation": 1,
+      "models": [
+        3,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-23-b11-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 11,
+      "rotation": 1,
+      "models": [
+        3,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-02-b13-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 13,
+      "rotation": 1,
+      "models": [
+        2,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-23-b6-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 6,
+      "rotation": 0,
+      "models": [
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-03-b10-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 10,
+      "rotation": 1,
+      "models": [
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-01-b6-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 6,
+      "rotation": 0,
+      "models": [
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-23-b4-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 4,
+      "rotation": 0,
+      "models": [
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-03-b4-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 4,
+      "rotation": 0,
+      "models": [
+        0,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-01-b12-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 12,
+      "rotation": 1,
+      "models": [
+        1,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-03-b8-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 8,
+      "rotation": 1,
+      "models": [
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-12-b13-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 13,
+      "rotation": 0,
+      "models": [
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-12-b7-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 7,
+      "rotation": 0,
+      "models": [
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-03-b2-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 2,
+      "rotation": 0,
+      "models": [
+        0,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-12-b8-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 8,
+      "rotation": 0,
+      "models": [
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-12-b9-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 9,
+      "rotation": 0,
+      "models": [
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-13-b7-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 7,
+      "rotation": 0,
+      "models": [
+        1,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-01-b5-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 5,
+      "rotation": 0,
+      "models": [
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-02-b2-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 2,
+      "rotation": 0,
+      "models": [
+        0,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-12-b10-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 10,
+      "rotation": 1,
+      "models": [
+        2,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-03-b10-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 10,
+      "rotation": 0,
+      "models": [
+        0,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-02-b9-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 9,
+      "rotation": 0,
+      "models": [
+        0,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-13-b13-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 13,
+      "rotation": 0,
+      "models": [
+        1,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-02-b3-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 3,
+      "rotation": 1,
+      "models": [
+        2,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-03-b3-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 3,
+      "rotation": 1,
+      "models": [
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-13-b6-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 6,
+      "rotation": 0,
+      "models": [
+        1,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-12-b8-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 8,
+      "rotation": 1,
+      "models": [
+        2,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-13-b12-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 12,
+      "rotation": 0,
+      "models": [
+        1,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-23-b5-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 5,
+      "rotation": 1,
+      "models": [
+        3,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-13-b4-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 4,
+      "rotation": 1,
+      "models": [
+        3,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-12-b7-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 7,
+      "rotation": 1,
+      "models": [
+        2,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-03-b13-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 13,
+      "rotation": 0,
+      "models": [
+        0,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-01-b11-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 11,
+      "rotation": 0,
+      "models": [
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-02-b8-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 8,
+      "rotation": 1,
+      "models": [
+        2,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-03-b6-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 6,
+      "rotation": 0,
+      "models": [
+        0,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-12-b3-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 3,
+      "rotation": 0,
+      "models": [
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-13-b2-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 2,
+      "rotation": 0,
+      "models": [
+        1,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-03-b2-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 2,
+      "rotation": 1,
+      "models": [
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-03-b7-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 7,
+      "rotation": 0,
+      "models": [
+        0,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-23-b7-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 7,
+      "rotation": 1,
+      "models": [
+        3,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-01-b4-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 4,
+      "rotation": 0,
+      "models": [
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-12-b11-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 11,
+      "rotation": 0,
+      "models": [
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-23-b6-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 6,
+      "rotation": 1,
+      "models": [
+        3,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-02-b6-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 6,
+      "rotation": 0,
+      "models": [
+        0,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-02-b3-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 3,
+      "rotation": 0,
+      "models": [
+        0,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-23-b13-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 13,
+      "rotation": 0,
+      "models": [
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-23-b3-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 3,
+      "rotation": 0,
+      "models": [
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-13-b10-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 10,
+      "rotation": 0,
+      "models": [
+        1,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-13-b8-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 8,
+      "rotation": 0,
+      "models": [
+        1,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-23-b2-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 2,
+      "rotation": 0,
+      "models": [
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-03-b9-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 9,
+      "rotation": 0,
+      "models": [
+        0,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-03-b12-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 12,
+      "rotation": 0,
+      "models": [
+        0,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "xiangqi-zh-13-b8-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "seed": 42,
+      "block": 8,
+      "rotation": 1,
+      "models": [
+        3,
+        1
+      ],
+      "cohort": "extension-20260917"
+    }
+  ],
+  "auxiliaryGames": {
+    "pilot": [
+      {
+        "id": "xiangqi-zh-02-b0-m0",
+        "gameType": "xiangqi",
+        "locale": "zh",
+        "status": "interrupted",
+        "decisions": 10,
+        "error": null,
+        "attempts": 11,
+        "rejectedAttempts": 1,
+        "sha256": "defe5631e31aa118f8ce886c3380a630fe98a243e846501726deb6573ecce089"
+      },
+      {
+        "id": "xiangqi-zh-02-b1-m1",
+        "gameType": "xiangqi",
+        "locale": "zh",
+        "status": "error",
+        "decisions": 7,
+        "error": "Model decision failed: bailian/deepseek-v4-flash: 模型输出被 token 上限截断",
+        "attempts": 9,
+        "rejectedAttempts": 2,
+        "sha256": "397ece943e23fe5f104bcd59dc420d095228ab4aed0eb004148130b1083dd77d"
+      },
+      {
+        "id": "xiangqi-zh-03-b0-m0",
+        "gameType": "xiangqi",
+        "locale": "zh",
+        "status": "interrupted",
+        "decisions": 1,
+        "error": null,
+        "attempts": 1,
+        "rejectedAttempts": 0,
+        "sha256": "2b5c08b0378feae670f74b73e8b8021d0527f8d62528f90c0d66305327c28abd"
+      }
+    ],
+    "validation": [
+      {
+        "id": "validation-xiangqi-zh-0",
+        "gameType": "xiangqi",
+        "locale": "zh",
+        "pair": 0,
+        "matchId": "da040d00-4084-457a-84b6-7cfb5629ea82",
+        "gameId": "3457e522-0987-413f-9711-48052dc30bf5",
+        "decisions": 20,
+        "fallbacks": 1,
+        "callErrors": [
+          {
+            "kind": "decision-error",
+            "error": "非法行动"
+          },
+          {
+            "kind": "decision-error",
+            "error": "非法行动"
+          },
+          {
+            "kind": "decision-error",
+            "error": "非法行动"
+          }
+        ],
+        "immediateReflections": 20,
+        "roundReflections": 2,
+        "memoryConsumed": 17,
+        "startMemory": 0,
+        "memoryScope": true,
+        "promptsMatchLocale": true,
+        "publicChat": 19,
+        "teamChat": 0,
+        "hiddenMessagesFiltered": true,
+        "replay": true,
+        "checkpointRestore": true,
+        "consolidations": [
+          {
+            "model": "bailian/deepseek-v4-flash",
+            "status": "completed",
+            "error": null,
+            "sourceCount": 9
+          },
+          {
+            "model": "glm-5.2",
+            "status": "completed",
+            "error": null,
+            "sourceCount": 11
+          }
+        ],
+        "gameStatus": "finished",
+        "winner": "平局",
+        "terminalReason": "达到配置的决策上限",
+        "ok": false,
+        "auditedContexts": 44,
+        "consolidatedMemoryConsumed": 0,
+        "models": [
+          {
+            "model": "bailian/deepseek-v4-flash",
+            "decisions": 10,
+            "immediate": 10,
+            "round": 1,
+            "errors": [],
+            "fallbacks": 0
+          },
+          {
+            "model": "glm-5.2",
+            "decisions": 12,
+            "immediate": 10,
+            "round": 1,
+            "errors": [
+              {
+                "kind": "decision-error",
+                "error": "非法行动"
+              },
+              {
+                "kind": "decision-error",
+                "error": "非法行动"
+              },
+              {
+                "kind": "decision-error",
+                "error": "非法行动"
+              }
+            ],
+            "fallbacks": 1
+          },
+          {
+            "model": "kimi-k3",
+            "decisions": 0,
+            "immediate": 0,
+            "round": 0,
+            "errors": [],
+            "fallbacks": 0
+          },
+          {
+            "model": "qwen3.8-max-0902",
+            "decisions": 0,
+            "immediate": 0,
+            "round": 0,
+            "errors": [],
+            "fallbacks": 0
+          }
+        ],
+        "errorCallsWithoutStoredInput": 3
+      },
+      {
+        "id": "validation-xiangqi-zh-1",
+        "gameType": "xiangqi",
+        "locale": "zh",
+        "pair": 1,
+        "matchId": "71b2bc1d-0f24-4f27-9227-75cadafb3128",
+        "gameId": "c2e9ab8a-66d6-4e85-b920-d9935224cb33",
+        "decisions": 20,
+        "fallbacks": 0,
+        "callErrors": [
+          {
+            "kind": "rsi-immediate-error",
+            "error": "[\n  {\n    \"expected\": \"object\",\n    \"code\": \"invalid_type\",\n    \"path\": [],\n    \"message\": \"Invalid input: expected object, received array\"\n  }\n]"
+          }
+        ],
+        "immediateReflections": 19,
+        "roundReflections": 2,
+        "memoryConsumed": 18,
+        "startMemory": 0,
+        "memoryScope": true,
+        "promptsMatchLocale": true,
+        "publicChat": 20,
+        "teamChat": 0,
+        "hiddenMessagesFiltered": true,
+        "replay": true,
+        "checkpointRestore": true,
+        "consolidations": [
+          {
+            "model": "kimi-k3",
+            "status": "completed",
+            "error": null,
+            "sourceCount": 7
+          },
+          {
+            "model": "qwen3.8-max-0902",
+            "status": "completed",
+            "error": null,
+            "sourceCount": 10
+          }
+        ],
+        "gameStatus": "finished",
+        "winner": "平局",
+        "terminalReason": "达到配置的决策上限",
+        "ok": false,
+        "auditedContexts": 41,
+        "consolidatedMemoryConsumed": 0,
+        "models": [
+          {
+            "model": "bailian/deepseek-v4-flash",
+            "decisions": 0,
+            "immediate": 0,
+            "round": 0,
+            "errors": [],
+            "fallbacks": 0
+          },
+          {
+            "model": "glm-5.2",
+            "decisions": 0,
+            "immediate": 0,
+            "round": 0,
+            "errors": [],
+            "fallbacks": 0
+          },
+          {
+            "model": "kimi-k3",
+            "decisions": 10,
+            "immediate": 10,
+            "round": 1,
+            "errors": [],
+            "fallbacks": 0
+          },
+          {
+            "model": "qwen3.8-max-0902",
+            "decisions": 10,
+            "immediate": 9,
+            "round": 1,
+            "errors": [
+              {
+                "kind": "rsi-immediate-error",
+                "error": "[\n  {\n    \"expected\": \"object\",\n    \"code\": \"invalid_type\",\n    \"path\": [],\n    \"message\": \"Invalid input: expected object, received array\"\n  }\n]"
+              }
+            ],
+            "fallbacks": 0
+          }
+        ],
+        "errorCallsWithoutStoredInput": 1
+      }
+    ],
+    "originalValidation": [
+      {
+        "id": "validation-xiangqi-zh-1",
+        "matchId": "afe1fcfd-b29f-452e-a62c-7809e420611f",
+        "gameId": "aeac0aea-3633-4401-a214-807060b2698a",
+        "gameType": "xiangqi",
+        "locale": "zh",
+        "interrupted": true,
+        "ok": false,
+        "gameStatus": "playing",
+        "error": "Stopped superseded configuration; no winner assigned and no replacement game started.",
+        "decisions": 18,
+        "fallbacks": 0,
+        "callErrors": [
+          {
+            "kind": "decision-error",
+            "error": "The operation was aborted due to timeout"
+          }
+        ],
+        "immediateReflections": 18,
+        "roundReflections": 0,
+        "memoryConsumed": 16,
+        "publicChat": 18,
+        "teamChat": 0,
+        "replay": true,
+        "checkpointRestore": true,
+        "consolidations": [],
+        "consolidatedMemoryConsumed": 0,
+        "models": [
+          {
+            "model": "bailian/deepseek-v4-flash",
+            "decisions": 0,
+            "immediate": 0,
+            "round": 0,
+            "errors": [],
+            "fallbacks": 0
+          },
+          {
+            "model": "glm-5.2",
+            "decisions": 0,
+            "immediate": 0,
+            "round": 0,
+            "errors": [],
+            "fallbacks": 0
+          },
+          {
+            "model": "kimi-k3",
+            "decisions": 9,
+            "immediate": 9,
+            "round": 0,
+            "errors": [
+              {
+                "kind": "decision-error",
+                "error": "The operation was aborted due to timeout"
+              }
+            ],
+            "fallbacks": 0
+          },
+          {
+            "model": "qwen3.8-max-0902",
+            "decisions": 9,
+            "immediate": 9,
+            "round": 0,
+            "errors": [],
+            "fallbacks": 0
+          }
+        ],
+        "errorCallsWithoutStoredInput": 1,
+        "auditedContexts": 36,
+        "hiddenMessagesFiltered": true
+      },
+      {
+        "id": "validation-xiangqi-zh-0",
+        "matchId": "eeca155c-5767-4c07-8ec7-edaefad22906",
+        "gameId": "d7b11011-c798-4f45-a638-e3755c460d7a",
+        "gameType": "xiangqi",
+        "locale": "zh",
+        "interrupted": true,
+        "ok": false,
+        "gameStatus": "playing",
+        "error": "Stopped superseded configuration; no winner assigned and no replacement game started.",
+        "decisions": 15,
+        "fallbacks": 3,
+        "callErrors": [
+          {
+            "kind": "decision-error",
+            "error": "非法行动"
+          },
+          {
+            "kind": "decision-error",
+            "error": "非法行动"
+          },
+          {
+            "kind": "decision-error",
+            "error": "模型输出被 token 上限截断"
+          },
+          {
+            "kind": "decision-error",
+            "error": "模型输出被 token 上限截断"
+          },
+          {
+            "kind": "decision-error",
+            "error": "模型输出被 token 上限截断"
+          },
+          {
+            "kind": "decision-error",
+            "error": "模型输出被 token 上限截断"
+          },
+          {
+            "kind": "decision-error",
+            "error": "模型输出被 token 上限截断"
+          },
+          {
+            "kind": "decision-error",
+            "error": "The operation was aborted due to timeout"
+          }
+        ],
+        "immediateReflections": 15,
+        "roundReflections": 0,
+        "memoryConsumed": 13,
+        "publicChat": 12,
+        "teamChat": 0,
+        "replay": true,
+        "checkpointRestore": true,
+        "consolidations": [],
+        "consolidatedMemoryConsumed": 0,
+        "models": [
+          {
+            "model": "bailian/deepseek-v4-flash",
+            "decisions": 6,
+            "immediate": 8,
+            "round": 0,
+            "errors": [
+              {
+                "kind": "decision-error",
+                "error": "模型输出被 token 上限截断"
+              },
+              {
+                "kind": "decision-error",
+                "error": "模型输出被 token 上限截断"
+              },
+              {
+                "kind": "decision-error",
+                "error": "模型输出被 token 上限截断"
+              },
+              {
+                "kind": "decision-error",
+                "error": "模型输出被 token 上限截断"
+              }
+            ],
+            "fallbacks": 2
+          },
+          {
+            "model": "glm-5.2",
+            "decisions": 8,
+            "immediate": 7,
+            "round": 0,
+            "errors": [
+              {
+                "kind": "decision-error",
+                "error": "非法行动"
+              },
+              {
+                "kind": "decision-error",
+                "error": "非法行动"
+              },
+              {
+                "kind": "decision-error",
+                "error": "模型输出被 token 上限截断"
+              },
+              {
+                "kind": "decision-error",
+                "error": "The operation was aborted due to timeout"
+              }
+            ],
+            "fallbacks": 1
+          },
+          {
+            "model": "kimi-k3",
+            "decisions": 0,
+            "immediate": 0,
+            "round": 0,
+            "errors": [],
+            "fallbacks": 0
+          },
+          {
+            "model": "qwen3.8-max-0902",
+            "decisions": 0,
+            "immediate": 0,
+            "round": 0,
+            "errors": [],
+            "fallbacks": 0
+          }
+        ],
+        "errorCallsWithoutStoredInput": 8,
+        "auditedContexts": 29,
+        "hiddenMessagesFiltered": true
+      }
+    ]
+  },
+  "notes": [
+    "Failed and interrupted attempts count toward the per-game cap.",
+    "Board games repeat the standard initial position; seeds do not randomize openings.",
+    "Decision protocol unchanged; extension uses a shared 96-game / 24-per-model request pool.",
+    "Original roles/languages and new blocks are analyzed with cohort-specific counts."
+  ]
+}

@@ -2,7 +2,7 @@
 
 [文档导航 / Documentation](README.md) · [运行机制](ARCHITECTURE.md) · [Adding a game](EXTENDING_GAMES.md)
 
-当前实现：四种游戏共用运行层。设计目标是复用调度、交流、RSI 与持久化，同时让规则与视角留在各游戏插件内。
+四种游戏共用调度、交流、RSI 和持久化服务。每个游戏插件负责自己的规则，以及各玩家能够看到的信息。
 
 ## 分层
 
@@ -25,7 +25,7 @@
 
 ## 新游戏接入步骤
 
-新增插件状态、规则引擎、可见观察、合法动作、恢复、本地策略与双语规则（若适用）；注册元信息与工厂；新增前端 renderer；通过规则、信息隔离、恢复、聊天、RSI 和运行集成测试。无需复制调度器、数据库或模型客户端。
+先实现插件的状态、规则引擎、可见观察、合法动作、恢复和本地策略，再注册元信息与工厂、添加前端 renderer。支持多语言的游戏还需提供对应规则文本。接入后验证规则、信息隔离、恢复、聊天和 RSI，并运行集成测试。调度器、数据库与模型客户端可以直接复用，具体步骤见[扩展指南](EXTENDING_GAMES.md)。
 
 ## Language
 
@@ -61,7 +61,9 @@ Existing installations: [migration and rollback notes](MIGRATION.md).
 
 ## Frontend navigation and rendering
 
-The root URL and `#/lobby` show the game collection; game workspaces contain only a lobby return entry, so adding games does not consume header space. The lobby renders catalog entries as a wrapping grid and searches Chinese/English names. `#/arena/:gameType?match=…&game=…&frame=…&viewer=…` represents the visible workspace. Game/match/round selection pushes browser history; timeline and perspective changes replace the current entry. Per-game local storage is a convenience fallback, while explicit URL parameters take precedence. Storage contains IDs and view preferences, never API keys or Agent tokens. Unavailable storage does not prevent navigation.
+The root URL and `#/lobby` show the game catalog as a wrapping grid, with search by Chinese or English name. Each game page has a return-to-lobby button, so new games do not need additional header buttons.
+
+`#/arena/:gameType?match=…&game=…&frame=…&viewer=…` identifies the current view. Selecting a game, match or round adds a browser history entry; timeline and perspective changes replace it. Explicit URL parameters take precedence over preferences saved in local storage. Storage contains IDs and view preferences only, with no API keys or Agent tokens. Navigation also works when storage is unavailable.
 
 Switching games unmounts the old multi-game observer and cancels its pending UI updates; it does not pause or stop the server-side match. Each fetch is scoped to game, frame and perspective, and the renderer hides snapshots whose identity does not match the current selection. Missing saved matches fall back to an available match of the selected game. Creation refreshes the archive before selecting the returned match and guards against older in-flight archive reads.
 

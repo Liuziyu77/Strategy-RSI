@@ -1,0 +1,404 @@
+{
+  "gameType": "chess",
+  "complete": true,
+  "inputSha256": "3f5458dcc92dca01c296e11b61ad2d060a03996ba484769c82d73b0eead4040f",
+  "scriptSha256": "039aa4abe7225f1b6b4c08eeb867203a5c2575c4e06628c7fb11f08272d2ddd2",
+  "method": {
+    "replicates": 20000,
+    "seed": 20260917,
+    "unit": "repetition block within opponent pair, including colors and languages",
+    "strata": {
+      "bailian/deepseek-v4-flash-glm-5.2": 7,
+      "bailian/deepseek-v4-flash-qwen3.8-max-0902": 7,
+      "glm-5.2-qwen3.8-max-0902": 7,
+      "glm-5.2-kimi-k3": 7,
+      "bailian/deepseek-v4-flash-kimi-k3": 7,
+      "kimi-k3-qwen3.8-max-0902": 7
+    },
+    "interpretation": "Conditional on completed games; descriptive 95% percentile intervals, not corrected for selective failures or multiple comparisons."
+  },
+  "models": [
+    {
+      "model": "bailian/deepseek-v4-flash",
+      "participations": 37,
+      "distinctGames": 37,
+      "wins": 20,
+      "draws": 11,
+      "losses": 6,
+      "winRate": 0.5405405405405406,
+      "score": 0.6891891891891891,
+      "modelDecisions": 858,
+      "speakingDecisions": 778,
+      "speechRate": 0.9067599067599068,
+      "roles": {
+        "white": {
+          "n": 15,
+          "wins": 6,
+          "draws": 5
+        },
+        "black": {
+          "n": 22,
+          "wins": 14,
+          "draws": 6
+        }
+      },
+      "estimate": 0.6891891891891891,
+      "plannedParticipations": 84,
+      "missingParticipations": 47,
+      "ci95": [
+        0.5735294117647058,
+        0.7941176470588235
+      ],
+      "finiteBootstrapReplicates": 20000,
+      "missingOutcomeBounds": [
+        0.30357142857142855,
+        0.8630952380952381
+      ]
+    },
+    {
+      "model": "glm-5.2",
+      "participations": 38,
+      "distinctGames": 38,
+      "wins": 6,
+      "draws": 5,
+      "losses": 27,
+      "winRate": 0.15789473684210525,
+      "score": 0.2236842105263158,
+      "modelDecisions": 815,
+      "speakingDecisions": 815,
+      "speechRate": 1,
+      "roles": {
+        "white": {
+          "n": 23,
+          "wins": 2,
+          "draws": 2
+        },
+        "black": {
+          "n": 15,
+          "wins": 4,
+          "draws": 3
+        }
+      },
+      "estimate": 0.2236842105263158,
+      "plannedParticipations": 84,
+      "missingParticipations": 46,
+      "ci95": [
+        0.11363636363636363,
+        0.34615384615384615
+      ],
+      "finiteBootstrapReplicates": 20000,
+      "missingOutcomeBounds": [
+        0.10119047619047619,
+        0.6488095238095238
+      ]
+    },
+    {
+      "model": "kimi-k3",
+      "participations": 51,
+      "distinctGames": 51,
+      "wins": 19,
+      "draws": 17,
+      "losses": 15,
+      "winRate": 0.37254901960784315,
+      "score": 0.5392156862745098,
+      "modelDecisions": 1392,
+      "speakingDecisions": 1390,
+      "speechRate": 0.9985632183908046,
+      "roles": {
+        "black": {
+          "n": 29,
+          "wins": 14,
+          "draws": 9
+        },
+        "white": {
+          "n": 22,
+          "wins": 5,
+          "draws": 8
+        }
+      },
+      "estimate": 0.5392156862745098,
+      "plannedParticipations": 84,
+      "missingParticipations": 33,
+      "ci95": [
+        0.4411764705882353,
+        0.64
+      ],
+      "finiteBootstrapReplicates": 20000,
+      "missingOutcomeBounds": [
+        0.3273809523809524,
+        0.7202380952380952
+      ]
+    },
+    {
+      "model": "qwen3.8-max-0902",
+      "participations": 28,
+      "distinctGames": 28,
+      "wins": 10,
+      "draws": 11,
+      "losses": 7,
+      "winRate": 0.35714285714285715,
+      "score": 0.5535714285714286,
+      "modelDecisions": 868,
+      "speakingDecisions": 868,
+      "speechRate": 1,
+      "roles": {
+        "black": {
+          "n": 11,
+          "wins": 6,
+          "draws": 4
+        },
+        "white": {
+          "n": 17,
+          "wins": 4,
+          "draws": 7
+        }
+      },
+      "estimate": 0.5535714285714286,
+      "plannedParticipations": 84,
+      "missingParticipations": 56,
+      "ci95": [
+        0.43333333333333335,
+        0.671875
+      ],
+      "finiteBootstrapReplicates": 20000,
+      "missingOutcomeBounds": [
+        0.18452380952380953,
+        0.8511904761904762
+      ]
+    }
+  ],
+  "matrix": {
+    "columns": [
+      "bailian/deepseek-v4-flash",
+      "glm-5.2",
+      "kimi-k3",
+      "qwen3.8-max-0902"
+    ],
+    "cells": [
+      [
+        {
+          "n": 0,
+          "wins": 0,
+          "draws": 0,
+          "score": null
+        },
+        {
+          "n": 12,
+          "wins": 11,
+          "draws": 1,
+          "score": 0.9583333333333334
+        },
+        {
+          "n": 19,
+          "wins": 8,
+          "draws": 7,
+          "score": 0.6052631578947368
+        },
+        {
+          "n": 6,
+          "wins": 1,
+          "draws": 3,
+          "score": 0.4166666666666667
+        }
+      ],
+      [
+        {
+          "n": 12,
+          "wins": 0,
+          "draws": 1,
+          "score": 0.041666666666666664
+        },
+        {
+          "n": 0,
+          "wins": 0,
+          "draws": 0,
+          "score": null
+        },
+        {
+          "n": 18,
+          "wins": 4,
+          "draws": 3,
+          "score": 0.3055555555555556
+        },
+        {
+          "n": 8,
+          "wins": 2,
+          "draws": 1,
+          "score": 0.3125
+        }
+      ],
+      [
+        {
+          "n": 19,
+          "wins": 4,
+          "draws": 7,
+          "score": 0.39473684210526316
+        },
+        {
+          "n": 18,
+          "wins": 11,
+          "draws": 3,
+          "score": 0.6944444444444444
+        },
+        {
+          "n": 0,
+          "wins": 0,
+          "draws": 0,
+          "score": null
+        },
+        {
+          "n": 14,
+          "wins": 4,
+          "draws": 7,
+          "score": 0.5357142857142857
+        }
+      ],
+      [
+        {
+          "n": 6,
+          "wins": 2,
+          "draws": 3,
+          "score": 0.5833333333333334
+        },
+        {
+          "n": 8,
+          "wins": 5,
+          "draws": 1,
+          "score": 0.6875
+        },
+        {
+          "n": 14,
+          "wins": 3,
+          "draws": 7,
+          "score": 0.4642857142857143
+        },
+        {
+          "n": 0,
+          "wins": 0,
+          "draws": 0,
+          "score": null
+        }
+      ]
+    ]
+  },
+  "byCohort": [
+    {
+      "cohort": "initial-20260916",
+      "models": [
+        {
+          "model": "bailian/deepseek-v4-flash",
+          "n": 6,
+          "wins": 2,
+          "draws": 3,
+          "losses": 1,
+          "score": 0.5833333333333334,
+          "estimate": 0.5833333333333334
+        },
+        {
+          "model": "glm-5.2",
+          "n": 5,
+          "wins": 1,
+          "draws": 0,
+          "losses": 4,
+          "score": 0.2,
+          "estimate": 0.2
+        },
+        {
+          "model": "kimi-k3",
+          "n": 6,
+          "wins": 4,
+          "draws": 2,
+          "losses": 0,
+          "score": 0.8333333333333334,
+          "estimate": 0.8333333333333334
+        },
+        {
+          "model": "qwen3.8-max-0902",
+          "n": 5,
+          "wins": 0,
+          "draws": 3,
+          "losses": 2,
+          "score": 0.3,
+          "estimate": 0.3
+        }
+      ]
+    },
+    {
+      "cohort": "extension-20260917",
+      "models": [
+        {
+          "model": "bailian/deepseek-v4-flash",
+          "n": 31,
+          "wins": 18,
+          "draws": 8,
+          "losses": 5,
+          "score": 0.7096774193548387,
+          "estimate": 0.7096774193548387
+        },
+        {
+          "model": "glm-5.2",
+          "n": 33,
+          "wins": 5,
+          "draws": 5,
+          "losses": 23,
+          "score": 0.22727272727272727,
+          "estimate": 0.22727272727272727
+        },
+        {
+          "model": "kimi-k3",
+          "n": 45,
+          "wins": 15,
+          "draws": 15,
+          "losses": 15,
+          "score": 0.5,
+          "estimate": 0.5
+        },
+        {
+          "model": "qwen3.8-max-0902",
+          "n": 23,
+          "wins": 10,
+          "draws": 8,
+          "losses": 5,
+          "score": 0.6086956521739131,
+          "estimate": 0.6086956521739131
+        }
+      ]
+    }
+  ],
+  "duration": {
+    "finished": {
+      "games": 77,
+      "decisions": {
+        "p05": 24.8,
+        "q1": 33.0,
+        "median": 43.0,
+        "q3": 55.0,
+        "p95": 112.60000000000001
+      },
+      "durationMs": {
+        "p05": 619993.2000000001,
+        "q1": 1240678.0,
+        "median": 1676454.0,
+        "q3": 2650201.0,
+        "p95": 4797703.400000001
+      }
+    },
+    "error": {
+      "games": 91,
+      "decisions": {
+        "p05": 8.0,
+        "q1": 17.0,
+        "median": 27.0,
+        "q3": 39.5,
+        "p95": 66.5
+      },
+      "durationMs": {
+        "p05": 162791.0,
+        "q1": 439531.0,
+        "median": 1149683.0,
+        "q3": 1771695.0,
+        "p95": 3278295.5
+      }
+    }
+  }
+}

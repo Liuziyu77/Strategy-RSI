@@ -3,7 +3,7 @@
 </p>
 
 <h1 align="center">Strategy-RSI</h1>
-<p align="center"><strong>One platform. Four strategy environments. Experience that persists.</strong></p>
+<p align="center"><strong>Study agent decisions and experience reuse across four games</strong></p>
 <p align="center">A multi-agent research platform for Recursive Self-Improvement (RSI)<br />Sanguosha · Werewolf · Chess · Xiangqi</p>
 <p align="center">
   <a href="README.md">简体中文</a> · <strong>English</strong>
@@ -17,9 +17,9 @@
 
 ---
 
-**Strategy-RSI studies how agents accumulate experience through play and apply it to later decisions.** Four games span hidden roles, social deduction and perfect-information board play, sharing model integration, communication, immediate reflection, post-game review and experience consolidation. Run different models together, observe their actions and conversations, then use replays and exports to investigate whether experience helps.
+Strategy-RSI uses Sanguosha, Werewolf, Chess and Xiangqi to study how agents collect and use experience from play. Run models against one another, inspect their actions, conversations and reviews, then export the records to test whether experience improves later decisions. The games share model and RSI services, with separate rules and player visibility.
 
-Enter each environment from the dedicated **game lobby**, searchable by Chinese or English name. Return to the lobby to switch games; each game preserves its selected match, round, replay position and spectator perspective.
+Choose a game in the lobby, or search by its Chinese or English name. Return there to switch games. Each game remembers the selected match, round, replay position and spectator perspective.
 
 [![Game lobby with separate entrances and visual themes for all four games](docs/assets/game-lobby.png)](docs/assets/game-lobby.png)
 
@@ -27,7 +27,7 @@ Enter each environment from the dedicated **game lobby**, searchable by Chinese 
 
 ## Four games, four strategy environments
 
-Every game supports **agent communication, immediate / post-game RSI, consolidation and experience reuse** through its own spectator interface. Click a screenshot to view the original.
+Each game has its own spectator interface and supports agent communication, immediate / post-game RSI, consolidation and experience reuse. Click a screenshot to view the original.
 
 <table>
   <tr>
@@ -35,14 +35,14 @@ Every game supports **agent communication, immediate / post-game RSI, consolidat
       <h3>Sanguosha · 三国杀</h3>
       <p><strong>2–8 players · Chinese · Hidden roles and cards</strong></p>
       <a href="docs/assets/sanguosha-arena.png"><img src="docs/assets/sanguosha-arena.png" alt="Sanguosha: green and gold table, five players with generals and hands, and action history" width="100%" /></a>
-      <p>Manage cards, infer allegiances and coordinate attacks under hidden roles. Configurable roles, basic generals and public chat provide a setting for studying alliance inference, resource allocation and experience reuse. Two-player games use a simplified Lord-versus-Rebel setup.</p>
+      <p>Players manage their hands and infer allegiances from actions and speech. Configurable roles, basic generals and public chat let researchers examine how models identify allies, spend card resources and reuse experience. Two-player games use simplified Lord-versus-Rebel rules.</p>
       <p><a href="docs/RULES.md">Implemented rules and generals (Chinese) →</a></p>
     </td>
     <td width="50%" valign="top">
       <h3>Werewolf · 狼人杀</h3>
       <p><strong>6–12 players · English / Chinese · Social deduction</strong></p>
       <a href="docs/assets/werewolf-arena.en.png"><img src="docs/assets/werewolf-arena.en.png" alt="Werewolf in English: midnight-blue role table, day/night phase, living players and event history" width="100%" /></a>
-      <p>A fixed roster of wolves, a seer, a witch, a hunter and villagers progresses through night actions, daytime discussion, exile voting and victory checks. Private wolf-team discussion provides a setting for studying deception detection, trust and cooperation.</p>
+      <p>Wolves, a seer, a witch, a hunter and villagers play through night actions, daytime discussion and exile votes until a faction wins. Wolves can talk privately at night. Speech and voting records let researchers examine deception detection, trust and team play.</p>
       <p><a href="docs/games/werewolf.en.md">English rules</a> · <a href="docs/games/werewolf.md">中文规则</a></p>
     </td>
   </tr>
@@ -51,20 +51,20 @@ Every game supports **agent communication, immediate / post-game RSI, consolidat
       <h3>Chess · 国际象棋</h3>
       <p><strong>2 players · English / Chinese · Perfect information</strong></p>
       <a href="docs/assets/chess-arena.en.png"><img src="docs/assets/chess-arena.en.png" alt="Chess in English: neutral gray room, black-and-white board, last move and event history" width="100%" /></a>
-      <p>Standard moves include castling, en passant and promotion, with checkmate, draw offers and repetition-based draw rules. Players can speak with each move, providing a setting for studying position evaluation, long-term planning and lessons from game reviews.</p>
+      <p>Supports standard moves, including castling, en passant and promotion, plus checkmate, draw offers and repetition rules. Players can speak with each move. Game reviews can be used to study position evaluation, long-term planning and experience reuse.</p>
       <p><a href="docs/games/chess.en.md">English rules and implementation boundaries</a> · <a href="docs/games/chess.md">中文规则</a></p>
     </td>
     <td width="50%" valign="top">
       <h3>Xiangqi · 中国象棋</h3>
       <p><strong>2 players · Chinese · Perfect information</strong></p>
       <a href="docs/assets/xiangqi-arena.png"><img src="docs/assets/xiangqi-arena.png" alt="Xiangqi: paper and vermilion theme, river board and move history" width="100%" /></a>
-      <p>Coordinate pieces and protect the general using standard moves, checkmate, stalemate losses and perpetual-check adjudication. Both players can speak with each move. The current laboratory rules omit complex tournament chasing adjudication.</p>
+      <p>Supports standard moves, checkmate, stalemate losses and perpetual-check losses. Players can speak with each move, and experiments can examine general safety and piece coordination. Complex tournament chasing rules are not implemented; see the rule guide for the supported scope.</p>
       <p><a href="docs/games/xiangqi.md">Moves and laboratory rules (Chinese) →</a></p>
     </td>
   </tr>
 </table>
 
-For Werewolf and Chess, language selection covers **game interfaces, rules and agent decision / communication / RSI prompts** when creating a match. The shared lobby, player library and some administration controls remain Chinese. Sanguosha and Xiangqi are currently Chinese-only.
+Choose a language when creating a Werewolf or Chess match. The game interface, rules and agent decision / communication / RSI prompts use that language. The shared lobby, player library and some administration controls remain Chinese. Sanguosha and Xiangqi are currently Chinese-only.
 
 Screenshots show the current application running isolated local policy demonstrations, with positions produced by the rules engines. They are interface examples, not model evaluation results. [Screenshot sources and reproduction](docs/MEDIA.md) · [Game catalog](docs/games/README.md) · [Navigation and spectating](docs/ARENA_UI.md)
 
@@ -85,9 +85,9 @@ Open [http://localhost:3930](http://localhost:3930), choose any game and click *
 
 All four games use the same model setup flow:
 
-1. **Create players** in **玩家库 (Player Library)** with names, model connections and RSI modes.
-2. **Choose a game and create a match** with a supported language, players, number of games, concurrency and chat settings.
-3. **Observe and review** live actions, visible conversations, replays and personal experience; later matches of the same game type can reuse that experience.
+1. Create players in **玩家库 (Player Library)** and set their names, model connections and RSI modes.
+2. Enter a game and create a match. Choose the language, players, number of games, concurrency and chat settings.
+3. Follow actions and conversations live or in replay, and inspect reflections in the memory panel. Later matches of the same game can read that experience.
 
 Model services must support `POST /v1/chat/completions`. Configure individual connections in the player library or a shared service through [.env.example](.env.example). [Detailed setup and model integration guide →](docs/GETTING_STARTED.md)
 
@@ -116,7 +116,7 @@ Data is stored in `data/arena.sqlite` by default. After a restart, unfinished ma
 | **Spectating and replays**              | Separate themes, spectator perspectives, board flipping, frame-by-frame replay and view restoration when switching games.                                                                  |
 | **Tracing and analysis**                | Per-match win rates, durations and round counts, model call / retry / fallback records, and JSON / JSONL exports.                                                                          |
 
-**How does a model see the board?** Its input is structured JSON text: the player's visible state, board or hand, legal actions, visible history and conversation, and personal experience. It returns an action ID and optional speech for the rules engine to validate and execute. Screenshots are for spectators and are not inputs to the current model protocol. [Input formats and API examples →](docs/API.md)
+Models read the board or hand as JSON text, alongside the player's visible state, legal actions, history, conversation and personal experience. They return an action ID and optional speech for the rules engine to validate and execute. Screenshots are only used for spectating. [Input formats and API examples →](docs/API.md)
 
 <a id="experience-loop"></a>
 
@@ -133,13 +133,13 @@ Data is stored in `data/arena.sqlite` by default. After a restart, unfinished ma
 
 Experience is organized by player, match, source game and type. The player's current model consolidates and deduplicates it. Later decisions prioritize the latest valid summary and add uncovered entries; originals and historical versions remain available. Experience collected by the same agent in concurrent games can inform its later decisions within that game type.
 
-Current RSI uses **text reflection, persistent memory and context updates**, without training model weights. To evaluate learning, distinguish an empty-memory baseline, frozen experience and ongoing RSI while controlling opponents, seats, seeds and call failures. [Experiment design and available reports →](exp/README.md)
+RSI saves text reflections as memory and adds them to later decision contexts; it does not train model weights. Evaluate it by comparing empty-memory, frozen-memory and ongoing-RSI conditions, controlling opponents, seats, seeds and call failures. [Experiment design and available reports →](exp/README.md)
 
 <a id="architecture"></a>
 
 ## Architecture and extension
 
-Game plugins own **rules, visible information, legal actions, outcomes and state restoration**. Shared services handle **model calls, communication, RSI, memory, scheduling and persistence**. Add an environment through the common `GamePlugin` contract, then register its metadata and frontend view.
+Game plugins handle rules, visible information, legal actions, outcomes and state restoration. Shared services handle model calls, communication, RSI, memory, scheduling and persistence. To add a game, implement `GamePlugin` and register its metadata and frontend view.
 
 ```text
 web/          Game lobby, separate rooms, player library and replays
@@ -147,7 +147,7 @@ server/       Models, communication, RSI, consolidation, scheduling and SQLite
 src/games/    Common contracts, catalog, registry and new game engines
 src/          Sanguosha engine and shared protocol types
 tests/        Game rules, server integration and browser validation
-exp/          Experiment reports, data and figures organized by game
+exp/          Reports, per-game analysis, data and figures
 ```
 
 [Multi-game architecture](docs/MULTIGAME_ARCHITECTURE.md) · [Runtime details](docs/ARCHITECTURE.md) · [Adding a game](docs/EXTENDING_GAMES.md)
@@ -157,7 +157,100 @@ exp/          Experiment reports, data and figures organized by game
 
 ## Experiments and research progress
 
-All four environments are integrated. **The currently published model study is the Sanguosha four-model baseline**: 528 scheduled games, 489 completed normally and 39 failed, with RSI disabled. It measures performance without experience; baseline or controlled RSI reports have not yet been published for the other three games.
+Reports are organized by game. Werewolf, Chess and Xiangqi each have **168 scheduled baseline games**, staying within **200 games per game type** after pilots and functionality checks. Sanguosha keeps its earlier **528-game study**. All baselines use empty memory with RSI off. Separate checks cover communication and RSI functionality; they do not measure learning benefits.
+
+| Game                                  | Baseline | Completed | Errors | Including pilots/checks / cap |
+| ------------------------------------- | -------- | --------- | ------ | ----------------------------- |
+| [Werewolf](exp/werewolf/README.en.md) | 168      | 156       | 12     | 176 / 200                     |
+| [Chess](exp/chess/README.en.md)       | 168      | 77        | 91     | 180 / 200                     |
+| [Xiangqi](exp/xiangqi/README.en.md)   | 168      | 73        | 95     | 175 / 200                     |
+
+<details>
+<summary><strong>Werewolf: 168 games and six figures</strong></summary>
+
+The 24 initial and 144 additional games ended as follows: rule wins 156, rule draws 0, action-limit draws 0, errors 12.
+
+| Model    | W / D / L | Completed participations | Team win rate |
+| -------- | --------- | ------------------------ | ------------- |
+| DeepSeek | 172/0/140 | 312                      | 55.1%         |
+| GLM      | 171/0/141 | 312                      | 54.8%         |
+| Kimi     | 175/0/137 | 312                      | 56.1%         |
+| Qwen     | 170/0/142 | 312                      | 54.5%         |
+
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <a href="exp/werewolf/assets/win-rate.svg"><img src="exp/werewolf/assets/win-rate.svg" alt="Werewolf performance and clustered intervals" width="100%" /></a>
+    </td>
+    <td width="50%" valign="top">
+      <a href="exp/werewolf/assets/role-win-rate.svg"><img src="exp/werewolf/assets/role-win-rate.svg" alt="Werewolf role performance" width="100%" /></a>
+    </td>
+  </tr>
+</table>
+
+Each of the 21 role seeds is used with four model rotations and both languages. Every model has two seats per game. Analysis groups results by role seed to account for related seats.
+
+[Full report, RSI checks and six figures](exp/werewolf/README.en.md) · [results.json](exp/werewolf/results.json) · [plan.json](exp/werewolf/plan.json)
+
+</details>
+
+<details>
+<summary><strong>Chess: 168 games and six figures</strong></summary>
+
+The 24 initial and 144 additional games ended as follows: rule wins 55, rule draws 21, action-limit draws 1, errors 91.
+
+| Model    | W / D / L | Completed participations | Score |
+| -------- | --------- | ------------------------ | ----- |
+| DeepSeek | 20/11/6   | 37                       | 68.9% |
+| GLM      | 6/5/27    | 38                       | 22.4% |
+| Kimi     | 19/17/15  | 51                       | 53.9% |
+| Qwen     | 10/11/7   | 28                       | 55.4% |
+
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <a href="exp/chess/assets/win-rate.svg"><img src="exp/chess/assets/win-rate.svg" alt="Chess performance and clustered intervals" width="100%" /></a>
+    </td>
+    <td width="50%" valign="top">
+      <a href="exp/chess/assets/head-to-head.svg"><img src="exp/chess/assets/head-to-head.svg" alt="Chess head-to-head" width="100%" /></a>
+    </td>
+  </tr>
+</table>
+
+Score is `(wins + 0.5 × draws) / completed participations`. Games repeat the standard starting position with colors exchanged. Results describe completed games from these starts; failed games may bias the comparison.
+
+[Full report, RSI checks and six figures](exp/chess/README.en.md) · [results.json](exp/chess/results.json) · [plan.json](exp/chess/plan.json)
+
+</details>
+
+<details>
+<summary><strong>Xiangqi: 168 games and six figures</strong></summary>
+
+The 24 initial and 144 additional games ended as follows: rule wins 43, rule draws 26, action-limit draws 4, errors 95.
+
+| Model    | W / D / L | Completed participations | Score |
+| -------- | --------- | ------------------------ | ----- |
+| DeepSeek | 21/6/2    | 29                       | 82.8% |
+| GLM      | 3/9/18    | 30                       | 25.0% |
+| Kimi     | 10/22/9   | 41                       | 51.2% |
+| Qwen     | 9/23/14   | 46                       | 44.6% |
+
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <a href="exp/xiangqi/assets/win-rate.svg"><img src="exp/xiangqi/assets/win-rate.svg" alt="Xiangqi performance and clustered intervals" width="100%" /></a>
+    </td>
+    <td width="50%" valign="top">
+      <a href="exp/xiangqi/assets/head-to-head.svg"><img src="exp/xiangqi/assets/head-to-head.svg" alt="Xiangqi head-to-head" width="100%" /></a>
+    </td>
+  </tr>
+</table>
+
+Score is `(wins + 0.5 × draws) / completed participations`. Games repeat the standard starting position with colors exchanged. Results describe completed games from these starts; failed games may bias the comparison.
+
+[Full report, RSI checks and six figures](exp/xiangqi/README.en.md) · [results.json](exp/xiangqi/results.json) · [plan.json](exp/xiangqi/plan.json)
+
+</details>
 
 <details>
 <summary><strong>Explore the Sanguosha results: four models, six figures and key findings</strong></summary>
@@ -239,7 +332,7 @@ This study measures performance without experience and **has not tested RSI bene
 | Upgrade stored data and review limitations     | [Migration](docs/MIGRATION.md) · [Dated quality review](docs/QUALITY_REVIEW.md)     |
 | Reproduce studies or refresh media             | [Experiment index](exp/README.md) · [Screenshots and recordings](docs/MEDIA.md)     |
 
-Werewolf and Chess rules, the extension guide and Sanguosha experiment report have English versions; the game catalog, experiment index and architecture include English guidance. Setup and shared administration documentation are primarily Chinese.
+Werewolf and Chess rules, the extension guide and all four experiment reports are available in English. The game catalog, experiment index and architecture also include English guidance. Setup and shared administration documentation are primarily Chinese.
 
 <details>
 <summary><strong>Development and validation</strong></summary>
@@ -262,6 +355,8 @@ Rules and integration tests cover gameplay, information isolation, model protoco
 <details>
 <summary><strong>Release notes</strong></summary>
 
+- **2026.09.17** — Expanded each new game to 168 baseline games, with independent reports, clustered analyses, histories and six matching figures per game.
+- **2026.09.16** — Published 72 baseline games for Werewolf, Chess and Xiangqi, real-model RSI checks, six figures and reproduction scripts.
 - **2026.09.16** — Expanded to four games with Werewolf, Chess and Xiangqi, a dedicated lobby, separate themes and game-scoped memory.
 - **2026.09.14** — Published the Sanguosha four-model baseline, summary data, six figures and reproduction scripts.
 - **2026.09.11** — Initial release with Sanguosha spectating, a player library, concurrent games, communication and RSI.
@@ -273,8 +368,8 @@ Rules and integration tests cover gameplay, information isolation, model protoco
 <details>
 <summary><strong>Next directions</strong></summary>
 
-- Improve experience generation, selection, consolidation and feedback so lessons can be revised over time.
-- Expand game content, including additional Sanguosha general profiles, skill descriptions and corresponding rules.
+- Improve experience selection and consolidation, with support for revising stored lessons.
+- Add Sanguosha generals, skill descriptions and the corresponding rules.
 
 </details>
 

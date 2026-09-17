@@ -1,0 +1,859 @@
+{
+  "generatedAt": "2026-09-17T07:38:58.251Z",
+  "planSha256": "d3a76999ba3cc950f669279efa29dcabf5ce6c8336a892db7c22d86ce3e137c3",
+  "sourceSnapshotSha256": "2e34032c1dbf0eb829680bd9d22b906cbebe8c6270d85755f91bb1f1cd726b43",
+  "exportScriptSha256": "2f02c1752500cbd91846146d6614d3ac9de12a7b0ce12df91c903aacf2c4b970",
+  "amendmentsSha256": "ad1e7f7d31850a184a66fc06c8b67db541cde179a0db40789f5a6e092a87f97f",
+  "rawFiles": [
+    {
+      "id": "xiangqi-zh-02-b0-m0",
+      "cohort": "initial-20260916",
+      "sha256": "dba66629f416501d2c8960223e43328077357764f14f5225ae1bfeebfee57e6e"
+    },
+    {
+      "id": "xiangqi-zh-02-b1-m1",
+      "cohort": "initial-20260916",
+      "sha256": "a5bb8f384c79a2340353f66121ae2a27ed0ffe721c8dde7391f61818bdbb2ac2"
+    },
+    {
+      "id": "xiangqi-zh-03-b0-m0",
+      "cohort": "initial-20260916",
+      "sha256": "61d3d2e8f61a5d76d7f02e3a37f24ed4f075a18cf637a4ff53731c991904c7cf"
+    },
+    {
+      "id": "xiangqi-zh-23-b0-m0",
+      "cohort": "initial-20260916",
+      "sha256": "19e2abe940fb2b983aa2fe350e3840d28a678713859b3c5845c017207efc7507"
+    },
+    {
+      "id": "xiangqi-zh-12-b1-m1",
+      "cohort": "initial-20260916",
+      "sha256": "7e6275a1fae35a964c90d793d1d26e30591ce6b3d1ee37931bc381aa0a710bcd"
+    },
+    {
+      "id": "xiangqi-zh-12-b0-m0",
+      "cohort": "initial-20260916",
+      "sha256": "eb1b8ba6caa7a75114145183496974364d712154f470d1a33e5795c114923bc0"
+    },
+    {
+      "id": "xiangqi-zh-23-b0-m1",
+      "cohort": "initial-20260916",
+      "sha256": "e74f10d7bc14e800c01f3831c305a0ddb9d7780e7ba1abe59bc97857889cb4c6"
+    },
+    {
+      "id": "xiangqi-zh-13-b0-m1",
+      "cohort": "initial-20260916",
+      "sha256": "3363c93ac74da663e86751daf5ad299786cdfeb08f81689e8a2e6841d5bb74f7"
+    },
+    {
+      "id": "xiangqi-zh-13-b0-m0",
+      "cohort": "initial-20260916",
+      "sha256": "16459b90d124262f133525d10f11961d328ee6955aba9fafba2e337db9d751bb"
+    },
+    {
+      "id": "xiangqi-zh-23-b1-m0",
+      "cohort": "initial-20260916",
+      "sha256": "35e200803f84b8d2bd076377d184c6e1a216175666ad02513f5c2a2c531f1860"
+    },
+    {
+      "id": "xiangqi-zh-13-b1-m1",
+      "cohort": "initial-20260916",
+      "sha256": "c090fdbba9c5de11d4bcc314f94312974352727c1c19ded5a63a536c07db8091"
+    },
+    {
+      "id": "xiangqi-zh-02-b0-m1",
+      "cohort": "initial-20260916",
+      "sha256": "c12feba49349115f4df7e7f6e1837a8f54a3a85bc02024bc219bb38f755163a4"
+    },
+    {
+      "id": "xiangqi-zh-23-b1-m1",
+      "cohort": "initial-20260916",
+      "sha256": "ebca8658102612e10141b8439bb64ac5f78216dfe7bf93e7e38b6fe2056df74f"
+    },
+    {
+      "id": "xiangqi-zh-01-b0-m0",
+      "cohort": "initial-20260916",
+      "sha256": "2729fa6b39dcf679d951e889f5e8ac906868841c3ef7becbc273b7eaf89ac694"
+    },
+    {
+      "id": "xiangqi-zh-03-b1-m0",
+      "cohort": "initial-20260916",
+      "sha256": "5fee7c3b8c528e30010c994c3ed231eacc2d62285e26a7e4b4a4a6255aa580b3"
+    },
+    {
+      "id": "xiangqi-zh-03-b1-m1",
+      "cohort": "initial-20260916",
+      "sha256": "b826ebf84b05641e210f94691986e277aa70f5c025e7c78906d53a52ed41f447"
+    },
+    {
+      "id": "xiangqi-zh-03-b0-m1",
+      "cohort": "initial-20260916",
+      "sha256": "c7a7056b0ccc8682237d2464c2cef1f98d01f3c442cb44a472db37e1eda979ee"
+    },
+    {
+      "id": "xiangqi-zh-01-b0-m1",
+      "cohort": "initial-20260916",
+      "sha256": "7a92f5e05149f0616754307f298a112e9d9dbb2b390f647862c77fc9b20e2aa7"
+    },
+    {
+      "id": "xiangqi-zh-13-b1-m0",
+      "cohort": "initial-20260916",
+      "sha256": "8c4df3ca8ef536f52c133cb6a12c84087f1ab74531dc8e6c34f6815889ea66b4"
+    },
+    {
+      "id": "xiangqi-zh-12-b0-m1",
+      "cohort": "initial-20260916",
+      "sha256": "4232aed31c8ceb15d0f1927f90f232b98b94bee466e21eff4cdfb37894bff4e8"
+    },
+    {
+      "id": "xiangqi-zh-02-b1-m0",
+      "cohort": "initial-20260916",
+      "sha256": "64b5ba75911587c6d79f9e2cde8d81eea4f38a2fbdf681a365f9bf26eb12515d"
+    },
+    {
+      "id": "xiangqi-zh-12-b1-m0",
+      "cohort": "initial-20260916",
+      "sha256": "84052f8d1be3c9a20123b005d99090be4e5cc625f3c5f39346d25e14109b69dd"
+    },
+    {
+      "id": "xiangqi-zh-01-b1-m1",
+      "cohort": "initial-20260916",
+      "sha256": "4843bae662ba5c8e10c41cd5027f9e8038a590defe0e9f180b4d37ba150a106c"
+    },
+    {
+      "id": "xiangqi-zh-01-b1-m0",
+      "cohort": "initial-20260916",
+      "sha256": "4e0ae20c68e84a512be4efab0701936af8149b03d29550f6068d073ad32d3f4c"
+    },
+    {
+      "id": "xiangqi-zh-23-b12-m0",
+      "cohort": "extension-20260917",
+      "sha256": "6e4f7aa97561a74103428422955d56f571f6faaf84f43f02089a27f1eaa0eab7"
+    },
+    {
+      "id": "xiangqi-zh-01-b11-m1",
+      "cohort": "extension-20260917",
+      "sha256": "3cffe666d31cfa8d11e81f6e1936503bfc577ab2eaf58eeebe4c5bb6114577f6"
+    },
+    {
+      "id": "xiangqi-zh-02-b6-m1",
+      "cohort": "extension-20260917",
+      "sha256": "89d750a67acac9c181cf0d8fab4814be71a3edc317837ed57ed3539fd52b4516"
+    },
+    {
+      "id": "xiangqi-zh-02-b13-m0",
+      "cohort": "extension-20260917",
+      "sha256": "e04d8e86d56422583870f59b819ff05f0709675c8a85f673c2ac9ceb734bef40"
+    },
+    {
+      "id": "xiangqi-zh-01-b3-m1",
+      "cohort": "extension-20260917",
+      "sha256": "0db7afc22b93763a0dd52c189a706c6952d0bb5cfa7c9757b5a83a23b206abed"
+    },
+    {
+      "id": "xiangqi-zh-01-b5-m1",
+      "cohort": "extension-20260917",
+      "sha256": "a4ace9072fa1e415ea3f83db141ceecea25a772acbdb3146157186abf271b0e2"
+    },
+    {
+      "id": "xiangqi-zh-12-b4-m0",
+      "cohort": "extension-20260917",
+      "sha256": "079d92de3c50d8917aa19e740bed45b0decb488b3c743fb91654aa9b47d961f9"
+    },
+    {
+      "id": "xiangqi-zh-01-b4-m1",
+      "cohort": "extension-20260917",
+      "sha256": "fd9b8643733a5e38b16914cb962afcc87eb4a8dc0ceaaff59e4e46e6d183965f"
+    },
+    {
+      "id": "xiangqi-zh-01-b7-m1",
+      "cohort": "extension-20260917",
+      "sha256": "9756547667d57f8e119bd7e828e1002e638166ec59023c4c5042aa6ef887bd39"
+    },
+    {
+      "id": "xiangqi-zh-03-b5-m0",
+      "cohort": "extension-20260917",
+      "sha256": "5973ce0e430488d510ddf2a7f2b08aabff92b3ea8613dc2fa4b70de602a7a7eb"
+    },
+    {
+      "id": "xiangqi-zh-02-b11-m1",
+      "cohort": "extension-20260917",
+      "sha256": "e3d00a47c7b66687a2a9c2c703f43cd25bc955d55c884c55535885ad196cd28d"
+    },
+    {
+      "id": "xiangqi-zh-01-b9-m1",
+      "cohort": "extension-20260917",
+      "sha256": "88dfb45b9e9d978ea902c1681d0515cf18d5cefb754d6680830558ebeb47f081"
+    },
+    {
+      "id": "xiangqi-zh-01-b13-m1",
+      "cohort": "extension-20260917",
+      "sha256": "d83ac702c28f0053130fd40141ada9c2c0b8389a419b8692df2107a79ea1cd39"
+    },
+    {
+      "id": "xiangqi-zh-13-b3-m0",
+      "cohort": "extension-20260917",
+      "sha256": "4b3bf58e0ab1633d4e14b045103991183666372c7be12848b5ee92a9ccf1beb7"
+    },
+    {
+      "id": "xiangqi-zh-03-b8-m0",
+      "cohort": "extension-20260917",
+      "sha256": "b080bd2c3acd83191fbec176cc904454d3b912e6ca5c38029fbef76e88b25218"
+    },
+    {
+      "id": "xiangqi-zh-02-b7-m1",
+      "cohort": "extension-20260917",
+      "sha256": "36e7162d102e2ba43ef4c061f2b98f01c427a72789a452d7852fc8de2172c7a8"
+    },
+    {
+      "id": "xiangqi-zh-03-b7-m1",
+      "cohort": "extension-20260917",
+      "sha256": "3996d7bddf854baaf101457cfdca79deac47f9052fce4e31c5212246b9a136c1"
+    },
+    {
+      "id": "xiangqi-zh-02-b5-m1",
+      "cohort": "extension-20260917",
+      "sha256": "8141bb4ca4b5e56831cbfd86be11b69a4400e63e8d93b6c24d0ae2e38c0662b8"
+    },
+    {
+      "id": "xiangqi-zh-12-b4-m1",
+      "cohort": "extension-20260917",
+      "sha256": "e7007d6adac2d8d2d609923e34e52cdff82cd353b6d3447546ade6be49440d4d"
+    },
+    {
+      "id": "xiangqi-zh-13-b2-m1",
+      "cohort": "extension-20260917",
+      "sha256": "db91f2750b913a9a84f53d5917fd03faa15ec0d7f6b6b263ae570378a0c4577c"
+    },
+    {
+      "id": "xiangqi-zh-23-b4-m1",
+      "cohort": "extension-20260917",
+      "sha256": "26bee0d3e9bc7f1d53539c3cab49e95bac6884d2a2255227f178d74f80eed15d"
+    },
+    {
+      "id": "xiangqi-zh-12-b2-m1",
+      "cohort": "extension-20260917",
+      "sha256": "55f2beb377858f4b9f2d0932b09a428027674e4826a5a66ff16dcd77ef9596ce"
+    },
+    {
+      "id": "xiangqi-zh-01-b8-m1",
+      "cohort": "extension-20260917",
+      "sha256": "4dde4d9fc2df00cefbd7cbd00ca84f919c237f7f276ef9ec851365082081ebf5"
+    },
+    {
+      "id": "xiangqi-zh-23-b9-m0",
+      "cohort": "extension-20260917",
+      "sha256": "593d0ae7f607e5eeadd92bc6a478543418618c9c0a7c1627a74156776a708913"
+    },
+    {
+      "id": "xiangqi-zh-03-b3-m0",
+      "cohort": "extension-20260917",
+      "sha256": "22ed9ce7f319d7e9224f199a0ba68e6c90d5b3e8a17905710ef2032827fe7d76"
+    },
+    {
+      "id": "xiangqi-zh-02-b11-m0",
+      "cohort": "extension-20260917",
+      "sha256": "023ed093ea0bcbe9284e34dcce21438a30cbe4e5f58ad898777e2841d9b249e7"
+    },
+    {
+      "id": "xiangqi-zh-23-b10-m0",
+      "cohort": "extension-20260917",
+      "sha256": "48dfdf2a319b5502b93533abbb5845f8e49a236719d5850dde71025adf0bc303"
+    },
+    {
+      "id": "xiangqi-zh-01-b7-m0",
+      "cohort": "extension-20260917",
+      "sha256": "b10b8fecb7b6e5b72b65dd14f578e950e1dabf305869465a660ab79b2e701ac1"
+    },
+    {
+      "id": "xiangqi-zh-03-b6-m1",
+      "cohort": "extension-20260917",
+      "sha256": "872617d2c8af8c15ae0554986513f7e12e9490f2772194a071c499dd1941d11b"
+    },
+    {
+      "id": "xiangqi-zh-03-b11-m1",
+      "cohort": "extension-20260917",
+      "sha256": "33889a3fb48843e6e5ae7dfb0ff2eff69c7d1712bab034522e1dc50afcf453b0"
+    },
+    {
+      "id": "xiangqi-zh-13-b9-m0",
+      "cohort": "extension-20260917",
+      "sha256": "ce98cc2e479da23c68aba1f8dd4a2fc41a1a7e4bd215a94ef7caf17938d4ca64"
+    },
+    {
+      "id": "xiangqi-zh-02-b10-m1",
+      "cohort": "extension-20260917",
+      "sha256": "af7d769d72652f38d77cf3c8b16eaea3c7a9a196367e2daecf2717938979bd17"
+    },
+    {
+      "id": "xiangqi-zh-03-b4-m1",
+      "cohort": "extension-20260917",
+      "sha256": "8e0b2dbbbb1cffd768d8c567dd4ec9ae536fdd86968620326b6c838950110526"
+    },
+    {
+      "id": "xiangqi-zh-13-b11-m1",
+      "cohort": "extension-20260917",
+      "sha256": "e06cecd0760722f53ffc39f4c7f67e98d0748580a0c5295620faaac46810e749"
+    },
+    {
+      "id": "xiangqi-zh-03-b5-m1",
+      "cohort": "extension-20260917",
+      "sha256": "a1691e8ec6cc696ed5eab1a52f7bcbd1d145fd2a002577771263c0f5c5e02d5c"
+    },
+    {
+      "id": "xiangqi-zh-01-b9-m0",
+      "cohort": "extension-20260917",
+      "sha256": "c9859d5e3e24f31a45c1b2fd02ddf3cd95e4fe140620af3baa1fa7bb8a504313"
+    },
+    {
+      "id": "xiangqi-zh-03-b13-m1",
+      "cohort": "extension-20260917",
+      "sha256": "4f362fcbe0650a515a07c00db76089b6df03ffd48b1bd77838747d3ed2c4029f"
+    },
+    {
+      "id": "xiangqi-zh-13-b12-m1",
+      "cohort": "extension-20260917",
+      "sha256": "6ac8653cbf42d5a1bd953b6d81b38422174c346d67978c81e4503396684ac547"
+    },
+    {
+      "id": "xiangqi-zh-01-b8-m0",
+      "cohort": "extension-20260917",
+      "sha256": "1f4d4c77b6d511fd6eba65bdd02301bcbef01c975ee9c8134a364ea80221cac7"
+    },
+    {
+      "id": "xiangqi-zh-01-b12-m0",
+      "cohort": "extension-20260917",
+      "sha256": "ea55db95b1bc730bd173c9032d6386d690088d31339175c37ccbf254675a0fd6"
+    },
+    {
+      "id": "xiangqi-zh-01-b2-m1",
+      "cohort": "extension-20260917",
+      "sha256": "d5d3b0b03bf238e65e03b5f3cf3179f4d946446495b1606becaee4a6cbf28002"
+    },
+    {
+      "id": "xiangqi-zh-13-b5-m1",
+      "cohort": "extension-20260917",
+      "sha256": "a61a249cc821f5e611e1cf74ebe9999e032edf63b477401f0f786fde34d45f9a"
+    },
+    {
+      "id": "xiangqi-zh-02-b12-m1",
+      "cohort": "extension-20260917",
+      "sha256": "c8ae75e79faf0679e976096046b00e6c9e4d2cddb59b7a6297ac6b3f7ca2b05e"
+    },
+    {
+      "id": "xiangqi-zh-23-b5-m0",
+      "cohort": "extension-20260917",
+      "sha256": "4a20802421d82119586bce04cca5f1900099ce50eba897b30281f520cc7f6623"
+    },
+    {
+      "id": "xiangqi-zh-23-b8-m0",
+      "cohort": "extension-20260917",
+      "sha256": "2f467418de2b70d7f2c30f67383e675dbdf5ec7f289783e1d4779f9243b01052"
+    },
+    {
+      "id": "xiangqi-zh-13-b10-m1",
+      "cohort": "extension-20260917",
+      "sha256": "00f7dc80442fa042a6f9a5cc7178e00491b90b9297438fa16306e928cd68d0f6"
+    },
+    {
+      "id": "xiangqi-zh-12-b3-m1",
+      "cohort": "extension-20260917",
+      "sha256": "776b133fc20f63de67c02fea64de4c75c7724c7eaa85b6349e88e339c707942b"
+    },
+    {
+      "id": "xiangqi-zh-03-b9-m1",
+      "cohort": "extension-20260917",
+      "sha256": "418b8d0080ed83bfaa303595dba7d0ee1181ce2fa9d8c002c5244f3520d818be"
+    },
+    {
+      "id": "xiangqi-zh-23-b11-m0",
+      "cohort": "extension-20260917",
+      "sha256": "5d5fd830e606137f61646e5685a81114c20cb6dd33fbfb99b3f677eaaecbc63b"
+    },
+    {
+      "id": "xiangqi-zh-23-b12-m1",
+      "cohort": "extension-20260917",
+      "sha256": "c083b47d54f72cdc39f5dc8a02baeba8102d3962737dfd6a8fc0aa7e19b21f49"
+    },
+    {
+      "id": "xiangqi-zh-02-b9-m1",
+      "cohort": "extension-20260917",
+      "sha256": "f088cc35700ef6483c8d52e720b642348783a9bfbc9cb45f94ceea48014d1d0f"
+    },
+    {
+      "id": "xiangqi-zh-01-b3-m0",
+      "cohort": "extension-20260917",
+      "sha256": "dbe536a17c94227b845a8dc9ea8b919b3112319a76a744aca3de73ed4a05cb51"
+    },
+    {
+      "id": "xiangqi-zh-02-b4-m0",
+      "cohort": "extension-20260917",
+      "sha256": "468f9e91b0d19e3085db99f65e08d4c917e18b972a2b0724207c3ec76f8a2237"
+    },
+    {
+      "id": "xiangqi-zh-13-b5-m0",
+      "cohort": "extension-20260917",
+      "sha256": "252b87392859fa84ce7be3ecfab0a0cf5c00014aa801c042c0d5c770306451f6"
+    },
+    {
+      "id": "xiangqi-zh-13-b13-m1",
+      "cohort": "extension-20260917",
+      "sha256": "02306a9c4ddd8d83a3c6d54ea63ef3732480834f7e6aff113c6ad6c98d7ed48f"
+    },
+    {
+      "id": "xiangqi-zh-02-b8-m0",
+      "cohort": "extension-20260917",
+      "sha256": "d03ecc38a6c8421e216f9b689f099f338473eaf28d8f183a9fd76836cc93d246"
+    },
+    {
+      "id": "xiangqi-zh-12-b11-m1",
+      "cohort": "extension-20260917",
+      "sha256": "8eee87191dcf7ffa660066373db8a1879d418a1a183b86e3d4e642853acf1373"
+    },
+    {
+      "id": "xiangqi-zh-13-b7-m1",
+      "cohort": "extension-20260917",
+      "sha256": "80a36e57b25fe30180532355763d1e63f83a5ed3e8067037951b81bec1388690"
+    },
+    {
+      "id": "xiangqi-zh-02-b2-m1",
+      "cohort": "extension-20260917",
+      "sha256": "c37cf85a6a181c0d1a1156fb339afd44d181e2b4812183981ad9a75405ad0b77"
+    },
+    {
+      "id": "xiangqi-zh-01-b2-m0",
+      "cohort": "extension-20260917",
+      "sha256": "5be92519eacaf839f5099e24552c688ee45fdadabf95da48d1f1d806e97dfef6"
+    },
+    {
+      "id": "xiangqi-zh-12-b13-m1",
+      "cohort": "extension-20260917",
+      "sha256": "8230b1c0a5ef5008e0dbd398b0ad589f42199a18ff32e54e31c947da554295ce"
+    },
+    {
+      "id": "xiangqi-zh-12-b12-m1",
+      "cohort": "extension-20260917",
+      "sha256": "6bec6ca6be3c832f35f27683198fc9a8b40316f868bb8b537e7aaccaff47f520"
+    },
+    {
+      "id": "xiangqi-zh-13-b3-m1",
+      "cohort": "extension-20260917",
+      "sha256": "a1e1fee886f11c951e6657d70708c0d2fc464241320979d353eea6cb57d5e064"
+    },
+    {
+      "id": "xiangqi-zh-12-b6-m0",
+      "cohort": "extension-20260917",
+      "sha256": "25d14cf3e364fee47984f8f239bb6b00ae080cba0705426198d429105a251b4a"
+    },
+    {
+      "id": "xiangqi-zh-23-b7-m0",
+      "cohort": "extension-20260917",
+      "sha256": "c92df051aec897c56a91f7a77f7e9e3f90a02f56afe2ce34307e1c76ed36236b"
+    },
+    {
+      "id": "xiangqi-zh-01-b10-m1",
+      "cohort": "extension-20260917",
+      "sha256": "7da065bb8ede3f6d5780c215f9249e2c55a5f9434704f245eb55f395caa12a26"
+    },
+    {
+      "id": "xiangqi-zh-12-b5-m1",
+      "cohort": "extension-20260917",
+      "sha256": "9debd799c7cebababa177fb2a8162eeae4ab8da87362e865b25f0a9d19dab845"
+    },
+    {
+      "id": "xiangqi-zh-13-b4-m0",
+      "cohort": "extension-20260917",
+      "sha256": "13f132c848953653a3df53c72a466bba6469743ca28a9128850fee0760c90b69"
+    },
+    {
+      "id": "xiangqi-zh-01-b10-m0",
+      "cohort": "extension-20260917",
+      "sha256": "42beb189e6a81adc27b6d0e6b25d7386fcfb8c78b8c8b83057accbdee3b6ea0a"
+    },
+    {
+      "id": "xiangqi-zh-23-b3-m1",
+      "cohort": "extension-20260917",
+      "sha256": "f692c33eeba5e3ee02b360c1bbec71e493d39160a26702117d9164aabbe0b88b"
+    },
+    {
+      "id": "xiangqi-zh-23-b10-m1",
+      "cohort": "extension-20260917",
+      "sha256": "31be938c18e0d6caf7742c8ddfcc5cc0a5f2bbdda0310003b6e44c1bfd536108"
+    },
+    {
+      "id": "xiangqi-zh-01-b13-m0",
+      "cohort": "extension-20260917",
+      "sha256": "d4e05febaa8d78d77155eb12f46dbaba9dd6a2625c3870533f07947a10d43781"
+    },
+    {
+      "id": "xiangqi-zh-02-b5-m0",
+      "cohort": "extension-20260917",
+      "sha256": "d7d6cf36638324a78cfd929259afc5885cb1d3586635b19e7f85e24a5733e761"
+    },
+    {
+      "id": "xiangqi-zh-02-b12-m0",
+      "cohort": "extension-20260917",
+      "sha256": "c89c5846f8321763e0252be59652342b8a8897f331307004a3266e26f62b7a24"
+    },
+    {
+      "id": "xiangqi-zh-02-b10-m0",
+      "cohort": "extension-20260917",
+      "sha256": "70232c3988bc109bd64910e6744ff99248803a96fb2acdb8bebe987fa744f145"
+    },
+    {
+      "id": "xiangqi-zh-01-b6-m1",
+      "cohort": "extension-20260917",
+      "sha256": "9d4e89bc166cfe867d9f2062e18bd3dfc9c4dabbbe53f8c224312a6830525acb"
+    },
+    {
+      "id": "xiangqi-zh-13-b11-m0",
+      "cohort": "extension-20260917",
+      "sha256": "4f08f970ca5ad8895eb44ae30b4b62749552f5a5fd00e77dcac014c6d05e4471"
+    },
+    {
+      "id": "xiangqi-zh-12-b6-m1",
+      "cohort": "extension-20260917",
+      "sha256": "5d7bcd14ec04992e6ccd2cd4a782981ad4f67319afa0bba15ba115b318cebf43"
+    },
+    {
+      "id": "xiangqi-zh-12-b5-m0",
+      "cohort": "extension-20260917",
+      "sha256": "8a83c489dd7d49b554c4ad2440cdb8ae87304571f957d93942f6b1c330dbc02e"
+    },
+    {
+      "id": "xiangqi-zh-12-b12-m0",
+      "cohort": "extension-20260917",
+      "sha256": "d28cf34df20ec57c100814786d28ecd5841daab0eeb171378e99e7976b807469"
+    },
+    {
+      "id": "xiangqi-zh-23-b9-m1",
+      "cohort": "extension-20260917",
+      "sha256": "8be02d1b2c3c24d16c43ed0d82620441df9e14428d6c48d03884717ec6546188"
+    },
+    {
+      "id": "xiangqi-zh-12-b9-m1",
+      "cohort": "extension-20260917",
+      "sha256": "387a6ac0e902523b9dc68ee6d0faf26fbfccc31009f0bc6d7749d8aa6ce54351"
+    },
+    {
+      "id": "xiangqi-zh-23-b8-m1",
+      "cohort": "extension-20260917",
+      "sha256": "d5700d8c9312c2775a18870199737720b084d764a9fdd36c355ec99089bfafa3"
+    },
+    {
+      "id": "xiangqi-zh-12-b2-m0",
+      "cohort": "extension-20260917",
+      "sha256": "083d706c573d381429e9509766851af4895727cd2936774a7d9d08e72030a60c"
+    },
+    {
+      "id": "xiangqi-zh-02-b4-m1",
+      "cohort": "extension-20260917",
+      "sha256": "64083985845e923cc014c547d0e34c1346d445a2bcfcaa683bc0725f446645d2"
+    },
+    {
+      "id": "xiangqi-zh-23-b2-m1",
+      "cohort": "extension-20260917",
+      "sha256": "26d15be391cbe42ac1f4fedbff7d4b1bbde258021b81d53f59dad3d7e00ef1ce"
+    },
+    {
+      "id": "xiangqi-zh-12-b10-m0",
+      "cohort": "extension-20260917",
+      "sha256": "b436cd44db30a862c968011306e75429a6097d432fa4fb5a9f5d3812cdc3d79a"
+    },
+    {
+      "id": "xiangqi-zh-03-b12-m1",
+      "cohort": "extension-20260917",
+      "sha256": "98c3358f81c4a3718a378826029a571b3bc1f6674e98e6064c25592d7faf1d3d"
+    },
+    {
+      "id": "xiangqi-zh-03-b11-m0",
+      "cohort": "extension-20260917",
+      "sha256": "5cf080f0db49a847411a0e29a392556bc9ed2a6e8e9e996f7874eb9daad715e6"
+    },
+    {
+      "id": "xiangqi-zh-02-b7-m0",
+      "cohort": "extension-20260917",
+      "sha256": "7dd5a8b0bb70efadc06ebb8a5bfe5d3d2752edccb2474967f337857e31b61dc1"
+    },
+    {
+      "id": "xiangqi-zh-13-b6-m1",
+      "cohort": "extension-20260917",
+      "sha256": "a751ea139612baf69e300a2c3f97b0fa0ab85b4417a63a3627a75bf6a94e6d35"
+    },
+    {
+      "id": "xiangqi-zh-23-b13-m1",
+      "cohort": "extension-20260917",
+      "sha256": "ba0025d9edffa5037b3d2341d9876c41a60bec3f48abb524a4ccc17885938447"
+    },
+    {
+      "id": "xiangqi-zh-13-b9-m1",
+      "cohort": "extension-20260917",
+      "sha256": "c12f186f7e86ee1a5a08171cf0f8ccbffa093a5b8d543c400b5256b82421dc77"
+    },
+    {
+      "id": "xiangqi-zh-23-b11-m1",
+      "cohort": "extension-20260917",
+      "sha256": "77257f3ba668c100a57f5728792b417a17249eda96e8cb97b21246a4fae41b5b"
+    },
+    {
+      "id": "xiangqi-zh-02-b13-m1",
+      "cohort": "extension-20260917",
+      "sha256": "a3448d72dca5344b11d92530af35c92f973846905cfb21ce13fbb129cd641ee0"
+    },
+    {
+      "id": "xiangqi-zh-23-b6-m0",
+      "cohort": "extension-20260917",
+      "sha256": "cc5237e2d8b4493d93d12dd73927ab3e7fe05a5738feb79f78e6a4b84497ed77"
+    },
+    {
+      "id": "xiangqi-zh-03-b10-m1",
+      "cohort": "extension-20260917",
+      "sha256": "a9e0742e395d2b1ee81a6fb365385aeb854d2615d86c77c42a6c365c5662f2da"
+    },
+    {
+      "id": "xiangqi-zh-01-b6-m0",
+      "cohort": "extension-20260917",
+      "sha256": "f7936277b042549e484f3091e9e0a28dc53f80f84e6b82f2ac0632cb5dbdac6c"
+    },
+    {
+      "id": "xiangqi-zh-23-b4-m0",
+      "cohort": "extension-20260917",
+      "sha256": "63b91edb7d13438408f770b9f915de6a2b64bd74f0047547eab925166f23dee4"
+    },
+    {
+      "id": "xiangqi-zh-03-b4-m0",
+      "cohort": "extension-20260917",
+      "sha256": "4be90b2c49a964b43ca722c639abe287b342d21c76f7aa4d873f84e3e4c70109"
+    },
+    {
+      "id": "xiangqi-zh-01-b12-m1",
+      "cohort": "extension-20260917",
+      "sha256": "bfd9ddbf6b7bff2c06d86ee28eb3aebf16b7db707b790322032a093e66cc91a3"
+    },
+    {
+      "id": "xiangqi-zh-03-b8-m1",
+      "cohort": "extension-20260917",
+      "sha256": "bf68da46761213946f97845b55299b68f2eda1d5bb7b9de3dbb6f9f97f03ad03"
+    },
+    {
+      "id": "xiangqi-zh-12-b13-m0",
+      "cohort": "extension-20260917",
+      "sha256": "55869566ec354f9b7115a9941880aa97690a0880016e859eab835c620cc0080d"
+    },
+    {
+      "id": "xiangqi-zh-12-b7-m0",
+      "cohort": "extension-20260917",
+      "sha256": "a5f9682deaab92d5130453aa103cff3fa4bcf683e1eab066654f28b8e5a59828"
+    },
+    {
+      "id": "xiangqi-zh-03-b2-m0",
+      "cohort": "extension-20260917",
+      "sha256": "aa9f5ff6a303daecd72f4e2f08bc1a99ab0ebccbb97c2bd9e8209adeb1c90f68"
+    },
+    {
+      "id": "xiangqi-zh-12-b8-m0",
+      "cohort": "extension-20260917",
+      "sha256": "f156184d67dc3643ee6272e16eff5a9b67fa0badf7a3f4e9868afa1e6c09001a"
+    },
+    {
+      "id": "xiangqi-zh-12-b9-m0",
+      "cohort": "extension-20260917",
+      "sha256": "babd838c12939a8327ba05cc2dba77d2b24c6968d92260e1992d46e95460ab4f"
+    },
+    {
+      "id": "xiangqi-zh-13-b7-m0",
+      "cohort": "extension-20260917",
+      "sha256": "3b86618ac723bb3a89d1d329ab275224f16651941a327001da361444abcda1d7"
+    },
+    {
+      "id": "xiangqi-zh-01-b5-m0",
+      "cohort": "extension-20260917",
+      "sha256": "e30c0136048bbdfb17205008796705a85804fac4b297f1393173d169703819b5"
+    },
+    {
+      "id": "xiangqi-zh-02-b2-m0",
+      "cohort": "extension-20260917",
+      "sha256": "4c7f3b9ea33e78b46389683c40a415e9450c6611c87ad67a1b084ceddcd99615"
+    },
+    {
+      "id": "xiangqi-zh-12-b10-m1",
+      "cohort": "extension-20260917",
+      "sha256": "5a8c06f0d1e98a00ef08a45c6e98b35c7c6c975c8ee793db64d7c20e91506757"
+    },
+    {
+      "id": "xiangqi-zh-03-b10-m0",
+      "cohort": "extension-20260917",
+      "sha256": "68cbcfba0481bbfdeccdc027d1b8af324410eb97678a35f5b9d68d12f6142fa9"
+    },
+    {
+      "id": "xiangqi-zh-02-b9-m0",
+      "cohort": "extension-20260917",
+      "sha256": "8f10b1bffa76655fd41874b36c2f09dd90e360ce32a38409d3e8eb0cb9832032"
+    },
+    {
+      "id": "xiangqi-zh-13-b13-m0",
+      "cohort": "extension-20260917",
+      "sha256": "abddb1798615a5c9e680f09b549452f981e5341194f6dcc911db216d0edfe85f"
+    },
+    {
+      "id": "xiangqi-zh-02-b3-m1",
+      "cohort": "extension-20260917",
+      "sha256": "51a7d70acf780bd429777e2873b0b3b86b7fd5d43243f0d609afbea8dbbcc101"
+    },
+    {
+      "id": "xiangqi-zh-03-b3-m1",
+      "cohort": "extension-20260917",
+      "sha256": "d4cdef6de495b9cc98aa8ce9b5207d28247e487332dfe3b53b9fd83601fcb97c"
+    },
+    {
+      "id": "xiangqi-zh-13-b6-m0",
+      "cohort": "extension-20260917",
+      "sha256": "7cb424c5a5cc0b7a07ff3fc5d709d48f95661eb2c6edda13acb6639203149572"
+    },
+    {
+      "id": "xiangqi-zh-12-b8-m1",
+      "cohort": "extension-20260917",
+      "sha256": "eb6592b5dd107d59332160e7e34c6b0b63b79feceb40b9d8ac21511a40d08c91"
+    },
+    {
+      "id": "xiangqi-zh-13-b12-m0",
+      "cohort": "extension-20260917",
+      "sha256": "2681c09681ae0b3f1fb5dbfe0818ce281ed979d28bebddf872dcb69f6c5cdc51"
+    },
+    {
+      "id": "xiangqi-zh-23-b5-m1",
+      "cohort": "extension-20260917",
+      "sha256": "e2e5d512bf83272ec0c8f7dd604320f3931406ce9f35114a6536c5473b1b6fc1"
+    },
+    {
+      "id": "xiangqi-zh-13-b4-m1",
+      "cohort": "extension-20260917",
+      "sha256": "b2366da66be15a36d8dc8c78c33855f08495ee512bb35cb3d529fa6e59e431c4"
+    },
+    {
+      "id": "xiangqi-zh-12-b7-m1",
+      "cohort": "extension-20260917",
+      "sha256": "3658cc7e6209cf3e32b0077930fca707df26c5a2e847c4798d5c49458e686fff"
+    },
+    {
+      "id": "xiangqi-zh-03-b13-m0",
+      "cohort": "extension-20260917",
+      "sha256": "3865201a51f6b3c1951c63da213442828fe94becaf8a9eb37bfa6d2ec7449ac3"
+    },
+    {
+      "id": "xiangqi-zh-01-b11-m0",
+      "cohort": "extension-20260917",
+      "sha256": "83babfdf393335faef0da49b30c2747d66e7717518883e9d7ee4b300cf9f6301"
+    },
+    {
+      "id": "xiangqi-zh-02-b8-m1",
+      "cohort": "extension-20260917",
+      "sha256": "856fa83c6a0afd9b623da8d60062330889e746132c38479132447447425ee818"
+    },
+    {
+      "id": "xiangqi-zh-03-b6-m0",
+      "cohort": "extension-20260917",
+      "sha256": "9d0f1130b19dd1b13d882080b9f1b4df16b1c6587e5ab531222f43ec5778765e"
+    },
+    {
+      "id": "xiangqi-zh-12-b3-m0",
+      "cohort": "extension-20260917",
+      "sha256": "4952615c12192ef9b0bb07d0371baa78daf116c6cdba2f3528723167a9ae680f"
+    },
+    {
+      "id": "xiangqi-zh-13-b2-m0",
+      "cohort": "extension-20260917",
+      "sha256": "2c64f14ad00bd0e12215c600cb6d386a42f2b7671b3a165772c94b8ac4e90796"
+    },
+    {
+      "id": "xiangqi-zh-03-b2-m1",
+      "cohort": "extension-20260917",
+      "sha256": "f06c4791bfa17a9f945cab0173177f1b0c68668e6f50fa4610a37f83c63d3d89"
+    },
+    {
+      "id": "xiangqi-zh-03-b7-m0",
+      "cohort": "extension-20260917",
+      "sha256": "2b0f20b90c4d7efd85f3f4362600bf3076a102435021dda4a47b4d1bb7bea3d4"
+    },
+    {
+      "id": "xiangqi-zh-23-b7-m1",
+      "cohort": "extension-20260917",
+      "sha256": "3a0e647c6b96adad709b6aebb4b2ff9cc961398dd018692f408ccf81778ba3c9"
+    },
+    {
+      "id": "xiangqi-zh-01-b4-m0",
+      "cohort": "extension-20260917",
+      "sha256": "a552802918124b67c309a5b06e14533a3eee1e0350cc35e404b7db5c62440c2b"
+    },
+    {
+      "id": "xiangqi-zh-12-b11-m0",
+      "cohort": "extension-20260917",
+      "sha256": "defed41606997b9517a2a57c3c84401142fbcfbd804bdc358ad5a9ed8c10e404"
+    },
+    {
+      "id": "xiangqi-zh-23-b6-m1",
+      "cohort": "extension-20260917",
+      "sha256": "cd54fc963b63aa8fdc899ef706ddcee9462f55ef5956206276e883320f087e75"
+    },
+    {
+      "id": "xiangqi-zh-02-b6-m0",
+      "cohort": "extension-20260917",
+      "sha256": "33b7dfb2f18f3b04b25122638f6072afbd03550eb24c119997c6ac6bba045337"
+    },
+    {
+      "id": "xiangqi-zh-02-b3-m0",
+      "cohort": "extension-20260917",
+      "sha256": "82d6446a01949f3be856de48338bec5bace26e45929a0b1fc69e14787fdd860a"
+    },
+    {
+      "id": "xiangqi-zh-23-b13-m0",
+      "cohort": "extension-20260917",
+      "sha256": "2847b65d9297fae64a1db3ae5bae1ee64c116bb83ae0314c2bd0d235f2d5012c"
+    },
+    {
+      "id": "xiangqi-zh-23-b3-m0",
+      "cohort": "extension-20260917",
+      "sha256": "1a72f65033c37b01ea6dbe0f211e15e0a606a4b459af5b18ad5a7d065b1b2b98"
+    },
+    {
+      "id": "xiangqi-zh-13-b10-m0",
+      "cohort": "extension-20260917",
+      "sha256": "4d399b1d326b40f905ea5271c4c69f522102295930213e72b56dc9a2095cec02"
+    },
+    {
+      "id": "xiangqi-zh-13-b8-m0",
+      "cohort": "extension-20260917",
+      "sha256": "261aabe88ac869827d439683095c9d116e984189bc5fe114e101b98ebd7ba555"
+    },
+    {
+      "id": "xiangqi-zh-23-b2-m0",
+      "cohort": "extension-20260917",
+      "sha256": "1d500cab97ff925c67499622d1fca2f4b8e14170ff7a1c9d584fdcd90cc3b130"
+    },
+    {
+      "id": "xiangqi-zh-03-b9-m0",
+      "cohort": "extension-20260917",
+      "sha256": "9ba237606d99f1969e64d577ef8883f316b21eaf47498b195d1fdd28862c5ce7"
+    },
+    {
+      "id": "xiangqi-zh-03-b12-m0",
+      "cohort": "extension-20260917",
+      "sha256": "2ab75fe714a9b0a40df1ce32fe7365105ff68c1494d349979f0d140b49f3eed9"
+    },
+    {
+      "id": "xiangqi-zh-13-b8-m1",
+      "cohort": "extension-20260917",
+      "sha256": "f640649d48c91f43582b951f08e8b20671c10856efe035e5fa87a801b5eb2efa"
+    }
+  ],
+  "publishedFiles": [
+    {
+      "file": "results.json",
+      "sha256": "138f981b42c41facc5abde16858acb57bbcaedbda1e9f53ad8ffae8c40a85d6c"
+    },
+    {
+      "file": "games-history.json.gz",
+      "sha256": "782528da4aeabf1c35f73fb28bba3448abd0aa415c1d917ead696a327216d023"
+    }
+  ]
+}

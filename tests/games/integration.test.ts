@@ -158,6 +158,36 @@ it('memory import/export retains game scope; legacy manual memory stays in Sangu
   expect(response.status).toBe(201);
   expect(store.activeMemory('p0', 'chess')).toHaveLength(2);
 });
+
+it('passes the configured output budget to decisions, both RSI modes and consolidation', async () => {
+  const mock = modelMock();
+  const { arena, store } = setup();
+  expect(MatchSchema.parse({ agents: agents(2) }).modelOutputLimit).toBe(4096);
+  for (const limit of [0, 511, 32769])
+    expect(() => MatchSchema.parse({ agents: agents(2), modelOutputLimit: limit })).toThrow();
+  const match = arena.create({
+    gameType: 'chess',
+    locale: 'en',
+    agents: agents(2, 'llm', 'both'),
+    modelOutputLimit: 8192,
+    maxDecisions: 20,
+    paceMs: 0,
+    autoStart: false,
+  });
+  arena.resume(match.id);
+  await arena.workers.get(match.id);
+  const gameId = store.games(match.id)[0].id;
+  for (const kind of ['decision', 'rsi-immediate', 'rsi-round'])
+    expect(
+      store.calls(gameId).some((call) => call.kind === kind && call.outputLimit === 8192),
+    ).toBe(true);
+  arena.consolidator.start('p0', match.id);
+  await arena.consolidator.jobs.get(`p0:${match.id}`);
+  expect(store.consolidations('p0')[0].status).toBe('completed');
+  expect(
+    mock.mock.calls.every(([, init]) => JSON.parse(String(init?.body)).max_tokens === 8192),
+  ).toBe(true);
+});
 it('wolf team messages stay out of public chat and another player’s token context', async () => {
   const { arena, store, app } = setup();
   const m = arena.create({

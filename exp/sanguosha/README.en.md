@@ -2,7 +2,7 @@
 
 [Project README](../../README.en.md#experiments) · [Experiment index](../README.md) · [简体中文](README.md) · [Data](results.json) · [Histories & chat](#game-histories-and-chat) · [Figures](assets)
 
-This study measures play without experience before testing RSI. The fixed schedule contains **528 games: 489 completed normally and 39 failed**, with no draws. Final results were compiled on September 14, 2026.
+This study measures play with empty memory as a baseline for later RSI comparisons. Of **528 scheduled games**, 489 completed normally and 39 failed, with no draws. Results were compiled on September 14, 2026.
 
 ## Setup
 
@@ -17,7 +17,9 @@ This study measures play without experience before testing RSI. The fixed schedu
 | Concurrency and retries  | At most 128 concurrent games and 32 requests per model; 90-second request timeout; at most 3 attempts per decision                                                 |
 | Termination and fallback | Draw at 1,800 engine decisions; exhausted decision retries terminate the game as an error; no heuristic substitution; the sole legal action executes automatically |
 
-The study uses the project's rules and decision prompts. All four models share one equivalence-preserving protocol adapter: redundant `cardIds` are removed only if they exactly repeat cards already bound to a legal action that requires no further card selection. Actions, targets, and actual selections remain the model's choice. These results describe performance after adaptation, not raw protocol compliance. Connectivity probes, capacity tests, pilot games, and service-recovery checks are excluded from the formal 528 games.
+The study uses the project's rules and decision prompts. All four models use the same protocol adapter: it removes `cardIds` only when the field exactly repeats cards already bound to a legal action that requires no further card selection. The adapter leaves actions, targets and actual selections unchanged. Results therefore describe performance after this adjustment and cannot be used as raw response compliance rates.
+
+Connectivity probes, capacity tests, pilot games and service-recovery checks are excluded from the formal 528 games.
 
 ## Results and figures
 
@@ -49,7 +51,7 @@ Median duration is **12.1 minutes** for duels and **36.2 minutes** for four-play
 
 [![Cumulative API-reported input and output tokens for each model](assets/token-use.svg)](assets/token-use.svg)
 
-The formal experiment reports **428.5M tokens**, with input accounting for **94.1%**. Context compression is a useful next optimization to test. Totals include reported retry usage; different provider accounting prevents a direct cost ranking.
+The APIs reported **428.5M tokens**, of which **94.1%** were input tokens. Input dominates usage in this run, though the savings and decision effects of context compression still need testing. Totals include reported retry usage. Provider accounting differs, so these totals cannot rank costs directly.
 
 ### Chat frequency
 
@@ -74,7 +76,7 @@ Model order and colors remain consistent; heatmaps use a fixed 0–100% scale. S
 
 ## Interpreting the findings
 
-**Four-player identity results support DeepSeek's lead, without a reliable order among the other three.** DeepSeek wins 158/256 games (61.7%), GLM 74/256 (28.9%), Kimi 86/256 (33.6%), and Qwen 78/256 (30.5%). Paired seed-block resampling preserves associations between model outcomes. After Bonferroni correction across all six comparisons, only DeepSeek's three differences have intervals entirely above zero.
+In four-player identity games, DeepSeek wins 158/256 (61.7%), GLM 74/256 (28.9%), Kimi 86/256 (33.6%), and Qwen 78/256 (30.5%). Paired seed-block resampling preserves associations between model outcomes. After Bonferroni correction across all six comparisons, only DeepSeek's three differences have intervals entirely above zero. This supports its lead in this study, while leaving the other three without a reliable ranking.
 
 | Four-player comparison | Difference / percentage points | Adjusted interval / percentage points |
 | :--------------------- | -----------------------------: | ------------------------------------: |
@@ -87,11 +89,15 @@ Model order and colors remain consistent; heatmaps use a fixed 0–100% scale. S
 
 These adjusted intervals have approximately 99.17% individual coverage. The win-rate figure above instead shows descriptive 95% intervals for individual models; overlapping error bars do not replace a paired comparison. In duels, DeepSeek finishes only 20 : 19 against GLM, with a paired win-rate interval of 38.5%–64.1%, insufficient to establish a stronger model in that matchup.
 
-**Failures remain relevant.** Non-random failure patterns can bias comparisons among completed games. Even assigning all 32 missing four-player outcomes as DeepSeek losses and wins for the comparator leaves DeepSeek ahead of GLM, Kimi, and Qwen by at least 18.1, 13.9, and 16.7 percentage points on the original denominator of 288. These are conservative missing-outcome bounds, not confidence intervals, and they do not remove other uncertainty.
+Failures concentrated in particular models or games can bias comparisons of completed games. Even assigning all 32 missing four-player outcomes as DeepSeek losses and wins for the comparator leaves DeepSeek ahead of GLM, Kimi, and Qwen by at least 18.1, 13.9, and 16.7 percentage points on the original denominator of 288. These are conservative missing-outcome bounds, not confidence intervals, and they do not remove other uncertainty.
 
-**Duration, tokens, and chat answer different questions.** The four-player median of 36.2 minutes is about three times the duel median, but includes this run's queues and retries; it does not predict speed with a dedicated API connection. Input accounts for 94.1% of reported tokens, motivating a context-compression test. Request counts, context, output behavior, and provider accounting all affect totals; fewer tokens alone do not establish better decision efficiency or lower cost. GLM speaks in 96.6% of four-player model decisions versus DeepSeek's 82.3%, without a higher win rate. This observation does not identify chat's causal effect.
+The four-player median of 36.2 minutes is about three times the duel median. It includes queues and retries from this run and cannot predict speed with a dedicated API connection.
 
-**RSI has not been tested here.** There are only 12 independent seed blocks in four-player games and 20 per duel pair. Mirrors and permutations increase game counts without adding equally many independent environments. Findings apply to these API labels, Guan Yu, rules, and prompts, not general model capabilities. A next study can fix the base model and opponents, compare empty memory, frozen consolidated memory, and ongoing RSI on seeds unused for experience collection, and report learning and evaluation token usage separately.
+Input accounts for 94.1% of reported tokens, so context compression is one option to test. Request counts, context, output behavior and provider accounting also affect totals; fewer tokens alone do not establish better decision efficiency or lower cost. GLM speaks in 96.6% of four-player model decisions versus DeepSeek's 82.3%, with a lower win rate. That observation alone cannot explain how chat affects outcomes.
+
+This study has not tested RSI benefits. Four-player games have only 12 independent seed blocks, and duels have 20 per pair. Mirrors and permutations add games without adding equally many independent environments. Findings therefore apply to these API labels, Guan Yu, rules and prompts, and cannot rank general model capabilities.
+
+A later RSI comparison can fix the base model and opponents, then compare empty memory, frozen consolidated memory and ongoing RSI on seeds unused for experience collection. Learning and evaluation usage should be reported separately.
 
 ## Game histories and chat
 

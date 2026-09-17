@@ -1,0 +1,3742 @@
+{
+  "campaign": "werewolf-20260917",
+  "gameType": "werewolf",
+  "createdAt": "2026-09-17T03:09:36.021Z",
+  "models": [
+    "bailian/deepseek-v4-flash",
+    "glm-5.2",
+    "kimi-k3",
+    "qwen3.8-max-0902"
+  ],
+  "modelLabels": [
+    "DeepSeek",
+    "GLM",
+    "Kimi",
+    "Qwen"
+  ],
+  "baselineGames": 168,
+  "addedGames": 144,
+  "hardGameLimit": 200,
+  "budget": {
+    "baseline": 168,
+    "pilot": 4,
+    "validation4096": 0,
+    "validation8192": 4,
+    "totalGames": 176,
+    "unused": 24
+  },
+  "sourceCommit": "8719510afdc12d39f8ede36f56f56bd71d31b5aa",
+  "sourceHashes": {
+    "scripts/run-game-baselines.ts": "5ee74c1aa9f67d2af1ac902e7ac1011c028910ebe19a0954850521d647c68506",
+    "scripts/experiment-support.ts": "f724ea8259d6f43633349b2266961f1900f504b729bf9f5205901fa0abea92e7",
+    "server/agents.ts": "ca8619c904999a81b72d7160dc70aef237675d04cc5595386f8a5acc80303c9e",
+    "server/config.ts": "011292a664a5dbe5455748246f468cba072b6ed0a3930fd2893d50bc566bb011",
+    "src/types.ts": "1eb51cfcbc0fdb1c8377f81135722de20cbb042febff19fd6c28553ed6b05fe1",
+    "src/chat.ts": "156a15d0680810dfe7a961ec39b2bd7b73f88402542d1e890346acfcb7b73735",
+    "src/games/core.ts": "c0a625d6fe284b16aa607ef38b6ae05708479ec57f167f0e7b0e3e68f81676d4",
+    "src/games/catalog.ts": "e3d67692ae86dddf3703d5273050efa8a3ad925cf6aa6b4e4f9cc41620623c5a",
+    "src/games/registry.ts": "304cd71d38ab12b45f314dc428ce4900cfb0275661361d5d1f25102db217068c",
+    "src/games/base.ts": "6fbe7f955d52843ec89d1d9f850d459dc49a59f8bb244a02a5cd09650a44a5f3",
+    "src/games/chess.ts": "51a8e3f92f824f36de814b5f54f19cffcef881db7eefbc9c9a8d8bf4ff17d622",
+    "src/games/werewolf.ts": "76702c4edcdcacd79c67012954454237f532252659dd5b0e5f26315b6246fa79",
+    "src/games/werewolf-labels.ts": "c542c5f4a687ad287516f31043e36a414a9eba7f888f12731a679ae94c8fb28d",
+    "src/games/xiangqi.ts": "401cbe4a30ffbc722da915a213a63d46d0b632417289e7b64a53979a6dc02ab2"
+  },
+  "rule": "social-deduction-v1",
+  "settings": {
+    "rsi": "off",
+    "memoryEntries": 0,
+    "chatEnabled": true,
+    "contextEvents": 80,
+    "contextChatMessages": 40,
+    "temperature": 0.6,
+    "outputLimit": 8192,
+    "apiTimeoutMs": 180000,
+    "maxAttemptsPerDecision": 2,
+    "maxDecisions": {
+      "chess": 160,
+      "xiangqi": 160,
+      "werewolf": 200
+    },
+    "gameConcurrency": 96,
+    "perModelConcurrency": 24,
+    "heuristicFallback": false,
+    "protocolAdapter": "none"
+  },
+  "cohorts": [
+    {
+      "id": "initial-20260916",
+      "settings": {
+        "rsi": "off",
+        "memoryEntries": 0,
+        "chatEnabled": true,
+        "contextEvents": 80,
+        "contextChatMessages": 40,
+        "temperature": 0.6,
+        "outputLimit": 8192,
+        "apiTimeoutMs": 180000,
+        "maxAttemptsPerDecision": 2,
+        "maxDecisions": {
+          "chess": 160,
+          "xiangqi": 160,
+          "werewolf": 200
+        },
+        "gameConcurrency": 16,
+        "perModelConcurrency": 8,
+        "heuristicFallback": false,
+        "protocolAdapter": "none"
+      },
+      "games": 24
+    },
+    {
+      "id": "extension-20260917",
+      "settings": {
+        "rsi": "off",
+        "memoryEntries": 0,
+        "chatEnabled": true,
+        "contextEvents": 80,
+        "contextChatMessages": 40,
+        "temperature": 0.6,
+        "outputLimit": 8192,
+        "apiTimeoutMs": 180000,
+        "maxAttemptsPerDecision": 2,
+        "maxDecisions": {
+          "chess": 160,
+          "xiangqi": 160,
+          "werewolf": 200
+        },
+        "gameConcurrency": 96,
+        "perModelConcurrency": 24,
+        "heuristicFallback": false,
+        "protocolAdapter": "none"
+      },
+      "games": 144
+    }
+  ],
+  "jobs": [
+    {
+      "id": "werewolf-en-b1-r1",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 930998,
+      "block": 1,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "werewolf-en-b2-r2",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 931995,
+      "block": 2,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "werewolf-zh-b1-r2",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 930998,
+      "block": 1,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "werewolf-zh-b1-r0",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 930998,
+      "block": 1,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "werewolf-zh-b0-r1",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 930001,
+      "block": 0,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "werewolf-en-b0-r2",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 930001,
+      "block": 0,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "werewolf-en-b0-r1",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 930001,
+      "block": 0,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "werewolf-zh-b2-r2",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 931995,
+      "block": 2,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "werewolf-zh-b1-r1",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 930998,
+      "block": 1,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "werewolf-zh-b2-r1",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 931995,
+      "block": 2,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "werewolf-zh-b2-r0",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 931995,
+      "block": 2,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "werewolf-en-b2-r3",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 931995,
+      "block": 2,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "werewolf-zh-b0-r0",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 930001,
+      "block": 0,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "werewolf-en-b2-r0",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 931995,
+      "block": 2,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "werewolf-zh-b1-r3",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 930998,
+      "block": 1,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "werewolf-en-b1-r2",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 930998,
+      "block": 1,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "werewolf-en-b0-r0",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 930001,
+      "block": 0,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "werewolf-en-b0-r3",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 930001,
+      "block": 0,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "werewolf-zh-b2-r3",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 931995,
+      "block": 2,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "werewolf-en-b1-r3",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 930998,
+      "block": 1,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "werewolf-en-b2-r1",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 931995,
+      "block": 2,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "werewolf-zh-b0-r3",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 930001,
+      "block": 0,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "werewolf-en-b1-r0",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 930998,
+      "block": 1,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "werewolf-zh-b0-r2",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 930001,
+      "block": 0,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "initial-20260916"
+    },
+    {
+      "id": "werewolf-zh-b19-r3",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 948944,
+      "block": 19,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b9-r2",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 938974,
+      "block": 9,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b3-r2",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 932992,
+      "block": 3,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b11-r1",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 940968,
+      "block": 11,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b8-r3",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 937977,
+      "block": 8,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b17-r2",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 946950,
+      "block": 17,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b13-r1",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 942962,
+      "block": 13,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b13-r1",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 942962,
+      "block": 13,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b5-r1",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 934986,
+      "block": 5,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b12-r2",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 941965,
+      "block": 12,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b13-r0",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 942962,
+      "block": 13,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b5-r2",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 934986,
+      "block": 5,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b10-r3",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 939971,
+      "block": 10,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b3-r2",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 932992,
+      "block": 3,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b17-r1",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 946950,
+      "block": 17,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b4-r0",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 933989,
+      "block": 4,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b7-r3",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 936980,
+      "block": 7,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b6-r0",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 935983,
+      "block": 6,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b4-r3",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 933989,
+      "block": 4,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b15-r2",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 944956,
+      "block": 15,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b8-r0",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 937977,
+      "block": 8,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b4-r0",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 933989,
+      "block": 4,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b15-r0",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 944956,
+      "block": 15,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b9-r0",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 938974,
+      "block": 9,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b6-r0",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 935983,
+      "block": 6,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b19-r0",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 948944,
+      "block": 19,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b13-r0",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 942962,
+      "block": 13,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b15-r0",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 944956,
+      "block": 15,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b15-r1",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 944956,
+      "block": 15,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b9-r3",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 938974,
+      "block": 9,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b10-r1",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 939971,
+      "block": 10,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b12-r2",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 941965,
+      "block": 12,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b11-r1",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 940968,
+      "block": 11,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b13-r3",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 942962,
+      "block": 13,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b20-r3",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 949941,
+      "block": 20,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b6-r1",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 935983,
+      "block": 6,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b12-r1",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 941965,
+      "block": 12,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b16-r1",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 945953,
+      "block": 16,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b7-r0",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 936980,
+      "block": 7,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b15-r2",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 944956,
+      "block": 15,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b13-r3",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 942962,
+      "block": 13,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b14-r1",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 943959,
+      "block": 14,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b3-r1",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 932992,
+      "block": 3,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b6-r1",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 935983,
+      "block": 6,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b20-r0",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 949941,
+      "block": 20,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b20-r3",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 949941,
+      "block": 20,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b3-r3",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 932992,
+      "block": 3,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b11-r3",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 940968,
+      "block": 11,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b9-r1",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 938974,
+      "block": 9,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b4-r1",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 933989,
+      "block": 4,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b9-r2",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 938974,
+      "block": 9,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b17-r0",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 946950,
+      "block": 17,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b3-r3",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 932992,
+      "block": 3,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b11-r2",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 940968,
+      "block": 11,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b8-r2",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 937977,
+      "block": 8,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b16-r1",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 945953,
+      "block": 16,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b10-r2",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 939971,
+      "block": 10,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b18-r3",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 947947,
+      "block": 18,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b16-r3",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 945953,
+      "block": 16,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b16-r2",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 945953,
+      "block": 16,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b7-r2",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 936980,
+      "block": 7,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b16-r0",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 945953,
+      "block": 16,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b14-r1",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 943959,
+      "block": 14,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b19-r3",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 948944,
+      "block": 19,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b16-r2",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 945953,
+      "block": 16,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b4-r2",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 933989,
+      "block": 4,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b5-r3",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 934986,
+      "block": 5,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b10-r0",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 939971,
+      "block": 10,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b4-r1",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 933989,
+      "block": 4,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b20-r1",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 949941,
+      "block": 20,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b20-r2",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 949941,
+      "block": 20,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b19-r1",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 948944,
+      "block": 19,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b15-r3",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 944956,
+      "block": 15,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b12-r3",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 941965,
+      "block": 12,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b18-r0",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 947947,
+      "block": 18,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b6-r2",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 935983,
+      "block": 6,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b11-r2",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 940968,
+      "block": 11,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b14-r2",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 943959,
+      "block": 14,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b20-r0",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 949941,
+      "block": 20,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b7-r1",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 936980,
+      "block": 7,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b10-r1",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 939971,
+      "block": 10,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b14-r2",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 943959,
+      "block": 14,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b5-r2",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 934986,
+      "block": 5,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b18-r0",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 947947,
+      "block": 18,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b8-r3",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 937977,
+      "block": 8,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b9-r1",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 938974,
+      "block": 9,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b7-r3",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 936980,
+      "block": 7,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b8-r0",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 937977,
+      "block": 8,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b12-r1",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 941965,
+      "block": 12,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b18-r2",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 947947,
+      "block": 18,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b19-r1",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 948944,
+      "block": 19,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b10-r0",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 939971,
+      "block": 10,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b17-r3",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 946950,
+      "block": 17,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b4-r2",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 933989,
+      "block": 4,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b8-r1",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 937977,
+      "block": 8,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b10-r2",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 939971,
+      "block": 10,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b12-r0",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 941965,
+      "block": 12,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b6-r2",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 935983,
+      "block": 6,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b14-r0",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 943959,
+      "block": 14,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b6-r3",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 935983,
+      "block": 6,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b8-r1",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 937977,
+      "block": 8,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b6-r3",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 935983,
+      "block": 6,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b7-r1",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 936980,
+      "block": 7,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b11-r3",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 940968,
+      "block": 11,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b12-r3",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 941965,
+      "block": 12,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b5-r1",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 934986,
+      "block": 5,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b3-r0",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 932992,
+      "block": 3,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b10-r3",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 939971,
+      "block": 10,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b14-r3",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 943959,
+      "block": 14,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b3-r0",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 932992,
+      "block": 3,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b19-r2",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 948944,
+      "block": 19,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b15-r1",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 944956,
+      "block": 15,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b5-r0",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 934986,
+      "block": 5,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b9-r0",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 938974,
+      "block": 9,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b15-r3",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 944956,
+      "block": 15,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b18-r1",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 947947,
+      "block": 18,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b3-r1",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 932992,
+      "block": 3,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b16-r3",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 945953,
+      "block": 16,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b18-r1",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 947947,
+      "block": 18,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b11-r0",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 940968,
+      "block": 11,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b5-r0",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 934986,
+      "block": 5,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b17-r1",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 946950,
+      "block": 17,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b17-r2",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 946950,
+      "block": 17,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b12-r0",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 941965,
+      "block": 12,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b19-r2",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 948944,
+      "block": 19,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b11-r0",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 940968,
+      "block": 11,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b20-r2",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 949941,
+      "block": 20,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b13-r2",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 942962,
+      "block": 13,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b14-r3",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 943959,
+      "block": 14,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b7-r0",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 936980,
+      "block": 7,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b13-r2",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 942962,
+      "block": 13,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b18-r3",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 947947,
+      "block": 18,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b17-r3",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 946950,
+      "block": 17,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b20-r1",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 949941,
+      "block": 20,
+      "rotation": 1,
+      "models": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b18-r2",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 947947,
+      "block": 18,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b4-r3",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 933989,
+      "block": 4,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b16-r0",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 945953,
+      "block": 16,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b19-r0",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 948944,
+      "block": 19,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b8-r2",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 937977,
+      "block": 8,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-en-b17-r0",
+      "gameType": "werewolf",
+      "locale": "en",
+      "seed": 946950,
+      "block": 17,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b7-r2",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 936980,
+      "block": 7,
+      "rotation": 2,
+      "models": [
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b9-r3",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 938974,
+      "block": 9,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b14-r0",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 943959,
+      "block": 14,
+      "rotation": 0,
+      "models": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "cohort": "extension-20260917"
+    },
+    {
+      "id": "werewolf-zh-b5-r3",
+      "gameType": "werewolf",
+      "locale": "zh",
+      "seed": 934986,
+      "block": 5,
+      "rotation": 3,
+      "models": [
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+      ],
+      "cohort": "extension-20260917"
+    }
+  ],
+  "auxiliaryGames": {
+    "pilot": [
+      {
+        "id": "werewolf-en-b1-r1",
+        "gameType": "werewolf",
+        "locale": "en",
+        "status": "interrupted",
+        "decisions": 25,
+        "error": null,
+        "attempts": 25,
+        "rejectedAttempts": 0,
+        "sha256": "4ab71ef7f6d301e8ae134363818a14beb3c4bcbc52674ac9f6f5072592325d27"
+      },
+      {
+        "id": "werewolf-en-b2-r2",
+        "gameType": "werewolf",
+        "locale": "en",
+        "status": "interrupted",
+        "decisions": 26,
+        "error": null,
+        "attempts": 26,
+        "rejectedAttempts": 0,
+        "sha256": "c72afc32546289a35350864f1ca0fb4eb15c00cccc8aa99e19b90cd2e8e9c97a"
+      },
+      {
+        "id": "werewolf-zh-b1-r0",
+        "gameType": "werewolf",
+        "locale": "zh",
+        "status": "interrupted",
+        "decisions": 11,
+        "error": null,
+        "attempts": 11,
+        "rejectedAttempts": 0,
+        "sha256": "50c900aca3bd49faa17bff6940ad4b79f4792f89baef24c35c76a8a6ece9eb65"
+      },
+      {
+        "id": "werewolf-zh-b1-r2",
+        "gameType": "werewolf",
+        "locale": "zh",
+        "status": "interrupted",
+        "decisions": 9,
+        "error": null,
+        "attempts": 9,
+        "rejectedAttempts": 0,
+        "sha256": "c236c3dbd4e7f40cc88c1beb4d8509edaf3bab88a7e8005190dc2a072c97c393"
+      }
+    ],
+    "validation": [
+      {
+        "id": "validation-werewolf-zh-0",
+        "gameType": "werewolf",
+        "locale": "zh",
+        "pair": 0,
+        "matchId": "ed0a95b4-b4a8-45c1-a745-3e220b82f88d",
+        "gameId": "36f16d43-6ee8-4817-97fc-f9cb9cbf5905",
+        "decisions": 32,
+        "fallbacks": 0,
+        "callErrors": [],
+        "immediateReflections": 32,
+        "roundReflections": 8,
+        "memoryConsumed": 28,
+        "startMemory": 0,
+        "memoryScope": true,
+        "promptsMatchLocale": true,
+        "publicChat": 21,
+        "teamChat": 6,
+        "hiddenMessagesFiltered": true,
+        "replay": true,
+        "checkpointRestore": true,
+        "consolidations": [
+          {
+            "model": "bailian/deepseek-v4-flash",
+            "status": "completed",
+            "error": null,
+            "sourceCount": 2
+          },
+          {
+            "model": "glm-5.2",
+            "status": "completed",
+            "error": null,
+            "sourceCount": 6
+          },
+          {
+            "model": "kimi-k3",
+            "status": "completed",
+            "error": null,
+            "sourceCount": 4
+          },
+          {
+            "model": "qwen3.8-max-0902",
+            "status": "completed",
+            "error": null,
+            "sourceCount": 4
+          }
+        ],
+        "gameStatus": "finished",
+        "winner": "平局",
+        "terminalReason": "达到配置的决策上限",
+        "ok": true,
+        "auditedContexts": 72,
+        "consolidatedMemoryConsumed": 0,
+        "models": [
+          {
+            "model": "bailian/deepseek-v4-flash",
+            "decisions": 7,
+            "immediate": 7,
+            "round": 2,
+            "errors": [],
+            "fallbacks": 0
+          },
+          {
+            "model": "glm-5.2",
+            "decisions": 8,
+            "immediate": 8,
+            "round": 2,
+            "errors": [],
+            "fallbacks": 0
+          },
+          {
+            "model": "kimi-k3",
+            "decisions": 7,
+            "immediate": 7,
+            "round": 2,
+            "errors": [],
+            "fallbacks": 0
+          },
+          {
+            "model": "qwen3.8-max-0902",
+            "decisions": 10,
+            "immediate": 10,
+            "round": 2,
+            "errors": [],
+            "fallbacks": 0
+          }
+        ],
+        "errorCallsWithoutStoredInput": 0
+      },
+      {
+        "id": "validation-werewolf-zh-1",
+        "gameType": "werewolf",
+        "locale": "zh",
+        "pair": 1,
+        "matchId": "1fb10ea6-7afd-4cfd-95e2-10c49857d76e",
+        "gameId": "696cc119-1cbd-4789-9341-d82996b0891e",
+        "decisions": 32,
+        "fallbacks": 0,
+        "callErrors": [],
+        "immediateReflections": 32,
+        "roundReflections": 8,
+        "memoryConsumed": 25,
+        "startMemory": 0,
+        "memoryScope": true,
+        "promptsMatchLocale": true,
+        "publicChat": 22,
+        "teamChat": 5,
+        "hiddenMessagesFiltered": true,
+        "replay": true,
+        "checkpointRestore": true,
+        "consolidations": [
+          {
+            "model": "glm-5.2",
+            "status": "completed",
+            "error": null,
+            "sourceCount": 3
+          },
+          {
+            "model": "kimi-k3",
+            "status": "completed",
+            "error": null,
+            "sourceCount": 5
+          },
+          {
+            "model": "qwen3.8-max-0902",
+            "status": "completed",
+            "error": null,
+            "sourceCount": 4
+          },
+          {
+            "model": "bailian/deepseek-v4-flash",
+            "status": "completed",
+            "error": null,
+            "sourceCount": 3
+          }
+        ],
+        "gameStatus": "finished",
+        "winner": "平局",
+        "terminalReason": "达到配置的决策上限",
+        "ok": true,
+        "auditedContexts": 72,
+        "consolidatedMemoryConsumed": 0,
+        "models": [
+          {
+            "model": "bailian/deepseek-v4-flash",
+            "decisions": 8,
+            "immediate": 8,
+            "round": 2,
+            "errors": [],
+            "fallbacks": 0
+          },
+          {
+            "model": "glm-5.2",
+            "decisions": 7,
+            "immediate": 7,
+            "round": 2,
+            "errors": [],
+            "fallbacks": 0
+          },
+          {
+            "model": "kimi-k3",
+            "decisions": 7,
+            "immediate": 7,
+            "round": 2,
+            "errors": [],
+            "fallbacks": 0
+          },
+          {
+            "model": "qwen3.8-max-0902",
+            "decisions": 10,
+            "immediate": 10,
+            "round": 2,
+            "errors": [],
+            "fallbacks": 0
+          }
+        ],
+        "errorCallsWithoutStoredInput": 0
+      },
+      {
+        "id": "validation-werewolf-en-1",
+        "gameType": "werewolf",
+        "locale": "en",
+        "pair": 1,
+        "matchId": "dd71c5a9-8a2c-4c6d-a8f2-76d51d38eba0",
+        "gameId": "50b7796e-ef1d-497a-adc6-41b1cbbefe0d",
+        "decisions": 32,
+        "fallbacks": 0,
+        "callErrors": [],
+        "immediateReflections": 32,
+        "roundReflections": 8,
+        "memoryConsumed": 32,
+        "startMemory": 50,
+        "memoryScope": true,
+        "promptsMatchLocale": true,
+        "publicChat": 22,
+        "teamChat": 4,
+        "hiddenMessagesFiltered": true,
+        "replay": true,
+        "checkpointRestore": true,
+        "consolidations": [
+          {
+            "model": "glm-5.2",
+            "status": "completed",
+            "error": null,
+            "sourceCount": 4
+          },
+          {
+            "model": "kimi-k3",
+            "status": "completed",
+            "error": null,
+            "sourceCount": 4
+          },
+          {
+            "model": "qwen3.8-max-0902",
+            "status": "completed",
+            "error": null,
+            "sourceCount": 4
+          },
+          {
+            "model": "bailian/deepseek-v4-flash",
+            "status": "error",
+            "error": "[\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"immediate\"\n    ],\n    \"message\": \"Invalid input: expected string, received array\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"round\"\n    ],\n    \"message\": \"Invalid input: expected string, received array\"\n  },\n  {\n    \"expected\": 。原始经验保留，可重新归纳；匹配的已完成批次会自动复用。",
+            "sourceCount": 3
+          }
+        ],
+        "gameStatus": "finished",
+        "winner": "draw",
+        "terminalReason": "Decision limit reached",
+        "ok": false,
+        "auditedContexts": 72,
+        "consolidatedMemoryConsumed": 14,
+        "models": [
+          {
+            "model": "bailian/deepseek-v4-flash",
+            "decisions": 9,
+            "immediate": 9,
+            "round": 2,
+            "errors": [],
+            "fallbacks": 0
+          },
+          {
+            "model": "glm-5.2",
+            "decisions": 7,
+            "immediate": 7,
+            "round": 2,
+            "errors": [],
+            "fallbacks": 0
+          },
+          {
+            "model": "kimi-k3",
+            "decisions": 6,
+            "immediate": 6,
+            "round": 2,
+            "errors": [],
+            "fallbacks": 0
+          },
+          {
+            "model": "qwen3.8-max-0902",
+            "decisions": 10,
+            "immediate": 10,
+            "round": 2,
+            "errors": [],
+            "fallbacks": 0
+          }
+        ],
+        "errorCallsWithoutStoredInput": 0
+      },
+      {
+        "id": "validation-werewolf-en-0",
+        "gameType": "werewolf",
+        "locale": "en",
+        "pair": 0,
+        "matchId": "c08ebdac-1c7f-42ee-8c44-b71b32481df3",
+        "gameId": "f03b581e-cd19-4e2b-993a-1cd3c9496320",
+        "decisions": 32,
+        "fallbacks": 0,
+        "callErrors": [
+          {
+            "kind": "decision-error",
+            "error": "Illegal action"
+          },
+          {
+            "kind": "decision-error",
+            "error": "Illegal action"
+          }
+        ],
+        "immediateReflections": 32,
+        "roundReflections": 8,
+        "memoryConsumed": 32,
+        "startMemory": 50,
+        "memoryScope": true,
+        "promptsMatchLocale": true,
+        "publicChat": 22,
+        "teamChat": 6,
+        "hiddenMessagesFiltered": true,
+        "replay": true,
+        "checkpointRestore": true,
+        "consolidations": [
+          {
+            "model": "bailian/deepseek-v4-flash",
+            "status": "completed",
+            "error": null,
+            "sourceCount": 4
+          },
+          {
+            "model": "glm-5.2",
+            "status": "completed",
+            "error": null,
+            "sourceCount": 6
+          },
+          {
+            "model": "kimi-k3",
+            "status": "completed",
+            "error": null,
+            "sourceCount": 4
+          },
+          {
+            "model": "qwen3.8-max-0902",
+            "status": "completed",
+            "error": null,
+            "sourceCount": 4
+          }
+        ],
+        "gameStatus": "finished",
+        "winner": "draw",
+        "terminalReason": "Decision limit reached",
+        "ok": false,
+        "auditedContexts": 74,
+        "consolidatedMemoryConsumed": 14,
+        "models": [
+          {
+            "model": "bailian/deepseek-v4-flash",
+            "decisions": 8,
+            "immediate": 7,
+            "round": 2,
+            "errors": [
+              {
+                "kind": "decision-error",
+                "error": "Illegal action"
+              }
+            ],
+            "fallbacks": 0
+          },
+          {
+            "model": "glm-5.2",
+            "decisions": 8,
+            "immediate": 8,
+            "round": 2,
+            "errors": [],
+            "fallbacks": 0
+          },
+          {
+            "model": "kimi-k3",
+            "decisions": 10,
+            "immediate": 10,
+            "round": 2,
+            "errors": [],
+            "fallbacks": 0
+          },
+          {
+            "model": "qwen3.8-max-0902",
+            "decisions": 8,
+            "immediate": 7,
+            "round": 2,
+            "errors": [
+              {
+                "kind": "decision-error",
+                "error": "Illegal action"
+              }
+            ],
+            "fallbacks": 0
+          }
+        ],
+        "errorCallsWithoutStoredInput": 2
+      }
+    ],
+    "originalValidation": []
+  },
+  "notes": [
+    "Failed and interrupted attempts count toward the per-game cap.",
+    "Board games repeat the standard initial position; seeds do not randomize openings.",
+    "Decision protocol unchanged; extension uses a shared 96-game / 24-per-model request pool.",
+    "Original roles/languages and new blocks are analyzed with cohort-specific counts."
+  ]
+}

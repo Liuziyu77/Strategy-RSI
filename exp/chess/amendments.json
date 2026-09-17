@@ -1,0 +1,8 @@
+{
+  "at": "2026-09-17T03:11:06.671556+00:00",
+  "reason": "Fix stop-marker path variable shadowing in HTTP 401/403 handling, found by TypeScript. Decision protocol unchanged.",
+  "file": "scripts/run-game-baselines.ts",
+  "previousSha256": "a0716852c6050f098899e7ca1c94c34fc498bec0b41f002084dca6bb59244def",
+  "currentSha256": "5ee74c1aa9f67d2af1ac902e7ac1011c028910ebe19a0954850521d647c68506",
+  "execution": "Paused before any game completed; resumed the same saved game IDs and checkpoints. No discarded or replacement games. Aborted HTTP requests remain in requests.json; unsaved response usage is unknown."
+}

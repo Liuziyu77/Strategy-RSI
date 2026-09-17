@@ -1,0 +1,73 @@
+{
+  "settings": {
+    "rsi": "off",
+    "memoryEntries": 0,
+    "chatEnabled": true,
+    "contextEvents": 80,
+    "contextChatMessages": 40,
+    "temperature": 0.6,
+    "outputLimit": 4096,
+    "apiTimeoutMs": 90000,
+    "maxAttemptsPerDecision": 2,
+    "maxDecisions": {
+      "chess": 160,
+      "xiangqi": 160,
+      "werewolf": 200
+    },
+    "gameConcurrency": 8,
+    "perModelConcurrency": 4,
+    "heuristicFallback": false,
+    "protocolAdapter": "none"
+  },
+  "sourceHashes": {
+    "scripts/run-multigame-baseline.ts": "25d17916a5e59c93b29ac710b1fdb4f1e4aa59de83382b36e3a4b42fed00ad8b",
+    "scripts/experiment-support.ts": "f724ea8259d6f43633349b2266961f1900f504b729bf9f5205901fa0abea92e7",
+    "server/agents.ts": "ca8619c904999a81b72d7160dc70aef237675d04cc5595386f8a5acc80303c9e",
+    "server/config.ts": "b46ff08c27c4610759baafc61ec039ceafdeca6b9f1c4fadf9d1752ee9019fa0",
+    "src/types.ts": "aa48bc292dc67fc92c088b99fabe699da75a001b899527814ca180e36cfb51b7",
+    "src/chat.ts": "156a15d0680810dfe7a961ec39b2bd7b73f88402542d1e890346acfcb7b73735",
+    "src/games/core.ts": "c0a625d6fe284b16aa607ef38b6ae05708479ec57f167f0e7b0e3e68f81676d4",
+    "src/games/catalog.ts": "e3d67692ae86dddf3703d5273050efa8a3ad925cf6aa6b4e4f9cc41620623c5a",
+    "src/games/registry.ts": "304cd71d38ab12b45f314dc428ce4900cfb0275661361d5d1f25102db217068c",
+    "src/games/base.ts": "6fbe7f955d52843ec89d1d9f850d459dc49a59f8bb244a02a5cd09650a44a5f3",
+    "src/games/chess.ts": "51a8e3f92f824f36de814b5f54f19cffcef881db7eefbc9c9a8d8bf4ff17d622",
+    "src/games/werewolf.ts": "76702c4edcdcacd79c67012954454237f532252659dd5b0e5f26315b6246fa79",
+    "src/games/werewolf-labels.ts": "c542c5f4a687ad287516f31043e36a414a9eba7f888f12731a679ae94c8fb28d",
+    "src/games/xiangqi.ts": "401cbe4a30ffbc722da915a213a63d46d0b632417289e7b64a53979a6dc02ab2"
+  },
+  "games": [
+    {
+      "id": "xiangqi-zh-02-b0-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "status": "interrupted",
+      "decisions": 10,
+      "error": null,
+      "attempts": 11,
+      "rejectedAttempts": 1,
+      "sha256": "defe5631e31aa118f8ce886c3380a630fe98a243e846501726deb6573ecce089"
+    },
+    {
+      "id": "xiangqi-zh-02-b1-m1",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "status": "error",
+      "decisions": 7,
+      "error": "Model decision failed: bailian/deepseek-v4-flash: 模型输出被 token 上限截断",
+      "attempts": 9,
+      "rejectedAttempts": 2,
+      "sha256": "397ece943e23fe5f104bcd59dc420d095228ab4aed0eb004148130b1083dd77d"
+    },
+    {
+      "id": "xiangqi-zh-03-b0-m0",
+      "gameType": "xiangqi",
+      "locale": "zh",
+      "status": "interrupted",
+      "decisions": 1,
+      "error": null,
+      "attempts": 1,
+      "rejectedAttempts": 0,
+      "sha256": "2b5c08b0378feae670f74b73e8b8021d0527f8d62528f90c0d66305327c28abd"
+    }
+  ]
+}

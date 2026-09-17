@@ -6,7 +6,7 @@ Rules version: `standard-v1`. Two players; White moves first. Game controls, rul
 
 ## Rules and actions
 
-Pinned dependency `chess.js 1.4.0` generates and validates legal moves, including king safety, castling, en passant and all four promotions. Board information is public. Ordinary move IDs use UCI (`e2e4`, `e7e8q`); the interface also displays SAN notation.
+The engine uses `chess.js 1.4.0` to generate and validate legal moves, including king safety, castling, en passant and all four promotions. Board information is public. Ordinary move IDs use UCI (`e2e4`, `e7e8q`); the interface also displays SAN notation.
 
 - Checkmate wins; stalemate draws.
 - The library detects common insufficient-material positions, including bare kings, a lone bishop/knight against a king, and certain same-colored-bishop positions.
@@ -14,11 +14,13 @@ Pinned dependency `chess.js 1.4.0` generates and validates legal moves, includin
 - Fivefold repetition and seventy-five moves draw automatically. Checkmate takes precedence on the final move.
 - `resign` concedes. The platform decision cap is a separate experimental draw with its own recorded reason.
 
-No chess clock, physical touch-move penalties or arbiter appeal process is modeled. Material detection does not prove every exotic dead position. Use `offer:<UCI>` to move and offer a draw. The opponent may `accept_draw` or decline by making a move. Outstanding offers are checkpointed.
+Use `offer:<UCI>` to move and offer a draw. The opponent may choose `accept_draw` or decline by making a move. Outstanding offers are saved in checkpoints.
+
+This version has no chess clock, physical touch-move penalties or arbiter appeals. The library's material detection cannot identify every rare dead position.
 
 ## Communication, experience and recovery
 
-Every move can include optional public speech, recorded before the move. Chat is game data, not a rule instruction; legal action IDs remain authoritative. Internal reasoning is separate from public speech.
+Every move can include public speech, recorded before the move. Speech does not execute rule commands: players still need to select an action ID supplied by the engine. Decision reasons are kept out of public chat.
 
 Immediate RSI runs after committed moves; post-game RSI runs at game end. Memory is scoped by player and `chess`. Both languages share chess memories, while newly generated reflections follow the match language.
 

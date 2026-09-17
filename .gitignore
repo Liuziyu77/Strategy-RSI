@@ -11,3 +11,8 @@ test-results/
 
 # Local verification artifacts; curated README media lives in docs/assets/.
 artifacts/
+
+# Offline experiment analysis and plotting.
+.venv-exp/
+__pycache__/
+*.pyc

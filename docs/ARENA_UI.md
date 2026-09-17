@@ -2,7 +2,7 @@
 
 [文档导航 / Documentation](README.md) · [游戏规则 / Game rules](games/README.md)
 
-首页和 `#/lobby` 打开独立的 **游戏大厅**。大厅以可换行的卡片列表展示游戏，支持中英文名称搜索，并显示人数、语言与运行中的比赛数量。游戏内不再常驻游戏卡片栏。切换只改变观察页面，后台比赛继续按照原有运行状态执行。
+首页和 `#/lobby` 打开游戏大厅。卡片列出各游戏的人数、语言和运行中的比赛数量，可以按中英文名称搜索。进入场地后，通过顶部入口返回大厅切换游戏；后台比赛会继续运行。
 
 ## 进入与切换
 
@@ -12,7 +12,7 @@
 - 顶部“新建对战”打开当前游戏的设置。狼人杀和国际象棋支持选择新对局语言，中国象棋仅中文；已创建比赛保留其原始语言。
 - 新游戏的创建表单放在弹窗中，按 Escape 或点击关闭按钮返回观战。玩家库仍共用现有的模型和 RSI 配置。
 
-大厅采用独立的蓝白目录风格，各游戏拥有完整页面主题。配色、字体、材质与参考来源见[视觉设计说明](VISUAL_DESIGN.md)。
+大厅采用蓝白配色，各游戏使用自己的页面主题。配色、字体与参考来源见[视觉设计说明](VISUAL_DESIGN.md)。
 
 ## 四种场地
 
@@ -25,7 +25,9 @@
 
 棋盘翻转仅改变显示朝向，不修改行动或棋局状态。翻转状态保留至当前棋盘卸载；回放位置与观战视角会持久保存。
 
-新游戏的右侧详情分为 **交流 / 实录 / 经验**。交流与实录同步到回放位置；经验面板管理当前游戏类型的玩家长期记忆与 RSI 归纳，不是历史帧的记忆快照。选择个人视角时，狼人密谈仅在该视角可见时展示。全知观战和完整存档面向实验观察者，不替代外部 Agent 的受限接口。
+新游戏的右侧详情分为 **交流 / 实录 / 经验**。交流与实录随回放位置更新，个人视角只能看到该玩家可见的消息，包括适用的狼人密谈。经验面板显示当前保存的长期记忆与 RSI 归纳，回放历史帧不会让记忆回到过去的版本。
+
+全知观战和完整存档供实验者分析。外部 Agent 应使用带座位令牌的接口获取自己的可见信息。
 
 暂停和继续作用于整场比赛；单步推进所选对局。“对战管理”内可明确停止比赛。棋盘下方的时间轴用于回放，点击“实时”回到当前状态。
 
@@ -35,7 +37,9 @@
 
 ## English quick guide
 
-The home page and `#/lobby` open the dedicated **游戏大厅** (Game Lobby). Browse the wrapping card grid or search Chinese/English game names. Enter a game, then return using **游戏大厅** in the header or the site logo to choose another. Game cards appear only in the lobby. Desktop has a match archive sidebar; narrow screens show a match picker. Round chips select games within a match. Each game restores its last match, round, replay frame and perspective, including after reload and browser back/forward. Switching the observer does not stop running matches.
+The home page and `#/lobby` open **游戏大厅** (Game Lobby). Browse the cards or search by Chinese or English name. To switch games, return to the lobby through the header button or site logo. Matches keep running while you browse.
+
+Choose a match from the desktop sidebar or the dropdown on narrow screens. Round chips select games within a match. Each game remembers its last match, round, replay frame and perspective, including after a reload or browser back/forward navigation.
 
 Open **New match** to configure an experiment; Escape closes the dialog. Choose a language before creating a match. Existing matches keep their language. Xiangqi and Sanguosha use Chinese, while chess and werewolf support Chinese and English. The shared navigation and player library retain Chinese labels, with English game names in the lobby.
 

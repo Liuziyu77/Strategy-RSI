@@ -9,9 +9,9 @@
 | `chess`     | 国际象棋 / Chess  | 2              | 中文、English    | [中文](chess.md) · [English](chess.en.md)       |
 | `xiangqi`   | 中国象棋          | 2              | 中文             | [规则](xiangqi.md)                              |
 
-所有游戏共用模型 API、本地策略、外部 Agent、聊天、即时 RSI、赛后 RSI、归纳、并行、暂停恢复、回放与导出。创建比赛时固定 `gameType` 与 `locale`。后续修改玩家不改变已创建比赛的模型快照。
+四款游戏都支持模型 API、本地策略和外部 Agent，使用相同的交流、即时／赛后 RSI 与经验归纳服务。比赛可并行运行、暂停恢复、回放和导出。`gameType` 与 `locale` 在创建比赛时固定，后续编辑玩家不会改变已有比赛的模型快照。
 
-All games share model/local/external Agents, communication, immediate and post-game RSI, consolidation, concurrency, pause/resume, replay and exports. A match fixes its game type and language. Player edits do not change existing match configuration snapshots.
+All four games support model APIs, local policies and external Agents, with shared communication, immediate/post-game RSI and consolidation. Matches support concurrency, pause/resume, replay and export. Game type and language are fixed at creation; later player edits leave existing match configurations unchanged.
 
 在独立的 **游戏大厅** 搜索或选择游戏卡片进入场地；点击顶部“游戏大厅”返回切换页。各自的对战档案只显示对应游戏。点击“创建对战”配置新比赛。选择中文或 English 后，创建页使用所选语言，已创建比赛的观战页遵循该比赛语言。中国象棋始终使用中文。新游戏可以直接运行本地演示，也可以从玩家库选择各自带有模型与 RSI 配置的玩家。
 
@@ -27,12 +27,12 @@ Memory is scoped by `Agent ID × gameType`; Chinese and English variants of the 
 
 ## 实验边界 / Experimental boundaries
 
-种子控制引擎随机性；模型采样与并行经验到达顺序仍可变化。本地策略只读个人观察，是运行验证基线，不是强棋力或强狼人策略。默认模型决策尝试两次，失败后记录并使用本地策略兜底；分析胜率时检查 fallback。达到决策上限记为平局，不以子力或生存数伪造胜负。
+种子只控制引擎的随机性，模型采样和并行经验的到达顺序仍可能变化。本地策略只读个人观察，用于检查游戏流程，未针对对战强度优化。默认模型决策最多尝试两次，均失败后记录错误并使用本地策略兜底；分析胜率时需检查 fallback 记录。达到决策上限记为平局，不按子力或存活人数判胜。
 
-Seeds control engine randomness, not model sampling or concurrent memory arrival. Local policies consume only observations and are operational baselines, not strong opponents. By default, two failed model attempts lead to a recorded local fallback. Inspect fallback logs when interpreting results. The decision cap produces a draw, not a heuristic winner.
+Seeds control engine randomness; model sampling and the arrival order of concurrent memory updates can still vary. Local policies use only player observations and are intended to check game flow, without optimizing playing strength. By default, two failed model attempts lead to a logged local fallback, which should be accounted for when analyzing win rates. Reaching the decision cap produces a draw regardless of material or surviving players.
 
-公开基线数据 `exp/sanguosha/` 仍只代表旧三国杀实验。本次新增游戏没有附带真实模型胜率结论。
+[三国杀基线](../../exp/sanguosha/README.md)保留原实验设置和范围。[狼人杀](../../exp/werewolf/README.md)、[国际象棋](../../exp/chess/README.md)、[中国象棋](../../exp/xiangqi/README.md)各安排了 168 局真实模型基线，另有 RSI 功能验证，连同试跑均在每款 200 局以内。各报告分别列出胜负、规则和棋、上限平局及异常；功能验证尚未测量 RSI 收益。
 
-Published data in `exp/sanguosha/` remains specific to the original Sanguosha experiment. No real-model win-rate claims are included for the new games.
+The original [Sanguosha study](../../exp/sanguosha/README.en.md) keeps its settings and scope. [Werewolf](../../exp/werewolf/README.en.md), [Chess](../../exp/chess/README.en.md) and [Xiangqi](../../exp/xiangqi/README.en.md) each have 168 scheduled real-model baseline games plus separate RSI checks. Each stays within 200 games including pilots and validation. Reports list rule endings, action limits and failures separately; the checks have not measured RSI benefits.
 
 升级现有数据请参阅[迁移说明 / Migration](../MIGRATION.md)。

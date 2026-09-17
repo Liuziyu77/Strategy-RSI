@@ -103,6 +103,7 @@ export const MatchSchema = z
     paceMs: z.number().int().min(0).max(10000).default(600),
     maxDecisions: z.number().int().min(20).max(10000).default(1800),
     apiTimeoutMs: z.number().int().min(1000).max(180000).default(45000),
+    modelOutputLimit: z.number().int().min(512).max(32768).default(4096),
     contextEvents: z.number().int().min(20).max(5000).default(300),
     chatEnabled: z.boolean().default(true),
     contextChatMessages: z.number().int().min(1).max(200).default(80),

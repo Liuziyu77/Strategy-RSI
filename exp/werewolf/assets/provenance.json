@@ -1,0 +1,26 @@
+{
+  "inputSha256": "2a51a335b51260945fc1fc0a8178ca07b5c7dbf47b17d2b6c7178a08544f87a0",
+  "analysisSha256": "c668cad6ae3782495ef9ba562edde2889c9b2c58baad8c081503b14b81182612",
+  "rendererSha256": "dcfd69ef19d6f93eca3d849282379b0f575952ac07016cc2c0cdf24133015ea9",
+  "python": "3.8.10",
+  "numpy": "1.24.3",
+  "matplotlib": "3.7.1",
+  "pngDimensions": [
+    2816,
+    1276
+  ],
+  "outputs": {
+    "chat-frequency.svg": "f360c85006f653dbea888f1903625e3f64c3bc5d4197ef0f246ed2e722534231",
+    "game-duration.svg": "c116d0de45957c3dcd166e6795ecc983f01fc8f73886161e6b1fa41dbe8992ed",
+    "reliability.svg": "158beaf861931fb6eaeef4490cb60803884d161912c5f3cea2cc4ea73dc0b8fe",
+    "role-win-rate.svg": "0225def72dd8886dcbb6256dc836be6f3fa1fdbb76a3ed732c53f385847f34dc",
+    "token-use.svg": "f913e28499db4be73be12017be56c5fb8718167e7a9f96b907f7d89ba8d85bb4",
+    "win-rate.svg": "d4d7c2384bbf67ff207309de5aedce4b3f569e48977b27067a82058742225a11",
+    "chat-frequency.png": "2b0b228435fbc0a9107520a53ffcec7a814ac78441437e7173aa2507acc49caf",
+    "game-duration.png": "5b90abe196b0437051311c43bf0d94dc78eeca0172f22a0a314003538d760c40",
+    "reliability.png": "f42b04fc8f6537a812d52ceddede7b49e2f0f5e009d2cb699be364d3edfb3a4a",
+    "role-win-rate.png": "5b034e6eb0a2cc9549d1c4b1883da2ce3ad0a3939fc6a5d9de95b0ee61809bf6",
+    "token-use.png": "9b948abe268cb3711421644235725d8324869e73facde8839a0502076fefc8dc",
+    "win-rate.png": "11ac87c737f715d9c5f6cb3e6deb1ffee58c4f6ff22f2660bff62ab8ab4055fb"
+  }
+}

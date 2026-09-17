@@ -41,7 +41,7 @@ function setup() {
   };
 }
 const output = (
-  content = {
+  content: unknown = {
     immediate: '保留防御牌，结合已知信息选择响应。',
     round: '跨局归纳身份判断，避免把猜测记作事实。',
     shared: '根据收益与风险取舍。',
@@ -390,6 +390,40 @@ it.each(['restart', 'source-changed', 'model-changed'])(
     );
   },
 );
+
+it('归纳接收模型返回的文本列表，保存为文本并保留来源经验', async () => {
+  const { arena, store, match, gameId } = setup();
+  const source = store.addMemory('agent-1', '检查行动后再更新判断。', 'immediate', gameId);
+  vi.spyOn(globalThis, 'fetch').mockImplementation(async () =>
+    output({
+      immediate: ['先检查可见行动。', '再核对自己的推测。'],
+      round: [],
+      shared: '避免重复记录。',
+    }),
+  );
+  arena.consolidator.start('agent-1', match.id);
+  await arena.consolidator.jobs.get(`agent-1:${match.id}`);
+  expect(store.consolidations('agent-1')[0].status).toBe('completed');
+  const summary = store.activeMemory('agent-1')[0];
+  expect(summary.text).toContain('先检查可见行动。\n再核对自己的推测。');
+  expect(summary.sourceIds).toEqual([source.id]);
+  expect(store.memory('agent-1').find((m) => m.id === source.id)?.text).toBe(source.text);
+});
+
+it.each([
+  { name: '对象', payload: { immediate: [{ text: '不能隐式转换对象' }] } },
+  { name: '混合类型', payload: { immediate: ['正常文本', 42] } },
+  { name: '合并后超长', payload: { immediate: ['甲'.repeat(2000), '乙'.repeat(2000)] } },
+  { name: '空列表', payload: { immediate: [], round: [], shared: [] } },
+])('归纳拒绝无效列表，不覆盖有效原文：$name', async ({ payload }) => {
+  const { arena, store, match, gameId } = setup();
+  const source = store.addMemory('agent-1', '保留原始经验。', 'immediate', gameId);
+  vi.spyOn(globalThis, 'fetch').mockImplementation(async () => output(payload));
+  arena.consolidator.start('agent-1', match.id);
+  await arena.consolidator.jobs.get(`agent-1:${match.id}`);
+  expect(store.consolidations('agent-1')[0].status).toBe('error');
+  expect(store.activeMemory('agent-1').map((m) => m.id)).toEqual([source.id]);
+});
 
 it('重试等待期间关闭服务立即取消，不发出迟到重试', async () => {
   const { arena, store, match, gameId, config } = setup();

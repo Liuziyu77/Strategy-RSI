@@ -4,11 +4,11 @@
 
 ## 数据兼容
 
-停服后备份 `DATA_DIR`（默认 `data/`），再升级代码和依赖。服务仍使用单个 SQLite 文件和同一数据目录的单进程独占访问；不要让两个服务同时打开同一存档。
+先停止服务，备份 `DATA_DIR`（默认 `data/`），再升级代码和依赖。存档仍是单个 SQLite 文件，同一数据目录只允许一个服务进程访问。
 
 启动时自动创建 `game_outcomes` 和 `memory_scopes` 两张附加表。已有三国杀比赛配置、状态帧、检查点和经验原文不重写。缺少 `gameType` 的比赛和记忆按 `sanguosha` 处理，缺少语言按中文处理。未结束比赛仍恢复为暂停。
 
-新游戏的终局结果按获胜 Agent ID 保存，支持已阵亡队友共同获胜。原三国杀战绩继续使用原身份判定；旧玩家档案中的默认武将仍只作用于三国杀，不影响其他游戏。
+新游戏按获胜 Agent ID 保存结果，阵营获胜时包含已阵亡队友。三国杀战绩仍按原身份规则判定。旧玩家档案中的默认武将只用于三国杀。
 
 ## API 与实验脚本
 
@@ -39,6 +39,10 @@ npm ci
 
 ## English migration summary
 
-Back up the data directory while the service is stopped. The migration adds two tables without rewriting old Sanguosha checkpoints. Untagged data defaults to Sanguosha/Chinese; unfinished matches resume paused. New API consumers must dispatch observations by game type instead of assuming cards or HP. Manual/imported memory carries `gameType`; both languages of one game share experience. Use the seat-token API for Agents, not privileged observer exports. Rolling back to the old application requires the pre-upgrade data backup because the old code does not understand new engines or scoped memory.
+Stop the service and back up the data directory before upgrading. The migration adds two tables; old Sanguosha checkpoints stay intact. Untagged data defaults to Sanguosha/Chinese, and unfinished matches return paused.
+
+API clients should read observations according to `gameType`: only Sanguosha has cards and HP. Manual and imported memories also carry `gameType`, with both languages of a game sharing experience. Agents must use the seat-token API; observer exports contain hidden information.
+
+To roll back, restore the pre-upgrade data backup as well as the old code. The old application cannot read new game states or distinguish memory by game type.
 
 In the player library, manual notes and TXT imports use the selected **经验所属游戏** (Experience game). JSON preserves each entry's `gameType`; untagged legacy JSON defaults to Sanguosha. The game inspector assigns its current game type automatically.

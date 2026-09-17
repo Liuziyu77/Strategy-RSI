@@ -2,7 +2,7 @@
 
 [文档导航](README.md) · [游戏规则](games/README.md) · [启动指南](GETTING_STARTED.md)
 
-默认根地址 `http://localhost:3930`。所有 JSON 接口使用 UTF-8。错误返回 `{ "error": "可读错误信息" }`。开启管理令牌后，所有非 Agent 写接口使用 `Authorization: Bearer <ARENA_ADMIN_TOKEN>`。
+默认根地址为 `http://localhost:3930`，JSON 接口使用 UTF-8。请求出错时返回 `{ "error": "可读错误信息" }`。配置管理令牌后，所有非 Agent 写接口都需要 `Authorization: Bearer <ARENA_ADMIN_TOKEN>`。
 
 ## 多游戏协议
 
@@ -48,7 +48,9 @@ New matches accept `gameType` and `locale`. Query `/api/game-types` for supporte
 }
 ```
 
-上例为三国杀。服务端读取玩家当前资料作为本次比赛快照，固定名字、控制方式、模型、RSI 与 Provider 引用（武将只用于三国杀）。专属 API 引用不可变连接版本；共享 `.env` Provider 在服务启动时解析。ID 不能重复，数量必须符合所选游戏；每位玩家会自动获得本次参战记录。后续编辑玩家不改写这份快照。
+上例创建三国杀比赛。服务端将玩家当前的名字、控制方式、模型、RSI 和 Provider 引用保存为比赛快照，后续编辑玩家不会改写它。武将字段只用于三国杀。
+
+专属 API 引用创建时的不可变连接版本，共享 `.env` Provider 则在服务启动时解析。玩家 ID 不能重复，人数必须符合所选游戏的规则。创建后，每位玩家的档案会增加本次参战记录。
 
 以下是无需预建玩家或配置模型的英文国际象棋请求；`autoStart: false` 创建后暂停，可通过单步或继续接口推进：
 
@@ -70,17 +72,18 @@ New matches accept `gameType` and `locale`. Query `/api/game-types` for supporte
 
 ### 常用配置
 
-| 字段                                  | API 默认值         | 范围 / 说明                                     |
-| ------------------------------------- | ------------------ | ----------------------------------------------- |
-| `gameType` / `locale`                 | `sanguosha` / `zh` | 组合须由游戏目录支持                            |
-| `games` / `concurrency`               | `1` / `1`          | 均为 1–100，并行数不超过局数                    |
-| `autoStart` / `rotateSeats`           | `true` / `true`    | 是否自动运行、按局号轮换座位                    |
-| `seed`                                | `42`               | 0–2147483647 的整数，控制引擎随机性             |
-| `paceMs`                              | `600`              | 0–10000 毫秒，每步后的运行间隔                  |
-| `maxDecisions`                        | `1800`             | 20–10000；达到上限按实验性平局结算              |
-| `apiTimeoutMs`                        | `45000`            | 1000–180000 毫秒，用于决策/反思；归纳有独立超时 |
-| `contextEvents`                       | `300`              | 最近 20–5000 条可见非聊天事件                   |
-| `chatEnabled` / `contextChatMessages` | `true` / `80`      | 对话上限 1–200 条，同时受字符预算约束           |
+| 字段                                  | API 默认值         | 范围 / 说明                                                    |
+| ------------------------------------- | ------------------ | -------------------------------------------------------------- |
+| `gameType` / `locale`                 | `sanguosha` / `zh` | 组合须由游戏目录支持                                           |
+| `games` / `concurrency`               | `1` / `1`          | 均为 1–100，并行数不超过局数                                   |
+| `autoStart` / `rotateSeats`           | `true` / `true`    | 是否自动运行、按局号轮换座位                                   |
+| `seed`                                | `42`               | 0–2147483647 的整数，控制引擎随机性                            |
+| `paceMs`                              | `600`              | 0–10000 毫秒，每步后的运行间隔                                 |
+| `maxDecisions`                        | `1800`             | 20–10000；达到上限按实验性平局结算                             |
+| `apiTimeoutMs`                        | `45000`            | 1000–180000 毫秒，用于决策/反思；归纳有独立超时                |
+| `modelOutputLimit`                    | `4096`             | 512–32768 Token，传给模型的 `max_tokens`，用于决策、反思和归纳 |
+| `contextEvents`                       | `300`              | 最近 20–5000 条可见非聊天事件                                  |
+| `chatEnabled` / `contextChatMessages` | `true` / `80`      | 对话上限 1–200 条，同时受字符预算约束                          |
 
 前端演示可显式传入不同参数；上表是省略字段时的服务端默认值，以 `server/config.ts` 为准。`rulesVersion` 由服务端按所选游戏写入，无需客户端指定。
 
@@ -162,7 +165,9 @@ New matches accept `gameType` and `locale`. Query `/api/game-types` for supporte
 
 运行状态：`paused`、`running`、`waiting`（等待外部 Agent）、`finished`、`stopped`、`error`。游戏胜者与比赛运行状态分开，停止或进程退出不会被记为正常胜负。
 
-对局摘要和 `/api/games/:id` 新增 `runStatus` 与 `runError`。`runStatus` 为 `paused`、`running`、`waiting`、`reflecting`（赛后 RSI）、`finished`、`error` 或 `stopped`；原来的 `status` 仍只表达游戏是否已有结果。总局数减实际创建局数即排队数量。整场必须在所有计划局完成及赛后 RSI 处理结束后才标记 finished。
+对局摘要和 `/api/games/:id` 中，`runStatus` 表示运行状态，`runError` 保存运行错误。`runStatus` 可为 `paused`、`running`、`waiting`、`reflecting`（赛后 RSI）、`finished`、`error` 或 `stopped`；`status` 只表示游戏是否已有结果。
+
+排队数量为计划总局数减去实际创建局数。所有计划局完成且赛后 RSI 处理结束后，整场才标记为 finished。
 
 暂停 / 继续作用于全部对局。`POST /api/matches/:id/step` 可发送 `{"gameId":"目标局ID"}`，暂停整场后只执行该局一步；不传时沿用最后创建的局。跨对战 gameId 被拒绝。重启后的各局保留检查点并暂停，恢复不会重开已有局。
 
@@ -278,13 +283,17 @@ Authorization: Bearer <创建时返回的该座位令牌>
 
 玩家列表及详情的顶层 `stats` 使用相同统计字段，并包含 `matches`（参与对战数）和 `memories`。顶层 `winRate` 为全部获胜局数除以全部已结束局数，不对各场胜率简单平均。原有历史自动参与聚合，无需迁移或重跑。
 
-顶层统计汇总该玩家参与的所有游戏类型，不是某一种游戏的独立指标。多游戏实验应结合比赛配置中的 `gameType` 分组，再分析相应的 `matchHistory` / `history`，不要把跨游戏汇总胜率当作单游戏表现。
+顶层统计汇总该玩家参与的所有游戏类型。分析单个游戏时，先按比赛配置的 `gameType` 分组，再读取对应的 `matchHistory` / `history`，计算该游戏的表现。
 
 个人经验新增 `matchId`、`matchName`、`gameNumber`、`consolidationId`、`sourceIds`（仅归纳结果）和 `active`。`mode` 分别为 `immediate`、`round`、`consolidated`、`manual`、`import`。`active=false` 的原文或旧版本仍在档案中，模型上下文只读取有效经验。手动和导入经验无来源对战时单独分组。
 
 `POST /api/players/:id/memories/consolidate`，请求体 `{"matchId":"对战ID"}`，返回 202 和归纳任务。它调用玩家**当前配置**的模型 API，汇总该玩家本场全部即时及轮次 RSI 经验；不读取其他玩家或其他场经验。重复点击同一玩家、同一场的运行任务会返回已有任务。
 
-通过玩家详情中的 `consolidations` 查看进度。任务字段包括 `id`、`agentId`、`matchId`、`status`（running / completed / error / interrupted）、`model`、`sourceIds`、`immediateCount`、`roundCount`、`completedCalls`、`stage`、`error` 和时间戳。后台分批归纳再合并；成功生成一条带即时、轮次与通用原则的归纳经验。失败或中断不会产生半份摘要，可重新发起。
+通过玩家详情中的 `consolidations` 查看进度。任务字段包括 `id`、`agentId`、`matchId`、`status`（running / completed / error / interrupted）、`model`、`sourceIds`、`immediateCount`、`roundCount`、`completedCalls`、`stage`、`error` 和时间戳。
+
+后台先分批归纳，再合并为一条经验，包含即时反思、赛后复盘和通用原则。失败或中断的任务可以重新发起，未完成的摘要不会写入经验。
+
+模型归纳响应中的 `immediate`、`round`、`shared` 可为字符串或纯字符串数组；数组按原顺序用换行合并。规范化后仍校验各节与总长度（合计不超过 3500 字符），拒绝对象、混合类型、空摘要和超长结果。存档保留模型原始响应，经验仍以文本形式保存。
 
 新任务另包含 `timeoutMs`（独立单批超时 180000）、`retryCount`（自动重试次数）、`reusedCalls`（复用的成功批次数）；旧任务可能无这些字段。`completedCalls` 只统计本次成功生成并验证的模型响应，不包含复用批次。归纳按约 8000 字符的序列化经验预算分批；超时、网络失败和 HTTP 408 / 429 / 5xx 最多自动重试当前批一次，间隔 1 秒。鉴权错误和无效输出直接报告失败。
 

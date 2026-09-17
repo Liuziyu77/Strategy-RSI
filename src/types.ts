@@ -216,6 +216,7 @@ export interface MatchConfig {
   paceMs: number;
   maxDecisions: number;
   apiTimeoutMs: number;
+  modelOutputLimit?: number;
   contextEvents: number;
   chatEnabled?: boolean;
   contextChatMessages?: number;

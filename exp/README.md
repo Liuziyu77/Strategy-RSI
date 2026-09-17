@@ -2,22 +2,41 @@
 
 [项目首页](../README.md#基线实验) · [English README](../README.en.md#experiments) · [文档导航](../docs/README.md)
 
-实验按游戏独立组织。游戏环境、模型交流与 RSI 功能已接入，不等于已完成模型能力评测或证明 RSI 收益。以下状态截至 2026-09-16；新报告发布时在本页登记设置、数据与复现入口。
+各游戏的报告、计划、数据与图表放在独立目录中。狼人杀、国际象棋和中国象棋各有 168 局基线，由原始 24 局和新增 144 局组成；计入试跑和功能检查后，每款仍在 200 局以内。三国杀保留原有 528 局实验，没有重跑，结果也未与其他游戏合并。
 
-Experiments are organized by game. An implemented environment with communication and RSI does not establish model performance or a learning benefit. The status below is dated 2026-09-16; register new reports with their setup, data and reproduction instructions.
+Reports, plans, data and figures are stored separately for each game. Werewolf, Chess and Xiangqi each have 168 baseline games: 24 initial plus 144 additional games. Including pilots and functionality checks, each remains below 200. The earlier 528-game Sanguosha study keeps its original settings and scope; it was not rerun or pooled with other games.
 
 ## 已有报告 / Available reports
 
-| 游戏 / Game        | 公开实验 / Published study                                                                               | 入口 / Links                                                                                                                                     |
-| ------------------ | -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| 三国杀 / Sanguosha | 四模型、空经验、RSI 关闭；528 局排程，489 局正常、39 局异常。Four-model baseline, empty memory, RSI off. | [中文报告与图表](sanguosha/README.md) · [English report and figures](sanguosha/README.en.md) · [统计数据 / Summary data](sanguosha/results.json) |
-| 狼人杀 / Werewolf  | 尚未发布基线或 RSI 对照报告。No baseline or controlled RSI report published.                             | [中文规则](../docs/games/werewolf.md) · [English rules](../docs/games/werewolf.en.md)                                                            |
-| 国际象棋 / Chess   | 尚未发布基线或 RSI 对照报告。No baseline or controlled RSI report published.                             | [中文规则](../docs/games/chess.md) · [English rules](../docs/games/chess.en.md)                                                                  |
-| 中国象棋 / Xiangqi | 尚未发布基线或 RSI 对照报告。No baseline or controlled RSI report published.                             | [规则与裁定范围](../docs/games/xiangqi.md)                                                                                                       |
+| 游戏 / Game        | 正式排程 / Baseline | 完成 / Completed | 异常 / Errors | 含试跑验证 / Total & cap    | 报告与数据 / Reports & data                                                                      |
+| ------------------ | ------------------- | ---------------- | ------------- | --------------------------- | ------------------------------------------------------------------------------------------------ |
+| 三国杀 / Sanguosha | 528                 | 489              | 39            | 历史实验 / historical study | [中文](sanguosha/README.md) · [English](sanguosha/README.en.md) · [Data](sanguosha/results.json) |
+| 狼人杀 / Werewolf  | 168                 | 156              | 12            | 176 / 200                   | [中文](werewolf/README.md) · [English](werewolf/README.en.md) · [Data](werewolf/results.json)    |
+| 国际象棋 / Chess   | 168                 | 77               | 91            | 180 / 200                   | [中文](chess/README.md) · [English](chess/README.en.md) · [Data](chess/results.json)             |
+| 中国象棋 / Xiangqi | 168                 | 73               | 95            | 175 / 200                   | [中文](xiangqi/README.md) · [English](xiangqi/README.en.md) · [Data](xiangqi/results.json)       |
 
-三国杀报告保留原实验设置、六组图表、正常与异常对局、历史行动和聊天，以及数据导出和绘图脚本。它限定于原实验的模型标签、规则、提示词、武将与采样种子，不代表其他游戏的表现，也没有检验 RSI 效果。
+“完成”包括规则胜负、规则和棋及行动上限平局，报告会分别列出。调用失败的对局计入场数和可靠性分析，不记为败局。基线关闭 RSI，每次决策使用空经验；另行保存的 RSI 功能验证只检查流程，尚未测量学习收益。
 
-The Sanguosha report preserves the original setup, six figures, normal and failed games, action and chat histories, and export / plotting scripts. Its findings apply to those model labels, rules, prompts, generals and sampled seeds, and do not measure RSI effects or performance in other games.
+Completed games include rule wins, rule draws and action-limit draws, listed separately in the reports. Games that fail on model calls count toward budgets and reliability analysis, but are not losses. Baselines use empty memory with RSI off. Separate RSI checks test the workflow without measuring learning benefits.
+
+## 目录与复现 / Layout and reproduction
+
+```text
+exp/
+  sanguosha/       原始三国杀报告、历史、六组图表
+  werewolf/        狼人杀报告、计划、数据、统计、历史、六组图表
+  chess/           国际象棋报告、计划、数据、统计、历史、六组图表
+  xiangqi/         中国象棋报告、计划、数据、统计、历史、六组图表
+  _shared/         仅复用统计与排版代码；不保存跨游戏结果
+```
+
+每款新游戏都有 `analyze.py`、`render_figures.py`、`write_report.py` 和 `requirements.txt`，用公开 JSON 即可重算分析、生成图表和报告。六张 PNG 均为 2816 × 1276，另提供 SVG。
+
+原始决策输入、响应和检查点保存在本地 `artifacts/` 中，该目录不提交到仓库。公开历史含全知角色和私聊信息，供研究者复盘，不能直接作为 Agent 输入。
+
+Each new game includes analysis, plotting and report scripts with pinned requirements. Public JSON is enough to regenerate the analyses and reports. All six PNGs are 2816 × 1276, with SVG versions available.
+
+Raw model inputs, responses and checkpoints stay in the local, ignored `artifacts/` directory. Published histories include private roles and chat for research review; they must not be passed directly to Agents.
 
 ## 设计 RSI 对照 / Designing RSI comparisons
 
@@ -27,16 +46,16 @@ The Sanguosha report preserves the original setup, six figures, normal and faile
 | 冻结经验 / Frozen experience            | 先积累或归纳经验，再关闭新增 RSI，在未用于学习的局面或种子上评估。Collect or consolidate experience, disable new RSI, then evaluate on held-out positions or seeds. |
 | 持续 RSI / Ongoing RSI                  | 开启即时、赛后或双模式，并报告经验生成与评估的用量。Enable immediate, post-game or both modes, reporting learning and evaluation usage separately.                  |
 
-**关闭 RSI 不会清空已有经验。** 经验按 Agent ID × 游戏类型保存，同类游戏的中英文比赛共享经验。独立实验条件应使用不同玩家档案；并行对局可能读取此前刚写入的同游戏经验，排程与经验到达顺序应作为实验条件记录。
+关闭 RSI 后，已有经验仍会进入决策上下文。经验按 Agent ID × 游戏类型保存，同一游戏的中英文比赛共享经验。不同实验条件应使用不同玩家档案；并行对局可能读到刚写入的经验，因此还需记录排程与经验到达顺序。
 
-**Disabling RSI does not clear existing memory.** Experience is scoped by Agent ID × game type and shared between languages of the same game. Use separate profiles for independent conditions. Concurrent games may read newly written experience from the same agent, so record scheduling and memory arrival effects.
+Existing memory still enters decision contexts when RSI is disabled. Experience is scoped by Agent ID × game type and shared between languages of the same game. Use separate profiles for independent conditions. Concurrent games may read newly written experience from the same agent, so record scheduling and memory arrival order.
 
 报告至少说明以下条件，具体协议可按游戏补充：
 
-- **游戏与模型**：代码和规则版本、语言、模型标签、提示词与上下文设置。
-- **环境与分组**：对手、人数、身份或执棋方、座位安排、种子，以及学习与评估划分。
-- **交流与经验**：交流开关、信息可见范围、初始经验、RSI 模式和归纳策略。
-- **运行与统计**：并行数、决策上限、样本量、异常局处理、兜底比例、时间与 Token 口径。
+- 代码和规则版本、语言、模型标签、提示词与上下文设置。
+- 对手、人数、身份或执棋方、座位、种子，以及学习与评估的划分。
+- 交流开关、信息可见范围、初始经验、RSI 模式和归纳策略。
+- 并行数、决策上限、样本量、异常局处理、兜底比例、时间与 Token 的统计方式。
 
 Record game / model versions, language, prompts and context; opponents, roles or colors, seats, seeds and learning / evaluation splits; communication and memory settings; concurrency, decision limits, sample sizes, failures, fallbacks, timing and token definitions. Engine seeds control game randomness, but do not guarantee identical model responses or concurrent memory ordering.
 
@@ -48,6 +67,6 @@ Analyze games separately and account for role or color distributions. Agents in 
 
 ## 后续报告的组织 / Organizing future reports
 
-每个游戏使用自己的目录；同游戏有多批实验时再按实验编号或日期分目录。报告应链接具体数据和复现脚本，标明真实模型调用、本地策略与回放素材的区别。保留既有实验的原始范围和统计口径，避免以更新后的实现说明覆盖历史设置。
+新增游戏使用 `exp/<game>/`。同一游戏有多批独立实验时，在该目录内按日期或实验编号分组；公共脚本放在 `_shared/`。每份报告保留批次设置、源码哈希、场数预算、异常和停止原因，并链接到对应数据与复现脚本。
 
-Use a directory per game, adding experiment IDs or dates when multiple studies exist. Link data and reproduction scripts, distinguish model runs from local policies and replays, and preserve historical methods and scope when the implementation changes.
+Use `exp/<game>/` for each game, with subfolders by date or study ID when adding independent studies. Shared scripts go in `_shared/`. Each report should record cohort settings, source hashes, game budgets, errors and stopping reasons, and link to its data and reproduction scripts.

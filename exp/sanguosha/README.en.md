@@ -59,7 +59,7 @@ The APIs reported **428.5M tokens**, of which **94.1%** were input tokens. Input
 
 In four-player games, GLM speaks in **96.6%** of model decisions versus DeepSeek's **82.3%**. More frequent speech does not coincide with more wins here; isolating its effect requires a chat-on/off comparison with the same models and seeds.
 
-<sub>Click figures to enlarge. Also available: <a href="assets">high-resolution PNGs</a>, <a href="results.json">public summary data</a>, <a href="games-history-duel.json">duel histories and chat</a>, <a href="games-history-identity.json">four-player histories and chat</a>, and the <a href="render_figures.py">plotting script</a>. Findings apply to the tested API model labels, Guan Yu, rules, prompts, and sampled seeds.</sub>
+<sub>Click figures to enlarge. Also available: <a href="assets">high-resolution PNGs</a>, <a href="results.json">public summary data</a>, <a href="games-history-duel.json.gz">duel histories and chat</a>, <a href="games-history-identity.json.gz">four-player histories and chat</a>, and the <a href="render_figures.py">plotting script</a>. Findings apply to the tested API model labels, Guan Yu, rules, prompts, and sampled seeds.</sub>
 
 ## Metric definitions
 
@@ -103,12 +103,14 @@ A later RSI comparison can fix the base model and opponents, then compare empty 
 
 **528 games · 66,041 actions · 245,305 events · 24,352 public messages**, split into two files by format:
 
-| File                                                          | Games                      |    Size |
-| :------------------------------------------------------------ | :------------------------- | ------: |
-| [Duel histories and chat](games-history-duel.json)            | 240: 233 normal, 7 failed  | 18.5 MB |
-| [Four-player histories and chat](games-history-identity.json) | 288: 256 normal, 32 failed | 47.8 MB |
+| File                                                             | Games                      |    Size |
+| :--------------------------------------------------------------- | :------------------------- | ------: |
+| [Duel histories and chat](games-history-duel.json.gz)            | 240: 233 normal, 7 failed  | 2.47 MB |
+| [Four-player histories and chat](games-history-identity.json.gz) | 288: 256 normal, 32 failed | 6.78 MB |
 
-Each file is an independently readable JSON object. Together they contain every formal game: 489 normally completed and 39 terminated with errors. `partition` identifies the format and part number; `counts`, `countsBySuite`, and `eventTypeCounts` cover only the current file, while the original replay verification covers the full campaign. Each game includes models, player roles, outcome, timing, rounds, actions, events, chat, and its state at termination. Pilot games and intermediate checkpoints are excluded.
+The two original JSON files totaled 66.28 MB; gzip reduces them to 9.26 MB, about 86% smaller. Decompressed bytes match the originals, preserving actions, events, chat and provenance. Read them directly with `gzip.open` below without extracting files to disk.
+
+Each gzip file contains an independently readable JSON object. Together they contain every formal game: 489 normally completed and 39 terminated with errors. `partition` identifies the format and part number; `counts`, `countsBySuite`, and `eventTypeCounts` cover only the current file, while the original replay verification covers the full campaign. Each game includes models, player roles, outcome, timing, rounds, actions, events, chat, and its state at termination. Pilot games and intermediate checkpoints are excluded.
 
 | Field                            | Contents                                                                                                                                                 |
 | :------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -125,12 +127,13 @@ The file is for post-game analysis and includes hidden roles and private card ev
 Actions and events are preserved as archived; message text comes from speech actually recorded by the engine. The export excludes API keys, endpoints, request headers, repeated decision prompts, and raw API responses.
 
 ```python
+import gzip
 import json
 from pathlib import Path
 
 folder = Path("exp/sanguosha")
-for filename in ["games-history-duel.json", "games-history-identity.json"]:
-    with (folder / filename).open(encoding="utf-8") as stream:
+for filename in ["games-history-duel.json.gz", "games-history-identity.json.gz"]:
+    with gzip.open(folder / filename, "rt", encoding="utf-8") as stream:
         data = json.load(stream)
     game = data["games"][0]
     print(game["id"], game["status"], game["winner"])
@@ -144,7 +147,7 @@ To export again from the original archives, run from the repository root. Only t
 python exp/sanguosha/export_history.py --source /path/to/sanguosha/exp
 ```
 
-The source must contain the original `plan.json`, `data/summary.json`, and `games/*.json.gz`. By default, `games-history-duel.json` and `games-history-identity.json` are written to `exp/sanguosha/`; use `--output-dir` to choose another directory.
+The source must contain the original `plan.json`, `data/summary.json`, and `games/*.json.gz`. By default, `games-history-duel.json.gz` and `games-history-identity.json.gz` are written to `exp/sanguosha/`; use `--output-dir` to choose another directory.
 
 ## Data and reproduction
 

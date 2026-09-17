@@ -1,0 +1,9 @@
+{
+  "scope": "Identical historical sources and zero-game diagnostics shared by the three 2026-09-17 studies. Original bytes preserved; game-specific plans and records remain in each game directory.",
+  "files": {
+    "initial-source-snapshot.tar.gz": "ed0c4c56c6bca01f1d6b646769363c5a12cf3499880634a12636ed48476ceb98",
+    "initial-validation-runtime-snapshot.tar.gz": "0f0594cc314cc0fc63657def56d48aaac5c33d8133503a058dfd42f3e55cdac7",
+    "pilot-source-snapshot.tar.gz": "53464613e3271bdd4c067ce6a6db4c2f22f690295e5dd3cebb64e501b5688db3",
+    "shared-diagnostics.json": "17440d81294f6e1585b1e44bd8a8973e2d0a4ad910eac57acdd4461f62344c89"
+  }
+}

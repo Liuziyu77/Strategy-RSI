@@ -1,4 +1,4 @@
-"""Export formal histories and public chat into two JSON files, one per format.
+"""Export formal histories and public chat into two gzip JSON files, one per format.
 
 Run from the Strategy-RSI repository root:
     python exp/sanguosha/export_history.py --source /path/to/sanguosha/exp
@@ -10,6 +10,7 @@ from collections import Counter
 from datetime import datetime, timezone
 import gzip
 import hashlib
+import io
 import json
 from pathlib import Path
 import tempfile
@@ -30,7 +31,7 @@ def export(source, output, suite):
     expected = {g["id"]: g for g in summary["games"]}
     assert len(jobs) == len(expected) == summary["planned"] == summary["recorded"]
     assert jobs.keys() == expected.keys()
-    archived = {p.name.removesuffix(".json.gz") for p in (source / "games").glob("*.json.gz")}
+    archived = {p.name[:-len(".json.gz")] for p in (source / "games").glob("*.json.gz")}
     assert archived == expected.keys(), "Final archive IDs differ from the declared experiment."
     suites = ("duel", "identity")
     assert suite in suites
@@ -75,8 +76,10 @@ def export(source, output, suite):
     output.parent.mkdir(parents=True, exist_ok=True)
     temporary = None
     try:
-        with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", dir=output.parent, prefix=output.name + ".", suffix=".tmp", delete=False) as out:
-            temporary = Path(out.name)
+        with tempfile.NamedTemporaryFile(mode="wb", dir=output.parent, prefix=output.name + ".", suffix=".tmp", delete=False) as raw_out, \
+                gzip.GzipFile(filename="", fileobj=raw_out, mode="wb", compresslevel=9, mtime=0) as compressed, \
+                io.TextIOWrapper(compressed, encoding="utf-8") as out:
+            temporary = Path(raw_out.name)
             out.write(json.dumps(header, ensure_ascii=False, indent=2)[:-2] + ',\n  "games": [\n')
             for index, game_id in enumerate(sorted(selected)):
                 archived_bytes = (source / "games" / f"{game_id}.json.gz").read_bytes()
@@ -160,7 +163,7 @@ def export(source, output, suite):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source", type=Path, required=True, help="Original experiment directory with plan.json, data/summary.json, and games/*.json.gz")
-    parser.add_argument("--output-dir", type=Path, default=Path(__file__).resolve().parent, help="Directory for games-history-duel.json and games-history-identity.json")
+    parser.add_argument("--output-dir", type=Path, default=Path(__file__).resolve().parent, help="Directory for games-history-duel.json.gz and games-history-identity.json.gz")
     args = parser.parse_args()
     for suite in ("duel", "identity"):
-        export(args.source.resolve(), args.output_dir.resolve() / f"games-history-{suite}.json", suite)
+        export(args.source.resolve(), args.output_dir.resolve() / f"games-history-{suite}.json.gz", suite)

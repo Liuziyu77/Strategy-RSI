@@ -59,7 +59,7 @@ API 共报告 **4.285 亿 Token**，其中输入占 **94.1%**。这说明本次�
 
 四人局中，GLM 有 **96.6%** 的模型决策伴随发言，DeepSeek 为 **82.3%**。更活跃的交流未对应更高胜率；聊天是否有效，还需同模型、同种子的开关对照。
 
-<sub>图表可点击放大，另提供 <a href="assets">高清 PNG</a>、<a href="results.json">公开统计数据</a>、<a href="games-history-duel.json">双人局记录</a>、<a href="games-history-identity.json">四人局记录</a>及<a href="render_figures.py">绘图脚本</a>。结果限定于本次模型标签、关羽、规则、提示词与采样种子。</sub>
+<sub>图表可点击放大，另提供 <a href="assets">高清 PNG</a>、<a href="results.json">公开统计数据</a>、<a href="games-history-duel.json.gz">双人局记录</a>、<a href="games-history-identity.json.gz">四人局记录</a>及<a href="render_figures.py">绘图脚本</a>。结果限定于本次模型标签、关羽、规则、提示词与采样种子。</sub>
 
 ## 六张图的统计口径
 
@@ -103,12 +103,14 @@ API 共报告 **4.285 亿 Token**，其中输入占 **94.1%**。这说明本次�
 
 **528 局 · 66,041 条行动 · 245,305 条事件 · 24,352 条公开发言**，按赛制拆为两份：
 
-| 文件                                                | 对局数                        |    大小 |
-| :-------------------------------------------------- | :---------------------------- | ------: |
-| [双人局历史与聊天](games-history-duel.json)         | 240 局：233 局正常、7 局异常  | 18.5 MB |
-| [四人身份局历史与聊天](games-history-identity.json) | 288 局：256 局正常、32 局异常 | 47.8 MB |
+| 文件                                                   | 对局数                        |    大小 |
+| :----------------------------------------------------- | :---------------------------- | ------: |
+| [双人局历史与聊天](games-history-duel.json.gz)         | 240 局：233 局正常、7 局异常  | 2.47 MB |
+| [四人身份局历史与聊天](games-history-identity.json.gz) | 288 局：256 局正常、32 局异常 | 6.78 MB |
 
-每份文件都是可独立读取的 JSON 对象，合计包含全部正式实验对局：489 局正常结束、39 局异常终止。`partition` 标明赛制与分片编号；`counts`、`countsBySuite` 和 `eventTypeCounts` 只统计当前文件，原始回放核验信息对应整批实验。每局独立保存模型、玩家身份、胜负、时间、轮次、行动、事件、聊天和终止时状态。先导实验与中间检查点不重复导出。
+两份原始 JSON 合计 66.28 MB，压缩后为 9.26 MB，减少约 86%。解压后的字节与原文件一致，行动、事件、聊天及来源校验信息均保留。可直接用下方的 `gzip.open` 示例读取，无需先解压到磁盘。
+
+每份文件解压后都是可独立读取的 JSON 对象，合计包含全部正式实验对局：489 局正常结束、39 局异常终止。`partition` 标明赛制与分片编号；`counts`、`countsBySuite` 和 `eventTypeCounts` 只统计当前文件，原始回放核验信息对应整批实验。每局独立保存模型、玩家身份、胜负、时间、轮次、行动、事件、聊天和终止时状态。先导实验与中间检查点不重复导出。
 
 | 字段                             | 内容                                                                                                  |
 | :------------------------------- | :---------------------------------------------------------------------------------------------------- |
@@ -125,12 +127,13 @@ API 共报告 **4.285 亿 Token**，其中输入占 **94.1%**。这说明本次�
 导出保留原始行动和事件，聊天文字来自引擎实际记录的公开发言。文件不包含 API 密钥、地址、请求头、重复决策提示词或原始 API 响应。
 
 ```python
+import gzip
 import json
 from pathlib import Path
 
 folder = Path("exp/sanguosha")
-for filename in ["games-history-duel.json", "games-history-identity.json"]:
-    with (folder / filename).open(encoding="utf-8") as stream:
+for filename in ["games-history-duel.json.gz", "games-history-identity.json.gz"]:
+    with gzip.open(folder / filename, "rt", encoding="utf-8") as stream:
         data = json.load(stream)
     game = data["games"][0]
     print(game["id"], game["status"], game["winner"])
@@ -144,7 +147,7 @@ for filename in ["games-history-duel.json", "games-history-identity.json"]:
 python exp/sanguosha/export_history.py --source /path/to/sanguosha/exp
 ```
 
-`--source` 目录需包含原始 `plan.json`、`data/summary.json` 和 `games/*.json.gz`。默认在 `exp/sanguosha/` 生成 `games-history-duel.json` 和 `games-history-identity.json`，可用 `--output-dir` 指定其他目录。
+`--source` 目录需包含原始 `plan.json`、`data/summary.json` 和 `games/*.json.gz`。默认在 `exp/sanguosha/` 生成 `games-history-duel.json.gz` 和 `games-history-identity.json.gz`，可用 `--output-dir` 指定其他目录。
 
 ## 数据与重绘
 

@@ -166,10 +166,11 @@ Token 按供应商返回的 usage 统计，输出量可能包含不可见的推�
 | [results.json](results.json)                                                          | 逐局摘要、语言与批次结果、调用与 RSI 检查                       |
 | [analysis.json](analysis.json)                                                        | 分组区间、缺失界限、矩阵和时长统计                              |
 | [games-history.json.gz](games-history.json.gz)                                        | 全知研究历史：角色、行动、理由、私聊和最终状态；不是 Agent 输入 |
-| [config.example.yaml](config.example.yaml)                                            | 不含密钥的配置示例；可通过 EXPERIMENT_ENV 指定私有配置路径      |
+| [config.example.yaml](../_shared/config.example.yaml)                                 | 共用配置示例，不含密钥；EXPERIMENT_ENV 指定私有配置路径         |
 | [plan.json](plan.json) · [amendments.json](amendments.json)                           | 固定排程、场数预算、协议、源码哈希与修订                        |
 | [provenance.json](provenance.json) · [source-snapshot.tar.gz](source-snapshot.tar.gz) | 数据与源码校验；旧运行器也保留在快照中                          |
-| [provenance/](provenance/)                                                            | 该游戏原始 24 局计划、试跑记录与历史源码快照                    |
+| [provenance/](provenance/)                                                            | 该游戏原始 24 局计划和试跑记录                                  |
+| [共享历史源码](../_shared/provenance/)                                                | 三款游戏共用的原始源码快照、验证运行时、零对局诊断与校验清单    |
 | [assets/](assets/)                                                                    | 六张 SVG 与同尺寸 PNG，及生成来源清单                           |
 
 在仓库根目录，仅用公开 JSON 重算分析和图表：
@@ -177,13 +178,11 @@ Token 按供应商返回的 usage 统计，输出量可能包含不可见的推�
 ```bash
 python3 -m venv .venv-exp
 . .venv-exp/bin/activate
-pip install -r exp/chess/requirements.txt
-python3 exp/chess/analyze.py
-python3 exp/chess/render_figures.py
-python3 exp/chess/write_report.py
+pip install -r exp/_shared/requirements.txt
+python3 exp/reproduce.py chess
 ```
 
-各游戏的入口脚本复用 [../\_shared/](../_shared/) 的统计与排版实现；数据和输出始终留在自己的游戏目录。图表参考 [三国杀](../sanguosha/README.md) 的卡片版式，统一为 2816 × 1276 PNG 与可缩放 SVG。
+统一入口 [reproduce.py](../reproduce.py) 依次生成分析、图表和报告，也可在游戏名后加 `analyze`、`figures` 或 `report` 只运行一步。实现位于 [../\_shared/](../_shared/)，数据和输出仍保存在本游戏目录。图表参考 [三国杀](../sanguosha/README.md) 的卡片版式，提供 2816 × 1276 PNG 和 SVG。
 
 本地保留完整原始实验目录时，可离线重新导出并审计本游戏：
 
@@ -203,10 +202,15 @@ python3 scripts/experiments/verify_studies.py
 
 读取公开历史示例：
 
+`games-history.json.gz` 是 gzip 压缩的 JSON，包含全部 168 局正式基线（包括异常局），每局保存 `players`、`actions`、`events` 和 `finalState`。聊天保存在 `events` 中的 `chat` 事件里，公开发言和队内密谈均保留原可见性标记。试跑与 RSI 验证在 `results.json` 中保留摘要，完整输入和响应留在本地 `artifacts/`。
+
 ```python
 import gzip, json
-with gzip.open("exp/chess/games-history.json.gz", "rt") as f:
+with gzip.open("exp/chess/games-history.json.gz", "rt", encoding="utf-8") as f:
     history = json.load(f)
 print(len(history["games"]))
-print(history["games"][0]["job"])
+game = history["games"][0]
+print(game["job"])
+chat = [event for event in game["events"] if event["type"] == "chat"]
+print(len(game["actions"]), len(chat))
 ```

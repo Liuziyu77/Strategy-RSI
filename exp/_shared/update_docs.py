@@ -58,6 +58,11 @@ rows=[['三国杀 / Sanguosha','528','489','39','历史实验 / historical study
 for g in GAMES:
  d=DATA[g];m=d['aggregate']
  rows.append([' / '.join(NAMES[g]),168,m['finished'],m['errors'],str(d['budget']['totalGames'])+' / 200','[中文]('+g+'/README.md) · [English]('+g+'/README.en.md) · [Data]('+g+'/results.json)'])
+history_rows=[]
+for label,file,count in [('三国杀双人 / Sanguosha duels','sanguosha/games-history-duel.json.gz',240),
+                         ('三国杀身份 / Sanguosha identity','sanguosha/games-history-identity.json.gz',288)]+[
+                         (' / '.join(NAMES[g]),g+'/games-history.json.gz',len(DATA[g]['games'])) for g in GAMES]:
+ history_rows.append([label,'['+file+']('+file+')',count,'{:.2f} MB'.format((ROOT/'exp'/file).stat().st_size/1e6)])
 intro='''# 实验目录 / Experiments
 
 [项目首页](../README.md#基线实验) · [English README](../README.en.md#experiments) · [文档导航](../docs/README.md)
@@ -74,6 +79,18 @@ Reports, plans, data and figures are stored separately for each game. Werewolf, 
 
 Completed games include rule wins, rule draws and action-limit draws, listed separately in the reports. Games that fail on model calls count toward budgets and reliability analysis, but are not losses. Baselines use empty memory with RSI off. Separate RSI checks test the workflow without measuring learning benefits.
 
+## 对局历史 / Game histories
+
+四款游戏的正式对局历史均保存在 `exp/` 下，采用 gzip 压缩 JSON，包含异常局。压缩只改变文件存储方式，不删减记录。
+
+All formal game histories, including failed games, are stored under `exp/` as gzip-compressed JSON. Compression preserves the complete records.
+
+'''+table(['游戏 / Game','History','局数 / Games','压缩大小 / Compressed size'],history_rows)+'''
+
+三款新游戏的历史中，`games[].actions` 是已执行行动，`games[].events` 包含游戏事件和聊天，`games[].finalState` 是终止时状态。狼人密谈保留可见性标记。试跑和 RSI 功能验证的摘要在各自 `results.json` 中，完整原始输入、响应与检查点保存在本地 `artifacts/`。
+
+For the three new games, `games[].actions` stores executed actions, `games[].events` includes game events and chat, and `games[].finalState` records the state at termination. Private wolf messages retain visibility markers. Pilot and RSI-check summaries are in each `results.json`; raw inputs, responses and checkpoints remain in local `artifacts/`.
+
 ## 目录与复现 / Layout and reproduction
 
 ```text
@@ -82,14 +99,24 @@ exp/
   werewolf/        狼人杀报告、计划、数据、统计、历史、六组图表
   chess/           国际象棋报告、计划、数据、统计、历史、六组图表
   xiangqi/         中国象棋报告、计划、数据、统计、历史、六组图表
-  _shared/         仅复用统计与排版代码；不保存跨游戏结果
+  reproduce.py    三款新游戏共用的离线分析、绘图与报告入口
+  _shared/         公共代码、依赖、配置示例与相同的历史源码
 ```
 
-每款新游戏都有 `analyze.py`、`render_figures.py`、`write_report.py` 和 `requirements.txt`，用公开 JSON 即可重算分析、生成图表和报告。六张 PNG 均为 2816 × 1276，另提供 SVG。
+三款新游戏通过 [reproduce.py](reproduce.py) 复用分析、绘图和报告流程，依赖与配置示例集中在 [_shared/](./_shared/)。重复的历史源码快照也只保留一份，游戏自己的计划、结果和 history 仍各自保存。三国杀的历史实验使用不同依赖版本，保留原绘图和导出脚本。
+
+```bash
+pip install -r exp/_shared/requirements.txt
+python3 exp/reproduce.py chess
+# 仅重新生成狼人杀报告：
+python3 exp/reproduce.py werewolf report
+```
+
+公开 JSON 足以重算三款新游戏的分析、图表和报告，无需 API。每游戏六张 PNG 均为 2816 × 1276，另提供 SVG。
 
 原始决策输入、响应和检查点保存在本地 `artifacts/` 中，该目录不提交到仓库。公开历史含全知角色和私聊信息，供研究者复盘，不能直接作为 Agent 输入。
 
-Each new game includes analysis, plotting and report scripts with pinned requirements. Public JSON is enough to regenerate the analyses and reports. All six PNGs are 2816 × 1276, with SVG versions available.
+The three new games use [reproduce.py](reproduce.py) for analysis, figures and reports. Shared dependencies, configuration and identical historical snapshots live in [_shared/](./_shared/); plans, results and histories stay with each game. Sanguosha keeps its original scripts and dependency versions. Public JSON is sufficient for offline reproduction. Each game has six 2816 × 1276 PNGs and matching SVGs.
 
 Raw model inputs, responses and checkpoints stay in the local, ignored `artifacts/` directory. Published histories include private roles and chat for research review; they must not be passed directly to Agents.
 

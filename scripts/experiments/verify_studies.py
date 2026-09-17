@@ -10,6 +10,7 @@ import hashlib
 import json
 from pathlib import Path
 import struct
+import tarfile
 
 ROOT=Path(__file__).resolve().parents[2]
 read=lambda p:json.loads(p.read_text())
@@ -19,6 +20,20 @@ all_unique=[]
 parser=argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--game',choices=['chess','xiangqi','werewolf'],help='Verify one completed study independently.')
 args=parser.parse_args()
+shared=ROOT/'exp/_shared/provenance'
+shared_manifest=read(shared/'manifest.json')
+for file,digest in shared_manifest['files'].items():
+    assert sha(shared/file)==digest, 'Shared historical file changed: '+file
+
+def verify_snapshot(path, expected):
+    with tarfile.open(path, 'r:gz') as archive:
+        for file,digest in expected.items():
+            with archive.extractfile(file) as source:
+                assert hashlib.sha256(source.read()).hexdigest()==digest, str(path)+': '+file
+
+with tarfile.open(shared/'initial-validation-runtime-snapshot.tar.gz', 'r:gz') as archive:
+    runtime_manifest=json.load(archive.extractfile('manifest.json'))
+verify_snapshot(shared/'initial-validation-runtime-snapshot.tar.gz',runtime_manifest['files'])
 expected_totals={'chess':180,'xiangqi':175,'werewolf':176}
 selected=[args.game] if args.game else list(expected_totals)
 old_raw=ROOT/'artifacts/multigame-20260916/baseline'
@@ -28,6 +43,8 @@ private_requests=(read(old_raw/'requests.json')+read(new_raw/'requests.json')) i
 for game in selected:
     expected_total=expected_totals[game]
     root=ROOT/'exp'/game
+    verify_snapshot(shared/'initial-source-snapshot.tar.gz',read(root/'provenance/initial-plan.json')['sourceHashes'])
+    verify_snapshot(shared/'pilot-source-snapshot.tar.gz',read(root/'provenance/pilot.json')['sourceHashes'])
     d=read(root/'results.json');plan=read(root/'plan.json');a=read(root/'analysis.json')
     assert d['complete'] and d['verification']['allPassed']
     assert d['recordedBaseline']==d['plannedBaseline']==len(d['games'])==168

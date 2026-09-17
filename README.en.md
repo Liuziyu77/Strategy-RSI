@@ -313,7 +313,7 @@ All six figures use the same dimensions. Click a figure to view the original.
 
 This study measures performance without experience and **has not tested RSI benefits or the causal effect of chat**. Findings apply to the tested model labels, generals, rules, prompts and sampled seeds. See the [full analysis](exp/sanguosha/README.en.md#interpreting-the-findings) for failure handling, statistical intervals and limits.
 
-[Summary data](exp/sanguosha/results.json) · [Duel actions and chat](exp/sanguosha/games-history-duel.json) · [Four-player actions and chat](exp/sanguosha/games-history-identity.json) · [Figure reproduction](exp/sanguosha/README.en.md#data-and-reproduction)
+[Summary data](exp/sanguosha/results.json) · [Duel actions and chat](exp/sanguosha/games-history-duel.json.gz) · [Four-player actions and chat](exp/sanguosha/games-history-identity.json.gz) · [Figure reproduction](exp/sanguosha/README.en.md#data-and-reproduction)
 
 </details>
 

@@ -313,7 +313,7 @@ exp/          实验报告、分游戏统计、数据与图表
 
 这组实验只测量空经验下的表现，尚未检验 RSI 收益或聊天的因果效果。结论适用于本次模型标签、武将、规则、提示词与采样种子；异常局处理和统计方法见[完整分析](exp/sanguosha/README.md#怎样解读结果)。
 
-[统计数据](exp/sanguosha/results.json) · [双人局行动与聊天](exp/sanguosha/games-history-duel.json) · [四人局行动与聊天](exp/sanguosha/games-history-identity.json) · [图表复现](exp/sanguosha/README.md#数据与重绘)
+[统计数据](exp/sanguosha/results.json) · [双人局行动与聊天](exp/sanguosha/games-history-duel.json.gz) · [四人局行动与聊天](exp/sanguosha/games-history-identity.json.gz) · [图表复现](exp/sanguosha/README.md#数据与重绘)
 
 </details>
 

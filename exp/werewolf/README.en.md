@@ -159,29 +159,28 @@ Auditing and plotting make no model calls. Raw inputs, responses and checkpoints
 
 ## Files and reproduction
 
-| File                                                                                  | Contents                                                                                            |
-| ------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| [results.json](results.json)                                                          | Per-game summaries, language/cohort counts, calls and RSI checks                                    |
-| [analysis.json](analysis.json)                                                        | Clustered intervals, missing-outcome bounds, matrices and duration statistics                       |
-| [games-history.json.gz](games-history.json.gz)                                        | Omniscient research history: roles, actions, reasons, private chat and final state; not Agent input |
-| [config.example.yaml](config.example.yaml)                                            | Credential-free config example; EXPERIMENT_ENV can point to a private config file                   |
-| [plan.json](plan.json) · [amendments.json](amendments.json)                           | Fixed schedule, game budget, protocol, source hashes and amendment                                  |
-| [provenance.json](provenance.json) · [source-snapshot.tar.gz](source-snapshot.tar.gz) | Data/source verification; the earlier runner is also preserved in the snapshot                      |
-| [provenance/](provenance/)                                                            | This game’s initial 24-game plan, pilot records and historical source snapshots                     |
-| [assets/](assets/)                                                                    | Six SVGs, matching PNGs, and generation provenance                                                  |
+| File                                                                                  | Contents                                                                                                      |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| [results.json](results.json)                                                          | Per-game summaries, language/cohort counts, calls and RSI checks                                              |
+| [analysis.json](analysis.json)                                                        | Clustered intervals, missing-outcome bounds, matrices and duration statistics                                 |
+| [games-history.json.gz](games-history.json.gz)                                        | Omniscient research history: roles, actions, reasons, private chat and final state; not Agent input           |
+| [config.example.yaml](../_shared/config.example.yaml)                                 | Shared credential-free config example; EXPERIMENT_ENV selects a private config file                           |
+| [plan.json](plan.json) · [amendments.json](amendments.json)                           | Fixed schedule, game budget, protocol, source hashes and amendment                                            |
+| [provenance.json](provenance.json) · [source-snapshot.tar.gz](source-snapshot.tar.gz) | Data/source verification; the earlier runner is also preserved in the snapshot                                |
+| [provenance/](provenance/)                                                            | This game’s initial 24-game plan and pilot records                                                            |
+| [Shared historical sources](../_shared/provenance/)                                   | Identical source snapshots, validation runtime, zero-game diagnostics and checksums shared by the three games |
+| [assets/](assets/)                                                                    | Six SVGs, matching PNGs, and generation provenance                                                            |
 
 From the repository root, reproduce analysis and figures using public JSON only:
 
 ```bash
 python3 -m venv .venv-exp
 . .venv-exp/bin/activate
-pip install -r exp/werewolf/requirements.txt
-python3 exp/werewolf/analyze.py
-python3 exp/werewolf/render_figures.py
-python3 exp/werewolf/write_report.py
+pip install -r exp/_shared/requirements.txt
+python3 exp/reproduce.py werewolf
 ```
 
-Per-game entry points reuse statistics and layout code in [../\_shared/](../_shared/), keeping data and outputs in their own game directory. Figures follow the [Sanguosha](../sanguosha/README.en.md) card layout: 2816 × 1276 PNG plus scalable SVG.
+The shared entry point [reproduce.py](../reproduce.py) runs analysis, figures and reports in order. Append `analyze`, `figures` or `report` after the game name to run one step. Code lives in [../\_shared/](../_shared/); data and outputs stay in this game directory. Figures follow the [Sanguosha](../sanguosha/README.en.md) card layout, with 2816 × 1276 PNG and SVG versions.
 
 With the complete original local experiment artifacts available, re-export and audit this game offline:
 
@@ -201,10 +200,15 @@ Executing the study also requires the local historical ledger at `artifacts/mult
 
 Read the public history:
 
+`games-history.json.gz` is gzip-compressed JSON containing all 168 formal baseline games, including errors. Each game stores `players`, `actions`, `events` and `finalState`. Chat appears as `chat` events, with original visibility markers for public and team messages. Pilot and RSI checks have summaries in `results.json`; full inputs and responses remain in local `artifacts/`.
+
 ```python
 import gzip, json
-with gzip.open("exp/werewolf/games-history.json.gz", "rt") as f:
+with gzip.open("exp/werewolf/games-history.json.gz", "rt", encoding="utf-8") as f:
     history = json.load(f)
 print(len(history["games"]))
-print(history["games"][0]["job"])
+game = history["games"][0]
+print(game["job"])
+chat = [event for event in game["events"] if event["type"] == "chat"]
+print(len(game["actions"]), len(chat))
 ```

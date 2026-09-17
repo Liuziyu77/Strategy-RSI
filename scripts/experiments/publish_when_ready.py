@@ -33,8 +33,7 @@ def main():
             if not ledger.exists() or ledger.stat().st_mtime < max(p.stat().st_mtime for p in finals):continue
             print(json.dumps({'publishing':game,'extensionGames':len(finals)}),flush=True)
             run([str(ROOT/'node_modules/.bin/tsx'),'scripts/export-game-results.ts','--game',game])
-            for script in ['analyze.py','render_figures.py','write_report.py']:
-                run([sys.executable,'exp/'+game+'/'+script])
+            run([sys.executable,'exp/reproduce.py',game])
             published.add(game)
             (RAW/'published.json').write_text(json.dumps({'games':sorted(published)},indent=2)+'\n')
             print(json.dumps({'published':game}),flush=True)

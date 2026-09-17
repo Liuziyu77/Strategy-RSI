@@ -1,0 +1,152 @@
+{
+  "scope": "Shared pre-study diagnostics for the four providers; not attributed to an individual game, zero additional games.",
+  "connectivity": {
+    "date": "2026-09-16T09:49:11.106Z",
+    "credentialField": "api_key_env_yh",
+    "rows": [
+      {
+        "model": "bailian/deepseek-v4-flash",
+        "ok": true,
+        "latencyMs": 1622,
+        "usage": {
+          "prompt_tokens": 18,
+          "completion_tokens": 50,
+          "total_tokens": 68,
+          "completion_tokens_details": {
+            "reasoning_tokens": 44
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "finishReason": "stop"
+      },
+      {
+        "model": "glm-5.2",
+        "ok": true,
+        "latencyMs": 2447,
+        "usage": {
+          "completion_tokens": 32,
+          "completion_tokens_details": {
+            "reasoning_tokens": 26
+          },
+          "prompt_tokens": 29,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "total_tokens": 61
+        },
+        "finishReason": "stop"
+      },
+      {
+        "model": "kimi-k3",
+        "ok": true,
+        "latencyMs": 4836,
+        "usage": {
+          "completion_tokens": 40,
+          "completion_tokens_details": {
+            "reasoning_tokens": 25,
+            "text_tokens": 15
+          },
+          "prompt_tokens": 158,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "text_tokens": 158
+          },
+          "total_tokens": 198
+        },
+        "finishReason": "stop"
+      },
+      {
+        "model": "qwen3.8-max-0902",
+        "ok": true,
+        "latencyMs": 2278,
+        "usage": {
+          "completion_tokens": 46,
+          "completion_tokens_details": {
+            "reasoning_tokens": 38,
+            "text_tokens": 46
+          },
+          "prompt_tokens": 57,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "text_tokens": 57
+          },
+          "total_tokens": 103
+        },
+        "finishReason": "stop"
+      }
+    ]
+  },
+  "outputLimitDiagnostics": {
+    "note": "Replayed previously failed prompts; no new games and no actions applied.",
+    "rows": [
+      {
+        "job": "chess-en-01-m0",
+        "model": "bailian/deepseek-v4-flash",
+        "outputLimit": 8192,
+        "ok": true,
+        "latencyMs": 18206,
+        "finishReason": "stop",
+        "usage": {
+          "prompt_tokens": 6448,
+          "completion_tokens": 1684,
+          "total_tokens": 8132,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1636
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 6144
+          }
+        },
+        "content": {
+          "actionId": "c3d5",
+          "reason": "Nxd5 is a natural exchange, simplifying the center and maintaining the initiative.",
+          "speech": "Nxd5. Standard continuation."
+        }
+      },
+      {
+        "job": "xiangqi-zh-02-b1-m1",
+        "model": "bailian/deepseek-v4-flash",
+        "outputLimit": 8192,
+        "ok": true,
+        "latencyMs": 41655,
+        "finishReason": "stop",
+        "usage": {
+          "prompt_tokens": 3755,
+          "completion_tokens": 3641,
+          "total_tokens": 7396,
+          "completion_tokens_details": {
+            "reasoning_tokens": 3603
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 3584
+          }
+        },
+        "content": {
+          "actionId": "h7h0",
+          "reason": "炮打红马得子，削弱红方进攻力量",
+          "speech": "炮打边马，先得子。"
+        }
+      }
+    ]
+  },
+  "usage": {
+    "connectivity": {
+      "requests": 4,
+      "httpErrors": 0,
+      "usageReported": 4,
+      "promptTokens": 262,
+      "completionTokens": 168,
+      "lengthLimited": 0
+    },
+    "outputDiagnostics": {
+      "requests": 2,
+      "httpErrors": 0,
+      "usageReported": 2,
+      "promptTokens": 10203,
+      "completionTokens": 5325,
+      "lengthLimited": 0
+    }
+  }
+}

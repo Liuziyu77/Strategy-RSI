@@ -168,16 +168,17 @@ def write(root, input_path=None, output_path=None):
           ['[results.json](results.json)',T('逐局摘要、语言与批次结果、调用与 RSI 检查','Per-game summaries, language/cohort counts, calls and RSI checks')],
           ['[analysis.json](analysis.json)',T('分组区间、缺失界限、矩阵和时长统计','Clustered intervals, missing-outcome bounds, matrices and duration statistics')],
           ['[games-history.json.gz](games-history.json.gz)',T('全知研究历史：角色、行动、理由、私聊和最终状态；不是 Agent 输入','Omniscient research history: roles, actions, reasons, private chat and final state; not Agent input')],
-          ['[config.example.yaml](config.example.yaml)',T('不含密钥的配置示例；可通过 EXPERIMENT_ENV 指定私有配置路径','Credential-free config example; EXPERIMENT_ENV can point to a private config file')],
+          ['[config.example.yaml](../_shared/config.example.yaml)',T('共用配置示例，不含密钥；EXPERIMENT_ENV 指定私有配置路径','Shared credential-free config example; EXPERIMENT_ENV selects a private config file')],
           ['[plan.json](plan.json) · [amendments.json](amendments.json)',T('固定排程、场数预算、协议、源码哈希与修订','Fixed schedule, game budget, protocol, source hashes and amendment')],
           ['[provenance.json](provenance.json) · [source-snapshot.tar.gz](source-snapshot.tar.gz)',T('数据与源码校验；旧运行器也保留在快照中','Data/source verification; the earlier runner is also preserved in the snapshot')],
-          ['[provenance/](provenance/)',T('该游戏原始 24 局计划、试跑记录与历史源码快照','This game’s initial 24-game plan, pilot records and historical source snapshots')],
+          ['[provenance/](provenance/)',T('该游戏原始 24 局计划和试跑记录','This game’s initial 24-game plan and pilot records')],
+          ['[共享历史源码](../_shared/provenance/)' if not en else '[Shared historical sources](../_shared/provenance/)',T('三款游戏共用的原始源码快照、验证运行时、零对局诊断与校验清单','Identical source snapshots, validation runtime, zero-game diagnostics and checksums shared by the three games')],
           ['[assets/](assets/)',T('六张 SVG 与同尺寸 PNG，及生成来源清单','Six SVGs, matching PNGs, and generation provenance')],
         ]))
         parts.append(T('在仓库根目录，仅用公开 JSON 重算分析和图表：','From the repository root, reproduce analysis and figures using public JSON only:'))
-        parts.append('```bash\npython3 -m venv .venv-exp\n. .venv-exp/bin/activate\npip install -r exp/'+game+'/requirements.txt\npython3 exp/'+game+'/analyze.py\npython3 exp/'+game+'/render_figures.py\npython3 exp/'+game+'/write_report.py\n```')
-        parts.append(T('各游戏的入口脚本复用 [../_shared/](../_shared/) 的统计与排版实现；数据和输出始终留在自己的游戏目录。图表参考 [三国杀](../sanguosha/README.md) 的卡片版式，统一为 2816 × 1276 PNG 与可缩放 SVG。',
-          'Per-game entry points reuse statistics and layout code in [../_shared/](../_shared/), keeping data and outputs in their own game directory. Figures follow the [Sanguosha](../sanguosha/README.en.md) card layout: 2816 × 1276 PNG plus scalable SVG.'))
+        parts.append('```bash\npython3 -m venv .venv-exp\n. .venv-exp/bin/activate\npip install -r exp/_shared/requirements.txt\npython3 exp/reproduce.py '+game+'\n```')
+        parts.append(T('统一入口 [reproduce.py](../reproduce.py) 依次生成分析、图表和报告，也可在游戏名后加 `analyze`、`figures` 或 `report` 只运行一步。实现位于 [../_shared/](../_shared/)，数据和输出仍保存在本游戏目录。图表参考 [三国杀](../sanguosha/README.md) 的卡片版式，提供 2816 × 1276 PNG 和 SVG。',
+          'The shared entry point [reproduce.py](../reproduce.py) runs analysis, figures and reports in order. Append `analyze`, `figures` or `report` after the game name to run one step. Code lives in [../_shared/](../_shared/); data and outputs stay in this game directory. Figures follow the [Sanguosha](../sanguosha/README.en.md) card layout, with 2816 × 1276 PNG and SVG versions.'))
         parts.append(T('本地保留完整原始实验目录时，可离线重新导出并审计本游戏：','With the complete original local experiment artifacts available, re-export and audit this game offline:'))
         parts.append('```bash\nnpx tsx scripts/export-game-results.ts --game '+game+'\n```')
         parts.append(T('公开数据、场数、历史、分母与图表哈希的独立检查：','Independently check public data, budgets, histories, denominators and figure hashes:'))
@@ -187,6 +188,8 @@ def write(root, input_path=None, output_path=None):
         parts.append(T('重新执行实验还需要本地历史账本 `artifacts/multigame-20260916/public-archive/`。查看报告、重算公开统计或绘图都不需要这份账本。',
           'Executing the study also requires the local historical ledger at `artifacts/multigame-20260916/public-archive/`. Reading reports, recomputing public statistics and plotting do not require it.'))
         parts.append(T('读取公开历史示例：','Read the public history:'))
-        parts.append('```python\nimport gzip, json\nwith gzip.open("exp/'+game+'/games-history.json.gz", "rt") as f:\n    history = json.load(f)\nprint(len(history["games"]))\nprint(history["games"][0]["job"])\n```')
+        parts.append(T('`games-history.json.gz` 是 gzip 压缩的 JSON，包含全部 168 局正式基线（包括异常局），每局保存 `players`、`actions`、`events` 和 `finalState`。聊天保存在 `events` 中的 `chat` 事件里，公开发言和队内密谈均保留原可见性标记。试跑与 RSI 验证在 `results.json` 中保留摘要，完整输入和响应留在本地 `artifacts/`。',
+          '`games-history.json.gz` is gzip-compressed JSON containing all 168 formal baseline games, including errors. Each game stores `players`, `actions`, `events` and `finalState`. Chat appears as `chat` events, with original visibility markers for public and team messages. Pilot and RSI checks have summaries in `results.json`; full inputs and responses remain in local `artifacts/`.'))
+        parts.append('```python\nimport gzip, json\nwith gzip.open("exp/'+game+'/games-history.json.gz", "rt", encoding="utf-8") as f:\n    history = json.load(f)\nprint(len(history["games"]))\ngame = history["games"][0]\nprint(game["job"])\nchat = [event for event in game["events"] if event["type"] == "chat"]\nprint(len(game["actions"]), len(chat))\n```')
         (out/langfile).write_text('\n\n'.join(parts)+'\n')
     print('Wrote bilingual report: '+game)
